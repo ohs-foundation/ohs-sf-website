@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Archives
+*.zip
+*.tar.gz
+
+# Node (future use)
+node_modules/
+npm-debug.log*
+
+# Env
+.env
+.env.local
+
+# Design handoff (source files, not part of production repo)
+design_handoff_ohs_foundation_site/
+
+# Editor
+.vscode/
+.idea/
