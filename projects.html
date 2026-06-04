@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Projects — Open Health Stack Software Foundation</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+/* ===== Projects page ===== */
+.page-hero { padding-top: clamp(56px, 8vw, 110px); padding-bottom: clamp(32px, 5vw, 60px); }
+.page-hero h1 { font-size: clamp(2.5rem, 5.2vw, 4.2rem); font-weight: 800; letter-spacing: -0.035em; line-height: 1.0; }
+.page-hero .lead { max-width: 58ch; margin-top: 22px; }
+
+/* Pillar header band */
+.pillar-band { border-radius: var(--radius-lg); padding: clamp(28px,4vw,46px); display:grid; grid-template-columns: 1fr auto; gap: 28px; align-items:center; }
+.pillar-band.core { background: linear-gradient(120deg, var(--core-wash), var(--surface)); border:1px solid color-mix(in oklch, var(--core) 18%, transparent); }
+.pillar-band.ai { background: linear-gradient(120deg, var(--ai-wash), var(--surface)); border:1px solid color-mix(in oklch, var(--ai) 18%, transparent); }
+.pillar-band h2 { font-size: clamp(1.8rem,3vw,2.6rem); margin-top:16px; }
+.pillar-band p { color:var(--ink-soft); margin-top:14px; max-width:52ch; }
+.pillar-band .pb-mark { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; width:128px; flex:none; }
+.pillar-band .pb-mark i { aspect-ratio:1; border-radius:9px; }
+.pillar-band.core .pb-mark i { background:var(--core); } .pillar-band.core .pb-mark i:nth-child(even){opacity:0.45;}
+.pillar-band.ai .pb-mark i { background:var(--ai); } .pillar-band.ai .pb-mark i:nth-child(odd){opacity:0.45;}
+
+/* Project cards */
+.proj-grid { display:grid; grid-template-columns: repeat(2,1fr); gap:22px; margin-top:28px; }
+.proj { display:flex; flex-direction:column; }
+.proj-top { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.proj h3 { font-size:1.3rem; margin-top:18px; }
+.proj p { color:var(--ink-soft); margin-top:12px; font-size:0.95rem; flex:1; }
+.proj-meta { margin-top:20px; padding-top:18px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; gap:8px 18px; align-items:center; }
+.proj-meta .status { display:inline-flex; align-items:center; gap:7px; font-size:0.82rem; color:var(--ink-soft); }
+.proj-meta .status .dot { width:8px; height:8px; border-radius:50%; }
+.proj-meta .status.active .dot { background:var(--green); box-shadow:0 0 0 3px color-mix(in oklch,var(--green) 22%,transparent); }
+.proj-meta .status.incubating .dot { background:var(--amber); box-shadow:0 0 0 3px color-mix(in oklch,var(--amber) 22%,transparent); }
+.proj-meta .status.proposed .dot { background:var(--ink-faint); }
+.proj-meta .lang { font-family:'IBM Plex Mono',monospace; font-size:0.74rem; color:var(--ink-faint); }
+.proj .repo { margin-top:16px; }
+
+/* Steering committee */
+.committees { background:var(--bg-2); }
+.committee-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:22px; margin-top:44px; }
+.committee .icon-chip { margin-bottom:16px; }
+.committee h3 { font-size:1.12rem; }
+.committee p { color:var(--ink-soft); margin-top:10px; font-size:0.93rem; }
+.committee .roster { margin-top:18px; display:flex; align-items:center; gap:8px; }
+.avatar { width:30px; height:30px; border-radius:50%; border:2px solid var(--surface); display:grid; place-items:center; font-size:0.7rem; font-weight:700; color:#fff; margin-left:-8px; }
+.avatar:first-child { margin-left:0; }
+.committee .roster small { color:var(--ink-faint); font-size:0.82rem; margin-left:6px; }
+
+/* Deployments */
+.deploy-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:22px; margin-top:44px; }
+.deploy { display:flex; flex-direction:column; }
+.deploy .dep-top { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.deploy .flagdot { width:36px;height:36px;border-radius:9px; display:grid;place-items:center; font-weight:800; color:#fff; font-size:0.9rem; }
+.deploy h3 { margin-top:18px; font-size:1.2rem; }
+.deploy .org { font-size:0.8rem; color:var(--ink-faint); font-family:'IBM Plex Mono',monospace; margin-top:4px; }
+.deploy p { margin-top:14px; color:var(--ink-soft); font-size:0.93rem; flex:1; }
+.deploy .metric { margin-top:18px; padding-top:16px; border-top:1px solid var(--line); display:flex; align-items:baseline; gap:8px; }
+.deploy .metric b { font-size:1.5rem; font-weight:800; letter-spacing:-0.03em; }
+.deploy .metric span { font-size:0.85rem; color:var(--ink-soft); }
+
+@media (max-width: 860px){
+  .pillar-band { grid-template-columns:1fr; }
+  .pillar-band .pb-mark { order:-1; }
+  .proj-grid, .committee-grid, .deploy-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav" aria-label="Primary">
+    <a class="brand" href="index.html" aria-label="Open Health Stack Foundation home">
+      <span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="brandname"><b>Open Health Stack</b><span>Software Foundation</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="foundation.html">Foundation</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="community.html">Community</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <div class="nav-cta">
+      <a href="foundation.html#membership" class="btn btn-primary">Become a member</a>
+      <button class="nav-toggle btn" aria-label="Open menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+<div class="mobile-nav" aria-label="Mobile">
+  <a href="foundation.html">Foundation</a>
+  <a href="projects.html">Projects</a>
+  <a href="community.html">Community</a>
+  <a href="foundation.html#membership" class="btn btn-primary">Become a member</a>
+</div>
+
+<!-- HERO -->
+<section class="page-hero" data-screen-label="Projects hero">
+  <div class="wrap">
+    <span class="eyebrow reveal in">The ecosystem</span>
+    <h1 class="reveal in" style="margin-top:18px; max-width:16ch">Two pillars. Many building blocks.</h1>
+    <p class="lead reveal in d1">Every project is independently maintained, openly governed by a steering committee, and designed to be composed into next-gen digital health solutions.</p>
+  </div>
+</section>
+
+<!-- PILLAR 01 — CORE -->
+<section id="core" class="wrap" style="padding-bottom: clamp(40px,6vw,72px)">
+  <div class="pillar-band core reveal">
+    <div>
+      <span class="tag core">Pillar 01 · Core · Existing</span>
+      <h2>Standards-based building blocks</h2>
+      <p>Core components and a Multiplatform Reference Toolkit that make it easier to build with FHIR — sustained by an active community of technical partners.</p>
+    </div>
+    <div class="pb-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+
+  <div class="proj-grid">
+    <article class="card hover proj reveal d1">
+      <div class="proj-top"><span class="icon-chip core" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></span><span class="tag core">SDK</span></div>
+      <h3>Android FHIR SDK</h3>
+      <p>FHIR-native libraries to build Android apps that are secure, offline-capable, and provide on-device decision support for patient-centered care.</p>
+      <div class="proj-meta"><span class="status active"><span class="dot"></span> Active</span><span class="lang">Kotlin · Android</span></div>
+      <a href="https://github.com/google/android-fhir" class="textlink repo">View repository <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+    </article>
+    <article class="card hover proj reveal d1">
+      <div class="proj-top"><span class="icon-chip core" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6Z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="tag core">Gateway</span></div>
+      <h3>FHIR Info Gateway</h3>
+      <p>A privacy-preserving access layer that ensures only relevant healthcare workers can reach the patient data they need.</p>
+      <div class="proj-meta"><span class="status active"><span class="dot"></span> Active</span><span class="lang">Java · Proxy</span></div>
+      <a href="https://github.com/google/fhir-gateway" class="textlink repo">View repository <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+    </article>
+    <article class="card hover proj reveal d2">
+      <div class="proj-top"><span class="icon-chip core" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 3-3 3 3 5-5"/></svg></span><span class="tag core">Analytics</span></div>
+      <h3>FHIR Analytics</h3>
+      <p>Transform FHIR data into analytics-ready formats so programs can generate trusted insights faster and make better decisions.</p>
+      <div class="proj-meta"><span class="status active"><span class="dot"></span> Active</span><span class="lang">Python · Pipelines</span></div>
+      <a href="https://github.com/google/fhir-data-pipes" class="textlink repo">View repository <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+    </article>
+    <article class="card hover proj reveal d2">
+      <div class="proj-top"><span class="icon-chip core" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><span class="tag core">Toolkit</span></div>
+      <h3>Multiplatform Reference Toolkit</h3>
+      <p>A reference starting point that brings the building blocks together across platforms — lowering the cost of building with FHIR.</p>
+      <div class="proj-meta"><span class="status incubating"><span class="dot"></span> Incubating</span><span class="lang">Kotlin Multiplatform</span></div>
+      <a href="projects.html#core" class="textlink repo">Learn more <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </article>
+  </div>
+</section>
+
+<!-- PILLAR 02 — AI COMMONS -->
+<section id="ai" class="wrap" style="padding-bottom: clamp(40px,6vw,72px)">
+  <div class="pillar-band ai reveal">
+    <div>
+      <span class="tag ai">Pillar 02 · AI Commons · New</span>
+      <h2>AI Commons for Global Health</h2>
+      <p>A neutral, model-agnostic space for collaboration on safe, effective and verifiable AI — developed with the WHO and ecosystem partners.</p>
+    </div>
+    <div class="pb-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+
+  <div class="proj-grid">
+    <article class="card hover proj reveal d1">
+      <div class="proj-top"><span class="icon-chip ai" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg></span><span class="tag ai">Evals</span></div>
+      <h3>Evals &amp; Benchmarks</h3>
+      <p>Open tooling and shared datasets to measure the safety, quality and effectiveness of AI applied to global health workflows.</p>
+      <div class="proj-meta"><span class="status incubating"><span class="dot"></span> Incubating</span><span class="lang">Model-agnostic</span></div>
+      <a href="community.html#involved" class="textlink repo">Get involved <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </article>
+    <article class="card hover proj reveal d1">
+      <div class="proj-top"><span class="icon-chip ai" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></span><span class="tag ai">MCP</span></div>
+      <h3>Health MCPs</h3>
+      <p>Model-agnostic context tooling and connectors that let AI systems work safely with standards-based health data and workflows.</p>
+      <div class="proj-meta"><span class="status proposed"><span class="dot"></span> Proposed</span><span class="lang">Protocol · Tooling</span></div>
+      <a href="community.html#involved" class="textlink repo">Get involved <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </article>
+    <article class="card hover proj reveal d2">
+      <div class="proj-top"><span class="icon-chip ai" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6Z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="tag ai">WHO</span></div>
+      <h3>Verifiable AI · WHO</h3>
+      <p>Supporting "verifiable AI" efforts with the WHO and ecosystem partners to ensure safe development and adoption of health AI.</p>
+      <div class="proj-meta"><span class="status proposed"><span class="dot"></span> Proposed</span><span class="lang">Partnership</span></div>
+      <a href="foundation.html#mission" class="textlink repo">Read the charter <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </article>
+    <article class="card hover proj reveal d2" style="background:var(--bg-2); border-style:dashed;">
+      <div class="proj-top"><span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span><span class="tag">Open call</span></div>
+      <h3>Propose an initiative</h3>
+      <p>Have a project to donate or an idea to support? As a Linux Foundation project, there's room to collaborate with related foundations and contribute new building blocks.</p>
+      <div class="proj-meta"><span class="status proposed"><span class="dot"></span> Always open</span></div>
+      <a href="mailto:fred@ohs.foundation" class="textlink repo">Let's talk <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </article>
+  </div>
+</section>
+
+<!-- STEERING COMMITTEES -->
+<section id="committees" class="committees section-pad">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Governance in practice</span>
+      <h2 class="section-title" style="margin-top:16px">Steering committees keep the blocks moving.</h2>
+      <p class="lead">Each project area is guided by a technical steering committee — maintainers and partners who set direction and review contributions in the open.</p>
+    </div>
+    <div class="committee-grid">
+      <div class="committee card reveal d1">
+        <span class="icon-chip core" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+        <h3>Core Building Blocks TSC</h3>
+        <p>Stewards the SDK, Gateway, Analytics and reference toolkit — setting roadmaps and release standards across the core libraries.</p>
+        <div class="roster"><span class="avatar" style="background:var(--core)">A</span><span class="avatar" style="background:var(--teal)">K</span><span class="avatar" style="background:var(--green)">M</span><span class="avatar" style="background:var(--ink-faint)">+9</span><small>maintainers &amp; partners</small></div>
+      </div>
+      <div class="committee card reveal d2">
+        <span class="icon-chip ai" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span>
+        <h3>AI Commons TSC</h3>
+        <p>Convenes work on evals, benchmarks and verifiable AI in a model-agnostic, neutral space — in collaboration with the WHO.</p>
+        <div class="roster"><span class="avatar" style="background:var(--ai)">W</span><span class="avatar" style="background:var(--core)">R</span><span class="avatar" style="background:var(--amber)">S</span><span class="avatar" style="background:var(--ink-faint)">+5</span><small>forming now</small></div>
+      </div>
+      <div class="committee card reveal d3">
+        <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></span>
+        <h3>Governing Board</h3>
+        <p>Sets charter, budget and direction. A capped size balances voices, with strategic grants recognized on par with membership.</p>
+        <div class="roster"><span class="avatar" style="background:var(--ink)">L</span><span class="avatar" style="background:var(--teal-deep)">G</span><span class="avatar" style="background:var(--rose)">U</span><span class="avatar" style="background:var(--ink-faint)">…</span><small>seats filling</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html" style="color:#fff">
+          <span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span class="brandname"><b>Open Health Stack</b><span style="color:oklch(0.66 0.02 200)">Software Foundation</span></span>
+        </a>
+        <p class="footer-about">A neutral, community-owned home for open-source building blocks accelerating next-gen, AI-powered digital health.</p>
+      </div>
+      <div><h4>Foundation</h4><ul><li><a href="foundation.html#mission">Mission &amp; charter</a></li><li><a href="foundation.html#governance">Governance</a></li><li><a href="foundation.html#membership">Membership</a></li></ul></div>
+      <div><h4>Projects</h4><ul><li><a href="projects.html#core">Core building blocks</a></li><li><a href="projects.html#ai">AI Commons</a></li><li><a href="projects.html#committees">Steering committees</a></li></ul></div>
+      <div><h4>Community</h4><ul><li><a href="community.html#involved">Get involved</a></li><li><a href="community.html#events">Events</a></li><li><a href="community.html#channels">Channels</a></li><li><a href="mailto:hello@ohs.foundation">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Open Health Stack Software Foundation · a project of the Linux Foundation.</span>
+      <span class="footer-badge">fred@ohs.foundation</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
