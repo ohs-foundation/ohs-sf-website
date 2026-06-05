@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>Access — Open Health Stack Software Foundation</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+.lock-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: var(--gut); background: var(--bg); }
+.lock-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: clamp(36px, 6vw, 56px); width: 100%; max-width: 380px; text-align: center; box-shadow: var(--shadow-md); }
+.lock-brand { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 28px; text-decoration: none; }
+.lock-brand .brandname { font-weight: 700; font-size: 0.95rem; color: var(--ink); letter-spacing: -0.01em; }
+.lock-brand .brandname span { display: block; font-weight: 400; font-size: 0.78rem; color: var(--ink-soft); }
+.lock-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal-deep); margin-bottom: 12px; }
+.lock-heading { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); margin: 0 0 28px; }
+.lock-input { width: 100%; padding: 14px 18px; font-size: 1.5rem; letter-spacing: 0.3em; text-align: center; border: 1.5px solid var(--line); border-radius: var(--radius); background: var(--bg); color: var(--ink); font-family: 'IBM Plex Mono', monospace; outline: none; transition: border-color 0.2s; box-sizing: border-box; }
+.lock-input:focus { border-color: var(--teal-deep); }
+.lock-btn { width: 100%; margin-top: 14px; }
+.lock-error { margin-top: 14px; font-size: 0.88rem; color: var(--rose); min-height: 1.4em; }
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%,60% { transform: translateX(-8px); }
+  40%,80% { transform: translateX(8px); }
+}
+.shake { animation: shake 0.35s ease; }
+</style>
+</head>
+<body>
+<div class="lock-page">
+  <div class="lock-card" id="lockCard">
+    <a class="lock-brand" href="index.html" aria-label="Open Health Stack Foundation home">
+      <span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="brandname"><b>Open Health Stack</b><span>Software Foundation</span></span>
+    </a>
+    <div class="lock-eyebrow">Private preview</div>
+    <h1 class="lock-heading">Enter access code</h1>
+    <form id="lockForm" novalidate>
+      <input id="pinInput" class="lock-input" type="password" inputmode="numeric"
+             maxlength="10" autocomplete="off" placeholder="······" aria-label="Access code" />
+      <button type="submit" class="btn btn-primary lock-btn">Continue</button>
+    </form>
+    <div class="lock-error" id="lockError" role="alert" aria-live="polite"></div>
+  </div>
+</div>
+<script>
+(function () {
+  var CORRECT_PIN = '797283';
+  var EXPIRY_MS = 30 * 24 * 60 * 60 * 1000;
+
+  function getReturn() {
+    var params = new URLSearchParams(location.search);
+    var ret = params.get('return');
+    if (!ret) return 'index.html';
+    try {
+      var url = new URL(ret);
+      if (url.origin !== location.origin) return 'index.html';
+      return ret;
+    } catch (e) { return 'index.html'; }
+  }
+
+  var card  = document.getElementById('lockCard');
+  var form  = document.getElementById('lockForm');
+  var input = document.getElementById('pinInput');
+  var error = document.getElementById('lockError');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (input.value.trim() === CORRECT_PIN) {
+      localStorage.setItem('ohs_auth', JSON.stringify({ exp: Date.now() + EXPIRY_MS }));
+      window.location.replace(getReturn());
+    } else {
+      input.value = '';
+      error.textContent = 'Incorrect code — try again';
+      card.classList.remove('shake');
+      void card.offsetWidth;
+      card.classList.add('shake');
+      card.addEventListener('animationend', function h() {
+        card.classList.remove('shake');
+        card.removeEventListener('animationend', h);
+      });
+      input.focus();
+    }
+  });
+})();
+</script>
+</body>
+</html>
