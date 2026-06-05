@@ -1,448 +1,1243 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<script>
-(function(){
-  try {
-    var a = localStorage.getItem('ohs_auth');
-    if (a) { try { if (Date.now() < JSON.parse(a).exp) return; } catch(e){} }
-  } catch(e) {}
-  window.location.replace('lock.html?return=' + encodeURIComponent(location.href));
-})();
-</script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<title>Open Health Stack Foundation — Building blocks for global digital health</title>
-<link rel="stylesheet" href="styles.css" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<style>
-/* ===== Home-only styles ===== */
+  <meta charset="UTF-8" />
+  <script>
+    (function () {
+      try {
+        var a = localStorage.getItem('ohs_auth');
+        if (a) { try { if (Date.now() < JSON.parse(a).exp) return; } catch (e) { } }
+      } catch (e) { }
+      window.location.replace('lock.html?return=' + encodeURIComponent(location.href));
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <title>Open Health Stack Foundation — Building blocks for global digital health</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <style>
+    /* ===== Home-only styles ===== */
 
-/* Hero */
-.hero { padding-top: clamp(48px, 7vw, 96px); padding-bottom: clamp(40px, 6vw, 80px); overflow: hidden; }
-.hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
-.hero h1 { font-size: clamp(2.7rem, 5.6vw, 4.7rem); font-weight: 800; letter-spacing: -0.038em; line-height: 0.99; }
-.hero h1 .grad { color: var(--teal-deep); }
-.hero .lead { margin-top: 24px; max-width: 40ch; }
-.hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
-.hero-meta { margin-top: 38px; display: flex; align-items: center; gap: 16px; color: var(--ink-faint); font-size: 0.86rem; }
-.hero-meta .lf-badge { display: inline-flex; align-items: center; gap: 9px; font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.04em; padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink-soft); }
+    /* Hero */
+    .hero {
+      padding-top: clamp(48px, 7vw, 96px);
+      padding-bottom: clamp(40px, 6vw, 80px);
+      overflow: hidden;
+    }
 
-/* Hero stack visual — layered rounded blocks (apps → blocks → infra) */
-.stack-vis { position: relative; }
-.stack-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 22px; box-shadow: var(--shadow-lg); }
-.stack-layer { border-radius: 14px; padding: 15px 18px; display: flex; align-items: center; gap: 14px; }
-.stack-layer + .stack-layer { margin-top: 12px; }
-.stack-layer .ltext { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
-.stack-layer .ll { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.75; line-height: 1.2; }
-.stack-layer .lt { font-weight: 700; font-size: 1rem; letter-spacing: -0.01em; line-height: 1.22; }
-.stack-layer .ls { font-size: 0.8rem; color: var(--ink-soft); line-height: 1.35; }
-.stack-layer .blocks { margin-left: auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 5px; flex: none; align-self: center; }
-.stack-layer .blocks i { width: 16px; height: 16px; border-radius: 4px; display: block; }
-.layer-apps { background: var(--bg-2); }
-.layer-apps .blocks i { background: var(--ink-faint); opacity: 0.5; }
-.layer-core { background: var(--core-wash); border: 1px solid color-mix(in oklch, var(--core) 22%, transparent); }
-.layer-core .ll { color: var(--core); }
-.layer-core .blocks i { background: var(--core); }
-.layer-core .blocks i:nth-child(2n){ opacity:0.55; }
-.layer-ai { background: var(--ai-wash); border: 1px solid color-mix(in oklch, var(--ai) 22%, transparent); }
-.layer-ai .ll { color: var(--ai); }
-.layer-ai .blocks i { background: var(--ai); }
-.layer-ai .blocks i:nth-child(3n){ opacity:0.55; }
-.layer-infra { background: oklch(0.27 0.018 210); color: #fff; }
-.layer-infra .ls { color: oklch(0.78 0.01 200); }
-.layer-infra .blocks i { background: var(--teal-bright); }
-.layer-infra .blocks i:nth-child(2n){ opacity:0.5; }
-.stack-connect { text-align:center; color: var(--ink-faint); font-size: 0.7rem; font-family:'IBM Plex Mono',monospace; letter-spacing:0.1em; padding: 5px 0; }
-.stack-float { position:absolute; right:-10px; top:-22px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:10px 14px; box-shadow: var(--shadow-md); font-size:0.78rem; display:flex; align-items:center; gap:9px; }
-.stack-float .dot { width:9px;height:9px;border-radius:50%; background:var(--green); box-shadow:0 0 0 4px color-mix(in oklch, var(--green) 20%, transparent); }
-.stack-float b { font-weight:700; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(28px, 5vw, 72px);
+      align-items: center;
+    }
 
-/* The shift band */
-.shift { background: var(--ink); color: #fff; }
-.shift .eyebrow { color: var(--teal-bright); }
-.shift h2 { color:#fff; }
-.shift-rows { margin-top: 40px; display:grid; gap: 0; border-top:1px solid oklch(0.34 0.015 210); }
-.shift-row { display:grid; grid-template-columns: 1fr auto 1fr; align-items:center; gap: clamp(16px,4vw,52px); padding: 26px 0; border-bottom:1px solid oklch(0.34 0.015 210); }
-.shift-from { color: oklch(0.66 0.012 200); font-size: clamp(1rem,1.6vw,1.22rem); }
-.shift-to { color:#fff; font-weight:700; font-size: clamp(1.05rem,1.8vw,1.4rem); letter-spacing:-0.02em; }
-.shift-arrow { color: var(--teal-bright); display:grid; place-items:center; }
-.shift-arrow svg{ width:30px;height:30px; }
+    .hero h1 {
+      font-size: clamp(2.7rem, 5.6vw, 4.7rem);
+      font-weight: 800;
+      letter-spacing: -0.038em;
+      line-height: 0.99;
+    }
 
-/* Stats */
-.stats-band { background: var(--bg-2); }
-.stat-grid { display:grid; grid-template-columns: repeat(4,1fr); gap: 24px; }
-.stat .num { font-size: clamp(2.6rem, 4.6vw, 4rem); font-weight: 800; letter-spacing:-0.04em; line-height:1; color: var(--teal-deep); font-variant-numeric: tabular-nums; }
-.stat .lbl { margin-top: 12px; color: var(--ink-soft); font-size: 0.97rem; max-width: 22ch; }
-.stat .lbl b { color: var(--ink); font-weight:600; }
+    .hero h1 .grad {
+      color: var(--teal-deep);
+    }
 
-/* Pillars */
-.pillar-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 44px; }
-.pillar { position:relative; overflow:hidden; }
-.pillar .pillar-top { display:flex; align-items:center; gap:14px; }
-.pillar h3 { margin-top: 22px; font-size: clamp(1.5rem,2.4vw,2rem); }
-.pillar p { margin-top: 14px; color: var(--ink-soft); }
-.pillar ul { list-style:none; margin: 22px 0 0; padding: 0; display:grid; gap: 11px; }
-.pillar ul li { display:flex; gap:11px; align-items:flex-start; font-size:0.96rem; }
-.pillar ul li svg { flex:none; margin-top:3px; }
-.pillar .pillar-foot { margin-top:26px; }
-.pillar.core { border-top: 3px solid var(--core); }
-.pillar.ai { border-top: 3px solid var(--ai); }
-.pillar .glow { position:absolute; width:240px;height:240px; border-radius:50%; filter: blur(60px); opacity:0.14; top:-60px; right:-60px; pointer-events:none; }
-.pillar.core .glow { background: var(--core); }
-.pillar.ai .glow { background: var(--ai); }
+    .hero .lead {
+      margin-top: 24px;
+      max-width: 40ch;
+    }
 
-/* Ecosystem map */
-.ecosystem { --gap: 18px; }
-.eco-stage { margin-top: 48px; background: var(--surface); border:1px solid var(--line); border-radius: var(--radius-lg); padding: clamp(24px,4vw,44px); box-shadow: var(--shadow-sm); }
-.eco-pillars { display:grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.eco-pillar { text-align:left; cursor:pointer; border:1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; background: var(--bg); transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s, background 0.25s; display:flex; align-items:center; gap:16px; font: inherit; color: inherit; width:100%; text-align:left; }
-.eco-pillar:hover, .eco-pillar.is-active { transform: translateY(-2px); box-shadow: var(--shadow-md); background:#fff; }
-.eco-pillar[data-pillar="core"].is-active { border-color: var(--core); }
-.eco-pillar[data-pillar="ai"].is-active { border-color: var(--ai); }
-.eco-pillar .ep-title { font-weight:700; font-size:1.12rem; letter-spacing:-0.01em; }
-.eco-pillar .ep-sub { font-size:0.84rem; color:var(--ink-soft); margin-top:2px; }
-.eco-pillar .ep-count { margin-left:auto; font-family:'IBM Plex Mono',monospace; font-size:0.74rem; color:var(--ink-faint); }
-.eco-rail { margin-top: 22px; display:flex; align-items:center; gap:10px; color:var(--ink-faint); font-family:'IBM Plex Mono',monospace; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; }
-.eco-rail::before,.eco-rail::after{ content:""; height:1px; background:var(--line); flex:1; }
-.eco-nodes { margin-top: 22px; display:grid; grid-template-columns: repeat(auto-fill, minmax(178px,1fr)); gap: 14px; }
-.eco-node { border:1px solid var(--line); border-radius: 12px; padding: 16px; background: var(--bg); transition: opacity 0.3s, transform 0.25s, border-color 0.25s, box-shadow 0.25s; }
-.eco-node:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
-.eco-node.dim { opacity: 0.32; }
-.eco-node .en-tag { font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; }
-.eco-node[data-belongs="core"] .en-tag { color: var(--core); }
-.eco-node[data-belongs="ai"] .en-tag { color: var(--ai); }
-.eco-node .en-name { font-weight:700; margin-top:8px; letter-spacing:-0.01em; }
-.eco-node .en-desc { font-size:0.83rem; color:var(--ink-soft); margin-top:6px; line-height:1.45; }
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
 
-/* Projects / deployments */
-.deploy-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: 22px; margin-top: 44px; }
-.deploy { display:flex; flex-direction:column; }
-.deploy .dep-top { display:flex; align-items:center; justify-content:space-between; gap:10px; }
-.deploy .flagdot { width:36px;height:36px;border-radius:9px; display:grid;place-items:center; font-weight:800; color:#fff; font-size:0.9rem; letter-spacing:-0.02em; }
-.deploy h3 { margin-top:18px; font-size:1.2rem; }
-.deploy .org { font-size:0.82rem; color:var(--ink-faint); font-family:'IBM Plex Mono',monospace; letter-spacing:0.02em; margin-top:4px; }
-.deploy p { margin-top:14px; color:var(--ink-soft); font-size:0.93rem; flex:1; }
-.deploy .metric { margin-top:18px; padding-top:16px; border-top:1px solid var(--line); display:flex; align-items:baseline; gap:8px; }
-.deploy .metric b { font-size:1.5rem; font-weight:800; letter-spacing:-0.03em; }
-.deploy .metric span { font-size:0.85rem; color:var(--ink-soft); }
+    .hero-meta {
+      margin-top: 38px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--ink-faint);
+      font-size: 0.86rem;
+    }
 
-/* Why foundation */
-.why-grid { display:grid; grid-template-columns: repeat(4,1fr); gap:20px; margin-top:44px; }
-.why-item .icon-chip { margin-bottom:18px; }
-.why-item h3 { font-size:1.15rem; }
-.why-item p { margin-top:10px; color:var(--ink-soft); font-size:0.93rem; }
+    .hero-meta .lf-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--ink-soft);
+    }
 
-/* Partners */
-.partners { background: var(--bg-2); }
-.partner-row { display:flex; flex-wrap:wrap; gap:14px; margin-top:34px; justify-content:center; }
-.partner-chip { display:flex; align-items:center; gap:10px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 20px; font-weight:600; color:var(--ink-soft); font-size:0.95rem; transition: border-color .2s, transform .2s; }
-.partner-chip:hover{ transform:translateY(-2px); border-color:var(--ink-faint); }
-.partner-chip .pdot { width:10px;height:10px;border-radius:3px; }
+    /* Hero stack visual — layered rounded blocks (apps → blocks → infra) */
+    .stack-vis {
+      position: relative;
+    }
 
-/* CTA */
-.cta-band { background: linear-gradient(135deg, var(--teal-deep), oklch(0.34 0.07 215)); color:#fff; text-align:center; }
-.cta-band h2 { color:#fff; }
-.cta-band .lead { color: oklch(0.92 0.02 195); margin-inline:auto; max-width: 46ch; }
-.cta-band .hero-cta { justify-content:center; margin-top:30px; }
+    .stack-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-lg);
+    }
 
-@media (max-width: 860px){
-  .hero-grid { grid-template-columns: 1fr; }
-  .stack-vis { max-width: 460px; }
-  .pillar-grid { grid-template-columns:1fr; }
-  .eco-pillars { grid-template-columns:1fr; }
-  .deploy-grid { grid-template-columns:1fr; }
-  .why-grid { grid-template-columns: 1fr 1fr; }
-  .stat-grid { grid-template-columns: 1fr 1fr; gap:32px 24px; }
-}
-@media (max-width: 560px){
-  .shift-row { grid-template-columns: 1fr; gap:10px; text-align:left; padding:20px 0; }
-  .shift-arrow { display:none; }
-  .why-grid { grid-template-columns:1fr; }
-}
-</style>
+    .stack-layer {
+      border-radius: 14px;
+      padding: 15px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .stack-layer+.stack-layer {
+      margin-top: 12px;
+    }
+
+    .stack-layer .ltext {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      min-width: 0;
+    }
+
+    .stack-layer .ll {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      line-height: 1.2;
+    }
+
+    .stack-layer .lt {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+      line-height: 1.22;
+    }
+
+    .stack-layer .ls {
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      line-height: 1.35;
+    }
+
+    .stack-layer .blocks {
+      margin-left: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+      flex: none;
+      align-self: center;
+    }
+
+    .stack-layer .blocks i {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      display: block;
+    }
+
+    .layer-apps {
+      background: var(--bg-2);
+    }
+
+    .layer-apps .blocks i {
+      background: var(--ink-faint);
+      opacity: 0.5;
+    }
+
+    .layer-core {
+      background: var(--core-wash);
+      border: 1px solid color-mix(in oklch, var(--core) 22%, transparent);
+    }
+
+    .layer-core .ll {
+      color: var(--core);
+    }
+
+    .layer-core .blocks i {
+      background: var(--core);
+    }
+
+    .layer-core .blocks i:nth-child(2n) {
+      opacity: 0.55;
+    }
+
+    .layer-ai {
+      background: var(--ai-wash);
+      border: 1px solid color-mix(in oklch, var(--ai) 22%, transparent);
+    }
+
+    .layer-ai .ll {
+      color: var(--ai);
+    }
+
+    .layer-ai .blocks i {
+      background: var(--ai);
+    }
+
+    .layer-ai .blocks i:nth-child(3n) {
+      opacity: 0.55;
+    }
+
+    .layer-toolkit { background: color-mix(in oklch, var(--toolkit-wash) 80%, white); border: 1px solid color-mix(in oklch, var(--toolkit) 22%, transparent); }
+    .layer-toolkit .ll { color: var(--toolkit); }
+    .layer-toolkit .blocks i { background: var(--toolkit); }
+    .layer-toolkit .blocks i:nth-child(2n) { opacity: 0.55; }
+
+    .layer-infra {
+      background: oklch(0.27 0.018 210);
+      color: #fff;
+    }
+
+    .layer-infra .ls {
+      color: oklch(0.78 0.01 200);
+    }
+
+    .layer-infra .blocks i {
+      background: var(--teal-bright);
+    }
+
+    .layer-infra .blocks i:nth-child(2n) {
+      opacity: 0.5;
+    }
+
+    .stack-connect {
+      text-align: center;
+      color: var(--ink-faint);
+      font-size: 0.7rem;
+      font-family: 'IBM Plex Mono', monospace;
+      letter-spacing: 0.1em;
+      padding: 5px 0;
+    }
+
+    .stack-float {
+      position: absolute;
+      right: -10px;
+      top: -22px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 14px;
+      box-shadow: var(--shadow-md);
+      font-size: 0.78rem;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .stack-float .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 4px color-mix(in oklch, var(--green) 20%, transparent);
+    }
+
+    .stack-float b {
+      font-weight: 700;
+    }
+
+    /* The shift band */
+    .shift {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .shift .eyebrow {
+      color: var(--teal-bright);
+    }
+
+    .shift h2 {
+      color: #fff;
+    }
+
+    .shift-rows {
+      margin-top: 40px;
+      display: grid;
+      gap: 0;
+      border-top: 1px solid oklch(0.34 0.015 210);
+    }
+
+    .shift-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: clamp(16px, 4vw, 52px);
+      padding: 26px 0;
+      border-bottom: 1px solid oklch(0.34 0.015 210);
+    }
+
+    .shift-from {
+      color: oklch(0.66 0.012 200);
+      font-size: clamp(1rem, 1.6vw, 1.22rem);
+    }
+
+    .shift-to {
+      color: #fff;
+      font-weight: 700;
+      font-size: clamp(1.05rem, 1.8vw, 1.4rem);
+      letter-spacing: -0.02em;
+    }
+
+    .shift-arrow {
+      color: var(--teal-bright);
+      display: grid;
+      place-items: center;
+    }
+
+    .shift-arrow svg {
+      width: 30px;
+      height: 30px;
+    }
+
+    /* Stats */
+    .stats-band {
+      background: var(--bg-2);
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .stat .num {
+      font-size: clamp(2.6rem, 4.6vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--teal-deep);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat .lbl {
+      margin-top: 12px;
+      color: var(--ink-soft);
+      font-size: 0.97rem;
+      max-width: 22ch;
+    }
+
+    .stat .lbl b {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* Pillars */
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 26px;
+      margin-top: 44px;
+    }
+
+    .pillar {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pillar .pillar-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .pillar h3 {
+      margin-top: 22px;
+      font-size: clamp(1.5rem, 2.4vw, 2rem);
+    }
+
+    .pillar p {
+      margin-top: 14px;
+      color: var(--ink-soft);
+    }
+
+    .pillar ul {
+      list-style: none;
+      margin: 22px 0 0;
+      padding: 0;
+      display: grid;
+      gap: 11px;
+    }
+
+    .pillar ul li {
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+      font-size: 0.96rem;
+    }
+
+    .pillar ul li svg {
+      flex: none;
+      margin-top: 3px;
+    }
+
+    .pillar .pillar-foot {
+      margin-top: 26px;
+    }
+
+    .pillar.core {
+      border-top: 3px solid var(--core);
+    }
+
+    .pillar.ai {
+      border-top: 3px solid var(--ai);
+    }
+
+    .pillar.toolkit {
+      border-top: 3px solid var(--toolkit);
+    }
+
+    .pillar .glow {
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.14;
+      top: -60px;
+      right: -60px;
+      pointer-events: none;
+    }
+
+    .pillar.core .glow {
+      background: var(--core);
+    }
+
+    .pillar.ai .glow {
+      background: var(--ai);
+    }
+
+    .pillar.toolkit .glow {
+      background: var(--toolkit);
+    }
+
+    /* Ecosystem map */
+    .ecosystem {
+      --gap: 18px;
+    }
+
+    .eco-stage {
+      margin-top: 48px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: clamp(24px, 4vw, 44px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .eco-pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    .eco-pillar {
+      text-align: left;
+      cursor: pointer;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      background: var(--bg);
+      transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s, background 0.25s;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font: inherit;
+      color: inherit;
+      width: 100%;
+      text-align: left;
+    }
+
+    .eco-pillar:hover,
+    .eco-pillar.is-active {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      background: #fff;
+    }
+
+    .eco-pillar[data-pillar="core"].is-active {
+      border-color: var(--core);
+    }
+
+    .eco-pillar[data-pillar="ai"].is-active {
+      border-color: var(--ai);
+    }
+
+    .eco-pillar[data-pillar="toolkit"].is-active {
+      border-color: var(--toolkit);
+    }
+
+    .eco-node[data-belongs="toolkit"] .en-tag {
+      color: var(--toolkit);
+    }
+
+    .eco-pillar .ep-title {
+      font-weight: 700;
+      font-size: 1.12rem;
+      letter-spacing: -0.01em;
+    }
+
+    .eco-pillar .ep-sub {
+      font-size: 0.84rem;
+      color: var(--ink-soft);
+      margin-top: 2px;
+    }
+
+    .eco-pillar .ep-count {
+      margin-left: auto;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.74rem;
+      color: var(--ink-faint);
+    }
+
+    .eco-rail {
+      margin-top: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink-faint);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .eco-rail::before,
+    .eco-rail::after {
+      content: "";
+      height: 1px;
+      background: var(--line);
+      flex: 1;
+    }
+
+    .eco-nodes {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(178px, 1fr));
+      gap: 14px;
+    }
+
+    .eco-node {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+      background: var(--bg);
+      transition: opacity 0.3s, transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+
+    .eco-node:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .eco-node.dim {
+      opacity: 0.32;
+    }
+
+    .eco-node .en-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eco-node[data-belongs="core"] .en-tag {
+      color: var(--core);
+    }
+
+    .eco-node[data-belongs="ai"] .en-tag {
+      color: var(--ai);
+    }
+
+    .eco-node .en-name {
+      font-weight: 700;
+      margin-top: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .eco-node .en-desc {
+      font-size: 0.83rem;
+      color: var(--ink-soft);
+      margin-top: 6px;
+      line-height: 1.45;
+    }
+
+    /* Projects / deployments */
+    .deploy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 44px;
+    }
+
+    .deploy {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .deploy .dep-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .deploy .flagdot {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      color: #fff;
+      font-size: 0.9rem;
+      letter-spacing: -0.02em;
+    }
+
+    .deploy h3 {
+      margin-top: 18px;
+      font-size: 1.2rem;
+    }
+
+    .deploy .org {
+      font-size: 0.82rem;
+      color: var(--ink-faint);
+      font-family: 'IBM Plex Mono', monospace;
+      letter-spacing: 0.02em;
+      margin-top: 4px;
+    }
+
+    .deploy p {
+      margin-top: 14px;
+      color: var(--ink-soft);
+      font-size: 0.93rem;
+      flex: 1;
+    }
+
+    .deploy .metric {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .deploy .metric b {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .deploy .metric span {
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+    }
+
+    /* Why foundation */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 44px;
+    }
+
+    .why-item .icon-chip {
+      margin-bottom: 18px;
+    }
+
+    .why-item h3 {
+      font-size: 1.15rem;
+    }
+
+    .why-item p {
+      margin-top: 10px;
+      color: var(--ink-soft);
+      font-size: 0.93rem;
+    }
+
+    /* Partners */
+    .partners {
+      background: var(--bg-2);
+    }
+
+    .partner-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+      justify-content: center;
+    }
+
+    .partner-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 20px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .partner-chip:hover {
+      transform: translateY(-2px);
+      border-color: var(--ink-faint);
+    }
+
+    .partner-chip .pdot {
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+    }
+
+    /* CTA */
+    .cta-band {
+      background: linear-gradient(135deg, var(--teal-deep), oklch(0.34 0.07 215));
+      color: #fff;
+      text-align: center;
+    }
+
+    .cta-band h2 {
+      color: #fff;
+    }
+
+    .cta-band .lead {
+      color: oklch(0.92 0.02 195);
+      margin-inline: auto;
+      max-width: 46ch;
+    }
+
+    .cta-band .hero-cta {
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 860px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stack-vis {
+        max-width: 460px;
+      }
+
+      .pillar-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .eco-pillars {
+        grid-template-columns: 1fr;
+      }
+
+      .deploy-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stat-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px 24px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .shift-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        text-align: left;
+        padding: 20px 0;
+      }
+
+      .shift-arrow {
+        display: none;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- ===== HEADER ===== -->
-<header class="site-header">
-  <nav class="nav" aria-label="Primary">
-    <a class="brand" href="index.html" aria-label="Open Health Stack Foundation home">
-      <span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <span class="brandname"><b>Open Health Stack</b><span>Software Foundation</span></span>
-    </a>
-    <div class="nav-links">
-      <a href="foundation.html">Foundation</a>
-      <a href="projects.html">Projects</a>
-      <a href="community.html">Community</a>
-    </div>
-    <div class="nav-spacer"></div>
-    <div class="nav-cta">
-      <a href="foundation.html#membership" class="btn btn-primary">Become a member</a>
-      <button class="nav-toggle btn" aria-label="Open menu" aria-expanded="false">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-      </button>
-    </div>
-  </nav>
-</header>
-<div class="mobile-nav" aria-label="Mobile">
-  <a href="foundation.html">Foundation</a>
-  <a href="projects.html">Projects</a>
-  <a href="community.html">Community</a>
-  <a href="foundation.html#membership" class="btn btn-primary">Become a member</a>
-</div>
-
-<!-- ===== HERO ===== -->
-<section class="hero">
-  <div class="wrap-wide hero-grid">
-    <div class="reveal in">
-      <span class="eyebrow">An independent software foundation</span>
-      <h1 id="heroHeadline"><span id="hlMain">Building blocks for the future of</span> <span class="grad" id="hlAccent">global digital health.</span></h1>
-      <p class="lead">A neutral, community-owned home for open-source building blocks — helping developers everywhere create standards-based, AI-ready health solutions that are built once and reused everywhere.</p>
-      <div class="hero-cta">
-        <a href="projects.html" class="btn btn-primary">Explore the projects <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a href="foundation.html" class="btn btn-ghost">About the foundation</a>
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html" aria-label="Open Health Stack Foundation home">
+        <span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="brandname"><b>Open Health Stack</b><span>Software Foundation</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="foundation.html">Foundation</a>
+        <a href="projects.html">Projects</a>
+        <a href="community.html">Community</a>
       </div>
-      <div class="hero-meta">
-        <span class="lf-badge"><span class="logo-mark" style="width:16px;height:16px" aria-hidden="true"><i></i><i></i><i></i><i></i></span> Hosted by the Linux Foundation</span>
-      </div>
-    </div>
-
-    <div class="stack-vis reveal in d1">
-      <div class="stack-card" data-screen-label="Hero stack diagram">
-        <div class="stack-layer layer-apps">
-          <div class="ltext">
-            <div class="ll">Built on top</div>
-            <div class="lt">Apps &amp; solutions</div>
-            <div class="ls">Locally-owned, national-scale health programs</div>
-          </div>
-          <div class="blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        </div>
-        <div class="stack-connect" aria-hidden="true">▲ built with ▲</div>
-        <div class="stack-layer layer-core">
-          <div class="ltext">
-            <div class="ll">Pillar 01 · Core</div>
-            <div class="lt">Standards-based building blocks</div>
-            <div class="ls">FHIR-native libraries &amp; reference toolkit</div>
-          </div>
-          <div class="blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        </div>
-        <div class="stack-layer layer-ai">
-          <div class="ltext">
-            <div class="ll">Pillar 02 · New</div>
-            <div class="lt">AI Commons for Global Health</div>
-            <div class="ls">Evals, benchmarks &amp; verifiable AI</div>
-          </div>
-          <div class="blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        </div>
-        <div class="stack-layer layer-infra">
-          <div class="ltext">
-            <div class="ll">Underneath</div>
-            <div class="lt">Open standards &amp; HL7® FHIR®</div>
-            <div class="ls">Interoperability for "DPIs for Health"</div>
-          </div>
-          <div class="blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== TWO PILLARS ===== -->
-<section class="section-pad">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">01 · Two pillars</span>
-      <h2 class="section-title" style="margin-top:18px">One foundation, two pillars of work.</h2>
-      <p class="lead">An umbrella structure that maintains the building blocks developers rely on today — and opens a neutral space for what comes next.</p>
-    </div>
-    <div class="pillar-grid">
-      <article class="card pillar core reveal d1">
-        <span class="glow" aria-hidden="true"></span>
-        <div class="pillar-top">
-          <span class="tag core">Pillar 01 · Core · Existing</span>
-        </div>
-        <h3>Standards-based building blocks</h3>
-        <p>Support for core components and the development of a Multiplatform Reference Toolkit that makes it easier to build with FHIR — sustained by an active community of technical partners.</p>
-        <ul>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--core)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Android FHIR SDK, Info Gateway &amp; Analytics</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--core)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Multiplatform Reference Toolkit</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--core)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> HL7® FHIR® interoperability by default</li>
-        </ul>
-        <div class="pillar-foot"><a href="projects.html#core" class="textlink">Explore Core projects <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-      </article>
-
-      <article class="card pillar ai reveal d2">
-        <span class="glow" aria-hidden="true"></span>
-        <div class="pillar-top">
-          <span class="tag ai">Pillar 02 · AI Commons · New</span>
-        </div>
-        <h3>AI Commons for Global Health</h3>
-        <p>A neutral space for collaboration on safe, effective and verifiable AI for global health — focused on model-agnostic evals, benchmarks, tooling and verifiable AI, developed with the WHO.</p>
-        <ul>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ai)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Evals &amp; benchmarks for health AI</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ai)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Model-agnostic tooling &amp; MCPs</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ai)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Verifiable AI efforts with the WHO</li>
-        </ul>
-        <div class="pillar-foot"><a href="projects.html#ai" class="textlink">Explore AI Commons <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ===== ECOSYSTEM MAP ===== -->
-<section class="ecosystem section-pad" style="background:var(--bg-2)">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">02 · The ecosystem</span>
-      <h2 class="section-title" style="margin-top:18px">From one product to a system of building blocks.</h2>
-      <p class="lead">Hover a pillar to trace its projects. Each block is independently maintained, openly governed, and designed to be composed.</p>
-    </div>
-
-    <div class="eco-stage reveal d1" data-ecosystem>
-      <div class="eco-pillars">
-        <button type="button" class="eco-pillar" data-pillar="core" aria-label="Highlight Core projects">
-          <span class="icon-chip core" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
-          <span>
-            <span class="ep-title">Pillar 01 · Core</span>
-            <span class="ep-sub">Standards-based building blocks</span>
-          </span>
-          <span class="ep-count">4 projects</span>
-        </button>
-        <button type="button" class="eco-pillar" data-pillar="ai" aria-label="Highlight AI Commons projects">
-          <span class="icon-chip ai" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></span>
-          <span>
-            <span class="ep-title">Pillar 02 · AI Commons</span>
-            <span class="ep-sub">Safe, verifiable AI for global health</span>
-          </span>
-          <span class="ep-count">3 initiatives</span>
+      <div class="nav-spacer"></div>
+      <div class="nav-cta">
+        <a href="foundation.html#membership" class="btn btn-primary">Become a member</a>
+        <button class="nav-toggle btn" aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <path d="M3 6h18M3 12h18M3 18h18" />
+          </svg>
         </button>
       </div>
-
-      <div class="eco-rail">Projects &amp; initiatives</div>
-
-      <div class="eco-nodes">
-        <div class="eco-node" data-belongs="core"><div class="en-tag">Core</div><div class="en-name">Android FHIR SDK</div><div class="en-desc">FHIR-native libraries for secure, offline-capable Android apps.</div></div>
-        <div class="eco-node" data-belongs="core"><div class="en-tag">Core</div><div class="en-name">FHIR Info Gateway</div><div class="en-desc">Privacy-preserving access control for patient data.</div></div>
-        <div class="eco-node" data-belongs="core"><div class="en-tag">Core</div><div class="en-name">FHIR Analytics</div><div class="en-desc">Transform data into trusted, faster insights.</div></div>
-        <div class="eco-node" data-belongs="core"><div class="en-tag">Core</div><div class="en-name">Reference Toolkit</div><div class="en-desc">Multiplatform starting point for building with FHIR.</div></div>
-        <div class="eco-node" data-belongs="ai"><div class="en-tag">AI Commons</div><div class="en-name">Evals &amp; Benchmarks</div><div class="en-desc">Open tooling to measure health-AI safety and quality.</div></div>
-        <div class="eco-node" data-belongs="ai"><div class="en-tag">AI Commons</div><div class="en-name">Health MCPs</div><div class="en-desc">Model-agnostic context tooling for health workflows.</div></div>
-        <div class="eco-node" data-belongs="ai"><div class="en-tag">AI Commons</div><div class="en-name">Verifiable AI · WHO</div><div class="en-desc">Verifiable AI efforts in partnership with the WHO.</div></div>
-      </div>
-    </div>
+    </nav>
+  </header>
+  <div class="mobile-nav" aria-label="Mobile">
+    <a href="foundation.html">Foundation</a>
+    <a href="projects.html">Projects</a>
+    <a href="community.html">Community</a>
+    <a href="foundation.html#membership" class="btn btn-primary">Become a member</a>
   </div>
-</section>
 
-<!-- ===== WHY A FOUNDATION ===== -->
-<section class="section-pad" style="background:var(--bg-2)">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">03 · Why a foundation</span>
-      <h2 class="section-title" style="margin-top:18px">Built for neutrality, sustainability and scale.</h2>
-      <p class="lead">The first software foundation purpose-built for global digital health — hosted by the Linux Foundation.</p>
-    </div>
-    <div class="why-grid">
-      <div class="why-item card reveal d1">
-        <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg></span>
-        <h3>Neutral, open governance</h3>
-        <p>A trusted non-profit holds the project's assets and trademark. Decisions are made transparently by those doing the work.</p>
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="wrap-wide hero-grid">
+      <div class="reveal in">
+        <span class="eyebrow">An independent software foundation</span>
+        <h1 id="heroHeadline"><span id="hlMain">Building blocks for the future of</span> <span class="grad"
+            id="hlAccent">global digital health.</span></h1>
+        <p class="lead">A neutral, community-owned home for open-source building blocks — helping developers everywhere
+          create standards-based, AI-ready health solutions.</p>
+        <div class="hero-cta">
+          <a href="projects.html" class="btn btn-primary">Explore the projects <svg class="arrow" width="18" height="18"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg></a>
+          <a href="foundation.html" class="btn btn-ghost">About the foundation</a>
+        </div>
+        <div class="hero-meta">
+          <span class="lf-badge"><span class="logo-mark" style="width:16px;height:16px"
+              aria-hidden="true"><i></i><i></i><i></i><i></i></span> Hosted by the Linux Foundation</span>
+        </div>
       </div>
-      <div class="why-item card reveal d2">
-        <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg></span>
-        <h3>Sustainable funding</h3>
-        <p>Tiered memberships and grants de-risk the project — no single funder, no single point of failure.</p>
-      </div>
-      <div class="why-item card reveal d3">
-        <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-4 12.7V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.3A7 7 0 0 0 12 2Z"/><path d="M9 22h6"/></svg></span>
-        <h3>AI-ready platform</h3>
-        <p>An umbrella structure ready to house new initiatives like an AI Commons for Global Health.</p>
-      </div>
-      <div class="why-item card reveal d4">
-        <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 1 0 5.6l-7 7a2 2 0 0 1-2.8-2.8l7-7a4 4 0 0 1 2.8-1.2Z"/><path d="m15 5 4 4"/></svg></span>
-        <h3>Cost-effective by design</h3>
-        <p>The Linux Foundation "Foundation-as-a-Service" model keeps fiscal hosting near 10% — the majority of funds reach engineering.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ===== PARTNERS ===== -->
-<section class="partners section-pad">
-  <div class="wrap center">
-    <span class="eyebrow bare reveal" style="justify-content:center">Backed &amp; advised by</span>
-    <h2 class="section-title reveal d1" style="margin-top:16px">Convened with a global community.</h2>
-    <div class="partner-row reveal d2">
-      <span class="partner-chip"><span class="pdot" style="background:var(--ink)"></span>Linux Foundation</span>
-      <span class="partner-chip"><span class="pdot" style="background:var(--teal)"></span>Google.org</span>
-      <span class="partner-chip"><span class="pdot" style="background:var(--core)"></span>World Health Organization</span>
-      <span class="partner-chip"><span class="pdot" style="background:var(--ai)"></span>World Bank Group</span>
-      <span class="partner-chip"><span class="pdot" style="background:var(--green)"></span>UNICEF</span>
-      <span class="partner-chip"><span class="pdot" style="background:var(--amber)"></span>PATH</span>
-      <span class="partner-chip"><span class="pdot" style="background:var(--rose)"></span>CHAI</span>
+      <div class="stack-vis reveal in d1">
+        <div class="stack-card" data-screen-label="Hero stack diagram">
+          <div class="stack-layer layer-apps">
+            <div class="ltext">
+              <div class="ll">Built on top</div>
+              <div class="lt">Apps &amp; solutions</div>
+              <div class="ls">Locally-owned, national-scale health programs</div>
+            </div>
+            <div class="blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="stack-connect" aria-hidden="true">▲ built with ▲</div>
+          <div class="stack-layer layer-core">
+            <div class="ltext">
+              <div class="ll">Pillar 01 · FHIR Foundations</div>
+              <div class="lt">FHIR-native core libraries</div>
+              <div class="ls">kotlin-fhir, kotlin-fhirpath &amp; Android components</div>
+            </div>
+            <div class="blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="stack-layer layer-toolkit">
+            <div class="ltext">
+              <div class="ll">Pillar 02 · Active</div>
+              <div class="lt">Reference Toolkit</div>
+              <div class="ls">OHS Player — multiplatform, AI-ready</div>
+            </div>
+            <div class="blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="stack-layer layer-ai">
+            <div class="ltext">
+              <div class="ll">Pillar 03 · AI Commons</div>
+              <div class="lt">AI Commons for Global Health</div>
+              <div class="ls">Evals, benchmarks &amp; verifiable AI</div>
+            </div>
+            <div class="blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="stack-layer layer-infra">
+            <div class="ltext">
+              <div class="ll">Underneath</div>
+              <div class="lt">Open standards &amp; HL7® FHIR®</div>
+              <div class="ls">Interoperability for "DPIs for Health"</div>
+            </div>
+            <div class="blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <p class="muted reveal d2" style="margin-top:24px; font-size:0.9rem">With a $2.6M anchor grant from Google.org to the Linux Foundation.</p>
-  </div>
-</section>
+  </section>
 
-<!-- ===== CTA ===== -->
-<section class="cta-band section-pad">
-  <div class="wrap">
-    <span class="eyebrow bare reveal" style="color:oklch(0.92 0.04 195); justify-content:center">The ask</span>
-    <h2 class="section-title reveal d1" style="margin-top:16px">Help us build the future of global digital health.</h2>
-    <p class="lead reveal d1">We're recruiting founding members ahead of our public launch. Take a seat at the table shaping the charter, budget and direction.</p>
-    <div class="hero-cta reveal d2">
-      <a href="foundation.html#membership" class="btn btn-light">Become a founding member</a>
-      <a href="community.html" class="btn btn-on-dark">Join the community</a>
-    </div>
-  </div>
-</section>
+  <!-- ===== THREE PILLARS ===== -->
+  <section class="section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">01 · Three pillars</span>
+        <h2 class="section-title" style="margin-top:18px">One foundation, three pillars of work.</h2>
+        <p class="lead">An umbrella structure that maintains the building blocks developers rely on today, opens the fastest path to building a next-gen digital health solution, and creates a neutral space for what comes next.</p>
+      </div>
+      <div class="pillar-grid">
+        <article class="card pillar core reveal d1">
+          <span class="glow" aria-hidden="true"></span>
+          <div class="pillar-top">
+            <span class="tag core">Pillar 01 · FHIR Foundations · Active</span>
+          </div>
+          <h3>FHIR-native core libraries</h3>
+          <p>The foundational Kotlin Multiplatform libraries for working with FHIR — plus battle-tested components for Android, access control and analytics, sustained by an active community of technical partners.</p>
+          <ul>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--core)" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg> kotlin-fhir &amp; kotlin-fhirpath — KMP FHIR libraries</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--core)" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg> Android FHIR SDK, Info Gateway &amp; Analytics</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--core)" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg> HL7® FHIR® interoperability by default</li>
+          </ul>
+          <div class="pillar-foot"><a href="projects.html#core" class="textlink">Explore FHIR Foundations <svg
+                class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></a></div>
+        </article>
 
-<!-- ===== FOOTER ===== -->
-<footer class="site-footer">
-  <div class="wrap-wide">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a class="brand" href="index.html" style="color:#fff">
-          <span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-          <span class="brandname"><b>Open Health Stack</b><span style="color:oklch(0.66 0.02 200)">Software Foundation</span></span>
-        </a>
-        <p class="footer-about">A neutral, community-owned home for open-source building blocks accelerating next-gen, AI-powered digital health.</p>
-      </div>
-      <div>
-        <h4>Foundation</h4>
-        <ul>
-          <li><a href="foundation.html#mission">Mission &amp; charter</a></li>
-          <li><a href="foundation.html#governance">Governance</a></li>
-          <li><a href="foundation.html#membership">Membership</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Projects</h4>
-        <ul>
-          <li><a href="projects.html#core">Core building blocks</a></li>
-          <li><a href="projects.html#ai">AI Commons</a></li>
-          <li><a href="projects.html#committees">Steering committees</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Community</h4>
-        <ul>
-          <li><a href="community.html#involved">Get involved</a></li>
-          <li><a href="community.html#events">Events</a></li>
-          <li><a href="community.html#channels">Channels</a></li>
-          <li><a href="mailto:hello@ohs.foundation">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© <span data-year>2026</span> Open Health Stack Software Foundation · a project of the Linux Foundation.</span>
-      <span class="footer-badge">fred@ohs.foundation</span>
-    </div>
-  </div>
-</footer>
+        <article class="card pillar toolkit reveal d2">
+          <span class="glow" aria-hidden="true"></span>
+          <div class="pillar-top">
+            <span class="tag toolkit">Pillar 02 · Reference Toolkit · Active</span>
+          </div>
+          <h3>Multiplatform AI-ready Reference Toolkit</h3>
+          <p>The fastest way to develop and deploy a next-gen digital health solution — a complete, composable reference implementation built on the FHIR Foundations libraries, ready for Android, iOS and web.</p>
+          <ul>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--toolkit)" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg> OHS Player — the reference runtime</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--toolkit)" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg> KMP client app, web portal &amp; backend</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--toolkit)" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg> AI-ready by design</li>
+          </ul>
+          <div class="pillar-foot"><a href="projects.html#toolkit" class="textlink">Explore the toolkit <svg
+                class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></a></div>
+        </article>
 
-<script src="app.js"></script>
+        <article class="card pillar ai reveal d3">
+          <span class="glow" aria-hidden="true"></span>
+          <div class="pillar-top">
+            <span class="tag ai">Pillar 03 · AI Commons · Launching soon</span>
+          </div>
+          <h3>AI Commons for Global Health</h3>
+          <p>A neutral space for collaboration on safe, effective and verifiable AI for global health — focused on
+            model-agnostic capabilities like evals, benchmarks, tooling for "Verifiable AI, developed with the WHO and
+            partners.</p>
+          <ul>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ai)" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg> Evals &amp; benchmarks for health AI</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ai)" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg> Model-agnostic tooling &amp; MCPs</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ai)" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg> Verifiable AI efforts with the WHO</li>
+          </ul>
+          <div class="pillar-foot"><a href="projects.html#ai" class="textlink">Explore AI Commons <svg class="arrow"
+                width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg></a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ECOSYSTEM MAP ===== -->
+  <section class="ecosystem section-pad" style="background:var(--bg-2)">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">02 · The ecosystem</span>
+        <h2 class="section-title" style="margin-top:18px">From one product to a system of building blocks.</h2>
+        <p class="lead">Hover a pillar to trace its projects. Each block is independently maintained, openly governed,
+          and designed to be composed.</p>
+      </div>
+
+      <div class="eco-stage reveal d1" data-ecosystem>
+        <div class="eco-pillars">
+          <button type="button" class="eco-pillar" data-pillar="core" aria-label="Highlight FHIR Foundations projects">
+            <span class="icon-chip core" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7" rx="1.5" />
+                <rect x="14" y="3" width="7" height="7" rx="1.5" />
+                <rect x="3" y="14" width="7" height="7" rx="1.5" />
+                <rect x="14" y="14" width="7" height="7" rx="1.5" />
+              </svg></span>
+            <span>
+              <span class="ep-title">Pillar 01 · FHIR Foundations</span>
+              <span class="ep-sub">FHIR-native core libraries</span>
+            </span>
+            <span class="ep-count">5 projects</span>
+          </button>
+          <button type="button" class="eco-pillar" data-pillar="toolkit" aria-label="Highlight Reference Toolkit projects">
+            <span class="icon-chip toolkit" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2 2 7l10 5 10-5-10-5Z"/>
+                <path d="m2 17 10 5 10-5"/>
+                <path d="m2 12 10 5 10-5"/>
+              </svg></span>
+            <span>
+              <span class="ep-title">Pillar 02 · Reference Toolkit</span>
+              <span class="ep-sub">Multiplatform AI-ready runtime</span>
+            </span>
+            <span class="ep-count">4 projects</span>
+          </button>
+          <button type="button" class="eco-pillar" data-pillar="ai" aria-label="Highlight AI Commons projects">
+            <span class="icon-chip ai" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3" />
+                <path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" />
+              </svg></span>
+            <span>
+              <span class="ep-title">Pillar 03 · AI Commons</span>
+              <span class="ep-sub">Safe, verifiable AI for global health</span>
+            </span>
+            <span class="ep-count">3 initiatives</span>
+          </button>
+        </div>
+
+        <div class="eco-rail">Projects &amp; initiatives</div>
+
+        <div class="eco-nodes">
+          <div class="eco-node" data-belongs="core">
+            <div class="en-tag">Core</div>
+            <div class="en-name">kotlin-fhir</div>
+            <div class="en-desc">Lean, fast KMP implementation of the HL7® FHIR® data model.</div>
+          </div>
+          <div class="eco-node" data-belongs="core">
+            <div class="en-tag">Core</div>
+            <div class="en-name">kotlin-fhirpath</div>
+            <div class="en-desc">KMP implementation of FHIRPath for querying FHIR resources.</div>
+          </div>
+          <div class="eco-node" data-belongs="core">
+            <div class="en-tag">Core</div>
+            <div class="en-name">Android FHIR SDK</div>
+            <div class="en-desc">FHIR-native libraries for secure, offline-capable Android apps.</div>
+          </div>
+          <div class="eco-node" data-belongs="core">
+            <div class="en-tag">Core</div>
+            <div class="en-name">FHIR Info Gateway</div>
+            <div class="en-desc">Privacy-preserving access control for patient data.</div>
+          </div>
+          <div class="eco-node" data-belongs="core">
+            <div class="en-tag">Core</div>
+            <div class="en-name">FHIR Analytics</div>
+            <div class="en-desc">Transform FHIR data into trusted, faster insights.</div>
+          </div>
+          <div class="eco-node" data-belongs="toolkit">
+            <div class="en-tag">Toolkit</div>
+            <div class="en-name">OHS Player</div>
+            <div class="en-desc">The reference runtime — deploy a next-gen digital health solution.</div>
+          </div>
+          <div class="eco-node" data-belongs="toolkit">
+            <div class="en-tag">Toolkit</div>
+            <div class="en-name">Reference Client App</div>
+            <div class="en-desc">KMP-based configurable reference app built on OHS components.</div>
+          </div>
+          <div class="eco-node" data-belongs="toolkit">
+            <div class="en-tag">Toolkit</div>
+            <div class="en-name">Reference Web Portal</div>
+            <div class="en-desc">Web-based management tool for healthcare workforce hierarchies.</div>
+          </div>
+          <div class="eco-node" data-belongs="toolkit">
+            <div class="en-tag">Toolkit</div>
+            <div class="en-name">Reference Backend</div>
+            <div class="en-desc">Custom endpoints and access checker plugins for OHS Player clients.</div>
+          </div>
+          <div class="eco-node" data-belongs="ai">
+            <div class="en-tag">AI Commons</div>
+            <div class="en-name">Evals &amp; Benchmarks</div>
+            <div class="en-desc">Open tooling to measure health-AI safety and quality.</div>
+          </div>
+          <div class="eco-node" data-belongs="ai">
+            <div class="en-tag">AI Commons</div>
+            <div class="en-name">Health MCPs</div>
+            <div class="en-desc">Model-agnostic context tooling for health workflows.</div>
+          </div>
+          <div class="eco-node" data-belongs="ai">
+            <div class="en-tag">AI Commons</div>
+            <div class="en-name">Verifiable AI · WHO</div>
+            <div class="en-desc">Verifiable AI efforts in partnership with the WHO.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY A FOUNDATION ===== -->
+  <section class="section-pad" style="background:var(--bg-2)">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">03 · Why a foundation</span>
+        <h2 class="section-title" style="margin-top:18px">Built for neutrality, sustainability and scale.</h2>
+        <p class="lead">The first software foundation purpose-built for global digital health — hosted by the Linux
+          Foundation.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-item card reveal d1">
+          <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6" />
+            </svg></span>
+          <h3>Neutral, open governance</h3>
+          <p>A trusted non-profit holds the project's assets and trademark. Decisions are made transparently by those
+            doing the work.</p>
+        </div>
+        <div class="why-item card reveal d2">
+          <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="6" width="20" height="12" rx="2" />
+              <circle cx="12" cy="12" r="3" />
+            </svg></span>
+          <h3>Sustainable funding</h3>
+          <p>Tiered memberships and grants de-risk the project — no single funder, no single point of failure.</p>
+        </div>
+        <div class="why-item card reveal d3">
+          <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a7 7 0 0 0-4 12.7V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.3A7 7 0 0 0 12 2Z" />
+              <path d="M9 22h6" />
+            </svg></span>
+          <h3>AI-ready platform</h3>
+          <p>An umbrella structure ready to house new initiatives like an AI Commons for Global Health.</p>
+        </div>
+        <div class="why-item card reveal d4">
+          <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.7 6.3a4 4 0 0 1 0 5.6l-7 7a2 2 0 0 1-2.8-2.8l7-7a4 4 0 0 1 2.8-1.2Z" />
+              <path d="m15 5 4 4" />
+            </svg></span>
+          <h3>Cost-effective by design</h3>
+          <p>The Linux Foundation "Foundation-as-a-Service" model keeps fiscal hosting near 10% — the majority of funds
+            reach engineering.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PARTNERS ===== -->
+  <section class="partners section-pad">
+    <div class="wrap center">
+      <span class="eyebrow bare reveal" style="justify-content:center">Backed &amp; advised by</span>
+      <h2 class="section-title reveal d1" style="margin-top:16px">Convened with a global community.</h2>
+      <div class="partner-row reveal d2">
+        <span class="partner-chip"><span class="pdot" style="background:var(--teal)"></span>Google</span>
+        <span class="partner-chip"><span class="pdot" style="background:var(--core)"></span>World Health
+          Organization</span>
+        <span class="partner-chip"><span class="pdot" style="background:var(--ai)"></span>Endless Health</span>
+        <span class="partner-chip"><span class="pdot" style="background:var(--ai)"></span>World Bank Group</span>
+        <span class="partner-chip"><span class="pdot" style="background:var(--green)"></span>UNICEF</span>
+        <span class="partner-chip"><span class="pdot" style="background:var(--amber)"></span>PATH</span>
+        <span class="partner-chip"><span class="pdot" style="background:var(--rose)"></span>CHAI</span>
+      </div>
+      <p class="muted reveal d2" style="margin-top:24px; font-size:0.9rem">With a $2.6M anchor grant from Google.org to
+        the Linux Foundation.</p>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-band section-pad">
+    <div class="wrap">
+      <span class="eyebrow bare reveal" style="color:oklch(0.92 0.04 195); justify-content:center">The ask</span>
+      <h2 class="section-title reveal d1" style="margin-top:16px">Help us build the future of global digital health.
+      </h2>
+      <p class="lead reveal d1">We're recruiting founding members ahead of our public launch. Take a seat at the table
+        shaping the charter, budget and direction.</p>
+      <div class="hero-cta reveal d2">
+        <a href="foundation.html#membership" class="btn btn-light">Become a founding member</a>
+        <a href="community.html" class="btn btn-on-dark">Join the community</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="wrap-wide">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html" style="color:#fff">
+            <span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="brandname"><b>Open Health Stack</b><span style="color:oklch(0.66 0.02 200)">Software
+                Foundation</span></span>
+          </a>
+          <p class="footer-about">A neutral, community-owned home for open-source building blocks accelerating next-gen,
+            AI-powered digital health.</p>
+        </div>
+        <div>
+          <h4>Foundation</h4>
+          <ul>
+            <li><a href="foundation.html#mission">Mission &amp; charter</a></li>
+            <li><a href="foundation.html#governance">Governance</a></li>
+            <li><a href="foundation.html#membership">Membership</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Projects</h4>
+          <ul>
+            <li><a href="projects.html#core">FHIR Foundations</a></li>
+            <li><a href="projects.html#toolkit">Reference Toolkit</a></li>
+            <li><a href="projects.html#ai">AI Commons</a></li>
+            <li><a href="projects.html#committees">Steering committees</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Community</h4>
+          <ul>
+            <li><a href="community.html#involved">Get involved</a></li>
+            <li><a href="community.html#events">Events</a></li>
+            <li><a href="community.html#channels">Channels</a></li>
+            <li><a href="mailto:hello@ohs.foundation">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Open Health Stack Software Foundation · a project of the Linux
+          Foundation.</span>
+        <span class="footer-badge">fred@ohs.foundation</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
+
 </html>
