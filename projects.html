@@ -4,8 +4,10 @@
 <meta charset="UTF-8" />
 <script>
 (function(){
-  var a = localStorage.getItem('ohs_auth');
-  if (a) { try { if (Date.now() < JSON.parse(a).exp) return; } catch(e){} }
+  try {
+    var a = localStorage.getItem('ohs_auth');
+    if (a) { try { if (Date.now() < JSON.parse(a).exp) return; } catch(e){} }
+  } catch(e) {}
   window.location.replace('lock.html?return=' + encodeURIComponent(location.href));
 })();
 </script>

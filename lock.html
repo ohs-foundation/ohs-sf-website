@@ -67,7 +67,12 @@
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (input.value.trim() === CORRECT_PIN) {
-      localStorage.setItem('ohs_auth', JSON.stringify({ exp: Date.now() + EXPIRY_MS }));
+      try {
+        localStorage.setItem('ohs_auth', JSON.stringify({ exp: Date.now() + EXPIRY_MS }));
+      } catch(e) {
+        error.textContent = 'Storage is disabled in your browser — access cannot be saved.';
+        return;
+      }
       window.location.replace(getReturn());
     } else {
       input.value = '';
