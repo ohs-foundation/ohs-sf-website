@@ -28,6 +28,8 @@
   --core-wash: oklch(0.955 0.022 222);
   --ai:        oklch(0.56 0.115 292);   /* indigo-violet */
   --ai-wash:   oklch(0.957 0.022 292);
+  --toolkit:      oklch(0.56 0.094 200);
+  --toolkit-wash: oklch(0.955 0.018 195);
 
   /* Project / tag hues */
   --green:     oklch(0.60 0.11 155);
@@ -229,17 +231,19 @@ section { position: relative; }
   background: var(--bg-2); color: var(--ink-soft);
   display: inline-flex; align-items: center; gap: 6px;
 }
-.tag.core { background: var(--core-wash); color: var(--core); }
-.tag.ai   { background: var(--ai-wash);   color: var(--ai); }
-.tag.teal { background: var(--teal-wash); color: var(--teal-deep); }
+.tag.core    { background: var(--core-wash);    color: var(--core); }
+.tag.ai      { background: var(--ai-wash);      color: var(--ai); }
+.tag.toolkit { background: var(--toolkit-wash); color: var(--toolkit); }
+.tag.teal    { background: var(--teal-wash);    color: var(--teal-deep); }
 
 .icon-chip {
   width: 52px; height: 52px; border-radius: 13px;
   display: grid; place-items: center; flex: none;
   background: var(--teal-wash); color: var(--teal-deep);
 }
-.icon-chip.core { background: var(--core-wash); color: var(--core); }
-.icon-chip.ai   { background: var(--ai-wash);   color: var(--ai); }
+.icon-chip.core    { background: var(--core-wash);    color: var(--core); }
+.icon-chip.ai      { background: var(--ai-wash);      color: var(--ai); }
+.icon-chip.toolkit { background: var(--toolkit-wash); color: var(--toolkit); }
 .icon-chip svg { width: 26px; height: 26px; }
 
 /* ---------- Reveal on scroll ---------- */

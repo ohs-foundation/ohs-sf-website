@@ -33,6 +33,9 @@
 .pillar-band .pb-mark i { aspect-ratio:1; border-radius:9px; }
 .pillar-band.core .pb-mark i { background:var(--core); } .pillar-band.core .pb-mark i:nth-child(even){opacity:0.45;}
 .pillar-band.ai .pb-mark i { background:var(--ai); } .pillar-band.ai .pb-mark i:nth-child(odd){opacity:0.45;}
+.pillar-band.toolkit { background: linear-gradient(120deg, var(--toolkit-wash), var(--surface)); border: 1px solid color-mix(in oklch, var(--toolkit) 18%, transparent); }
+.pillar-band.toolkit .pb-mark i { background: var(--toolkit); }
+.pillar-band.toolkit .pb-mark i:nth-child(even) { opacity: 0.45; }
 
 /* Project cards */
 .proj-grid { display:grid; grid-template-columns: repeat(2,1fr); gap:22px; margin-top:28px; }
@@ -46,6 +49,7 @@
 .proj-meta .status.active .dot { background:var(--green); box-shadow:0 0 0 3px color-mix(in oklch,var(--green) 22%,transparent); }
 .proj-meta .status.incubating .dot { background:var(--amber); box-shadow:0 0 0 3px color-mix(in oklch,var(--amber) 22%,transparent); }
 .proj-meta .status.proposed .dot { background:var(--ink-faint); }
+.proj-meta .status.maintenance .dot { background: var(--ink-faint); }
 .proj-meta .lang { font-family:'IBM Plex Mono',monospace; font-size:0.74rem; color:var(--ink-faint); }
 .proj .repo { margin-top:16px; }
 
@@ -112,59 +116,109 @@
 <section class="page-hero" data-screen-label="Projects hero">
   <div class="wrap">
     <span class="eyebrow reveal in">The ecosystem</span>
-    <h1 class="reveal in" style="margin-top:18px; max-width:16ch">Two pillars. Many building blocks.</h1>
+    <h1 class="reveal in" style="margin-top:18px; max-width:16ch">Three pillars. Many building blocks.</h1>
     <p class="lead reveal in d1">Every project is independently maintained, openly governed by a steering committee, and designed to be composed into next-gen digital health solutions.</p>
   </div>
 </section>
 
-<!-- PILLAR 01 — CORE -->
+<!-- PILLAR 01 — FHIR FOUNDATIONS -->
 <section id="core" class="wrap" style="padding-bottom: clamp(40px,6vw,72px)">
   <div class="pillar-band core reveal">
     <div>
-      <span class="tag core">Pillar 01 · Core · Existing</span>
-      <h2>Standards-based building blocks</h2>
-      <p>Core components and a Multiplatform Reference Toolkit that make it easier to build with FHIR — sustained by an active community of technical partners.</p>
+      <span class="tag core">Pillar 01 · FHIR Foundations · Active</span>
+      <h2>FHIR-native core libraries</h2>
+      <p>The foundational Kotlin Multiplatform libraries for working with FHIR, plus battle-tested components for Android, access control and analytics.</p>
     </div>
     <div class="pb-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   </div>
 
   <div class="proj-grid">
     <article class="card hover proj reveal d1">
+      <div class="proj-top"><span class="icon-chip core" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></span><span class="tag core">Core Library</span></div>
+      <h3>kotlin-fhir</h3>
+      <p>A lean, fast KMP implementation of the HL7® FHIR® data model — the foundational library for all OHS components.</p>
+      <div class="proj-meta"><span class="status active"><span class="dot"></span> Active</span><span class="lang">Kotlin Multiplatform</span></div>
+      <a href="https://github.com/ohs-foundation/kotlin-fhir" class="textlink repo">View repository <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+    </article>
+    <article class="card hover proj reveal d1">
+      <div class="proj-top"><span class="icon-chip core" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span><span class="tag core">Core Library</span></div>
+      <h3>kotlin-fhirpath</h3>
+      <p>KMP implementation of FHIRPath for querying and evaluating FHIR resources across platforms.</p>
+      <div class="proj-meta"><span class="status active"><span class="dot"></span> Active</span><span class="lang">Kotlin Multiplatform</span></div>
+      <a href="https://github.com/ohs-foundation/kotlin-fhirpath" class="textlink repo">View repository <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+    </article>
+    <article class="card hover proj reveal d2">
       <div class="proj-top"><span class="icon-chip core" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></span><span class="tag core">SDK</span></div>
       <h3>Android FHIR SDK</h3>
       <p>FHIR-native libraries to build Android apps that are secure, offline-capable, and provide on-device decision support for patient-centered care.</p>
-      <div class="proj-meta"><span class="status active"><span class="dot"></span> Active</span><span class="lang">Kotlin · Android</span></div>
-      <a href="https://github.com/google/android-fhir" class="textlink repo">View repository <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+      <div class="proj-meta"><span class="status maintenance"><span class="dot"></span> Maintenance</span><span class="lang">Kotlin · Android</span></div>
+      <a href="https://github.com/ohs-foundation/android-fhir" class="textlink repo">View repository <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
     </article>
-    <article class="card hover proj reveal d1">
+    <article class="card hover proj reveal d2">
       <div class="proj-top"><span class="icon-chip core" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6Z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="tag core">Gateway</span></div>
       <h3>FHIR Info Gateway</h3>
       <p>A privacy-preserving access layer that ensures only relevant healthcare workers can reach the patient data they need.</p>
       <div class="proj-meta"><span class="status active"><span class="dot"></span> Active</span><span class="lang">Java · Proxy</span></div>
-      <a href="https://github.com/google/fhir-gateway" class="textlink repo">View repository <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+      <a href="https://github.com/ohs-foundation/fhir-gateway" class="textlink repo">View repository <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
     </article>
-    <article class="card hover proj reveal d2">
+    <article class="card hover proj reveal d3">
       <div class="proj-top"><span class="icon-chip core" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 3-3 3 3 5-5"/></svg></span><span class="tag core">Analytics</span></div>
       <h3>FHIR Analytics</h3>
       <p>Transform FHIR data into analytics-ready formats so programs can generate trusted insights faster and make better decisions.</p>
       <div class="proj-meta"><span class="status active"><span class="dot"></span> Active</span><span class="lang">Python · Pipelines</span></div>
-      <a href="https://github.com/google/fhir-data-pipes" class="textlink repo">View repository <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
-    </article>
-    <article class="card hover proj reveal d2">
-      <div class="proj-top"><span class="icon-chip core" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><span class="tag core">Toolkit</span></div>
-      <h3>Multiplatform Reference Toolkit</h3>
-      <p>A reference starting point that brings the building blocks together across platforms — lowering the cost of building with FHIR.</p>
-      <div class="proj-meta"><span class="status incubating"><span class="dot"></span> Incubating</span><span class="lang">Kotlin Multiplatform</span></div>
-      <a href="projects.html#core" class="textlink repo">Learn more <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="https://github.com/ohs-foundation/fhir-data-pipes" class="textlink repo">View repository <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
     </article>
   </div>
 </section>
 
-<!-- PILLAR 02 — AI COMMONS -->
+<!-- PILLAR 02 — REFERENCE TOOLKIT -->
+<section id="toolkit" class="wrap" style="padding-bottom: clamp(40px,6vw,72px)">
+  <div class="pillar-band toolkit reveal">
+    <div>
+      <span class="tag toolkit">Pillar 02 · Reference Toolkit · Active</span>
+      <h2>Multiplatform AI-ready Reference Toolkit</h2>
+      <p>The fastest way to develop and deploy a next-gen digital health solution — a complete, composable reference implementation built on the FHIR Foundations libraries.</p>
+    </div>
+    <div class="pb-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+
+  <div class="proj-grid">
+    <article class="card hover proj reveal d1">
+      <div class="proj-top"><span class="icon-chip toolkit" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></span><span class="tag toolkit">Runtime</span></div>
+      <h3>OHS Player</h3>
+      <p>The reference runtime for OHS — orchestrates the building blocks into a deployable, AI-ready digital health solution.</p>
+      <div class="proj-meta"><span class="status active"><span class="dot"></span> Active</span><span class="lang">Kotlin Multiplatform</span></div>
+      <a href="https://github.com/ohs-foundation/ohs-player" class="textlink repo">View repository <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+    </article>
+    <article class="card hover proj reveal d1">
+      <div class="proj-top"><span class="icon-chip toolkit" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></span><span class="tag toolkit">Mobile</span></div>
+      <h3>Reference Client App</h3>
+      <p>A KMP-based configurable reference application built on OHS components for Android and iOS.</p>
+      <div class="proj-meta"><span class="status active"><span class="dot"></span> Active</span><span class="lang">Kotlin Multiplatform</span></div>
+      <a href="https://github.com/ohs-foundation/ohs-player-reference-client-app" class="textlink repo">View repository <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+    </article>
+    <article class="card hover proj reveal d2">
+      <div class="proj-top"><span class="icon-chip toolkit" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><span class="tag toolkit">Web</span></div>
+      <h3>Reference Web Portal</h3>
+      <p>A web-based management tool for healthcare organisations to manage workforce hierarchies and configuration.</p>
+      <div class="proj-meta"><span class="status active"><span class="dot"></span> Active</span><span class="lang">TypeScript</span></div>
+      <a href="https://github.com/ohs-foundation/ohs-player-reference-web-portal" class="textlink repo">View repository <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+    </article>
+    <article class="card hover proj reveal d2">
+      <div class="proj-top"><span class="icon-chip toolkit" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><span class="tag toolkit">Backend</span></div>
+      <h3>Reference Backend</h3>
+      <p>Custom endpoints and access checker plugins powering all OHS Player clients.</p>
+      <div class="proj-meta"><span class="status active"><span class="dot"></span> Active</span><span class="lang">Kotlin</span></div>
+      <a href="https://github.com/ohs-foundation/ohs-player-reference-backend" class="textlink repo">View repository <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+    </article>
+  </div>
+</section>
+
+<!-- PILLAR 03 — AI COMMONS -->
 <section id="ai" class="wrap" style="padding-bottom: clamp(40px,6vw,72px)">
   <div class="pillar-band ai reveal">
     <div>
-      <span class="tag ai">Pillar 02 · AI Commons · New</span>
+      <span class="tag ai">Pillar 03 · AI Commons · Launching soon</span>
       <h2>AI Commons for Global Health</h2>
       <p>A neutral, model-agnostic space for collaboration on safe, effective and verifiable AI — developed with the WHO and ecosystem partners.</p>
     </div>
@@ -214,8 +268,8 @@
     <div class="committee-grid">
       <div class="committee card reveal d1">
         <span class="icon-chip core" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
-        <h3>Core Building Blocks TSC</h3>
-        <p>Stewards the SDK, Gateway, Analytics and reference toolkit — setting roadmaps and release standards across the core libraries.</p>
+        <h3>FHIR Foundations TSC</h3>
+        <p>Stewards the FHIR Foundations libraries — kotlin-fhir, kotlin-fhirpath, Android FHIR SDK, Info Gateway and Analytics — setting roadmaps and release standards.</p>
         <div class="roster"><span class="avatar" style="background:var(--core)">A</span><span class="avatar" style="background:var(--teal)">K</span><span class="avatar" style="background:var(--green)">M</span><span class="avatar" style="background:var(--ink-faint)">+9</span><small>maintainers &amp; partners</small></div>
       </div>
       <div class="committee card reveal d2">
@@ -246,7 +300,7 @@
         <p class="footer-about">A neutral, community-owned home for open-source building blocks accelerating next-gen, AI-powered digital health.</p>
       </div>
       <div><h4>Foundation</h4><ul><li><a href="foundation.html#mission">Mission &amp; charter</a></li><li><a href="foundation.html#governance">Governance</a></li><li><a href="foundation.html#membership">Membership</a></li></ul></div>
-      <div><h4>Projects</h4><ul><li><a href="projects.html#core">Core building blocks</a></li><li><a href="projects.html#ai">AI Commons</a></li><li><a href="projects.html#committees">Steering committees</a></li></ul></div>
+      <div><h4>Projects</h4><ul><li><a href="projects.html#core">FHIR Foundations</a></li><li><a href="projects.html#toolkit">Reference Toolkit</a></li><li><a href="projects.html#ai">AI Commons</a></li><li><a href="projects.html#committees">Steering committees</a></li></ul></div>
       <div><h4>Community</h4><ul><li><a href="community.html#involved">Get involved</a></li><li><a href="community.html#events">Events</a></li><li><a href="community.html#channels">Channels</a></li><li><a href="mailto:hello@ohs.foundation">Contact</a></li></ul></div>
     </div>
     <div class="footer-bottom">
