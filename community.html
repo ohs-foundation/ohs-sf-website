@@ -267,6 +267,74 @@
       font-size: 0.9rem;
     }
 
+    /* join community */
+    .community-join {
+      margin-top: 56px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      padding: clamp(28px, 4vw, 44px);
+    }
+
+    .community-join h3 {
+      font-size: clamp(1.25rem, 2vw, 1.65rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-top: 10px;
+    }
+
+    .community-join > p {
+      color: var(--ink-soft);
+      margin-top: 10px;
+      max-width: 54ch;
+      font-size: 0.97rem;
+    }
+
+    .cj-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .cj-option {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      padding: 22px 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--bg-2);
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    .cj-option:hover {
+      border-color: var(--ink-faint);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .cj-option .icon-chip {
+      flex: none;
+    }
+
+    .cj-option h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .cj-option p {
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+      margin-top: 6px;
+    }
+
+    .cj-option .textlink {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      display: inline-flex;
+    }
+
     /* contributor cta */
     .contrib-cta {
       background: linear-gradient(135deg, var(--teal-deep), oklch(0.34 0.07 215));
@@ -308,6 +376,10 @@
       .event-feature .ef-visual {
         order: -1;
         min-height: 200px;
+      }
+
+      .cj-options {
+        grid-template-columns: 1fr;
       }
 
       .channel-grid {
@@ -473,6 +545,50 @@
                 stroke-linecap="round" stroke-linejoin="round">
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Join the community -->
+      <div class="community-join reveal d3">
+        <span class="eyebrow">Join the community</span>
+        <h3>Show up. Every month.</h3>
+        <p>The OHS community meets regularly and the conversation never stops. Two easy ways to be part of it.</p>
+        <div class="cj-options">
+          <div class="cj-option">
+            <span class="icon-chip core" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <path d="M16 2v4M8 2v4M3 10h18" />
+                <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" />
+              </svg></span>
+            <div>
+              <h4>Monthly Community Calls</h4>
+              <p>Open calls for contributors, partners and curious builders — a standing forum to share progress, ask
+                questions and shape direction together.</p>
+              <a href="#events" class="textlink">See the calendar <svg class="arrow" width="15" height="15"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg></a>
+            </div>
+          </div>
+          <div class="cj-option">
+            <span class="icon-chip toolkit" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                <path d="M8 10h8M8 14h5" />
+              </svg></span>
+            <div>
+              <h4>Join us on Discord</h4>
+              <p>Real-time conversation across channels for each pillar — ask questions, share what you're building and
+                connect with the broader community.</p>
+              <a href="mailto:hello@ohs.foundation" class="textlink">Get the invite link <svg class="arrow" width="15"
+                  height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg></a>
+            </div>
           </div>
         </div>
       </div>
