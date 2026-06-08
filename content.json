@@ -4,7 +4,6 @@
     "heading": "One foundation, three pillars of work.",
     "lead": "An umbrella structure that maintains the building blocks developers rely on today, opens the fastest path to building a next-gen digital health solution, and creates a neutral space for what comes next."
   },
-
   "diagram": {
     "appsLabel": "Apps & solutions",
     "appsByline": "Built by developers everywhere",
@@ -20,9 +19,12 @@
       "oklch(0.70 0.115 75)",
       "oklch(0.62 0.13 18)"
     ],
-    "baseChips": ["HL7® FHIR®", "MCP", "Skills"]
+    "baseChips": [
+      "HL7® FHIR®",
+      "MCP",
+      "Skills"
+    ]
   },
-
   "pillars": [
     {
       "id": "core",
@@ -32,10 +34,10 @@
       "statusShort": "Active",
       "tagLabel": "Pillar 01 · FHIR Foundations · Active",
       "cardHeading": "FHIR-native core libraries",
-      "cardBody": "The foundational Kotlin Multiplatform libraries for working with FHIR — plus battle-tested components for Android, access control and analytics, sustained by an active community of technical partners.",
+      "cardBody": "The foundational kotlin and java libraries for working with FHIR. Includes new multi-platform kotlin FHIR SDK and battle-tested components for Android, access control and analytics, sustained by an active community of technical partners.",
       "cardBullets": [
-        "kotlin-fhir & kotlin-fhirpath — KMP FHIR libraries",
-        "Android FHIR SDK, Info Gateway & Analytics",
+        "Core FHIR Libraries: kotlin-fhir, kotlin-fhirpath",
+        "Client and server side SDKs and libraries for building on FHIR",
         "HL7® FHIR® interoperability by default"
       ],
       "cardLinkLabel": "Explore FHIR Foundations",
@@ -70,13 +72,13 @@
       "num": "03",
       "name": "AI Commons",
       "statusShort": "Launching",
-      "tagLabel": "Pillar 03 · AI Commons · Launching soon",
+      "tagLabel": "Pillar 03 · AI Commons · Launching",
       "cardHeading": "AI Commons for Global Health",
-      "cardBody": "A neutral space for collaboration on safe, effective and verifiable AI for global health — focused on model-agnostic capabilities like evals, benchmarks, tooling for Verifiable AI, developed with the WHO and partners.",
+      "cardBody": "A neutral space for collaboration on safe, effective and Verifiable AI for Global Health — focused on model-agnostic capabilities like evals, benchmarks, tooling for Verifiable AI, developed with the WHO and partners.",
       "cardBullets": [
-        "Evals & benchmarks for health AI",
-        "Model-agnostic tooling & MCPs",
-        "Verifiable AI efforts with the WHO"
+        "Tooling to support Evals & benchmarks for Health AI",
+        "Model-agnostic libraries, relevant skills & MCPs",
+        "Open and modular by design"
       ],
       "cardLinkLabel": "Explore AI Commons",
       "cardLinkHref": "projects.html#ai",
@@ -85,29 +87,108 @@
       "diagramDesc": "Safe, verifiable AI · with the WHO"
     }
   ],
-
   "ecosystemNodes": [
-    { "pillar": "core",    "tag": "Core",       "name": "kotlin-fhir",           "desc": "Lean, fast KMP implementation of the HL7® FHIR® data model." },
-    { "pillar": "core",    "tag": "Core",       "name": "kotlin-fhirpath",       "desc": "KMP implementation of FHIRPath for querying FHIR resources." },
-    { "pillar": "core",    "tag": "Core",       "name": "Android FHIR SDK",      "desc": "FHIR-native libraries for secure, offline-capable Android apps." },
-    { "pillar": "core",    "tag": "Core",       "name": "FHIR Info Gateway",     "desc": "Privacy-preserving access control for patient data." },
-    { "pillar": "core",    "tag": "Core",       "name": "FHIR Analytics",        "desc": "Transform FHIR data into trusted, faster insights." },
-    { "pillar": "toolkit", "tag": "Toolkit",    "name": "OHS Player",            "desc": "The reference runtime — deploy a next-gen digital health solution." },
-    { "pillar": "toolkit", "tag": "Toolkit",    "name": "Reference Client App",  "desc": "KMP-based configurable reference app built on OHS components." },
-    { "pillar": "toolkit", "tag": "Toolkit",    "name": "Reference Web Portal",  "desc": "Web-based management tool for healthcare workforce hierarchies." },
-    { "pillar": "toolkit", "tag": "Toolkit",    "name": "Reference Backend",     "desc": "Custom endpoints and access checker plugins for OHS Player clients." },
-    { "pillar": "ai",      "tag": "AI Commons", "name": "Evals & Benchmarks",    "desc": "Open tooling to measure health-AI safety and quality." },
-    { "pillar": "ai",      "tag": "AI Commons", "name": "Health MCPs",           "desc": "Model-agnostic context tooling for health workflows." },
-    { "pillar": "ai",      "tag": "AI Commons", "name": "Verifiable AI · WHO",   "desc": "Verifiable AI efforts in partnership with the WHO." }
+    {
+      "pillar": "core",
+      "tag": "Core",
+      "name": "kotlin-fhir",
+      "desc": "Lean, fast KMP implementation of the HL7® FHIR® data model."
+    },
+    {
+      "pillar": "core",
+      "tag": "Core",
+      "name": "kotlin-fhirpath",
+      "desc": "KMP implementation of FHIRPath for querying FHIR resources."
+    },
+    {
+      "pillar": "core",
+      "tag": "Core",
+      "name": "Client FHIR SDK",
+      "desc": "FHIR-native libraries for secure, offline-capable Multiplatform apps."
+    },
+    {
+      "pillar": "core",
+      "tag": "Core",
+      "name": "FHIR Info Gateway",
+      "desc": "Privacy-preserving access control for patient data."
+    },
+    {
+      "pillar": "core",
+      "tag": "Core",
+      "name": "FHIR Analytics",
+      "desc": "Transform FHIR data into trusted, faster insights."
+    },
+    {
+      "pillar": "toolkit",
+      "tag": "Toolkit",
+      "name": "OHS Player",
+      "desc": "The reference runtime — deploy a next-gen digital health solution."
+    },
+    {
+      "pillar": "toolkit",
+      "tag": "Toolkit",
+      "name": "Reference Client App",
+      "desc": "KMP-based configurable reference app built on OHS components."
+    },
+    {
+      "pillar": "toolkit",
+      "tag": "Toolkit",
+      "name": "Reference Web Portal",
+      "desc": "Web-based management tool for healthcare workforce hierarchies."
+    },
+    {
+      "pillar": "toolkit",
+      "tag": "Toolkit",
+      "name": "Reference Backend",
+      "desc": "Custom endpoints and access checker plugins for OHS Player clients."
+    },
+    {
+      "pillar": "ai",
+      "tag": "AI Commons",
+      "name": "Evals & Benchmarks",
+      "desc": "Open tooling to measure health-AI safety and quality."
+    },
+    {
+      "pillar": "ai",
+      "tag": "AI Commons",
+      "name": "Health MCPs",
+      "desc": "Model-agnostic context tooling for health workflows."
+    },
+    {
+      "pillar": "ai",
+      "tag": "AI Commons",
+      "name": "Verifiable AI · WHO",
+      "desc": "Verifiable AI efforts in partnership with the WHO."
+    }
   ],
-
   "partners": [
-    { "name": "Google",                  "color": "var(--teal)"  },
-    { "name": "World Health Organization","color": "var(--core)"  },
-    { "name": "Endless Health",          "color": "var(--ai)"    },
-    { "name": "World Bank Group",        "color": "var(--ai)"    },
-    { "name": "UNICEF",                  "color": "var(--green)" },
-    { "name": "PATH",                    "color": "var(--amber)" },
-    { "name": "CHAI",                    "color": "var(--rose)"  }
+    {
+      "name": "Google",
+      "color": "var(--teal)"
+    },
+    {
+      "name": "World Health Organization",
+      "color": "var(--core)"
+    },
+    {
+      "name": "Endless Health",
+      "color": "var(--ai)"
+    },
+    {
+      "name": "World Bank Group",
+      "color": "var(--ai)"
+    },
+    {
+      "name": "UNICEF",
+      "color": "var(--green)"
+    },
+    {
+      "name": "PATH",
+      "color": "var(--amber)"
+    },
+    {
+      "name": "CHAI",
+      "color": "var(--rose)"
+    }
   ]
 }
