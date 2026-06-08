@@ -80,176 +80,43 @@
       color: var(--ink-soft);
     }
 
-    /* Hero stack visual — layered rounded blocks (apps → blocks → infra) */
-    .stack-vis {
-      position: relative;
-    }
+    /* Hero — Pillars on Open Standards (temple) */
+    .stack-vis { position: relative; }
+    .dz-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 20px; box-shadow: var(--shadow-lg); color: var(--ink); }
+    .dz-text { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+    .dz-ll { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.78; line-height: 1.2; }
+    .dz-lt { font-weight: 700; font-size: 1rem; letter-spacing: -0.01em; line-height: 1.2; color: var(--ink); }
 
-    .stack-card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      padding: 22px;
-      box-shadow: var(--shadow-lg);
-    }
-
-    .stack-layer {
-      border-radius: 14px;
-      padding: 15px 18px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .stack-layer+.stack-layer {
-      margin-top: 12px;
-    }
-
-    .stack-layer .ltext {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      min-width: 0;
-    }
-
-    .stack-layer .ll {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      opacity: 0.75;
-      line-height: 1.2;
-    }
-
-    .stack-layer .lt {
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: -0.01em;
-      line-height: 1.22;
-    }
-
-    .stack-layer .ls {
-      font-size: 0.8rem;
-      color: var(--ink-soft);
-      line-height: 1.35;
-    }
-
-    .stack-layer .blocks {
-      margin-left: auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 5px;
-      flex: none;
-      align-self: center;
-    }
-
-    .stack-layer .blocks i {
-      width: 16px;
-      height: 16px;
-      border-radius: 4px;
-      display: block;
-    }
-
-    .layer-apps {
-      background: var(--bg-2);
-    }
-
-    .layer-apps .blocks i {
-      background: var(--ink-faint);
-      opacity: 0.5;
-    }
-
-    .layer-core {
-      background: var(--core-wash);
-      border: 1px solid color-mix(in oklch, var(--core) 22%, transparent);
-    }
-
-    .layer-core .ll {
-      color: var(--core);
-    }
-
-    .layer-core .blocks i {
-      background: var(--core);
-    }
-
-    .layer-core .blocks i:nth-child(2n) {
-      opacity: 0.55;
-    }
-
-    .layer-ai {
-      background: var(--ai-wash);
-      border: 1px solid color-mix(in oklch, var(--ai) 22%, transparent);
-    }
-
-    .layer-ai .ll {
-      color: var(--ai);
-    }
-
-    .layer-ai .blocks i {
-      background: var(--ai);
-    }
-
-    .layer-ai .blocks i:nth-child(3n) {
-      opacity: 0.55;
-    }
-
-    .layer-toolkit { background: color-mix(in oklch, var(--toolkit-wash) 80%, white); border: 1px solid color-mix(in oklch, var(--toolkit) 22%, transparent); }
-    .layer-toolkit .ll { color: var(--toolkit); }
-    .layer-toolkit .blocks i { background: var(--toolkit); }
-    .layer-toolkit .blocks i:nth-child(2n) { opacity: 0.55; }
-
-    .layer-infra {
-      background: oklch(0.27 0.018 210);
-      color: #fff;
-    }
-
-    .layer-infra .ls {
-      color: oklch(0.78 0.01 200);
-    }
-
-    .layer-infra .blocks i {
-      background: var(--teal-bright);
-    }
-
-    .layer-infra .blocks i:nth-child(2n) {
-      opacity: 0.5;
-    }
-
-    .stack-connect {
-      text-align: center;
-      color: var(--ink-faint);
-      font-size: 0.7rem;
-      font-family: 'IBM Plex Mono', monospace;
-      letter-spacing: 0.1em;
-      padding: 5px 0;
-    }
-
-    .stack-float {
-      position: absolute;
-      right: -10px;
-      top: -22px;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 10px 14px;
-      box-shadow: var(--shadow-md);
-      font-size: 0.78rem;
-      display: flex;
-      align-items: center;
-      gap: 9px;
-    }
-
-    .stack-float .dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 0 4px color-mix(in oklch, var(--green) 20%, transparent);
-    }
-
-    .stack-float b {
-      font-weight: 700;
-    }
+    .dz-temple { display: flex; flex-direction: column; }
+    .dz-t-apps { background: var(--bg-2); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; }
+    .dz-t-apps-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+    .dz-t-by { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); white-space: nowrap; }
+    .dz-t-grid { display: flex; gap: 8px; }
+    .dz-t-app { width: 42px; height: 42px; flex: none; border: 1px solid var(--line); border-radius: 11px; display: grid; place-items: center; }
+    .dz-t-icon { width: 46%; height: 46%; border-radius: 6px; display: block; }
+    .dz-t-more { width: auto !important; padding: 0 12px; background: transparent !important; border: 1px dashed var(--line) !important; font-family: 'IBM Plex Mono', monospace; font-size: 0.64rem; text-align: center; color: var(--ink-faint); letter-spacing: 0.04em; }
+    .dz-t-rest { text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); padding: 11px 0; position: relative; }
+    .dz-t-rest::before { content: "▼"; display: block; color: color-mix(in oklch, var(--teal) 60%, var(--ink-faint)); font-size: 0.7rem; margin-bottom: 4px; }
+    .dz-t-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .dz-t-col { border-radius: 16px; padding: 0 18px 24px; min-height: 280px; position: relative; display: flex; flex-direction: column; box-shadow: 0 2px 14px oklch(0.4 0.02 210 / 0.07); }
+    .dz-t-col-cap { height: 11px; margin: 0 -18px 20px; border-radius: 16px 16px 0 0; }
+    .dz-t-col-num { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.07em; text-transform: uppercase; }
+    .dz-t-col-name { font-weight: 700; font-size: 1.28rem; letter-spacing: -0.02em; margin-top: 8px; line-height: 1.08; }
+    .dz-t-col-desc { font-size: 0.86rem; color: var(--ink-soft); line-height: 1.4; margin-top: 12px; }
+    .dz-t-blocks { margin-top: auto; display: grid; grid-template-columns: repeat(3, 20px); gap: 6px; padding-top: 24px; }
+    .dz-t-blocks i { height: 20px; border-radius: 6px; display: block; }
+    .dz-t-blocks i:nth-child(n+4) { opacity: 0.5; }
+    .dz-temple .dz-core { background: var(--core-wash); }
+    .dz-temple .dz-core .dz-t-col-cap { background: var(--core); } .dz-temple .dz-core .dz-t-col-num { color: var(--core); } .dz-temple .dz-core .dz-t-blocks i { background: var(--core); }
+    .dz-temple .dz-toolkit { background: var(--teal-wash); }
+    .dz-temple .dz-toolkit .dz-t-col-cap { background: var(--teal); } .dz-temple .dz-toolkit .dz-t-col-num { color: var(--teal-deep); } .dz-temple .dz-toolkit .dz-t-blocks i { background: var(--teal); }
+    .dz-temple .dz-ai { background: var(--ai-wash); }
+    .dz-temple .dz-ai .dz-t-col-cap { background: var(--ai); } .dz-temple .dz-ai .dz-t-col-num { color: var(--ai); } .dz-temple .dz-ai .dz-t-blocks i { background: var(--ai); }
+    .dz-t-base { background: oklch(0.27 0.018 210); color: #fff; border-radius: 16px; padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .dz-t-base .dz-lt { color: #fff; } .dz-t-base .dz-ll { color: oklch(0.78 0.01 200); }
+    .dz-t-apps .dz-lt, .dz-t-base .dz-lt { white-space: nowrap; }
+    .dz-t-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+    .dz-t-chips span { font-family: 'IBM Plex Mono', monospace; font-size: 0.74rem; letter-spacing: 0.02em; background: oklch(1 0 0 / 0.1); border: 1px solid oklch(1 0 0 / 0.16); border-radius: 999px; padding: 6px 13px; white-space: nowrap; }
 
     /* The shift band */
     .shift {
@@ -736,7 +603,7 @@
       }
 
       .stack-vis {
-        max-width: 460px;
+        max-width: 560px;
       }
 
       .pillar-grid {
@@ -837,47 +704,65 @@
       </div>
 
       <div class="stack-vis reveal in d1">
-        <div class="stack-card" data-screen-label="Hero stack diagram">
-          <div class="stack-layer layer-apps">
-            <div class="ltext">
-              <div class="ll">Built on top</div>
-              <div class="lt">Apps &amp; solutions</div>
-              <div class="ls">Locally-owned, national-scale health programs</div>
+        <div class="dz-card dz-temple" data-screen-label="Hero pillars diagram">
+          <!-- Apps roof -->
+          <div class="dz-t-apps">
+            <div class="dz-t-apps-head">
+              <div class="dz-text">
+                <div class="dz-ll">Built on top</div>
+                <div class="dz-lt">Apps &amp; solutions</div>
+              </div>
+              <div class="dz-t-by">Built by developers everywhere</div>
             </div>
-            <div class="blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="dz-t-grid">
+              <div class="dz-t-app" style="background: color-mix(in oklch, oklch(0.58 0.105 222) 12%, white); border-color: color-mix(in oklch, oklch(0.58 0.105 222) 26%, transparent);"><span class="dz-t-icon" style="background: oklch(0.58 0.105 222);"></span></div>
+              <div class="dz-t-app" style="background: color-mix(in oklch, oklch(0.56 0.115 292) 12%, white); border-color: color-mix(in oklch, oklch(0.56 0.115 292) 26%, transparent);"><span class="dz-t-icon" style="background: oklch(0.56 0.115 292);"></span></div>
+              <div class="dz-t-app" style="background: color-mix(in oklch, oklch(0.56 0.094 200) 12%, white); border-color: color-mix(in oklch, oklch(0.56 0.094 200) 26%, transparent);"><span class="dz-t-icon" style="background: oklch(0.56 0.094 200);"></span></div>
+              <div class="dz-t-app" style="background: color-mix(in oklch, oklch(0.60 0.11 155) 12%, white); border-color: color-mix(in oklch, oklch(0.60 0.11 155) 26%, transparent);"><span class="dz-t-icon" style="background: oklch(0.60 0.11 155);"></span></div>
+              <div class="dz-t-app" style="background: color-mix(in oklch, oklch(0.70 0.115 75) 12%, white); border-color: color-mix(in oklch, oklch(0.70 0.115 75) 26%, transparent);"><span class="dz-t-icon" style="background: oklch(0.70 0.115 75);"></span></div>
+              <div class="dz-t-app" style="background: color-mix(in oklch, oklch(0.62 0.13 18) 12%, white); border-color: color-mix(in oklch, oklch(0.62 0.13 18) 26%, transparent);"><span class="dz-t-icon" style="background: oklch(0.62 0.13 18);"></span></div>
+              <div class="dz-t-app dz-t-more">+ more</div>
+            </div>
           </div>
-          <div class="stack-connect" aria-hidden="true">▲ built with ▲</div>
-          <div class="stack-layer layer-core">
-            <div class="ltext">
-              <div class="ll">Pillar 01 · FHIR Foundations</div>
-              <div class="lt">FHIR-native core libraries</div>
-              <div class="ls">kotlin-fhir, kotlin-fhirpath &amp; Android components</div>
+
+          <div class="dz-t-rest">held up by the three pillars</div>
+
+          <!-- Pillars -->
+          <div class="dz-t-pillars">
+            <div class="dz-t-col dz-core">
+              <div class="dz-t-col-cap"></div>
+              <div class="dz-t-col-num">Pillar 01 · Active</div>
+              <div class="dz-t-col-name">FHIR Foundations</div>
+              <div class="dz-t-col-desc">FHIR-native core libraries</div>
+              <div class="dz-t-blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
             </div>
-            <div class="blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="dz-t-col dz-toolkit">
+              <div class="dz-t-col-cap"></div>
+              <div class="dz-t-col-num">Pillar 02 · Active</div>
+              <div class="dz-t-col-name">Reference Toolkit</div>
+              <div class="dz-t-col-desc">Multiplatform, AI-ready</div>
+              <div class="dz-t-blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+            <div class="dz-t-col dz-ai">
+              <div class="dz-t-col-cap"></div>
+              <div class="dz-t-col-num">Pillar 03 · Launching</div>
+              <div class="dz-t-col-name">AI Commons</div>
+              <div class="dz-t-col-desc">Safe, verifiable AI · with the WHO</div>
+              <div class="dz-t-blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
           </div>
-          <div class="stack-layer layer-toolkit">
-            <div class="ltext">
-              <div class="ll">Pillar 02 · Active</div>
-              <div class="lt">Reference Toolkit</div>
-              <div class="ls">OHS Player — multiplatform, AI-ready</div>
+
+          <div class="dz-t-rest">grounded in</div>
+
+          <!-- Open standards plinth -->
+          <div class="dz-t-base">
+            <div class="dz-text">
+              <div class="dz-ll">The base</div>
+              <div class="dz-lt">Open standards</div>
             </div>
-            <div class="blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          </div>
-          <div class="stack-layer layer-ai">
-            <div class="ltext">
-              <div class="ll">Pillar 03 · AI Commons</div>
-              <div class="lt">AI Commons for Global Health</div>
-              <div class="ls">Evals, benchmarks &amp; verifiable AI</div>
+            <div class="dz-t-chips">
+              <span>HL7® FHIR®</span><span>MCP</span><span>Skills</span>
             </div>
-            <div class="blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          </div>
-          <div class="stack-layer layer-infra">
-            <div class="ltext">
-              <div class="ll">Underneath</div>
-              <div class="lt">Open standards &amp; HL7® FHIR®</div>
-              <div class="ls">Interoperability for "DPIs for Health"</div>
-            </div>
-            <div class="blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
           </div>
         </div>
       </div>
