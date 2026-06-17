@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function () {
+      try {
+        var a = localStorage.getItem('ohs_auth');
+        if (a) { try { if (Date.now() < JSON.parse(a).exp) return; } catch (e) { } }
+      } catch (e) { }
+      window.location.replace('lock.html?return=' + encodeURIComponent(location.href));
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <title>Blog — Open Health Stack Software Foundation</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ===== Blog index ===== */
+    .page-hero { padding-top: clamp(56px, 8vw, 110px); padding-bottom: clamp(32px, 5vw, 56px); }
+    .page-hero h1 { font-size: clamp(2.5rem, 5.2vw, 4.2rem); font-weight: 800; letter-spacing: -0.035em; line-height: 1.0; margin-top: 18px; }
+    .page-hero .lead { max-width: 54ch; margin-top: 22px; }
+
+    /* Featured post */
+    .featured {
+      display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 0;
+      border: 1px solid var(--line); border-radius: var(--radius-lg);
+      overflow: hidden; background: var(--surface); box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.3s var(--ease), transform 0.3s var(--ease), border-color 0.3s;
+    }
+    .featured:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: transparent; }
+    .featured-body { padding: clamp(28px, 4vw, 48px); display: flex; flex-direction: column; }
+    .featured-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+    .featured-body h2 {
+      font-size: clamp(1.6rem, 2.8vw, 2.3rem); letter-spacing: -0.03em; line-height: 1.08;
+      margin-top: 22px; text-wrap: balance;
+    }
+    .featured-body .excerpt { margin-top: 16px; color: var(--ink-soft); font-size: 1.05rem; line-height: 1.6; }
+    .featured-meta {
+      margin-top: 22px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px;
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.76rem; letter-spacing: 0.03em; color: var(--ink-faint);
+    }
+    .featured-foot { margin-top: auto; padding-top: 28px; }
+
+    /* Visual panel — the "temple" mark, no real imagery needed */
+    .featured-art {
+      position: relative; background: var(--ink); overflow: hidden;
+      display: grid; place-items: center; min-height: 280px; padding: 40px;
+    }
+    .featured-art .glow {
+      position: absolute; width: 320px; height: 320px; border-radius: 50%;
+      filter: blur(70px); opacity: 0.4; top: -40px; right: -60px; background: var(--teal);
+    }
+    .fa-stack { position: relative; display: grid; gap: 12px; width: 100%; max-width: 300px; }
+    .fa-roof {
+      border: 1px dashed oklch(1 0 0 / 0.28); border-radius: 12px; padding: 12px 14px;
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: oklch(0.85 0.01 200); text-align: center;
+    }
+    .fa-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .fa-col { height: 96px; border-radius: 12px; display: flex; align-items: flex-end; padding: 10px; }
+    .fa-col span { display: block; width: 100%; }
+    .fa-col.c1 { background: color-mix(in oklch, var(--core) 30%, var(--ink)); }
+    .fa-col.c2 { background: color-mix(in oklch, var(--toolkit) 30%, var(--ink)); }
+    .fa-col.c3 { background: color-mix(in oklch, var(--ai) 30%, var(--ink)); }
+    .fa-col i { display: block; height: 10px; border-radius: 3px; margin-top: 5px; }
+    .fa-col.c1 i { background: var(--core); }
+    .fa-col.c2 i { background: var(--toolkit); }
+    .fa-col.c3 i { background: var(--ai); }
+    .fa-base {
+      background: oklch(1 0 0 / 0.08); border: 1px solid oklch(1 0 0 / 0.14); border-radius: 12px;
+      padding: 12px 14px; text-align: center; font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.66rem; letter-spacing: 0.06em; color: #fff;
+    }
+
+    /* Upcoming / empty state */
+    .more-rail {
+      margin-top: 54px; display: flex; align-items: center; gap: 12px;
+      color: var(--ink-faint); font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .more-rail::after { content: ""; height: 1px; background: var(--line); flex: 1; }
+    .upcoming { margin-top: 26px; border: 1.5px dashed var(--line); border-radius: var(--radius-lg); padding: 36px; text-align: center; }
+    .upcoming p { color: var(--ink-soft); max-width: 46ch; margin: 0 auto; }
+    .upcoming .eyebrow { justify-content: center; margin-bottom: 12px; }
+
+    /* Version post rows */
+    .post-rows { display: grid; gap: 14px; margin-top: 26px; }
+    .post-row {
+      display: flex; align-items: center; gap: 20px;
+      border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px;
+      background: var(--surface); transition: border-color 0.2s, transform 0.2s, box-shadow 0.25s;
+    }
+    .post-row:hover { border-color: var(--teal); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+    .post-row .pr-main { min-width: 0; }
+    .post-row .pr-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+    .post-row h3 { font-size: 1.12rem; letter-spacing: -0.01em; line-height: 1.25; color: var(--ink); }
+    .post-row .pr-meta { margin-top: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 0.74rem; letter-spacing: 0.03em; color: var(--ink-faint); }
+    .post-row .arrow { flex: none; margin-left: auto; color: var(--teal-deep); }
+    .post-row:hover .arrow { transform: translateX(3px); }
+    @media (max-width: 560px) { .post-row { flex-direction: column; align-items: flex-start; gap: 12px; } .post-row .arrow { margin-left: 0; } }
+
+    @media (max-width: 800px) {
+      .featured { grid-template-columns: 1fr; }
+      .featured-art { min-height: 220px; order: -1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html" aria-label="Open Health Stack Foundation home">
+        <span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="brandname"><b>Open Health Stack</b><span>Software Foundation</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="foundation.html">Foundation</a>
+        <a href="projects.html">Projects</a>
+        <a href="community.html">Community</a>
+        <a href="blog.html" class="active">Blog</a>
+      </div>
+      <div class="nav-spacer"></div>
+      <div class="nav-cta">
+        <a href="foundation.html#membership" class="btn btn-primary">Become a member</a>
+        <button class="nav-toggle btn" aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <path d="M3 6h18M3 12h18M3 18h18" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+  <div class="mobile-nav" aria-label="Mobile">
+    <a href="foundation.html">Foundation</a>
+    <a href="projects.html">Projects</a>
+    <a href="community.html">Community</a>
+    <a href="blog.html">Blog</a>
+    <a href="foundation.html#membership" class="btn btn-primary">Become a member</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="page-hero" data-screen-label="Blog hero">
+    <div class="wrap">
+      <span class="eyebrow reveal in">The blog</span>
+      <h1 class="reveal in" style="max-width:16ch">News, releases and notes from the foundation.</h1>
+      <p class="lead reveal in d1">Announcements, project milestones and perspectives from the community building open-source building blocks for global digital health.</p>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED POST ===== -->
+  <section style="padding-bottom: clamp(48px, 7vw, 100px)">
+    <div class="wrap">
+      <a class="featured reveal d1" href="blog-launch-announcement.html" aria-label="Read: OHS-SF launches">
+        <div class="featured-body">
+          <div class="featured-tags">
+            <span class="tag teal">Latest</span>
+            <span class="tag">Foundation news</span>
+          </div>
+          <h2>Building blocks for the future of global digital health — introducing the OHS Software Foundation</h2>
+          <p class="excerpt">The Open Health Stack Software Foundation is launching at the Linux Foundation. Here's why it matters, what we're building, and how to get involved.</p>
+          <div class="featured-meta">
+            <span>By the OHS-SF team</span>
+            <time datetime="2026-07-07">July 7, 2026</time>
+            <span>· 6 min read</span>
+          </div>
+          <div class="featured-foot">
+            <span class="textlink">Read the announcement <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+          </div>
+        </div>
+        <div class="featured-art" aria-hidden="true">
+          <span class="glow"></span>
+          <div class="fa-stack">
+            <div class="fa-roof">Apps &amp; solutions</div>
+            <div class="fa-cols">
+              <div class="fa-col c1"><span><i></i><i style="width:70%"></i></span></div>
+              <div class="fa-col c2"><span><i></i><i style="width:70%"></i></span></div>
+              <div class="fa-col c3"><span><i></i><i style="width:70%"></i></span></div>
+            </div>
+            <div class="fa-base">Grounded in open standards</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Upcoming -->
+      <div class="more-rail reveal">More posts</div>
+      <div class="upcoming reveal d1">
+        <span class="eyebrow bare">Coming soon</span>
+        <p>This is the first post. Project updates, release notes and community stories will land here as the foundation gets going.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="wrap-wide">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html" style="color:#fff">
+            <span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="brandname"><b>Open Health Stack</b><span style="color:oklch(0.66 0.02 200)">Software Foundation</span></span>
+          </a>
+          <p class="footer-about">A neutral, community-owned home for open-source building blocks accelerating next-gen, AI-powered digital health.</p>
+        </div>
+        <div>
+          <h4>Foundation</h4>
+          <ul>
+            <li><a href="foundation.html#mission">Mission &amp; charter</a></li>
+            <li><a href="foundation.html#governance">Governance</a></li>
+            <li><a href="foundation.html#membership">Membership</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Projects</h4>
+          <ul>
+            <li><a href="projects.html#core">FHIR Foundations</a></li>
+            <li><a href="projects.html#toolkit">Reference Toolkit</a></li>
+            <li><a href="projects.html#ai">AI Commons</a></li>
+            <li><a href="projects.html#committees">Steering committees</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Community</h4>
+          <ul>
+            <li><a href="community.html#involved">Get involved</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="community.html#events">Events</a></li>
+            <li><a href="mailto:hello@ohs.foundation">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Open Health Stack Software Foundation · a project of the Linux Foundation.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

@@ -57,6 +57,39 @@
       margin-top: 34px;
     }
 
+    .hero-announce {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding: 9px 12px 9px 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      font-size: 1.02rem;
+      color: var(--ink-soft);
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.25s;
+    }
+    .hero-announce:hover { border-color: var(--teal); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .hero-announce .ha-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal-deep);
+      background: var(--teal-wash);
+      padding: 5px 11px;
+      border-radius: 999px;
+    }
+    .hero-announce .ha-text { font-weight: 600; color: var(--ink); }
+    .hero-announce .arrow { color: var(--teal-deep); transition: transform 0.2s var(--ease); }
+    .hero-announce:hover .arrow { transform: translateX(3px); }
+    @media (max-width: 560px) {
+      .hero-announce { font-size: 0.92rem; }
+      .hero-announce .ha-text { white-space: normal; }
+    }
+
     .hero-meta {
       margin-top: 38px;
       display: flex;
@@ -894,6 +927,7 @@
         <a href="foundation.html">Foundation</a>
         <a href="projects.html">Projects</a>
         <a href="community.html">Community</a>
+      <a href="blog.html">Blog</a>
       </div>
       <div class="nav-spacer"></div>
       <div class="nav-cta">
@@ -911,6 +945,7 @@
     <a href="foundation.html">Foundation</a>
     <a href="projects.html">Projects</a>
     <a href="community.html">Community</a>
+    <a href="blog.html">Blog</a>
     <a href="foundation.html#membership" class="btn btn-primary">Become a member</a>
   </div>
 
@@ -918,6 +953,11 @@
   <section class="hero">
     <div class="wrap-wide hero-grid">
       <div class="reveal in">
+        <a class="hero-announce" href="blog-launch-announcement.html">
+          <span class="ha-tag">New</span>
+          <span class="ha-text">Read the intention to launch announcement</span>
+          <svg class="arrow" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </a>
         <span class="eyebrow">An independent software foundation</span>
         <h1 id="heroHeadline"><span id="hlMain">Building blocks for the future of</span> <span class="grad"
             id="hlAccent">global digital health.</span></h1>
@@ -1095,7 +1135,7 @@
           <div class="pillar-top">
             <span class="tag ai">Pillar 03 · AI Commons · Launching soon</span>
           </div>
-          <h3>AI Commons for Global Health</h3>
+          <h3>AI Commons</h3>
           <p>A neutral space for collaboration on safe, effective and verifiable AI for global health — focused on
             model-agnostic capabilities like evals, benchmarks, tooling for "Verifiable AI, developed with the WHO and
             partners.</p>
@@ -1120,127 +1160,8 @@
               </svg></a></div>
         </article>
       </div>
-    </div>
-  </section>
-
-  <!-- ===== ECOSYSTEM MAP ===== -->
-  <section class="ecosystem section-pad" style="background:var(--bg-2)">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow">02 · The ecosystem</span>
-        <h2 class="section-title" style="margin-top:18px">From one product to a system of building blocks.</h2>
-        <p class="lead">Hover a pillar to trace its projects. Each block is independently maintained, openly governed,
-          and designed to be composed.</p>
-      </div>
-
-      <div class="eco-stage reveal d1" data-ecosystem>
-        <div class="eco-pillars" id="widget-eco-pillars">
-          <button type="button" class="eco-pillar" data-pillar="core" aria-label="Highlight FHIR Foundations projects">
-            <span class="icon-chip core" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="3" width="7" height="7" rx="1.5" />
-                <rect x="14" y="3" width="7" height="7" rx="1.5" />
-                <rect x="3" y="14" width="7" height="7" rx="1.5" />
-                <rect x="14" y="14" width="7" height="7" rx="1.5" />
-              </svg></span>
-            <span>
-              <span class="ep-title">Pillar 01 · FHIR Foundations</span>
-              <span class="ep-sub">FHIR-native core libraries</span>
-            </span>
-            <span class="ep-count">5 projects</span>
-          </button>
-          <button type="button" class="eco-pillar" data-pillar="toolkit"
-            aria-label="Highlight Reference Toolkit projects">
-            <span class="icon-chip toolkit" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2 2 7l10 5 10-5-10-5Z" />
-                <path d="m2 17 10 5 10-5" />
-                <path d="m2 12 10 5 10-5" />
-              </svg></span>
-            <span>
-              <span class="ep-title">Pillar 02 · Reference Toolkit</span>
-              <span class="ep-sub">Multiplatform AI-ready runtime</span>
-            </span>
-            <span class="ep-count">4 projects</span>
-          </button>
-          <button type="button" class="eco-pillar" data-pillar="ai" aria-label="Highlight AI Commons projects">
-            <span class="icon-chip ai" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="3" />
-                <path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" />
-              </svg></span>
-            <span>
-              <span class="ep-title">Pillar 03 · AI Commons</span>
-              <span class="ep-sub">Safe, verifiable AI for global health</span>
-            </span>
-            <span class="ep-count">3 initiatives</span>
-          </button>
-        </div>
-
-        <div class="eco-rail">Projects &amp; initiatives</div>
-
-        <div class="eco-nodes" id="widget-eco-nodes">
-          <div class="eco-node" data-belongs="core">
-            <div class="en-tag">Core</div>
-            <div class="en-name">kotlin-fhir</div>
-            <div class="en-desc">Lean, fast KMP implementation of the HL7® FHIR® data model.</div>
-          </div>
-          <div class="eco-node" data-belongs="core">
-            <div class="en-tag">Core</div>
-            <div class="en-name">kotlin-fhirpath</div>
-            <div class="en-desc">KMP implementation of FHIRPath for querying FHIR resources.</div>
-          </div>
-          <div class="eco-node" data-belongs="core">
-            <div class="en-tag">Core</div>
-            <div class="en-name">Android FHIR SDK</div>
-            <div class="en-desc">FHIR-native libraries for secure, offline-capable Android apps.</div>
-          </div>
-          <div class="eco-node" data-belongs="core">
-            <div class="en-tag">Core</div>
-            <div class="en-name">FHIR Info Gateway</div>
-            <div class="en-desc">Privacy-preserving access control for patient data.</div>
-          </div>
-          <div class="eco-node" data-belongs="core">
-            <div class="en-tag">Core</div>
-            <div class="en-name">FHIR Analytics</div>
-            <div class="en-desc">Transform FHIR data into trusted, faster insights.</div>
-          </div>
-          <div class="eco-node" data-belongs="toolkit">
-            <div class="en-tag">Toolkit</div>
-            <div class="en-name">OHS Player</div>
-            <div class="en-desc">The reference runtime — deploy a next-gen digital health solution.</div>
-          </div>
-          <div class="eco-node" data-belongs="toolkit">
-            <div class="en-tag">Toolkit</div>
-            <div class="en-name">Reference Client App</div>
-            <div class="en-desc">KMP-based configurable reference app built on OHS components.</div>
-          </div>
-          <div class="eco-node" data-belongs="toolkit">
-            <div class="en-tag">Toolkit</div>
-            <div class="en-name">Reference Web Portal</div>
-            <div class="en-desc">Web-based management tool for healthcare workforce hierarchies.</div>
-          </div>
-          <div class="eco-node" data-belongs="toolkit">
-            <div class="en-tag">Toolkit</div>
-            <div class="en-name">Reference Backend</div>
-            <div class="en-desc">Custom endpoints and access checker plugins for OHS Player clients.</div>
-          </div>
-          <div class="eco-node" data-belongs="ai">
-            <div class="en-tag">AI Commons</div>
-            <div class="en-name">Evals &amp; Benchmarks</div>
-            <div class="en-desc">Open tooling to measure health-AI safety and quality.</div>
-          </div>
-          <div class="eco-node" data-belongs="ai">
-            <div class="en-tag">AI Commons</div>
-            <div class="en-name">Health MCPs</div>
-            <div class="en-desc">Model-agnostic context tooling for health workflows.</div>
-          </div>
-          <div class="eco-node" data-belongs="ai">
-            <div class="en-tag">AI Commons</div>
-            <div class="en-name">Verifiable AI · WHO</div>
-            <div class="en-desc">Verifiable AI efforts in partnership with the WHO.</div>
-          </div>
-        </div>
+      <div class="pillars-cta reveal" style="display:flex; justify-content:center; margin-top:48px">
+        <a href="projects.html" class="btn btn-primary">Explore all projects <svg class="arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a>
       </div>
     </div>
   </section>
@@ -1280,7 +1201,7 @@
               <path d="M9 22h6" />
             </svg></span>
           <h3>Future proof</h3>
-          <p>An umbrella structure ready to house new initiatives like an AI Commons for Global Health built on new open
+          <p>An umbrella structure ready to house new initiatives like an AI Commons built on new open
             standards.</p>
         </div>
         <div class="why-item card reveal d4">
@@ -1358,7 +1279,7 @@
             <li><a href="projects.html#core">FHIR Foundations</a></li>
             <li><a href="projects.html#toolkit">Reference Toolkit</a></li>
             <li><a href="projects.html#ai">AI Commons</a></li>
-            <li><a href="projects.html#committees">Steering committees</a></li>
+            <li><a href="projects.html#get-involved">Get involved</a></li>
           </ul>
         </div>
         <div>

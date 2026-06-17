@@ -34,10 +34,10 @@
       "statusShort": "Active",
       "tagLabel": "Pillar 01 · FHIR Foundations · Active",
       "cardHeading": "FHIR-native core libraries",
-      "cardBody": "The foundational kotlin and java libraries for working with FHIR. Includes new multi-platform kotlin FHIR SDK and battle-tested components for Android, access control and analytics, sustained by an active community of technical partners.",
+      "cardBody": "The foundational libraries for working with FHIR. Includes new multi-platform kotlin FHIR SDK and battle-tested components for Android, access control and analytics, sustained by an active community of technical partners.",
       "cardBullets": [
         "Core FHIR Libraries: kotlin-fhir, kotlin-fhirpath",
-        "Client and server side SDKs and libraries for building on FHIR",
+        "Client SDK and server side libraries for building on FHIR",
         "HL7® FHIR® interoperability by default"
       ],
       "cardLinkLabel": "Explore FHIR Foundations",
@@ -73,7 +73,7 @@
       "name": "AI Commons",
       "statusShort": "Launching",
       "tagLabel": "Pillar 03 · AI Commons · Launching",
-      "cardHeading": "AI Commons for Global Health",
+      "cardHeading": "AI Commons for Global Digital Health",
       "cardBody": "A neutral space for collaboration on safe, effective and Verifiable AI for Global Health — focused on model-agnostic capabilities like evals, benchmarks, tooling for Verifiable AI, developed with the WHO and partners.",
       "cardBullets": [
         "Tooling to support Evals & benchmarks for Health AI",
