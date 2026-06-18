@@ -86,8 +86,12 @@
     .hero-announce .arrow { color: var(--teal-deep); transition: transform 0.2s var(--ease); }
     .hero-announce:hover .arrow { transform: translateX(3px); }
     @media (max-width: 560px) {
-      .hero-announce { font-size: 0.92rem; }
+      .hero-announce { font-size: 0.92rem; display: flex; max-width: 100%; }
       .hero-announce .ha-text { white-space: normal; }
+    }
+    @media (max-width: 480px) {
+      .stack-vis { display: none; }
+      .hero-cta { flex-direction: column; align-items: flex-start; }
     }
 
     .hero-meta {
@@ -910,6 +914,22 @@
       .why-grid {
         grid-template-columns: 1fr;
       }
+
+      /* Hero diagram — scale down for small screens */
+      .dz-card { padding: 14px; overflow: hidden; }
+      .dz-t-apps-head { gap: 8px; }
+      .dz-t-apps .dz-lt, .dz-t-base .dz-lt { white-space: normal; }
+      .dz-t-by { white-space: normal; font-size: 0.56rem; }
+      .dz-t-app { width: 34px; height: 34px; }
+      .dz-t-grid { flex-wrap: wrap; gap: 5px; }
+      .dz-t-pillars { gap: 8px; }
+      .dz-t-col { min-height: 180px; padding: 0 10px 16px; }
+      .dz-t-col-cap { margin: 0 -10px 14px; }
+      .dz-t-col-name { font-size: 0.95rem; }
+      .dz-t-col-desc { font-size: 0.78rem; }
+      .dz-t-blocks { grid-template-columns: repeat(3, 14px); gap: 4px; }
+      .dz-t-chips { display: none; }
+      .dz-t-base { flex-wrap: wrap; gap: 10px; }
     }
   </style>
 </head>
