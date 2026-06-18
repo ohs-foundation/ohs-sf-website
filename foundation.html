@@ -317,101 +317,56 @@
       background: var(--bg-2);
     }
 
-    .tier-grid {
+    .tier-list {
+      margin-top: 36px;
+      max-width: 880px;
+      margin-inline: auto;
+    }
+
+    .tier-grouplabel {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin: 40px 0 2px;
+    }
+
+    .tier-grouplabel:first-child {
+      margin-top: 0;
+    }
+
+    .tier-row {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-      margin-top: 20px;
-      align-items: stretch;
+      grid-template-columns: 230px 1fr;
+      gap: 36px;
+      padding: 26px 0;
+      border-top: 1px solid var(--line);
+      align-items: baseline;
     }
 
-    .tier-grid.secondary {
-      grid-template-columns: repeat(2, 1fr);
+    .tier-row h3 {
+      font-size: 1.1rem;
+      margin: 0;
     }
 
-    .tier-rowlabel {
+    .tier-row .tier-meta {
+      margin-top: 6px;
+      font-size: 0.84rem;
+      color: var(--ink-faint);
+    }
+
+    .tier-row-body p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 0.96rem;
+      max-width: 58ch;
+      text-wrap: pretty;
+    }
+
+    .membership-cta {
       margin-top: 44px;
       display: flex;
-      justify-content: center;
-    }
-
-    .tier-rowlabel .eyebrow {
-      color: var(--ink-faint);
-    }
-
-    .tier {
-      display: flex;
-      flex-direction: column;
-      background: var(--surface);
-    }
-
-    .tier.feature {
-      border: 2px solid var(--teal);
-      box-shadow: var(--shadow-md);
-      position: relative;
-    }
-
-    .tier.feature::before {
-      content: "Founding tier";
-      position: absolute;
-      top: -12px;
-      left: 24px;
-      background: var(--teal-deep);
-      color: #fff;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.64rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 5px 11px;
-      border-radius: 999px;
-    }
-
-    .tier h3 {
-      font-size: 1.2rem;
-    }
-
-    .tier .price {
-      font-size: 2.1rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-top: 14px;
-    }
-
-    .tier .price span {
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--ink-faint);
-      letter-spacing: 0;
-    }
-
-    .tier .price.free {
-      color: var(--teal-deep);
-    }
-
-    .tier ul {
-      list-style: none;
-      margin: 22px 0;
-      padding: 0;
-      display: grid;
-      gap: 12px;
-      flex: 1;
-    }
-
-    .tier ul li {
-      display: flex;
-      gap: 10px;
-      font-size: 0.92rem;
-      color: var(--ink-soft);
-      align-items: flex-start;
-    }
-
-    .tier ul li svg {
-      flex: none;
-      margin-top: 3px;
-    }
-
-    .tier .btn {
-      width: 100%;
       justify-content: center;
     }
 
@@ -431,9 +386,13 @@
 
       .charter-grid,
       .gov-grid,
-      .model-grid,
-      .tier-grid {
+      .model-grid {
         grid-template-columns: 1fr;
+      }
+
+      .tier-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
       }
     }
   </style>
@@ -586,7 +545,6 @@
           <h3>Balanced board</h3>
           <p>A capped board size balances voices and recognizes strategic grants on par with membership fees — with
             provision for the WHO as a strategic partner.</p>
-          <span class="pending">Pending approval</span>
         </div>
       </div>
     </div>
@@ -629,7 +587,7 @@
               <path d="M9 22h6" />
             </svg></span>
           <div>
-            <h3>AI-ready platform</h3>
+            <h3>Future-ready platform</h3>
             <p>An umbrella structure ready to house new initiatives like an AI Commons — ready for
               what comes next.</p>
           </div>
@@ -659,123 +617,73 @@
         <p class="lead">Help shape the charter, budget and direction — and build an enduring association with a
           first-of-its-kind initiative.</p>
       </div>
-      <p class="tier-rowlabel reveal"><span class="eyebrow bare">Standard tiers · Linux Foundation model</span></p>
-      <div class="tier-grid">
-        <div class="tier card feature reveal d1">
-          <h3>Premier</h3>
-          <div class="price">$100k<span> / year · 3 yrs</span></div>
-          <p class="muted" style="font-size:0.9rem; margin-top:8px">For organizations shaping the foundation</p>
-          <ul>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.4"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6 9 17l-5-5" />
-              </svg> Dedicated Governing Board seat</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.4"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6 9 17l-5-5" />
-              </svg> Shape charter, budget &amp; direction</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.4"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6 9 17l-5-5" />
-              </svg> Founding-member brand association</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.4"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6 9 17l-5-5" />
-              </svg> Up-front grants accepted in lieu of fees</li>
-          </ul>
-          <a href="mailto:fred@ohs.foundation" class="btn btn-primary">Become a founding member</a>
+      <div class="tier-list">
+        <p class="tier-grouplabel reveal">Standard tiers · Linux Foundation model</p>
+
+        <div class="tier-row reveal">
+          <div>
+            <h3>Premier</h3>
+            <p class="tier-meta">$100k / year · 3-year commitment</p>
+          </div>
+          <div class="tier-row-body">
+            <p>For organizations shaping the foundation. Includes a dedicated Governing Board seat, a hand in the
+              charter, budget and direction, and founding-member brand association. Up-front grants may be accepted in
+              lieu of fees.</p>
+          </div>
         </div>
-        <div class="tier card reveal d2">
-          <h3>General</h3>
-          <div class="price">Sliding scale</span></div>
-          <p class="muted" style="font-size:0.9rem; margin-top:8px">Scaled to organization size · incl. $5k/yr LF
-            membership</p>
-          <ul>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.4"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6 9 17l-5-5" />
-              </svg> Nominate a board representative — 1 per 5 General members, up to 3 total</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.4"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6 9 17l-5-5" />
-              </svg> Participation in working groups &amp; technical, outreach and other committees</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.4"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6 9 17l-5-5" />
-              </svg> Fee based on organization size — indicative $10k/yr up to 100 employees</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.4"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6 9 17l-5-5" />
-              </svg> Requires Linux Foundation membership ($5k/yr, included)</li>
-          </ul>
-          <a href="mailto:fred@ohs.foundation" class="btn btn-ghost">Join as General</a>
+
+        <div class="tier-row reveal">
+          <div>
+            <h3>General</h3>
+            <p class="tier-meta">Sliding scale, by organization size · incl. $5k/yr Linux Foundation membership</p>
+          </div>
+          <div class="tier-row-body">
+            <p>The fee scales with organization size — indicatively $10k/year up to 100 employees. General members
+              nominate a board representative (one per five members, up to three total) and take part in working groups
+              and the technical, outreach and other committees.</p>
+          </div>
         </div>
-        <div class="tier card reveal d3">
-          <h3>Associate</h3>
-          <div class="price free">No fee</div>
-          <p class="muted" style="font-size:0.9rem; margin-top:8px">Approved non-profit, academic &amp; government
-            entities only</p>
-          <ul>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.4"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6 9 17l-5-5" />
-              </svg> Reserved for approved non-profit, academic &amp; government entities</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.4"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6 9 17l-5-5" />
-              </svg> Associate members can stand for election to the Governing Board (1 seat available).</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.4"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6 9 17l-5-5" />
-              </svg> Full participation in working groups &amp; committees</li>
-          </ul>
-          <a href="mailto:fred@ohs.foundation" class="btn btn-ghost">Check eligibility</a>
+
+        <div class="tier-row reveal">
+          <div>
+            <h3>Associate</h3>
+            <p class="tier-meta">No fee · non-profit, academic &amp; government entities</p>
+          </div>
+          <div class="tier-row-body">
+            <p>Reserved for approved non-profit, academic and government entities. Associate members may stand for
+              election to the Governing Board (one seat available) and participate fully in working groups and
+              committees.</p>
+          </div>
+        </div>
+
+        <p class="tier-grouplabel reveal">Additional pathways · OHS-SF</p>
+
+        <div class="tier-row reveal">
+          <div>
+            <h3>Inclusive</h3>
+            <p class="tier-meta">No fee · LMIC for-profits under 100 employees</p>
+          </div>
+          <div class="tier-row-body">
+            <p>The standard $10k/year General fee is waived to maximize accessibility for entrepreneurs in
+              lower- and middle-income countries, with full participation in working groups.</p>
+          </div>
+        </div>
+
+        <div class="tier-row reveal">
+          <div>
+            <h3>Sponsorships or grants</h3>
+            <p class="tier-meta">Custom · funders &amp; multilaterals</p>
+          </div>
+          <div class="tier-row-body">
+            <p>We are open to mission aligned grants or financial sponsorships for specific projects or activities
+              that support the foundations work.</p>
+          </div>
         </div>
       </div>
 
-      <p class="tier-rowlabel reveal" style="margin-top:40px"><span class="eyebrow bare">Additional pathways ·
-          OHS-SF</span></p>
-      <div class="tier-grid secondary">
-        <div class="tier card reveal d1">
-          <h3>Inclusive</h3>
-          <div class="price free">No fee</div>
-          <p class="muted" style="font-size:0.9rem; margin-top:8px">For LMIC for-profits under 100 employees</p>
-          <ul>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.4"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6 9 17l-5-5" />
-              </svg> Full participation in working groups</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.4"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6 9 17l-5-5" />
-              </svg> Standard $10k/year General fee waived</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.4"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6 9 17l-5-5" />
-              </svg> Maximizes accessibility for entrepreneurs</li>
-          </ul>
-          <a href="mailto:fred@ohs.foundation" class="btn btn-ghost">Check eligibility</a>
-        </div>
-        <div class="tier card reveal d2">
-          <h3>Strategic grant</h3>
-          <div class="price">Custom</div>
-          <p class="muted" style="font-size:0.9rem; margin-top:8px">For funders &amp; multilaterals</p>
-          <ul>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.4"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6 9 17l-5-5" />
-              </svg> Recognized on par with membership</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.4"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6 9 17l-5-5" />
-              </svg> 501(c)(3) or 501(c)(6) via Linux Foundation</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.4"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6 9 17l-5-5" />
-              </svg> Catalyze sovereign, locally-owned impact</li>
-          </ul>
-          <a href="mailto:fred@ohs.foundation" class="btn btn-ghost">Start a conversation</a>
-        </div>
+      <div class="membership-cta reveal">
+        <a href="mailto:fred@ohs.foundation" class="btn btn-primary">Get in touch about membership</a>
+      </div>
   </section>
 
   <!-- FOOTER -->
@@ -805,7 +713,7 @@
             <li><a href="projects.html#core">FHIR Foundations</a></li>
             <li><a href="projects.html#toolkit">Reference Toolkit</a></li>
             <li><a href="projects.html#ai">AI Commons</a></li>
-            <li><a href="projects.html#get-involved">Get involved</a></li>
+            <li><a href="projects.html#committees">Steering committees</a></li>
           </ul>
         </div>
         <div>
