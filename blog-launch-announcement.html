@@ -48,6 +48,12 @@
 
     /* Body measure */
     .article-body { max-width: 720px; margin: 0 auto; }
+    .article-body a {
+      color: var(--teal-deep); font-weight: 600;
+      border-bottom: 1.5px solid color-mix(in oklch, var(--teal-deep) 35%, transparent);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .article-body a:hover { border-color: var(--teal-deep); color: var(--teal); }
     .article-body > p {
       margin-top: 1.35em; font-size: 1.14rem; line-height: 1.72;
       color: oklch(0.34 0.018 210); text-wrap: pretty;
