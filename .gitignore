@@ -15,8 +15,8 @@ npm-debug.log*
 .env
 .env.local
 
-# Design handoff (source files, not part of production repo)
-design_handoff_ohs_foundation_site/
+# Design handoffs and internal docs (source files, not part of production repo)
+docs/
 
 # Editor
 .vscode/
