@@ -1,0 +1,35 @@
+[     111ms] ReferenceError: Y is not defined
+    at https://www.home.org.sg/:51:1
+[     113ms] [WARNING] Allow attribute will take precedence over 'allowfullscreen'. @ https://www.home.org.sg/:4088
+[     527ms] [WARNING] yui: NOT loaded: squarespace-visitor_site_error_reporter @ https://assets.squarespace.com/universal/scripts-compressed/common-vendors-stable-219c33e5378d8300-min.en-US.js:7
+[     527ms] [WARNING] yui: NOT loaded: squarespace-cldr_resource_pack @ https://assets.squarespace.com/universal/scripts-compressed/common-vendors-stable-219c33e5378d8300-min.en-US.js:7
+[     527ms] [WARNING] yui: NOT loaded: squarespace-common_vendors_stable @ https://assets.squarespace.com/universal/scripts-compressed/common-vendors-stable-219c33e5378d8300-min.en-US.js:7
+[     527ms] [WARNING] yui: NOT loaded: squarespace-common_vendors @ https://assets.squarespace.com/universal/scripts-compressed/common-vendors-stable-219c33e5378d8300-min.en-US.js:7
+[     530ms] [WARNING] yui: NOT loaded: squarespace-performance @ https://assets.squarespace.com/universal/scripts-compressed/common-vendors-stable-219c33e5378d8300-min.en-US.js:7
+[     860ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://www.home.org.sg/api/1/website-component-definitions:0
+[     863ms] [ERROR] Unhandled Promise rejection: Request failed with status code 401 ; Zone: <root> ; Task: null ; Value: AxiosError: Request failed with status code 401
+    at t (https://assets.squarespace.com/universal/scripts-compressed/common-vendors-ed7dc7d84cb96441-min.en-US.js:26:824)
+    at XMLHttpRequest.Ge (https://assets.squarespace.com/universal/scripts-compressed/common-vendors-ed7dc7d84cb96441-min.en-US.js:19:9994) AxiosError: Request failed with status code 401
+    at t (https://assets.squarespace.com/universal/scripts-compressed/common-vendors-ed7dc7d84cb96441-min.en-US.js:26:824)
+    at XMLHttpRequest.Ge (https://assets.squarespace.com/universal/scripts-compressed/common-vendors-ed7dc7d84cb96441-min.en-US.js:19:9994) @ https://assets.squarespace.com/universal/scripts-compressed/68964-39291425bd7560d7-min.en-US.js:22
+[     864ms] [LOG] [Sentry][captureException] Request failed with status code 401 @ https://assets.squarespace.com/universal/scripts-compressed/common-b1616d29241d27f8-min.en-US.js:63
+[     865ms] [ERROR] AxiosError: Request failed with status code 401
+    at t (https://assets.squarespace.com/universal/scripts-compressed/common-vendors-ed7dc7d84cb96441-min.en-US.js:26:824)
+    at XMLHttpRequest.Ge (https://assets.squarespace.com/universal/scripts-compressed/common-vendors-ed7dc7d84cb96441-min.en-US.js:19:9994)
+    at Le.request (https://assets.squarespace.com/universal/scripts-compressed/common-vendors-ed7dc7d84cb96441-min.en-US.js:21:2276)
+    at async f.fetch (https://assets.squarespace.com/universal/scripts-compressed/common-b1616d29241d27f8-min.en-US.js:69:13546)
+    at async R.fetchWebsiteComponentDefinitions (https://assets.squarespace.com/universal/scripts-compressed/common-b1616d29241d27f8-min.en-US.js:71:932)
+    at async https://assets.squarespace.com/universal/scripts-compressed/common-b1616d29241d27f8-min.en-US.js:73:1237
+    at async R.updateComponentDefinitions (https://assets.squarespace.com/universal/scripts-compressed/common-b1616d29241d27f8-min.en-US.js:73:1516)
+    at async n (https://assets.squarespace.com/universal/scripts-compressed/common-b1616d29241d27f8-min.en-US.js:64:68148)
+    at async r.addEditorHeaders (https://assets.squarespace.com/universal/scripts-compressed/common-b1616d29241d27f8-min.en-US.js:64:107822)
+    at async r.post (https://assets.squarespace.com/universal/scripts-compressed/common-b1616d29241d27f8-min.en-US.js:64:108173)
+    at async r (https://assets.squarespace.com/universal/scripts-compressed/common-b1616d29241d27f8-min.en-US.js:64:68476) @ https://assets.squarespace.com/universal/scripts-compressed/common-b1616d29241d27f8-min.en-US.js:63
+[  115433ms] ReferenceError: Y is not defined
+    at https://www.home.org.sg/home-academy/courses:41:1
+[  115552ms] [WARNING] yui: NOT loaded: squarespace-visitor_site_error_reporter @ https://assets.squarespace.com/universal/scripts-compressed/common-vendors-stable-219c33e5378d8300-min.en-US.js:7
+[  115552ms] [WARNING] yui: NOT loaded: squarespace-cldr_resource_pack @ https://assets.squarespace.com/universal/scripts-compressed/common-vendors-stable-219c33e5378d8300-min.en-US.js:7
+[  115552ms] [WARNING] yui: NOT loaded: squarespace-common_vendors_stable @ https://assets.squarespace.com/universal/scripts-compressed/common-vendors-stable-219c33e5378d8300-min.en-US.js:7
+[  115552ms] [WARNING] yui: NOT loaded: squarespace-common_vendors @ https://assets.squarespace.com/universal/scripts-compressed/common-vendors-stable-219c33e5378d8300-min.en-US.js:7
+[  115553ms] [WARNING] yui: NOT loaded: squarespace-performance @ https://assets.squarespace.com/universal/scripts-compressed/common-vendors-stable-219c33e5378d8300-min.en-US.js:7
+[  115681ms] [LOG] [Visitor Sentry] Initialized and sending events @ https://assets.squarespace.com/universal/scripts-compressed/17823-164045977c233f43-min.en-US.js:484

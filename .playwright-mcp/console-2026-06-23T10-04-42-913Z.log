@@ -1,0 +1,61 @@
+[     722ms] [LOG] JQMIGRATE: Migrate is installed, version 3.4.1 @ https://acmi.org.sg/wp-content/uploads/siteground-optimizer-assets/siteground-optimizer-combined-js-d4921a22d9e5eb218941f5093ea30ae8.js:6
+[     782ms] [LOG] JQMIGRATE: Migrate plugin loaded multiple times @ https://acmi.org.sg/wp-content/uploads/siteground-optimizer-assets/siteground-optimizer-combined-js-d4921a22d9e5eb218941f5093ea30ae8.js:1589
+[     782ms] [LOG] JQMIGRATE: Migrate is installed, version 3.3.2 @ https://acmi.org.sg/wp-content/uploads/siteground-optimizer-assets/siteground-optimizer-combined-js-d4921a22d9e5eb218941f5093ea30ae8.js:1589
+[    1430ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://acmi.org.sg/wp-json/wp/v2/users/me?context=edit&_locale=user:0
+[    1530ms] Object
+[    5583ms] [WARNING] The resource https://udify.app/_next/static/chunks/0yevc_10h8.kl.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://udify.app/chatbot/euIn4jrJyh5loYsx:0
+[    5583ms] [WARNING] The resource https://udify.app/_next/static/chunks/0ugaf5.uz3_.5.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://udify.app/chatbot/euIn4jrJyh5loYsx:0
+[   12661ms] [ERROR] Error with Permissions-Policy header: Parse of permissions policy failed because of errors reported by structured header parser. @ :0
+[   12773ms] [WARNING] reCAPTCHA couldn't find user-provided function: renderInvisibleReCaptcha @ https://www.gstatic.com/recaptcha/releases/MerVUtRoajKEbP7pLiGXkL28/recaptcha__en.js:394
+[   12991ms] [LOG] JQMIGRATE: Migrate is installed, version 3.4.1 @ https://acmi.org.sg/wp-content/uploads/siteground-optimizer-assets/siteground-optimizer-combined-js-a5db5284db17a3d314f2df5e6aca6e84.js:6
+[   13112ms] [LOG] JQMIGRATE: Migrate plugin loaded multiple times @ https://acmi.org.sg/wp-content/uploads/siteground-optimizer-assets/siteground-optimizer-combined-js-a5db5284db17a3d314f2df5e6aca6e84.js:1562
+[   13112ms] [LOG] JQMIGRATE: Migrate is installed, version 3.3.2 @ https://acmi.org.sg/wp-content/uploads/siteground-optimizer-assets/siteground-optimizer-combined-js-a5db5284db17a3d314f2df5e6aca6e84.js:1562
+[    5583ms] [WARNING] The resource https://udify.app/_next/static/chunks/0yevc_10h8.kl.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://udify.app/chatbot/euIn4jrJyh5loYsx:0
+[    5583ms] [WARNING] The resource https://udify.app/_next/static/chunks/0ugaf5.uz3_.5.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://udify.app/chatbot/euIn4jrJyh5loYsx:0
+[   13466ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://acmi.org.sg/wp-json/wp/v2/users/me?context=edit&_locale=user:0
+[   14104ms] Object
+[32280353ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/parameters:0
+[32280358ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/conversations?limit=100&pinned=false:0
+[32280358ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/webapp/access-mode?appCode=euIn4jrJyh5loYsx:0
+[32280358ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/site:0
+[32280358ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/meta:0
+[32280359ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/conversations?limit=100&pinned=true:0
+[32280359ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://cloud.dify.ai/console/api/system-features:0
+[32280360ms] [ERROR] NetworkError: Request failed due to a network error: GET https://cloud.dify.ai/console/api/system-features
+    at #o (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:22519)
+    at async #r (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:20752)
+    at async u (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:12148)
+    at async https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:13243
+    at async eg (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:27192)
+    at async r (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:1755)
+    at async eI (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:37238)
+    at async X.call (https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:9:7301)
+    at async https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:9:1906
+    at async https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:1:2626
+    at async Proxy.<anonymous> (https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:1:6350)
+    at async queryFn (https://udify.app/_next/static/chunks/0dqni040evs-3.js:1:3626) @ https://udify.app/_next/static/chunks/0r7jk8u5n050i.js:476
+[32280365ms] [ERROR] [systemFeatures] fetch failed, using defaults NetworkError: Request failed due to a network error: GET https://cloud.dify.ai/console/api/system-features
+    at #o (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:22519)
+    at async #r (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:20752)
+    at async u (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:12148)
+    at async https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:13243
+    at async eg (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:27192)
+    at async r (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:1755)
+    at async eI (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:37238)
+    at async X.call (https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:9:7301)
+    at async https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:9:1906
+    at async https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:1:2626
+    at async Proxy.<anonymous> (https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:1:6350)
+    at async queryFn (https://udify.app/_next/static/chunks/0dqni040evs-3.js:1:3626) @ https://udify.app/_next/static/chunks/0r7jk8u5n050i.js:476
+[32281394ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/meta:0
+[32281397ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/parameters:0
+[32281399ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/webapp/access-mode?appCode=euIn4jrJyh5loYsx:0
+[32281399ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/site:0
+[32283696ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/meta:0
+[32283700ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/site:0
+[32283701ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/parameters:0
+[32283702ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/webapp/access-mode?appCode=euIn4jrJyh5loYsx:0
+[32289073ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/meta:0
+[32289077ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/site:0
+[32289078ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/parameters:0
+[32289079ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/webapp/access-mode?appCode=euIn4jrJyh5loYsx:0

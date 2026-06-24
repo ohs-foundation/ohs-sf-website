@@ -1,0 +1,103 @@
+[    2555ms] [ERROR] Applying inline style violates the following Content Security Policy directive 'style-src 'self' https://fonts.googleapis.com https://www.gstatic.com/ https://*.wogaa.sg/ https://www.w3.org'. Either the 'unsafe-inline' keyword, a hash ('sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked. @ https://avs-eservices.nparks.gov.sg/eservices/static/js/main.ee91234f.js:1
+[    2556ms] [ERROR] Applying inline style violates the following Content Security Policy directive 'style-src 'self' https://fonts.googleapis.com https://www.gstatic.com/ https://*.wogaa.sg/ https://www.w3.org'. Either the 'unsafe-inline' keyword, a hash ('sha256-2jqWtnjFru/N1IrzW5yY8m0Y349ea3WZDz83RR2iwiI='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked. @ https://avs-eservices.nparks.gov.sg/eservices/static/js/main.ee91234f.js:1
+[    5012ms] [ERROR] Applying inline style violates the following Content Security Policy directive 'style-src 'self' https://fonts.googleapis.com https://www.gstatic.com/ https://*.wogaa.sg/ https://www.w3.org'. Either the 'unsafe-inline' keyword, a hash ('sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked. @ https://avs-eservices.nparks.gov.sg/eservices/static/js/main.ee91234f.js:1
+[    5012ms] [ERROR] Applying inline style violates the following Content Security Policy directive 'style-src 'self' https://fonts.googleapis.com https://www.gstatic.com/ https://*.wogaa.sg/ https://www.w3.org'. Either the 'unsafe-inline' keyword, a hash ('sha256-2jqWtnjFru/N1IrzW5yY8m0Y349ea3WZDz83RR2iwiI='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked. @ https://avs-eservices.nparks.gov.sg/eservices/static/js/main.ee91234f.js:1
+[    5143ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ https://avs-eservices.nparks.gov.sg/eservices/login:0
+[    8142ms] [ERROR] Applying inline style violates the following Content Security Policy directive 'style-src 'self' https://fonts.googleapis.com https://www.gstatic.com/ https://*.wogaa.sg/ https://www.w3.org'. Either the 'unsafe-inline' keyword, a hash ('sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked. @ https://avs-eservices.nparks.gov.sg/eservices/static/js/main.ee91234f.js:1
+[    8142ms] [ERROR] Applying inline style violates the following Content Security Policy directive 'style-src 'self' https://fonts.googleapis.com https://www.gstatic.com/ https://*.wogaa.sg/ https://www.w3.org'. Either the 'unsafe-inline' keyword, a hash ('sha256-2jqWtnjFru/N1IrzW5yY8m0Y349ea3WZDz83RR2iwiI='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked. @ https://avs-eservices.nparks.gov.sg/eservices/static/js/main.ee91234f.js:1
+[    9447ms] [LOG] Current QR status:  LOADING @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[    9811ms] [LOG] Current QR status:  LOADING @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[   10389ms] [LOG] Current QR status:  CREATED @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[   10389ms] [LOG] Starting the long poll -  qrStatus:  CREATED @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[   14607ms] [LOG] Received QR status response:  CHALLENGED {data: Object, status: 200, statusText: , headers: nn, config: Object} @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[   14632ms] [LOG] Current QR status:  CHALLENGED @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[   14632ms] [LOG] Starting the long poll -  qrStatus:  CHALLENGED @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[   23741ms] [LOG] Received QR status response:  SUCCESS {data: Object, status: 200, statusText: , headers: nn, config: Object} @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[   23749ms] [LOG] Current QR status:  SUCCESS @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[   24231ms] [WARNING] The main 'lit-element' module entrypoint is deprecated. Please update your imports to use the 'lit' package: 'lit' and 'lit/decorators.ts' or import from 'lit-element/lit-element.ts'. See https://lit.dev/msg/deprecated-import-path for more information. @ https://consent.myinfo.gov.sg/consent-page-template/js/sgds-masthead.js:85
+[   24279ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://api.myinfo.gov.sg/favicon.ico:0
+[   28699ms] [ERROR] Applying inline style violates the following Content Security Policy directive 'style-src 'self' https://fonts.googleapis.com https://www.gstatic.com/ https://*.wogaa.sg/ https://www.w3.org'. Either the 'unsafe-inline' keyword, a hash ('sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked. @ https://avs-eservices.nparks.gov.sg/eservices/static/js/main.ee91234f.js:1
+[   28700ms] [ERROR] Applying inline style violates the following Content Security Policy directive 'style-src 'self' https://fonts.googleapis.com https://www.gstatic.com/ https://*.wogaa.sg/ https://www.w3.org'. Either the 'unsafe-inline' keyword, a hash ('sha256-2jqWtnjFru/N1IrzW5yY8m0Y349ea3WZDz83RR2iwiI='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked. @ https://avs-eservices.nparks.gov.sg/eservices/static/js/main.ee91234f.js:1
+[   31368ms] [ERROR] Applying inline style violates the following Content Security Policy directive 'style-src 'self' https://fonts.googleapis.com https://www.gstatic.com/ https://*.wogaa.sg/ https://www.w3.org'. Either the 'unsafe-inline' keyword, a hash ('sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked. @ https://avs-eservices.nparks.gov.sg/eservices/static/js/main.ee91234f.js:1
+[   31369ms] [ERROR] Applying inline style violates the following Content Security Policy directive 'style-src 'self' https://fonts.googleapis.com https://www.gstatic.com/ https://*.wogaa.sg/ https://www.w3.org'. Either the 'unsafe-inline' keyword, a hash ('sha256-2jqWtnjFru/N1IrzW5yY8m0Y349ea3WZDz83RR2iwiI='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked. @ https://avs-eservices.nparks.gov.sg/eservices/static/js/main.ee91234f.js:1
+[   50879ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ https://avs-eservices.nparks.gov.sg/eservices/login:0
+[   56134ms] [ERROR] Applying inline style violates the following Content Security Policy directive 'style-src 'self' https://fonts.googleapis.com https://www.gstatic.com/ https://*.wogaa.sg/ https://www.w3.org'. Either the 'unsafe-inline' keyword, a hash ('sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked. @ https://avs-eservices.nparks.gov.sg/eservices/static/js/main.ee91234f.js:1
+[   56134ms] [ERROR] Applying inline style violates the following Content Security Policy directive 'style-src 'self' https://fonts.googleapis.com https://www.gstatic.com/ https://*.wogaa.sg/ https://www.w3.org'. Either the 'unsafe-inline' keyword, a hash ('sha256-2jqWtnjFru/N1IrzW5yY8m0Y349ea3WZDz83RR2iwiI='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked. @ https://avs-eservices.nparks.gov.sg/eservices/static/js/main.ee91234f.js:1
+[   56856ms] [LOG] Current QR status:  LOADING @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[   56862ms] [LOG] Current QR status:  LOADING @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[   57416ms] [LOG] Current QR status:  CREATED @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[   57416ms] [LOG] Starting the long poll -  qrStatus:  CREATED @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[   60627ms] [LOG] Received QR status response:  CHALLENGED {data: Object, status: 200, statusText: , headers: nn, config: Object} @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[   60639ms] [LOG] Current QR status:  CHALLENGED @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[   60639ms] [LOG] Starting the long poll -  qrStatus:  CHALLENGED @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[   66700ms] [LOG] Received QR status response:  SUCCESS {data: Object, status: 200, statusText: , headers: nn, config: Object} @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[   66705ms] [LOG] Current QR status:  SUCCESS @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[   67273ms] [WARNING] The main 'lit-element' module entrypoint is deprecated. Please update your imports to use the 'lit' package: 'lit' and 'lit/decorators.ts' or import from 'lit-element/lit-element.ts'. See https://lit.dev/msg/deprecated-import-path for more information. @ https://consent.myinfo.gov.sg/consent-page-template/js/sgds-masthead.js:85
+[   67321ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://api.myinfo.gov.sg/favicon.ico:0
+[   71459ms] [ERROR] Applying inline style violates the following Content Security Policy directive 'style-src 'self' https://fonts.googleapis.com https://www.gstatic.com/ https://*.wogaa.sg/ https://www.w3.org'. Either the 'unsafe-inline' keyword, a hash ('sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked. @ https://avs-eservices.nparks.gov.sg/eservices/static/js/main.ee91234f.js:1
+[   71460ms] [ERROR] Applying inline style violates the following Content Security Policy directive 'style-src 'self' https://fonts.googleapis.com https://www.gstatic.com/ https://*.wogaa.sg/ https://www.w3.org'. Either the 'unsafe-inline' keyword, a hash ('sha256-2jqWtnjFru/N1IrzW5yY8m0Y349ea3WZDz83RR2iwiI='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked. @ https://avs-eservices.nparks.gov.sg/eservices/static/js/main.ee91234f.js:1
+[   73938ms] [ERROR] Applying inline style violates the following Content Security Policy directive 'style-src 'self' https://fonts.googleapis.com https://www.gstatic.com/ https://*.wogaa.sg/ https://www.w3.org'. Either the 'unsafe-inline' keyword, a hash ('sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked. @ https://avs-eservices.nparks.gov.sg/eservices/static/js/main.ee91234f.js:1
+[   73938ms] [ERROR] Applying inline style violates the following Content Security Policy directive 'style-src 'self' https://fonts.googleapis.com https://www.gstatic.com/ https://*.wogaa.sg/ https://www.w3.org'. Either the 'unsafe-inline' keyword, a hash ('sha256-2jqWtnjFru/N1IrzW5yY8m0Y349ea3WZDz83RR2iwiI='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked. @ https://avs-eservices.nparks.gov.sg/eservices/static/js/main.ee91234f.js:1
+[   85266ms] [ERROR] Applying inline style violates the following Content Security Policy directive 'style-src 'self' https://fonts.googleapis.com https://www.gstatic.com/ https://*.wogaa.sg/ https://www.w3.org'. Either the 'unsafe-inline' keyword, a hash ('sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked. @ https://avs-eservices.nparks.gov.sg/eservices/static/js/main.ee91234f.js:1
+[   85266ms] [ERROR] Applying inline style violates the following Content Security Policy directive 'style-src 'self' https://fonts.googleapis.com https://www.gstatic.com/ https://*.wogaa.sg/ https://www.w3.org'. Either the 'unsafe-inline' keyword, a hash ('sha256-2jqWtnjFru/N1IrzW5yY8m0Y349ea3WZDz83RR2iwiI='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked. @ https://avs-eservices.nparks.gov.sg/eservices/static/js/main.ee91234f.js:1
+[  111154ms] [ERROR] Applying inline style violates the following Content Security Policy directive 'style-src 'self' https://fonts.googleapis.com https://www.gstatic.com/ https://*.wogaa.sg/ https://www.w3.org'. Either the 'unsafe-inline' keyword, a hash ('sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked. @ https://avs-eservices.nparks.gov.sg/eservices/static/js/main.ee91234f.js:1
+[  111154ms] [ERROR] Applying inline style violates the following Content Security Policy directive 'style-src 'self' https://fonts.googleapis.com https://www.gstatic.com/ https://*.wogaa.sg/ https://www.w3.org'. Either the 'unsafe-inline' keyword, a hash ('sha256-2jqWtnjFru/N1IrzW5yY8m0Y349ea3WZDz83RR2iwiI='), or a nonce ('nonce-...') is required to enable inline execution. The action has been blocked. @ https://avs-eservices.nparks.gov.sg/eservices/static/js/main.ee91234f.js:1
+[  120198ms] [ERROR] Refused to get unsafe header "OWASP_CSRFTOKEN" @ https://pals.avs.gov.sg/licence/JavaScriptServlet:640
+[  127408ms] [ERROR] Refused to get unsafe header "OWASP_CSRFTOKEN" @ https://pals.avs.gov.sg/licence/JavaScriptServlet:640
+[  127420ms] [ERROR] Refused to get unsafe header "OWASP_CSRFTOKEN" @ https://pals.avs.gov.sg/licence/JavaScriptServlet:640
+[  130144ms] [LOG] Current QR status:  LOADING @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[  130151ms] [LOG] Current QR status:  LOADING @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[  130723ms] [LOG] Current QR status:  CREATED @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[  130723ms] [LOG] Starting the long poll -  qrStatus:  CREATED @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[  145498ms] [LOG] Received QR status response:  CHALLENGED {data: Object, status: 200, statusText: , headers: nn, config: Object} @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[  145515ms] [LOG] Current QR status:  CHALLENGED @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[  145515ms] [LOG] Starting the long poll -  qrStatus:  CHALLENGED @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[  151464ms] [LOG] Received QR status response:  SUCCESS {data: Object, status: 200, statusText: , headers: nn, config: Object} @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[  151469ms] [LOG] Current QR status:  SUCCESS @ https://login.id.singpass.gov.sg/assets/index-CG945hxS.js:8
+[  154875ms] TypeError: Cannot read properties of undefined (reading 'siteRSID')
+    at Module.<anonymous> (https://pals.avs.gov.sg/sop/javascripts/pems/datalayer.min.js:6:9088)
+    at t (https://pals.avs.gov.sg/sop/javascripts/pems/datalayer.min.js:1:110)
+    at https://pals.avs.gov.sg/sop/javascripts/pems/datalayer.min.js:1:902
+    at https://pals.avs.gov.sg/sop/javascripts/pems/datalayer.min.js:1:912
+[  156546ms] TypeError: Cannot read properties of undefined (reading 'siteRSID')
+    at Module.<anonymous> (https://pals.avs.gov.sg/licence/javascripts/datalayer.min.js?1:6:9088)
+    at t (https://pals.avs.gov.sg/licence/javascripts/datalayer.min.js?1:1:110)
+    at https://pals.avs.gov.sg/licence/javascripts/datalayer.min.js?1:1:902
+    at https://pals.avs.gov.sg/licence/javascripts/datalayer.min.js?1:1:912
+[  156864ms] [ERROR] Refused to get unsafe header "OWASP_CSRFTOKEN" @ https://pals.avs.gov.sg/licence/JavaScriptServlet:640
+[  165516ms] TypeError: Cannot read properties of undefined (reading 'siteRSID')
+    at Module.<anonymous> (https://pals.avs.gov.sg/licence/javascripts/datalayer.min.js?1:6:9088)
+    at t (https://pals.avs.gov.sg/licence/javascripts/datalayer.min.js?1:1:110)
+    at https://pals.avs.gov.sg/licence/javascripts/datalayer.min.js?1:1:902
+    at https://pals.avs.gov.sg/licence/javascripts/datalayer.min.js?1:1:912
+[  165987ms] [ERROR] Refused to get unsafe header "OWASP_CSRFTOKEN" @ https://pals.avs.gov.sg/licence/JavaScriptServlet:640
+[  169697ms] [ERROR] Refused to get unsafe header "OWASP_CSRFTOKEN" @ https://pals.avs.gov.sg/licence/JavaScriptServlet:640
+[  273742ms] [ERROR] Refused to get unsafe header "OWASP_CSRFTOKEN" @ https://pals.avs.gov.sg/licence/JavaScriptServlet:640
+[  274302ms] TypeError: Cannot read properties of undefined (reading 'siteRSID')
+    at Module.<anonymous> (https://pals.avs.gov.sg/sop/javascripts/pems/datalayer.min.js:6:9088)
+    at t (https://pals.avs.gov.sg/sop/javascripts/pems/datalayer.min.js:1:110)
+    at https://pals.avs.gov.sg/sop/javascripts/pems/datalayer.min.js:1:902
+    at https://pals.avs.gov.sg/sop/javascripts/pems/datalayer.min.js:1:912
+[  274794ms] [ERROR] Refused to get unsafe header "OWASP_CSRFTOKEN" @ https://pals.avs.gov.sg/sop/JavaScriptServlet:640
+[  276275ms] [ERROR] Refused to get unsafe header "OWASP_CSRFTOKEN" @ https://pals.avs.gov.sg/sop/JavaScriptServlet:640
+[  281457ms] TypeError: Cannot read properties of undefined (reading 'siteRSID')
+    at Module.<anonymous> (https://pals.avs.gov.sg/licence/javascripts/datalayer.min.js?1:6:9088)
+    at t (https://pals.avs.gov.sg/licence/javascripts/datalayer.min.js?1:1:110)
+    at https://pals.avs.gov.sg/licence/javascripts/datalayer.min.js?1:1:902
+    at https://pals.avs.gov.sg/licence/javascripts/datalayer.min.js?1:1:912
+[  281842ms] [ERROR] Refused to get unsafe header "OWASP_CSRFTOKEN" @ https://pals.avs.gov.sg/licence/JavaScriptServlet:640
+[  283764ms] [ERROR] Refused to get unsafe header "OWASP_CSRFTOKEN" @ https://pals.avs.gov.sg/licence/JavaScriptServlet:640
+[  299730ms] [ERROR] Refused to get unsafe header "OWASP_CSRFTOKEN" @ https://pals.avs.gov.sg/licence/JavaScriptServlet:640
+[  300224ms] TypeError: Cannot read properties of undefined (reading 'siteRSID')
+    at Module.<anonymous> (https://pals.avs.gov.sg/sop/javascripts/pems/datalayer.min.js:6:9088)
+    at t (https://pals.avs.gov.sg/sop/javascripts/pems/datalayer.min.js:1:110)
+    at https://pals.avs.gov.sg/sop/javascripts/pems/datalayer.min.js:1:902
+    at https://pals.avs.gov.sg/sop/javascripts/pems/datalayer.min.js:1:912
+[  302321ms] [ERROR] Refused to get unsafe header "OWASP_CSRFTOKEN" @ https://pals.avs.gov.sg/sop/JavaScriptServlet:640
+[  306530ms] TypeError: Cannot read properties of undefined (reading 'siteRSID')
+    at Module.<anonymous> (https://pals.avs.gov.sg/licence/javascripts/datalayer.min.js?1:6:9088)
+    at t (https://pals.avs.gov.sg/licence/javascripts/datalayer.min.js?1:1:110)
+    at https://pals.avs.gov.sg/licence/javascripts/datalayer.min.js?1:1:902
+    at https://pals.avs.gov.sg/licence/javascripts/datalayer.min.js?1:1:912
+[  306973ms] [ERROR] Refused to get unsafe header "OWASP_CSRFTOKEN" @ https://pals.avs.gov.sg/licence/JavaScriptServlet:640
+[  317817ms] [ERROR] Refused to get unsafe header "OWASP_CSRFTOKEN" @ https://pals.avs.gov.sg/licence/JavaScriptServlet:640

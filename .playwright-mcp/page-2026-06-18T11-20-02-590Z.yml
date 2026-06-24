@@ -1,0 +1,101 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation "Primary" [ref=e3]:
+      - link "Open Health Stack Foundation home" [ref=e4] [cursor=pointer]:
+        - /url: index.html
+        - generic [ref=e10]:
+          - generic [ref=e11]: Open Health Stack
+          - generic [ref=e12]: Software Foundation
+      - button "Open menu" [ref=e14] [cursor=pointer]:
+        - img
+  - generic "Mobile":
+    - link "Foundation":
+      - /url: foundation.html
+    - link "Projects":
+      - /url: projects.html
+    - link "Community":
+      - /url: community.html
+    - link "Blog":
+      - /url: blog.html
+    - link "Become a member":
+      - /url: foundation.html#membership
+  - generic [ref=e17]:
+    - generic [ref=e18]: The blog
+    - heading "News, releases and notes from the foundation." [level=1] [ref=e19]
+    - paragraph [ref=e20]: Announcements, project milestones and perspectives from the community building open-source building blocks for global digital health.
+  - generic [ref=e22]:
+    - 'link "Read: OHS-SF launches" [ref=e23] [cursor=pointer]':
+      - /url: blog-launch-announcement.html
+      - generic [ref=e24]:
+        - generic [ref=e25]:
+          - generic [ref=e26]: Latest
+          - generic [ref=e27]: Foundation news
+        - heading "Building blocks for the future of global digital health — introducing the OHS Software Foundation" [level=2] [ref=e28]
+        - paragraph [ref=e29]: The Open Health Stack Software Foundation is launching at the Linux Foundation. Here's why it matters, what we're building, and how to get involved.
+        - generic [ref=e30]:
+          - generic [ref=e31]: By the OHS-SF team
+          - time [ref=e32]: July 7, 2026
+          - generic [ref=e33]: · 6 min read
+        - generic [ref=e35]:
+          - text: Read the announcement
+          - img [ref=e36]
+      - generic [ref=e40]:
+        - generic [ref=e41]: Apps & solutions
+        - generic [ref=e55]: Grounded in open standards
+    - generic [ref=e56]: More posts
+    - generic [ref=e57]:
+      - generic [ref=e58]: Coming soon
+      - paragraph [ref=e59]: This is the first post. Project updates, release notes and community stories will land here as the foundation gets going.
+  - contentinfo [ref=e60]:
+    - generic [ref=e61]:
+      - generic [ref=e62]:
+        - generic [ref=e63]:
+          - link "Open Health Stack Software Foundation" [ref=e64] [cursor=pointer]:
+            - /url: index.html
+            - generic [ref=e70]:
+              - generic [ref=e71]: Open Health Stack
+              - generic [ref=e72]: Software Foundation
+          - paragraph [ref=e73]: A neutral, community-owned home for open-source building blocks accelerating next-gen, AI-powered digital health.
+        - generic [ref=e74]:
+          - heading "Foundation" [level=4] [ref=e75]
+          - list [ref=e76]:
+            - listitem [ref=e77]:
+              - link "Mission & charter" [ref=e78] [cursor=pointer]:
+                - /url: foundation.html#mission
+            - listitem [ref=e79]:
+              - link "Governance" [ref=e80] [cursor=pointer]:
+                - /url: foundation.html#governance
+            - listitem [ref=e81]:
+              - link "Membership" [ref=e82] [cursor=pointer]:
+                - /url: foundation.html#membership
+        - generic [ref=e83]:
+          - heading "Projects" [level=4] [ref=e84]
+          - list [ref=e85]:
+            - listitem [ref=e86]:
+              - link "FHIR Foundations" [ref=e87] [cursor=pointer]:
+                - /url: projects.html#core
+            - listitem [ref=e88]:
+              - link "Reference Toolkit" [ref=e89] [cursor=pointer]:
+                - /url: projects.html#toolkit
+            - listitem [ref=e90]:
+              - link "AI Commons" [ref=e91] [cursor=pointer]:
+                - /url: projects.html#ai
+            - listitem [ref=e92]:
+              - link "Get involved" [ref=e93] [cursor=pointer]:
+                - /url: projects.html#get-involved
+        - generic [ref=e94]:
+          - heading "Community" [level=4] [ref=e95]
+          - list [ref=e96]:
+            - listitem [ref=e97]:
+              - link "Get involved" [ref=e98] [cursor=pointer]:
+                - /url: community.html#involved
+            - listitem [ref=e99]:
+              - link "Blog" [ref=e100] [cursor=pointer]:
+                - /url: blog.html
+            - listitem [ref=e101]:
+              - link "Events" [ref=e102] [cursor=pointer]:
+                - /url: community.html#events
+            - listitem [ref=e103]:
+              - link "Contact" [ref=e104] [cursor=pointer]:
+                - /url: mailto:hello@ohs.foundation
+      - generic [ref=e106]: © 2026 Open Health Stack Software Foundation · a project of the Linux Foundation.

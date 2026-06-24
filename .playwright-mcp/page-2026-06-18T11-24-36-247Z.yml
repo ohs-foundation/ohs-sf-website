@@ -1,0 +1,190 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation "Primary" [ref=e3]:
+      - link "Open Health Stack Foundation home" [ref=e4] [cursor=pointer]:
+        - /url: index.html
+        - generic [ref=e10]:
+          - generic [ref=e11]: Open Health Stack
+          - generic [ref=e12]: Software Foundation
+      - button "Open menu" [ref=e14] [cursor=pointer]:
+        - img
+  - generic "Mobile":
+    - link "Foundation":
+      - /url: foundation.html
+    - link "Projects":
+      - /url: projects.html
+    - link "Community":
+      - /url: community.html
+    - link "Blog":
+      - /url: blog.html
+    - link "Become a member":
+      - /url: foundation.html#membership
+  - generic [ref=e17]:
+    - generic [ref=e18]:
+      - link "New Read the intention to launch announcement" [ref=e19] [cursor=pointer]:
+        - /url: blog-launch-announcement.html
+        - generic [ref=e20]: New
+        - generic [ref=e21]: Read the intention to launch announcement
+        - img [ref=e22]
+      - generic [ref=e24]: An independent software foundation
+      - heading "Building blocks for the future of global digital health." [level=1] [ref=e25]
+      - paragraph [ref=e26]: A neutral, community-owned home for open-source building blocks — helping developers everywhere create standards-based, AI-ready health solutions.
+      - generic [ref=e27]:
+        - link "Explore the projects" [ref=e28] [cursor=pointer]:
+          - /url: projects.html
+          - text: Explore the projects
+          - img [ref=e29]
+        - link "About the foundation" [ref=e31] [cursor=pointer]:
+          - /url: foundation.html
+      - generic [ref=e33]: Hosted by the Linux Foundation
+    - text: ▼ ▼
+  - generic [ref=e40]:
+    - generic [ref=e41]:
+      - generic [ref=e42]: Three pillars
+      - heading "One foundation, three pillars of work." [level=2] [ref=e43]
+      - paragraph [ref=e44]: An umbrella structure that maintains the building blocks developers rely on today, opens the fastest path to building a next-gen digital health solution, and creates a neutral space for what comes next.
+    - generic [ref=e45]:
+      - article [ref=e46]:
+        - generic [ref=e48]: Pillar 01 · FHIR Foundations · Active
+        - heading "FHIR-native core libraries" [level=3] [ref=e49]
+        - paragraph [ref=e50]: The foundational libraries for working with FHIR. Includes new multi-platform kotlin FHIR SDK and battle-tested components for Android, access control and analytics, sustained by an active community of technical partners.
+        - list [ref=e51]:
+          - listitem [ref=e52]:
+            - img [ref=e53]
+            - text: "Core FHIR Libraries: kotlin-fhir, kotlin-fhirpath"
+          - listitem [ref=e55]:
+            - img [ref=e56]
+            - text: Client SDK and server side libraries for building on FHIR
+          - listitem [ref=e58]:
+            - img [ref=e59]
+            - text: HL7® FHIR® interoperability by default
+        - link "Explore FHIR Foundations" [ref=e62] [cursor=pointer]:
+          - /url: projects.html#core
+          - text: Explore FHIR Foundations
+          - img [ref=e63]
+      - article [ref=e65]:
+        - generic [ref=e67]: Pillar 02 · Reference Toolkit · Active
+        - heading "Multiplatform AI-ready Reference Toolkit" [level=3] [ref=e68]
+        - paragraph [ref=e69]: The fastest way to develop and deploy a next-gen digital health solution — a complete, composable reference implementation built on the FHIR Foundations libraries, ready for Android, iOS and web.
+        - list [ref=e70]:
+          - listitem [ref=e71]:
+            - img [ref=e72]
+            - text: OHS Player — the reference runtime
+          - listitem [ref=e74]:
+            - img [ref=e75]
+            - text: KMP client app, web portal & backend
+          - listitem [ref=e77]:
+            - img [ref=e78]
+            - text: AI-ready by design
+        - link "Explore the toolkit" [ref=e81] [cursor=pointer]:
+          - /url: projects.html#toolkit
+          - text: Explore the toolkit
+          - img [ref=e82]
+      - article [ref=e84]:
+        - generic [ref=e86]: Pillar 03 · AI Commons · Launching
+        - heading "AI Commons for Global Digital Health" [level=3] [ref=e87]
+        - paragraph [ref=e88]: A neutral space for collaboration on safe, effective and Verifiable AI for Global Health — focused on model-agnostic capabilities like evals, benchmarks, tooling for Verifiable AI, developed with the WHO and partners.
+        - list [ref=e89]:
+          - listitem [ref=e90]:
+            - img [ref=e91]
+            - text: Tooling to support Evals & benchmarks for Health AI
+          - listitem [ref=e93]:
+            - img [ref=e94]
+            - text: Model-agnostic libraries, relevant skills & MCPs
+          - listitem [ref=e96]:
+            - img [ref=e97]
+            - text: Open and modular by design
+        - link "Explore AI Commons" [ref=e100] [cursor=pointer]:
+          - /url: projects.html#ai
+          - text: Explore AI Commons
+          - img [ref=e101]
+    - link "Explore all projects" [ref=e104] [cursor=pointer]:
+      - /url: projects.html
+      - text: Explore all projects
+      - img [ref=e105]
+  - generic [ref=e108]:
+    - generic [ref=e109]:
+      - generic [ref=e110]: Why a foundation
+      - heading "Built for neutrality, sustainability and scale." [level=2] [ref=e111]
+      - paragraph [ref=e112]: The first software foundation purpose-built for global digital health — hosted by the Linux Foundation.
+    - generic [ref=e113]:
+      - generic [ref=e114]:
+        - img [ref=e116]
+        - heading "Neutral, open governance" [level=3] [ref=e118]
+        - paragraph [ref=e119]: A trusted non-profit holds the project's assets and trademark. Decisions are made transparently by those doing the work.
+      - generic [ref=e120]:
+        - img [ref=e122]
+        - heading "Sustainable funding" [level=3] [ref=e125]
+        - paragraph [ref=e126]: Tiered memberships and grants de-risk the project — no single funder, no single point of failure.
+      - generic [ref=e127]:
+        - img [ref=e129]
+        - heading "Future proof" [level=3] [ref=e131]
+        - paragraph [ref=e132]: An umbrella structure ready to house new initiatives like an AI Commons built on new open standards.
+      - generic [ref=e133]:
+        - img [ref=e135]
+        - heading "Cost-effective by design" [level=3] [ref=e138]
+        - paragraph [ref=e139]: The Linux Foundation "Foundation-as-a-Service" model keeps fiscal hosting low — the majority of funds reach engineering and community building activities.
+  - generic [ref=e141]:
+    - generic [ref=e142]: The ask
+    - heading "Help us build the future of global digital health." [level=2] [ref=e143]
+    - paragraph [ref=e144]: We're recruiting founding members ahead of our public launch. Take a seat at the table shaping the charter, budget and direction.
+    - generic [ref=e145]:
+      - link "Become a founding member" [ref=e146] [cursor=pointer]:
+        - /url: foundation.html#membership
+      - link "Join the community" [ref=e147] [cursor=pointer]:
+        - /url: community.html
+  - contentinfo [ref=e148]:
+    - generic [ref=e149]:
+      - generic [ref=e150]:
+        - generic [ref=e151]:
+          - link "Open Health Stack Software Foundation" [ref=e152] [cursor=pointer]:
+            - /url: index.html
+            - generic [ref=e158]:
+              - generic [ref=e159]: Open Health Stack
+              - generic [ref=e160]: Software Foundation
+          - paragraph [ref=e161]: A neutral, community-owned home for open-source building blocks accelerating next-gen, AI-powered digital health.
+        - generic [ref=e162]:
+          - heading "Foundation" [level=4] [ref=e163]
+          - list [ref=e164]:
+            - listitem [ref=e165]:
+              - link "Mission & charter" [ref=e166] [cursor=pointer]:
+                - /url: foundation.html#mission
+            - listitem [ref=e167]:
+              - link "Governance" [ref=e168] [cursor=pointer]:
+                - /url: foundation.html#governance
+            - listitem [ref=e169]:
+              - link "Membership" [ref=e170] [cursor=pointer]:
+                - /url: foundation.html#membership
+        - generic [ref=e171]:
+          - heading "Projects" [level=4] [ref=e172]
+          - list [ref=e173]:
+            - listitem [ref=e174]:
+              - link "FHIR Foundations" [ref=e175] [cursor=pointer]:
+                - /url: projects.html#core
+            - listitem [ref=e176]:
+              - link "Reference Toolkit" [ref=e177] [cursor=pointer]:
+                - /url: projects.html#toolkit
+            - listitem [ref=e178]:
+              - link "AI Commons" [ref=e179] [cursor=pointer]:
+                - /url: projects.html#ai
+            - listitem [ref=e180]:
+              - link "Get involved" [ref=e181] [cursor=pointer]:
+                - /url: projects.html#get-involved
+        - generic [ref=e182]:
+          - heading "Community" [level=4] [ref=e183]
+          - list [ref=e184]:
+            - listitem [ref=e185]:
+              - link "Get involved" [ref=e186] [cursor=pointer]:
+                - /url: community.html#involved
+            - listitem [ref=e187]:
+              - link "Events" [ref=e188] [cursor=pointer]:
+                - /url: community.html#events
+            - listitem [ref=e189]:
+              - link "Channels" [ref=e190] [cursor=pointer]:
+                - /url: community.html#channels
+            - listitem [ref=e191]:
+              - link "Contact" [ref=e192] [cursor=pointer]:
+                - /url: mailto:hello@ohs.foundation
+      - generic [ref=e193]:
+        - generic [ref=e194]: © 2026 Open Health Stack Software Foundation · a project of the Linux Foundation.
+        - generic [ref=e195]: fred@ohs.foundation

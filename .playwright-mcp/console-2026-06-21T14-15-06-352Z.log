@@ -1,0 +1,172 @@
+[    2339ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'document-domain'. @ :0
+[    2339ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'window-placement'. @ :0
+[    2740ms] [WARNING] Deprecation warning: moment().add(period, number) is deprecated. Please use moment().add(number, period). See http://momentjs.com/guides/#/warnings/add-inverted-param/ for more info. @ https://www.singaporeair.com/assets/scripts/lib2-n2611.js:0
+[    2753ms] [LOG] Nudata request generated from Login @ https://www.singaporeair.com/assets/NuData/generated/nudata_tracker.js:1
+[    3072ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://tags.bluekai.com/site/81287?limit=0&id=c0721d26-6bc5-409c-b243-cbb8903ad6ac:0
+[    3204ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.singaporeair.com/content/dam/sia/json/chatbotvs/locales/en_UK.json:0
+[    3231ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.singaporeair.com/content/dam/sia/json/chatbotvs/locales/en_UK.json:0
+[    3257ms] [WARNING] [chatbotvs] Failed to load locale, i18n disabled. SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON @ https://www.singaporeair.com/assets/chatbotvs/build/p-8d686a98.entry.js:1
+[    4018ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   18067ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://s.yimg.com/wi/ytc.js:0
+[   18069ms] [WARNING] The resource https://www.singaporeair.com/assets/images/svg/logos/sq.svg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   18070ms] [WARNING] The resource https://www.singaporeair.com/assets/images/svg/logos/tr.svg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   18070ms] [WARNING] The resource https://www.singaporeair.com/assets/images/greater_choices-pey.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   18070ms] [WARNING] The resource https://www.singaporeair.com/assets/images/priority_treatment-pey.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   18070ms] [WARNING] The resource https://www.singaporeair.com/assets/images/left-wing.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   18070ms] [WARNING] The resource https://www.singaporeair.com/assets/images/svg/icons/dropdown.svg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   18070ms] [WARNING] The resource https://www.singaporeair.com/assets/images/greater_comfort-pey.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   18070ms] [WARNING] The resource https://www.singaporeair.com/assets/images/svg/logos/si.svg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   18070ms] [WARNING] The resource https://www.singaporeair.com/assets/images/svg/icons/ico-clock.svg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   18070ms] [WARNING] The resource https://www.singaporeair.com/assets/images/right-wing.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   18485ms] ReferenceError: ttd_dom_ready is not defined
+    at <anonymous>:1:1
+    at https://www.googletagmanager.com/gtm.js?id=GTM-KQ5S&Aka3pmProtected=true:1036:429
+    at HTMLScriptElement.<anonymous> (https://www.googletagmanager.com/gtm.js?id=GTM-KQ5S&Aka3pmProtected=true:1037:132)
+[   18686ms] [WARNING] [Meta Pixel] - Invalid parameter format for currency. Please refer https://developers.facebook.com/docs/meta-pixel/reference/ for valid parameter specifications. @ https://connect.facebook.net/en_US/fbevents.js:183
+[   19252ms] [WARNING] [Meta Pixel] - Invalid parameter format for currency. Please refer https://developers.facebook.com/docs/meta-pixel/reference/ for valid parameter specifications. @ https://connect.facebook.net/en_US/fbevents.js:183
+[   19298ms] ReferenceError: gtag is not defined
+    at https://10266423.fls.doubleclick.net/activityi;dc_pre=CMue5sHCmJUDFV3DPAIdalM6FQ;src=10266423;type=invmedia;cat=singa0;rcb=7;ord=8176234814778;npa=0;auiddc=24033499.1781961469;gcldc=CjwKCAjw9NjRBhATEiwA_p2J8Vt_z7idkKffBqlEO2ddjZZ9c-Mkm6XaHGI6TEiBoZGGhJGz3iWkxhoCpWYQAvD_BwE;gclaw=CjwKCAjw9NjRBhATEiwA_p2J8Vt_z7idkKffBqlEO2ddjZZ9c-Mkm6XaHGI6TEiBoZGGhJGz3iWkxhoCpWYQAvD_BwE;u11=https%3A%2F%2Fwww.singaporeair.com%2Fen_uk%2Fsg%2Fhome;uaa=arm;uab=64;uafvl=Google%2520Chrome%3B149.0.7827.103%7CChromium%3B149.0.7827.103%7CNot)A%253BBrand%3B24.0.0.0;uamb=0;uam=;uap=macOS;uapv=26.5.0;uaw=0;pscdl=noapi;frm=0;_tu=KFA;gtm=45fe66h0v9190897570z86106680za20gzb6106680zd6106680xea;gcs=G111;gcd=13t3t3t3t5l1;dma=0;dc_fmt=2;tag_exp=115938466~115938469~119027224~119392696~119392704~119456239~119456247;epver=2;dc_random=1782051325_ppxGbs728HoYwKDATV-_42QLfEfAWNG_9A;_dc_test=1;~oref=https%3A%2F%2Fwww.singaporeair.com%2Fen_UK%2Fsg%2Fhome?:7:3
+[   19340ms] [WARNING] [Meta Pixel] - Invalid parameter format for currency. Please refer https://developers.facebook.com/docs/meta-pixel/reference/ for valid parameter specifications. @ https://connect.facebook.net/en_US/fbevents.js:183
+[   19536ms] [ERROR] Attestation check for Shared Storage on https://ara.paa-reporting-advertising.amazon failed. @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   28042ms] [WARNING] The resource https://www.singaporeair.com/assets/images/svg/logos/sq.svg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   28043ms] [WARNING] The resource https://www.singaporeair.com/assets/images/svg/logos/tr.svg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   28043ms] [WARNING] The resource https://www.singaporeair.com/assets/images/greater_choices-pey.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   28043ms] [WARNING] The resource https://www.singaporeair.com/assets/images/priority_treatment-pey.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   28043ms] [WARNING] The resource https://www.singaporeair.com/assets/images/left-wing.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   28043ms] [WARNING] The resource https://www.singaporeair.com/assets/images/svg/icons/dropdown.svg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   28043ms] [WARNING] The resource https://www.singaporeair.com/assets/images/greater_comfort-pey.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   28043ms] [WARNING] The resource https://www.singaporeair.com/assets/images/svg/logos/si.svg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   28043ms] [WARNING] The resource https://www.singaporeair.com/assets/images/svg/icons/ico-clock.svg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   28043ms] [WARNING] The resource https://www.singaporeair.com/assets/images/right-wing.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/book/bookflight:0
+[   35369ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'document-domain'. @ :0
+[   35369ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'window-placement'. @ :0
+[   35625ms] [WARNING] Deprecation warning: moment().add(period, number) is deprecated. Please use moment().add(number, period). See http://momentjs.com/guides/#/warnings/add-inverted-param/ for more info. @ https://www.singaporeair.com/assets/scripts/lib2-n2611.js:0
+[   35636ms] [LOG] Nudata request generated from Login @ https://www.singaporeair.com/assets/NuData/generated/nudata_tracker.js:1
+[   35921ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://tags.bluekai.com/site/81287?limit=0&id=c0721d26-6bc5-409c-b243-cbb8903ad6ac:0
+[   36149ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.singaporeair.com/content/dam/sia/json/chatbotvs/locales/en_UK.json:0
+[   36159ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.singaporeair.com/content/dam/sia/json/chatbotvs/locales/en_UK.json:0
+[   36161ms] [WARNING] [chatbotvs] Failed to load locale, i18n disabled. SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON @ https://www.singaporeair.com/assets/chatbotvs/build/p-8d686a98.entry.js:1
+[   37665ms] [ERROR] TypeError: r.substr is not a function
+    at t.trim (https://www.singaporeair.com/assets/scripts/faredeal-n2611.js:1:77013)
+    at t.updateFareDealView (https://www.singaporeair.com/assets/scripts/faredeal-n2611.js:1:76687)
+    at https://www.singaporeair.com/assets/scripts/faredeal-n2611.js:1:75034
+    at e (https://www.singaporeair.com/assets/scripts/lib0-n2611.js:1:74829)
+    at o (https://www.singaporeair.com/assets/scripts/lib0-n2611.js:1:75068)
+    at https://www.singaporeair.com/assets/scripts/lib0-n2611.js:1:75369 @ https://www.singaporeair.com/assets/scripts/faredeal-n2611.js:0
+[   43423ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'document-domain'. @ :0
+[   43423ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'window-placement'. @ :0
+[   51010ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'document-domain'. @ :0
+[   51010ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'window-placement'. @ :0
+[   51664ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'document-domain'. @ :0
+[   51664ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'window-placement'. @ :0
+[   63936ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://s.yimg.com/wi/ytc.js:0
+[   63958ms] ReferenceError: ttd_dom_ready is not defined
+    at <anonymous>:1:1
+    at https://www.googletagmanager.com/gtm.js?id=GTM-KQ5S&Aka3pmProtected=true:1036:429
+    at HTMLScriptElement.<anonymous> (https://www.googletagmanager.com/gtm.js?id=GTM-KQ5S&Aka3pmProtected=true:1037:132)
+[   63971ms] [WARNING] [Meta Pixel] - Invalid parameter format for currency. Please refer https://developers.facebook.com/docs/meta-pixel/reference/ for valid parameter specifications. @ https://connect.facebook.net/en_US/fbevents.js:183
+[   63995ms] [WARNING] Failed to execute 'write' on 'Document': It isn't possible to write into a document from an asynchronously-loaded external script unless it is explicitly opened. @ https://ad.doubleclick.net/ddm/adj/N108410.197812NSO.CODESRV2/B9105743.123437205;dcadv=5139083;sz=1x2;ord=719282054025.771?:0
+[   63995ms] [WARNING] Failed to execute 'write' on 'Document': It isn't possible to write into a document from an asynchronously-loaded external script unless it is explicitly opened. @ https://ad.doubleclick.net/ddm/adj/N108410.197812NSO.CODESRV2/B9105743.123437205;dcadv=5139083;sz=1x2;ord=719282054025.771?:0
+[   63995ms] [WARNING] Failed to execute 'write' on 'Document': It isn't possible to write into a document from an asynchronously-loaded external script unless it is explicitly opened. @ https://ad.doubleclick.net/ddm/adj/N108410.197812NSO.CODESRV2/B9105743.123437205;dcadv=5139083;sz=1x2;ord=719282054025.771?:141
+[   63995ms] [WARNING] Failed to execute 'write' on 'Document': It isn't possible to write into a document from an asynchronously-loaded external script unless it is explicitly opened. @ https://ad.doubleclick.net/ddm/adj/N108410.197812NSO.CODESRV2/B9105743.123437205;dcadv=5139083;sz=1x2;ord=719282054025.771?:141
+[   64276ms] [WARNING] [Meta Pixel] - Invalid parameter format for currency. Please refer https://developers.facebook.com/docs/meta-pixel/reference/ for valid parameter specifications. @ https://connect.facebook.net/en_US/fbevents.js:183
+[   64327ms] ReferenceError: gtag is not defined
+    at https://10266423.fls.doubleclick.net/activityi;dc_pre=CNSdqtfCmJUDFeiHZgIdlGAZDw;src=10266423;type=invmedia;cat=singa0;rcb=6;ord=4543122122427;npa=0;auiddc=24033499.1781961469;gcldc=CjwKCAjw9NjRBhATEiwA_p2J8Vt_z7idkKffBqlEO2ddjZZ9c-Mkm6XaHGI6TEiBoZGGhJGz3iWkxhoCpWYQAvD_BwE;gclaw=CjwKCAjw9NjRBhATEiwA_p2J8Vt_z7idkKffBqlEO2ddjZZ9c-Mkm6XaHGI6TEiBoZGGhJGz3iWkxhoCpWYQAvD_BwE;u11=https%3A%2F%2Fwww.singaporeair.com%2Fmanagebooking%2Foverview;uaa=arm;uab=64;uafvl=Google%2520Chrome%3B149.0.7827.103%7CChromium%3B149.0.7827.103%7CNot)A%253BBrand%3B24.0.0.0;uamb=0;uam=;uap=macOS;uapv=26.5.0;uaw=0;pscdl=noapi;frm=0;_tu=KFA;gtm=45fe66h0v9190897570z86106680za20gzb6106680zd6106680xea;gcs=G111;gcd=13t3t3t3t5l1;dma=0;dc_fmt=2;tag_exp=115938465~115938469~118395334~119027224~119392696~119392704~119456239~119456247;epver=2;dc_random=1782051370_sQXZphnQGxsM1avz0QxPBfsMjQvnI3hKIA;_dc_test=1;~oref=https%3A%2F%2Fwww.singaporeair.com%2Fmanagebooking%2Foverview?:7:3
+[   64301ms] [WARNING] [Meta Pixel] - Invalid parameter format for currency. Please refer https://developers.facebook.com/docs/meta-pixel/reference/ for valid parameter specifications. @ https://connect.facebook.net/en_US/fbevents.js:183
+[   65154ms] [ERROR] Attestation check for Shared Storage on https://ara.paa-reporting-advertising.amazon failed. @ https://www.singaporeair.com/managebooking/overview:0
+[   68731ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'document-domain'. @ :0
+[   68731ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'window-placement'. @ :0
+[   68958ms] [LOG] Nudata request generated from Login @ https://www.singaporeair.com/assets/NuData/generated/nudata_tracker.js:1
+[   69481ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.singaporeair.com/content/dam/sia/json/chatbotvs/locales/en_UK.json:0
+[   69485ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.singaporeair.com/content/dam/sia/json/chatbotvs/locales/en_UK.json:0
+[   69485ms] [ERROR] TypeError: r.substr is not a function
+    at t.trim (https://www.singaporeair.com/assets/scripts/faredeal-n2611.js:1:77013)
+    at t.updateFareDealView (https://www.singaporeair.com/assets/scripts/faredeal-n2611.js:1:76687)
+    at https://www.singaporeair.com/assets/scripts/faredeal-n2611.js:1:75034
+    at e (https://www.singaporeair.com/assets/scripts/lib0-n2611.js:1:74829)
+    at o (https://www.singaporeair.com/assets/scripts/lib0-n2611.js:1:75068)
+    at https://www.singaporeair.com/assets/scripts/lib0-n2611.js:1:75369 @ https://www.singaporeair.com/assets/scripts/faredeal-n2611.js:0
+[   69487ms] [WARNING] [chatbotvs] Failed to load locale, i18n disabled. SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON @ https://www.singaporeair.com/assets/chatbotvs/build/p-8d686a98.entry.js:1
+[   83728ms] [WARNING] The resource https://www.singaporeair.com/assets/images/svg/logos/sq.svg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/managebooking:0
+[   83728ms] [WARNING] The resource https://www.singaporeair.com/assets/images/svg/logos/tr.svg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/managebooking:0
+[   83728ms] [WARNING] The resource https://www.singaporeair.com/assets/images/greater_choices-pey.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/managebooking:0
+[   83728ms] [WARNING] The resource https://www.singaporeair.com/assets/images/priority_treatment-pey.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/managebooking:0
+[   83728ms] [WARNING] The resource https://www.singaporeair.com/assets/images/left-wing.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/managebooking:0
+[   83728ms] [WARNING] The resource https://www.singaporeair.com/assets/images/svg/icons/dropdown.svg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/managebooking:0
+[   83728ms] [WARNING] The resource https://www.singaporeair.com/assets/images/greater_comfort-pey.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/managebooking:0
+[   83728ms] [WARNING] The resource https://www.singaporeair.com/assets/images/svg/logos/si.svg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/managebooking:0
+[   83728ms] [WARNING] The resource https://www.singaporeair.com/assets/images/svg/icons/ico-clock.svg was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/managebooking:0
+[   83728ms] [WARNING] The resource https://www.singaporeair.com/assets/images/right-wing.png was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.singaporeair.com/en_UK/sg/home#/managebooking:0
+[   84037ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://s.yimg.com/wi/ytc.js:0
+[   84048ms] ReferenceError: ttd_dom_ready is not defined
+    at <anonymous>:1:1
+    at https://www.googletagmanager.com/gtm.js?id=GTM-KQ5S&Aka3pmProtected=true:1036:429
+    at HTMLScriptElement.<anonymous> (https://www.googletagmanager.com/gtm.js?id=GTM-KQ5S&Aka3pmProtected=true:1037:132)
+[   84062ms] [WARNING] [Meta Pixel] - Invalid parameter format for currency. Please refer https://developers.facebook.com/docs/meta-pixel/reference/ for valid parameter specifications. @ https://connect.facebook.net/en_US/fbevents.js:183
+[   84349ms] [WARNING] [Meta Pixel] - Invalid parameter format for currency. Please refer https://developers.facebook.com/docs/meta-pixel/reference/ for valid parameter specifications. @ https://connect.facebook.net/en_US/fbevents.js:183
+[   84379ms] [WARNING] [Meta Pixel] - Invalid parameter format for currency. Please refer https://developers.facebook.com/docs/meta-pixel/reference/ for valid parameter specifications. @ https://connect.facebook.net/en_US/fbevents.js:183
+[   84432ms] ReferenceError: gtag is not defined
+    at https://10266423.fls.doubleclick.net/activityi;dc_pre=CIKc9eDCmJUDFePDPAIdwr8klA;src=10266423;type=invmedia;cat=singa0;rcb=18;ord=3969430388342;npa=0;auiddc=24033499.1781961469;gcldc=CjwKCAjw9NjRBhATEiwA_p2J8Vt_z7idkKffBqlEO2ddjZZ9c-Mkm6XaHGI6TEiBoZGGhJGz3iWkxhoCpWYQAvD_BwE;gclaw=CjwKCAjw9NjRBhATEiwA_p2J8Vt_z7idkKffBqlEO2ddjZZ9c-Mkm6XaHGI6TEiBoZGGhJGz3iWkxhoCpWYQAvD_BwE;u11=https%3A%2F%2Fwww.singaporeair.com%2Fen_uk%2Fsg%2Fhome;uaa=arm;uab=64;uafvl=Google%2520Chrome%3B149.0.7827.103%7CChromium%3B149.0.7827.103%7CNot)A%253BBrand%3B24.0.0.0;uamb=0;uam=;uap=macOS;uapv=26.5.0;uaw=0;pscdl=noapi;frm=0;_tu=KFA;gtm=45fe66h0v9190897570z86106680za20gzb6106680zd6106680xea;gcs=G111;gcd=13t3t3t3t5l1;dma=0;dc_fmt=2;tag_exp=115616986~115938466~115938468~119027224~119392696~119392704~119456239~119456247;epver=2;dc_random=1782051390_eV_BTnyEDy1rtd9U4zvKaixrXImR2Zlo-g;_dc_test=1;~oref=https%3A%2F%2Fwww.singaporeair.com%2Fen_UK%2Fsg%2Fhome?:7:3
+[   85210ms] [ERROR] Attestation check for Shared Storage on https://ara.paa-reporting-advertising.amazon failed. @ https://www.singaporeair.com/en_UK/sg/home#/managebooking:0
+[   92371ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'document-domain'. @ :0
+[   92371ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'window-placement'. @ :0
+[   92676ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at lh (https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/framework-1ce91eb6f9ecda85.js:1:46550)
+    at i (https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/framework-1ce91eb6f9ecda85.js:1:121053)
+    at oM (https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/framework-1ce91eb6f9ecda85.js:1:99037)
+    at oF (https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/framework-1ce91eb6f9ecda85.js:1:98907)
+    at ow (https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/framework-1ce91eb6f9ecda85.js:1:93980)
+    at x (https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/framework-1ce91eb6f9ecda85.js:1:130704)
+    at MessagePort.T (https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/framework-1ce91eb6f9ecda85.js:1:131234)
+[   92677ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at lh (https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/framework-1ce91eb6f9ecda85.js:1:46550)
+    at i (https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/framework-1ce91eb6f9ecda85.js:1:121053)
+    at oM (https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/framework-1ce91eb6f9ecda85.js:1:99037)
+    at oF (https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/framework-1ce91eb6f9ecda85.js:1:98907)
+    at ow (https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/framework-1ce91eb6f9ecda85.js:1:93980)
+    at x (https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/framework-1ce91eb6f9ecda85.js:1:130704)
+    at MessagePort.T (https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/framework-1ce91eb6f9ecda85.js:1:131234)
+[   92680ms] Error: Minified React error #423; visit https://reactjs.org/docs/error-decoder.html?invariant=423 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at i (https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/framework-1ce91eb6f9ecda85.js:1:120712)
+    at oM (https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/framework-1ce91eb6f9ecda85.js:1:99037)
+    at oF (https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/framework-1ce91eb6f9ecda85.js:1:98907)
+    at oS (https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/framework-1ce91eb6f9ecda85.js:1:95678)
+    at ow (https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/framework-1ce91eb6f9ecda85.js:1:94233)
+    at x (https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/framework-1ce91eb6f9ecda85.js:1:130704)
+    at MessagePort.T (https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/framework-1ce91eb6f9ecda85.js:1:131234)
+[  131444ms] [LOG] country.name:: Singapore @ https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/pages/siapayment/payment-details-cfa6f91f58d3dbf4.js:0
+[  143238ms] [TIMEEND] [encryptData] Execution Time: 43.77001953125 ms @ https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/pages/_app-0fcf966ad479476d.js:0
+[  144696ms] [LOG] Timer Stopped @ https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/pages/siapayment/payment-details-cfa6f91f58d3dbf4.js:0
+[  144697ms] [TIMEEND] [encryptData] Execution Time: 0.695068359375 ms @ https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/pages/_app-0fcf966ad479476d.js:0
+[  146582ms] [ERROR] Permissions policy violation: accelerometer is not allowed in this document. @ https://www.cdn-net.com/cc.js?tid=d7ac4441-6922-451d-a19b-59be97e82bdb&ts=1,782,051,451,857&sid=ee490b8fb9a4d570:30
+[  146582ms] [ERROR] Permissions policy violation: accelerometer is not allowed in this document. @ https://www.cdn-net.com/cc.js?tid=d7ac4441-6922-451d-a19b-59be97e82bdb&ts=1,782,051,451,857&sid=ee490b8fb9a4d570:31
+[  146582ms] [ERROR] Permissions policy violation: gyroscope is not allowed in this document. @ https://www.cdn-net.com/cc.js?tid=d7ac4441-6922-451d-a19b-59be97e82bdb&ts=1,782,051,451,857&sid=ee490b8fb9a4d570:31
+[  147307ms] [ERROR] Permissions policy violation: accelerometer is not allowed in this document. @ https://www.cdn-net.com/cc.js?tid=d7ac4441-6922-451d-a19b-59be97e82bdb&ts=1,782,051,451,857&sid=ee490b8fb9a4d570:30
+[  147307ms] [WARNING] The deviceorientation events are blocked by permissions policy. See https://github.com/w3c/webappsec-permissions-policy/blob/master/features.md#sensor-features @ https://www.cdn-net.com/cc.js?tid=d7ac4441-6922-451d-a19b-59be97e82bdb&ts=1,782,051,451,857&sid=ee490b8fb9a4d570:30
+[  147325ms] [LOG] a @ https://www.cdn-net.com/cc.js?tid=d7ac4441-6922-451d-a19b-59be97e82bdb&ts=1,782,051,451,857&sid=ee490b8fb9a4d570:102
+[  147326ms] [LOG] function a(){} @ https://www.cdn-net.com/cc.js?tid=d7ac4441-6922-451d-a19b-59be97e82bdb&ts=1,782,051,451,857&sid=ee490b8fb9a4d570:102
+[  147340ms] Uncaught (in promise) SecurityError: Failed to construct 'LinearAccelerationSensor': Access to sensor features is disallowed by permissions policy
+    at <anonymous> (https://www.cdn-net.com/cc.js?tid=d7ac4441-6922-451d-a19b-59be97e82bdb&ts=1,782,051,451,857&sid=ee490b8fb9a4d570:30:354)
+    at xc (https://www.cdn-net.com/cc.js?tid=d7ac4441-6922-451d-a19b-59be97e82bdb&ts=1,782,051,451,857&sid=ee490b8fb9a4d570:30:318)
+    at Mb (https://www.cdn-net.com/cc.js?tid=d7ac4441-6922-451d-a19b-59be97e82bdb&ts=1,782,051,451,857&sid=ee490b8fb9a4d570:29:342)
+    at H (https://www.cdn-net.com/cc.js?tid=d7ac4441-6922-451d-a19b-59be97e82bdb&ts=1,782,051,451,857&sid=ee490b8fb9a4d570:8:312)
+    at b (https://www.cdn-net.com/cc.js?tid=d7ac4441-6922-451d-a19b-59be97e82bdb&ts=1,782,051,451,857&sid=ee490b8fb9a4d570:17:234)
+    at Eb (https://www.cdn-net.com/cc.js?tid=d7ac4441-6922-451d-a19b-59be97e82bdb&ts=1,782,051,451,857&sid=ee490b8fb9a4d570:22:460)
+    at run (https://www.cdn-net.com/cc.js?tid=d7ac4441-6922-451d-a19b-59be97e82bdb&ts=1,782,051,451,857&sid=ee490b8fb9a4d570:110:145)
+    at tb (https://www.cdn-net.com/cc.js?tid=d7ac4441-6922-451d-a19b-59be97e82bdb&ts=1,782,051,451,857&sid=ee490b8fb9a4d570:63:167)
+    at window.__DEFAULT_NAMESPACE._cc.push (https://www.cdn-net.com/cc.js?tid=d7ac4441-6922-451d-a19b-59be97e82bdb&ts=1,782,051,451,857&sid=ee490b8fb9a4d570:144:12)
+    at <anonymous> (https://safekeyacs.americanexpress.com/payments/digital/gravity/v1/3ds/v2x/3dsmethod/request:17:6)
+[  147576ms] [LOG] success @ https://safekeyacs.americanexpress.com/payments/digital/gravity/secureweb/js/gravitycore.js:262
+[  147576ms] [LOG]  @ https://safekeyacs.americanexpress.com/payments/digital/gravity/secureweb/js/gravitycore.js:263
+[  148897ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://ap.gateway.mastercard.com/callbackInterface/gateway/db132d08f30e473daf6f2175889c6bb34e02ec796e460b83f346d1bb0e41b74a:0
+[  151346ms] [ERROR] Framing 'https://safekey-1.americanexpress.com/' violates the following report-only Content Security Policy directive: "frame-ancestors 'none'". The violation has been logged, but no further action has been taken.
+ @ :0
+[  153217ms] [ERROR] axp-script-supplier: error trying to get/parse consent cookie Error: Consent cookie value is missing or empty.
+    at _ (https://www.aexp-static.com/cdaas/one-app/modules/axp-gravity-root/1.15.8/axp-gravity-root.browser.js?clientCacheRevision=0ff83446-9d42-4712-8e86-b01da310ad6a:9:149651)
+    at https://www.aexp-static.com/cdaas/one-app/modules/axp-gravity-root/1.15.8/axp-gravity-root.browser.js?clientCacheRevision=0ff83446-9d42-4712-8e86-b01da310ad6a:9:159020
+    at https://www.aexp-static.com/cdaas/one-app/modules/axp-gravity-root/1.15.8/axp-gravity-root.browser.js?clientCacheRevision=0ff83446-9d42-4712-8e86-b01da310ad6a:9:159162 @ https://safekey-1.americanexpress.com/ruxitagentjs_ICA15789NPQRTUVXfqrux_10333260303165926.js:396
+[  156755ms] [ERROR] Access to XMLHttpRequest at 'https://icm.aexp-static.com/content/dam/gravity/css/safeKey.css' from origin 'https://safekey-1.americanexpress.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://safekey-1.americanexpress.com/otc:0
+[  156756ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://icm.aexp-static.com/content/dam/gravity/css/safeKey.css:0
+[  178488ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'document-domain'. @ :0
+[  178488ms] [WARNING] Error with Permissions-Policy header: Unrecognized feature: 'window-placement'. @ :0
+[  178770ms] [TIMEEND] [encryptData] Execution Time: 0.73095703125 ms @ https://www.singaporeair.com/assets/siapayment/p2272147/_next/static/chunks/pages/_app-0fcf966ad479476d.js:0

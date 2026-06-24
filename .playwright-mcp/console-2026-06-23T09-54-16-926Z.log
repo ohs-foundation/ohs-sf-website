@@ -1,0 +1,43 @@
+[    4671ms] [ERROR] Refused to get unsafe header "X-Sg-Cs" @ https://www.google.com/search?q=avs+singapore&rlz=1C5CHFA_enSG1104SG1104&oq=avs+&gs_lcrp=EgZjaHJvbWUqDwgBECMYJxiABBiKBRjwBTIGCAAQRRg5Mg8IARAjGCcYgAQYigUY8AUyBwgCEAAYgAQyBwgDEAAYgAQyBwgEEAAYgAQyBwgFEAAYgAQyBwgGEAAYgAQyBwgHEAAYgAQyDQgIEC4YrwEYxwEYgAQyBwgJEAAYgATSAQgzMTY3ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8:42
+[    4671ms] [ERROR] Refused to get unsafe header "X-Sorry-Redirect" @ https://www.google.com/search?q=avs+singapore&rlz=1C5CHFA_enSG1104SG1104&oq=avs+&gs_lcrp=EgZjaHJvbWUqDwgBECMYJxiABBiKBRjwBTIGCAAQRRg5Mg8IARAjGCcYgAQYigUY8AUyBwgCEAAYgAQyBwgDEAAYgAQyBwgEEAAYgAQyBwgFEAAYgAQyBwgGEAAYgAQyBwgHEAAYgAQyDQgIEC4YrwEYxwEYgAQyBwgJEAAYgATSAQgzMTY3ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8:42
+[    4930ms] [ERROR] Refused to get unsafe header "X-Sg-Cs" @ https://www.google.com/search?q=avs+singapore&rlz=1C5CHFA_enSG1104SG1104&oq=avs+&gs_lcrp=EgZjaHJvbWUqDwgBECMYJxiABBiKBRjwBTIGCAAQRRg5Mg8IARAjGCcYgAQYigUY8AUyBwgCEAAYgAQyBwgDEAAYgAQyBwgEEAAYgAQyBwgFEAAYgAQyBwgGEAAYgAQyBwgHEAAYgAQyDQgIEC4YrwEYxwEYgAQyBwgJEAAYgATSAQgzMTY3ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8:42
+[    4930ms] [ERROR] Refused to get unsafe header "X-Sorry-Redirect" @ https://www.google.com/search?q=avs+singapore&rlz=1C5CHFA_enSG1104SG1104&oq=avs+&gs_lcrp=EgZjaHJvbWUqDwgBECMYJxiABBiKBRjwBTIGCAAQRRg5Mg8IARAjGCcYgAQYigUY8AUyBwgCEAAYgAQyBwgDEAAYgAQyBwgEEAAYgAQyBwgFEAAYgAQyBwgGEAAYgAQyBwgHEAAYgAQyDQgIEC4YrwEYxwEYgAQyBwgJEAAYgATSAQgzMTY3ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8:42
+[    5687ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/__next._head.txt?_rsc=7h4NYy5eoyMcNlUN:0
+[    5689ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/__next.$oc$permalink.txt?_rsc=Xw58m-Wep96CWE8G:0
+[    5695ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/__next._index.txt?_rsc=yIp22O3xgPPxC28X:0
+[    5759ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/contact-us/__next._tree.txt?_rsc=5CB68i4pnAekjehf:0
+[    5812ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/__next.$oc$permalink.__page__.txt?_rsc=XqBreVih1k-vk7J3:0
+[    6287ms] [INFO] [2026-06-23T17:54:23+08:00]  VICA webchat version: 1.40.0 @ https://webchat.vica.gov.sg/static/js/chat.js:183
+[    7262ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/noticeboard/cat-management-framework/__next._tree.txt?_rsc=5CB68i4pnAekjehf:0
+[    8024ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/pets/__next._tree.txt?_rsc=5CB68i4pnAekjehf:0
+[    8030ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/wildlife/__next._tree.txt?_rsc=5CB68i4pnAekjehf:0
+[    8035ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/businesses/__next._tree.txt?_rsc=5CB68i4pnAekjehf:0
+[   10938ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/pets/licensing-a-pet/__next._tree.txt?_rsc=5CB68i4pnAekjehf:0
+[   10940ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/pets/importing-exporting-a-pet/__next._tree.txt?_rsc=5CB68i4pnAekjehf:0
+[   11776ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/news/__next._tree.txt?_rsc=5CB68i4pnAekjehf:0
+[   14702ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/pets/licensing-a-pet/__next._tree.txt?_rsc=beskfCtrfqOKVGl0:0
+[   14702ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/pets/caring-for-a-pet/__next._tree.txt?_rsc=beskfCtrfqOKVGl0:0
+[   14702ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/pets/getting-a-pet/__next._tree.txt?_rsc=beskfCtrfqOKVGl0:0
+[   14702ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/pets/death-of-a-pet/__next._tree.txt?_rsc=beskfCtrfqOKVGl0:0
+[   14821ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/contact-us/__next._tree.txt?_rsc=beskfCtrfqOKVGl0:0
+[   17382ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/pets/rescuing-a-pet-non-emergency/__next._tree.txt?_rsc=beskfCtrfqOKVGl0:0
+[   17406ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/pets/lost-pets/__next._tree.txt?_rsc=beskfCtrfqOKVGl0:0
+[   19934ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/noticeboard/__next._tree.txt?_rsc=0cdw8PNYxwDu4DQ8:0
+[   19936ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/pets/__next._tree.txt?_rsc=0cdw8PNYxwDu4DQ8:0
+[   19951ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/pets/licensing-a-pet/applying-for-dog-and-cat-licences/__next._tree.txt?_rsc=0cdw8PNYxwDu4DQ8:0
+[   19951ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/contact-us/__next._tree.txt?_rsc=0cdw8PNYxwDu4DQ8:0
+[   19962ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/__next._head.txt?_rsc=_VG_K7ch7O2i7I1t:0
+[   19972ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/__next._index.txt?_rsc=WoQS8NoRrbRrsF64:0
+[   19992ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/pets/licensing-a-pet/information-on-dog-and-cat-licences/__next._tree.txt?_rsc=0cdw8PNYxwDu4DQ8:0
+[   20003ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/__next.$oc$permalink.txt?_rsc=gy4WpddEuoYIPvDK:0
+[   20025ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/__next.$oc$permalink.__page__.txt?_rsc=0OuyiFMxzkNwjNGy:0
+[   20867ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/news/__next._tree.txt?_rsc=0cdw8PNYxwDu4DQ8:0
+[   20882ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/community-animals/__next._tree.txt?_rsc=0cdw8PNYxwDu4DQ8:0
+[   20910ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/wildlife/__next._tree.txt?_rsc=0cdw8PNYxwDu4DQ8:0
+[   20913ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/payment-methods/__next._tree.txt?_rsc=0cdw8PNYxwDu4DQ8:0
+[   20957ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/businesses/__next._tree.txt?_rsc=0cdw8PNYxwDu4DQ8:0
+[   21330ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/outreach/__next._tree.txt?_rsc=0cdw8PNYxwDu4DQ8:0
+[   21384ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/about-us/__next._tree.txt?_rsc=0cdw8PNYxwDu4DQ8:0
+[   21578ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/privacy-statement/__next._tree.txt?_rsc=0cdw8PNYxwDu4DQ8:0
+[   21580ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/terms-of-use/__next._tree.txt?_rsc=0cdw8PNYxwDu4DQ8:0
+[  418385ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://avs.nparks.gov.sg/pets/licensing-a-pet/applying-for-dog-and-cat-licences/__next._tree.txt?_rsc=0cdw8PNYxwDu4DQ8:0

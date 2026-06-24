@@ -1,0 +1,185 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation "Primary" [ref=e3]:
+      - link "Open Health Stack Foundation home" [ref=e4] [cursor=pointer]:
+        - /url: index.html
+        - generic [ref=e10]:
+          - generic [ref=e11]: Open Health Stack
+          - generic [ref=e12]: Software Foundation
+      - generic [ref=e13]:
+        - link "Foundation" [ref=e14] [cursor=pointer]:
+          - /url: foundation.html
+        - link "Projects" [ref=e15] [cursor=pointer]:
+          - /url: projects.html
+        - link "Community" [ref=e16] [cursor=pointer]:
+          - /url: community.html
+        - link "Blog" [ref=e17] [cursor=pointer]:
+          - /url: blog.html
+      - link "Become a member" [ref=e19] [cursor=pointer]:
+        - /url: "#membership"
+  - generic [ref=e21]:
+    - generic [ref=e22]: The next chapter
+    - heading "An independent, community-owned software foundation." [level=1] [ref=e23]
+    - paragraph [ref=e24]: We're transitioning the current Open Health Stack from a Google-led project into an umbrella project at the Linux Foundation — creating a neutral home built to support the global health ecosystem it serves.
+  - generic [ref=e27]:
+    - generic [ref=e28]: The charter · North star
+    - heading "Catalyze sustainable, next-gen digital health solutions." [level=2] [ref=e29]
+    - paragraph [ref=e30]: The OHS-SF aims to accelerate "next-gen" digital health aligned with the "Full-STAC remedy" approach — co-authored by the WHO Digital Health Unit and a community of partners — by lowering the cost of innovation and promoting open standards for health.
+  - generic [ref=e42]:
+    - generic [ref=e43]:
+      - generic [ref=e44]: The charter
+      - heading "Four commitments, one clear boundary." [level=2] [ref=e45]
+      - paragraph [ref=e46]: What the foundation will do — and the one thing it deliberately won't.
+    - generic [ref=e47]:
+      - generic [ref=e48]:
+        - generic [ref=e49]: "01"
+        - generic [ref=e50]:
+          - heading "Develop & maintain open-source code" [level=3] [ref=e51]
+          - paragraph [ref=e52]: Supporting standards based development that promote interoperability (HL7 FHIR) and reusable AI commons libraries and tooling (built on skills, MCP).
+      - generic [ref=e53]:
+        - generic [ref=e54]: "02"
+        - generic [ref=e55]:
+          - heading "Enable safe AI adoption" [level=3] [ref=e56]
+          - paragraph [ref=e57]: Identifying initiatives like evals and benchmarks to support efforts to develop safe, effective, Verifiable AI (with WHO and partners).
+      - generic [ref=e58]:
+        - generic [ref=e59]: "03"
+        - generic [ref=e60]:
+          - heading "Capacity building, advocacy & ecosystem support" [level=3] [ref=e61]
+          - paragraph [ref=e62]: Promoting person-centered digital transformation and building capacity through events, workshops and bootcamps.
+      - generic [ref=e63]:
+        - generic [ref=e64]: "04"
+        - generic [ref=e65]:
+          - heading "Standards collaboration" [level=3] [ref=e66]
+          - paragraph [ref=e67]: Partnering with standards development organizations and other software foundations to proliferate reference architectures and open standards.
+    - generic [ref=e68]:
+      - img [ref=e70]
+      - generic [ref=e73]:
+        - heading "The boundary — no \"complete products\"" [level=3] [ref=e74]
+        - paragraph [ref=e75]: The foundation will not publish standalone, deployable end-user solutions. It builds the blocks; the community builds the applications.
+  - generic [ref=e77]:
+    - generic [ref=e78]:
+      - generic [ref=e79]: Governance
+      - heading "Balanced voices, transparent decisions." [level=2] [ref=e80]
+      - paragraph [ref=e81]: Multiple pathways ensure inclusivity, balance and strategic focus for the global health ecosystem.
+    - generic [ref=e82]:
+      - generic [ref=e83]:
+        - img [ref=e85]
+        - heading "External Advisory Council" [level=3] [ref=e89]
+        - paragraph [ref=e90]: Voices from multilaterals, NGOs and Ministries of Health keep the foundation focused on core global health goals.
+      - generic [ref=e91]:
+        - img [ref=e93]
+        - heading "Balanced board" [level=3] [ref=e95]
+        - paragraph [ref=e96]: A capped board size balances voices and recognizes strategic grants on par with membership fees — with provision for the WHO as a strategic partner.
+  - generic [ref=e98]:
+    - generic [ref=e99]:
+      - generic [ref=e100]: Why this model
+      - heading "Built for neutrality, sustainability and scale." [level=2] [ref=e101]
+    - generic [ref=e102]:
+      - generic [ref=e103]:
+        - img [ref=e105]
+        - generic [ref=e107]:
+          - heading "Neutral, open governance" [level=3] [ref=e108]
+          - paragraph [ref=e109]: A trusted non-profit holds the project's assets and trademark. Decisions are made transparently by those doing the work.
+      - generic [ref=e110]:
+        - img [ref=e112]
+        - generic [ref=e115]:
+          - heading "Sustainable, diverse funding" [level=3] [ref=e116]
+          - paragraph [ref=e117]: Tiered memberships and grants de-risk the project — no single funder, no single point of failure.
+      - generic [ref=e118]:
+        - img [ref=e120]
+        - generic [ref=e122]:
+          - heading "Future-ready platform" [level=3] [ref=e123]
+          - paragraph [ref=e124]: An umbrella structure ready to house new initiatives like an AI Commons — ready for what comes next.
+      - generic [ref=e125]:
+        - img [ref=e127]
+        - generic [ref=e130]:
+          - heading "Cost-effective by design" [level=3] [ref=e131]
+          - paragraph [ref=e132]: The Linux Foundation shared "Foundation-as-a-Service" model keeps overheads low meaning the majority of funds support coordination of technical projects and the community.
+  - generic [ref=e134]:
+    - generic [ref=e135]:
+      - generic [ref=e136]: Membership
+      - heading "Take a seat at the table." [level=2] [ref=e137]
+      - paragraph [ref=e138]: Help shape the charter, budget and direction — and build an enduring association with a first-of-its-kind initiative.
+    - generic [ref=e139]:
+      - paragraph [ref=e140]: Standard tiers · Linux Foundation model
+      - generic [ref=e141]:
+        - generic [ref=e142]:
+          - heading "Premier" [level=3] [ref=e143]
+          - paragraph [ref=e144]: $100k / year · 3-year commitment
+        - paragraph [ref=e146]: For organizations shaping the foundation. Includes a dedicated Governing Board seat, a hand in the charter, budget and direction, and founding-member brand association. Up-front grants may be accepted in lieu of fees.
+      - generic [ref=e147]:
+        - generic [ref=e148]:
+          - heading "General" [level=3] [ref=e149]
+          - paragraph [ref=e150]: Sliding scale, by organization size · incl. $5k/yr Linux Foundation membership
+        - paragraph [ref=e152]: The fee scales with organization size — indicatively $10k/year up to 100 employees. General members nominate a board representative (one per five members, up to three total) and take part in working groups and the technical, outreach and other committees.
+      - generic [ref=e153]:
+        - generic [ref=e154]:
+          - heading "Associate" [level=3] [ref=e155]
+          - paragraph [ref=e156]: No fee · non-profit, academic & government entities
+        - paragraph [ref=e158]: Reserved for approved non-profit, academic and government entities. Associate members may stand for election to the Governing Board (one seat available) and participate fully in working groups and committees.
+      - paragraph [ref=e159]: Additional pathways · OHS-SF
+      - generic [ref=e160]:
+        - generic [ref=e161]:
+          - heading "Inclusive" [level=3] [ref=e162]
+          - paragraph [ref=e163]: No fee · LMIC for-profits under 100 employees
+        - paragraph [ref=e165]: The standard $10k/year General fee is waived to maximize accessibility for entrepreneurs in lower- and middle-income countries, with full participation in working groups.
+      - generic [ref=e166]:
+        - generic [ref=e167]:
+          - heading "Sponsorships or grants" [level=3] [ref=e168]
+          - paragraph [ref=e169]: Custom · funders & multilaterals
+        - paragraph [ref=e171]: We are open to mission aligned grants or financial sponsorships for specific projects or activities that support the foundations work.
+    - link "Get in touch about membership" [ref=e173] [cursor=pointer]:
+      - /url: mailto:fred@ohs.foundation
+  - contentinfo [ref=e174]:
+    - generic [ref=e175]:
+      - generic [ref=e176]:
+        - generic [ref=e177]:
+          - link "Open Health Stack Software Foundation" [ref=e178] [cursor=pointer]:
+            - /url: index.html
+            - generic [ref=e184]:
+              - generic [ref=e185]: Open Health Stack
+              - generic [ref=e186]: Software Foundation
+          - paragraph [ref=e187]: A neutral, community-owned home for open-source building blocks accelerating next-gen, AI-powered digital health.
+        - generic [ref=e188]:
+          - heading "Foundation" [level=4] [ref=e189]
+          - list [ref=e190]:
+            - listitem [ref=e191]:
+              - link "Mission & charter" [ref=e192] [cursor=pointer]:
+                - /url: foundation.html#mission
+            - listitem [ref=e193]:
+              - link "Governance" [ref=e194] [cursor=pointer]:
+                - /url: foundation.html#governance
+            - listitem [ref=e195]:
+              - link "Membership" [ref=e196] [cursor=pointer]:
+                - /url: foundation.html#membership
+        - generic [ref=e197]:
+          - heading "Projects" [level=4] [ref=e198]
+          - list [ref=e199]:
+            - listitem [ref=e200]:
+              - link "FHIR Foundations" [ref=e201] [cursor=pointer]:
+                - /url: projects.html#core
+            - listitem [ref=e202]:
+              - link "Reference Toolkit" [ref=e203] [cursor=pointer]:
+                - /url: projects.html#toolkit
+            - listitem [ref=e204]:
+              - link "AI Commons" [ref=e205] [cursor=pointer]:
+                - /url: projects.html#ai
+            - listitem [ref=e206]:
+              - link "Steering committees" [ref=e207] [cursor=pointer]:
+                - /url: projects.html#committees
+        - generic [ref=e208]:
+          - heading "Community" [level=4] [ref=e209]
+          - list [ref=e210]:
+            - listitem [ref=e211]:
+              - link "Get involved" [ref=e212] [cursor=pointer]:
+                - /url: community.html#involved
+            - listitem [ref=e213]:
+              - link "Events" [ref=e214] [cursor=pointer]:
+                - /url: community.html#events
+            - listitem [ref=e215]:
+              - link "Channels" [ref=e216] [cursor=pointer]:
+                - /url: community.html#channels
+            - listitem [ref=e217]:
+              - link "Contact" [ref=e218] [cursor=pointer]:
+                - /url: mailto:hello@ohs.foundation
+      - generic [ref=e220]: © 2026 Open Health Stack Software Foundation · a project of the Linux Foundation.

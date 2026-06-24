@@ -1,0 +1,13 @@
+- generic [ref=e3]:
+  - link "Open Health Stack Foundation home" [ref=e4] [cursor=pointer]:
+    - /url: index.html
+    - generic [ref=e10]:
+      - text: Open Health Stack
+      - generic [ref=e11]: Software Foundation
+  - generic [ref=e12]: Private preview
+  - heading "Enter access code" [level=1] [ref=e13]
+  - generic [ref=e14]:
+    - textbox "Access code" [ref=e15]:
+      - /placeholder: ······
+    - button "Continue" [ref=e16] [cursor=pointer]
+  - alert [ref=e17]

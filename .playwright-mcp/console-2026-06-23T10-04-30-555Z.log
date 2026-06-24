@@ -1,0 +1,79 @@
+[     180ms] [WARNING] Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading @ https://maps.googleapis.com/maps/api/js?key=AIzaSyBoKzpxfc9OS494L1-abWNOGYaG--VK5is&ver=7.0:327
+[     184ms] [LOG] Welcome to LS Popularity, Enjoy! @ https://www.littlestepsasia.com/nitropack_static/GJbRqRMYLMuAojDUrViSTTylWaNqvHmP/assets/static/optimized/rev-7ac988b/www.littlestepsasia.com/wp-content/themes/littlesteps/includes/popularity/js/nitro-min-515256a13fd66d71a2887d1dc1ecc93c.ls-popularity.js:0
+[     195ms] [LOG] Welcome to CoreUX Child, Enjoy! @ https://www.littlestepsasia.com/nitropack_static/GJbRqRMYLMuAojDUrViSTTylWaNqvHmP/assets/static/optimized/rev-7ac988b/www.littlestepsasia.com/wp-content/themes/littlesteps/assets/js/nitro-min-871708e93740f2b399bad0389ef4aa73.coreux-child.min.js:0
+[     231ms] [LOG] Welcome to CoreUX, Enjoy! @ https://www.littlestepsasia.com/nitropack_static/GJbRqRMYLMuAojDUrViSTTylWaNqvHmP/assets/static/optimized/rev-7ac988b/www.littlestepsasia.com/wp-content/themes/coreux/assets/js/nitro-min-f39eefcd4a1bf7f691b3b61da1ab91ae.coreux.min.js:0
+[     255ms] [LOG] ce.fn.init @ https://www.littlestepsasia.com/nitropack_static/GJbRqRMYLMuAojDUrViSTTylWaNqvHmP/assets/static/optimized/rev-7ac988b/www.littlestepsasia.com/wp-content/themes/littlesteps/assets/js/nitro-min-871708e93740f2b399bad0389ef4aa73.coreux-child.min.js:0
+[     337ms] [ERROR] undefined @ https://www.littlestepsasia.com/nitropack_static/GJbRqRMYLMuAojDUrViSTTylWaNqvHmP/assets/static/optimized/rev-7ac988b/www.bugherd.com/nitro-min-3de91d185ecf60d6e2b72f28c9f56104.sidebarv2.js:0
+[     337ms] [ERROR] [AUTH] Unauthenticated Error: Cannot initialize BugHerd
+    at https://www.littlestepsasia.com/nitropack_static/GJbRqRMYLMuAojDUrViSTTylWaNqvHmP/assets/static/optimized/rev-7ac988b/www.bugherd.com/nitro-min-3de91d185ecf60d6e2b72f28c9f56104.sidebarv2.js:1:10675
+    at async https://www.littlestepsasia.com/nitropack_static/GJbRqRMYLMuAojDUrViSTTylWaNqvHmP/assets/static/optimized/rev-7ac988b/www.bugherd.com/nitro-min-3de91d185ecf60d6e2b72f28c9f56104.sidebarv2.js:1:18821 @ https://www.littlestepsasia.com/nitropack_static/GJbRqRMYLMuAojDUrViSTTylWaNqvHmP/assets/static/optimized/rev-7ac988b/www.bugherd.com/nitro-min-3de91d185ecf60d6e2b72f28c9f56104.sidebarv2.js:0
+[     369ms] [ERROR] {message: Invalid OAuth 2.0 Access Token, type: IGApiException, code: 190, error_data: Object, fbtrace_id: AxSmXwRzxdx0XBYCi3K1n5q} @ https://www.littlestepsasia.com/nitropack_static/GJbRqRMYLMuAojDUrViSTTylWaNqvHmP/assets/static/optimized/rev-7ac988b/www.littlestepsasia.com/wp-content/plugins/elfsight-instagram-feed-cc/assets/nitro-min-f39eefcd4a1bf7f691b3b61da1ab91ae.elfsight-instagram-feed.js:0
+[     389ms] [LOG] [tp] entrypoint init @ https://emrldco.com/NDY4Njkw.js?t=468690:0
+[     470ms] [LOG] {state: not_needed, previousState: unknown, userAction: false} @ https://emrldco.com/chunk.la43udvG.js:13
+[    1270ms] [WARNING] The PerformanceObserver does not support buffered flag with the entryTypes argument. @ https://emrldco.com/chunk.7i6acXGO.js:4
+[    1374ms] [LOG] [tp] link_switcher init @ https://emrldco.com/chunk.la43udvG.js:13
+[    1389ms] [LOG] [tp] bb init @ https://emrldco.com/chunk.la43udvG.js:13
+[    2388ms] [LOG] [tp] link_switcher convert links @ https://emrldco.com/chunk.la43udvG.js:13
+[   12367ms] [ERROR] Error with Permissions-Policy header: Parse of permissions policy failed because of errors reported by structured header parser. @ :0
+[   12783ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.google.com') does not match the recipient window's origin ('https://acmi.org.sg'). @ https://www.googletagmanager.com/gtag/js?id=G-MP3BD2TP8H:874
+[   12783ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('https://acmi.org.sg'). @ https://www.googletagmanager.com/gtag/js?id=G-MP3BD2TP8H:874
+[   12783ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://m.youtube.com') does not match the recipient window's origin ('https://acmi.org.sg'). @ https://www.googletagmanager.com/gtag/js?id=G-MP3BD2TP8H:874
+[   12930ms] [LOG] JQMIGRATE: Migrate is installed, version 3.4.1 @ https://acmi.org.sg/wp-content/uploads/siteground-optimizer-assets/siteground-optimizer-combined-js-d4921a22d9e5eb218941f5093ea30ae8.js:6
+[   13047ms] [LOG] JQMIGRATE: Migrate plugin loaded multiple times @ https://acmi.org.sg/wp-content/uploads/siteground-optimizer-assets/siteground-optimizer-combined-js-d4921a22d9e5eb218941f5093ea30ae8.js:1589
+[   13047ms] [LOG] JQMIGRATE: Migrate is installed, version 3.3.2 @ https://acmi.org.sg/wp-content/uploads/siteground-optimizer-assets/siteground-optimizer-combined-js-d4921a22d9e5eb218941f5093ea30ae8.js:1589
+[   13395ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://acmi.org.sg/wp-json/wp/v2/users/me?context=edit&_locale=user:0
+[   14046ms] Object
+[   25115ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.google.com') does not match the recipient window's origin ('https://acmi.org.sg'). @ https://www.googletagmanager.com/gtag/js?id=G-MP3BD2TP8H:874
+[   25115ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://www.youtube.com') does not match the recipient window's origin ('https://acmi.org.sg'). @ https://www.googletagmanager.com/gtag/js?id=G-MP3BD2TP8H:874
+[   25115ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://m.youtube.com') does not match the recipient window's origin ('https://acmi.org.sg'). @ https://www.googletagmanager.com/gtag/js?id=G-MP3BD2TP8H:874
+[32190296ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://www.youtube.com/generate_204:0
+[32289246ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://www.youtube.com/generate_204:0
+[32292828ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/meta:0
+[32292831ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/conversations?limit=100&pinned=true:0
+[32292832ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/conversations?limit=100&pinned=false:0
+[32292832ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/site:0
+[32292832ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/parameters:0
+[32292833ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/webapp/access-mode?appCode=euIn4jrJyh5loYsx:0
+[32292833ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://cloud.dify.ai/console/api/system-features:0
+[32292833ms] [ERROR] NetworkError: Request failed due to a network error: GET https://cloud.dify.ai/console/api/system-features
+    at #o (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:22519)
+    at async #r (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:20752)
+    at async u (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:12148)
+    at async https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:13243
+    at async eg (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:27192)
+    at async r (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:1755)
+    at async eI (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:37238)
+    at async X.call (https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:9:7301)
+    at async https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:9:1906
+    at async https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:1:2626
+    at async Proxy.<anonymous> (https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:1:6350)
+    at async queryFn (https://udify.app/_next/static/chunks/0dqni040evs-3.js:1:3626) @ https://udify.app/_next/static/chunks/0r7jk8u5n050i.js:476
+[32292833ms] [ERROR] [systemFeatures] fetch failed, using defaults NetworkError: Request failed due to a network error: GET https://cloud.dify.ai/console/api/system-features
+    at #o (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:22519)
+    at async #r (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:20752)
+    at async u (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:12148)
+    at async https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:13243
+    at async eg (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:27192)
+    at async r (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:1755)
+    at async eI (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:37238)
+    at async X.call (https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:9:7301)
+    at async https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:9:1906
+    at async https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:1:2626
+    at async Proxy.<anonymous> (https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:1:6350)
+    at async queryFn (https://udify.app/_next/static/chunks/0dqni040evs-3.js:1:3626) @ https://udify.app/_next/static/chunks/0r7jk8u5n050i.js:476
+[32293909ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/meta:0
+[32293911ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/webapp/access-mode?appCode=euIn4jrJyh5loYsx:0
+[32293911ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/site:0
+[32293913ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/parameters:0
+[32296105ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/parameters:0
+[32296106ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/site:0
+[32296106ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/webapp/access-mode?appCode=euIn4jrJyh5loYsx:0
+[32296106ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/meta:0
+[32302789ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/site:0
+[32302791ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/webapp/access-mode?appCode=euIn4jrJyh5loYsx:0
+[32302792ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/meta:0
+[32302793ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/parameters:0
+[32386442ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://www.youtube.com/generate_204:0
+[83835879ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://www.youtube.com/generate_204:0
+[83879455ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://www.youtube.com/generate_204:0
+[83959937ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://www.youtube.com/generate_204:0
