@@ -45,47 +45,61 @@
 </div>
 <script>
 (function () {
-  var CORRECT_PIN = '797283';
-  var EXPIRY_MS = 30 * 24 * 60 * 60 * 1000;
-
   function getReturn() {
     var params = new URLSearchParams(location.search);
     var ret = params.get('return');
-    if (!ret) return 'index.html';
+    if (!ret) return '/';
     try {
-      var url = new URL(ret);
-      if (url.origin !== location.origin) return 'index.html';
-      return ret;
-    } catch (e) { return 'index.html'; }
+      var u = new URL(ret, location.origin);
+      return u.origin === location.origin ? ret : '/';
+    } catch (e) { return '/'; }
   }
 
   var card  = document.getElementById('lockCard');
   var form  = document.getElementById('lockForm');
   var input = document.getElementById('pinInput');
   var error = document.getElementById('lockError');
+  var btn   = form.querySelector('[type=submit]');
+
+  function shake(msg) {
+    input.value = '';
+    error.textContent = msg || 'Incorrect code — try again';
+    card.classList.remove('shake');
+    void card.offsetWidth;
+    card.classList.add('shake');
+    card.addEventListener('animationend', function h() {
+      card.classList.remove('shake');
+      card.removeEventListener('animationend', h);
+    });
+    btn.disabled = false;
+    btn.textContent = 'Continue';
+    input.focus();
+  }
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    if (input.value.trim() === CORRECT_PIN) {
-      try {
-        localStorage.setItem('ohs_auth', JSON.stringify({ exp: Date.now() + EXPIRY_MS }));
-      } catch(e) {
-        error.textContent = 'Storage is disabled in your browser — access cannot be saved.';
-        return;
+    var pin = input.value.trim();
+    if (!pin) return;
+
+    btn.disabled = true;
+    btn.textContent = 'Checking…';
+    error.textContent = '';
+
+    fetch('/verify-pin', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pin: pin })
+    })
+    .then(function (res) {
+      if (res.ok) {
+        window.location.replace(getReturn());
+      } else {
+        shake();
       }
-      window.location.replace(getReturn());
-    } else {
-      input.value = '';
-      error.textContent = 'Incorrect code — try again';
-      card.classList.remove('shake');
-      void card.offsetWidth;
-      card.classList.add('shake');
-      card.addEventListener('animationend', function h() {
-        card.classList.remove('shake');
-        card.removeEventListener('animationend', h);
-      });
-      input.focus();
-    }
+    })
+    .catch(function () {
+      shake('Could not connect — try again');
+    });
   });
 })();
 </script>
