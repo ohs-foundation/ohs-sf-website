@@ -3,16 +3,6 @@
 
 <head>
   <meta charset="UTF-8" />
-  <script>
-    (function () {
-      try {
-        var a = localStorage.getItem('ohs_auth');
-        if (a) { try { if (Date.now() < JSON.parse(a).exp) return; } catch (e) { } }
-      } catch (e) { }
-      if (location.hostname === "localhost" || location.hostname === "127.0.0.1") return;
-      window.location.replace('lock.html?return=' + encodeURIComponent(location.href));
-    })();
-  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <title>Open Health Stack Foundation — Building blocks for global digital health</title>
