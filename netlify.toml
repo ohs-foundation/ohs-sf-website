@@ -1,0 +1,7 @@
+[build]
+  publish = "."
+
+# Run the auth gate on every request
+[[edge_functions]]
+  path = "/*"
+  function = "auth"
