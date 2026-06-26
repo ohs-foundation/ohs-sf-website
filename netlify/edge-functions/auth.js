@@ -27,7 +27,7 @@ export default async function auth(request, context) {
   // ── Auth check ───────────────────────────────────────────────────────────
   if (!PUBLIC_PATHS.has(url.pathname)) {
     const cookie = request.headers.get('Cookie') ?? '';
-    const secret = (Netlify.env.get('SESSION_SECRET') ?? Deno.env.get('SESSION_SECRET') ?? '').trim();
+    const secret = (Deno.env.get('SESSION_SECRET') ?? '').trim();
     const authed = await isValidSession(cookie, secret);
 
     if (!authed) {
@@ -48,8 +48,8 @@ async function handleVerify(request, context) {
   try { body = await request.json(); }
   catch { return jsonRes({ ok: false }, 400); }
 
-  const correctPin    = (Netlify.env.get('CORRECT_PIN')    ?? Deno.env.get('CORRECT_PIN')    ?? '').trim();
-  const sessionSecret = (Netlify.env.get('SESSION_SECRET') ?? Deno.env.get('SESSION_SECRET') ?? '').trim();
+  const correctPin    = (Deno.env.get('CORRECT_PIN')    ?? '').trim();
+  const sessionSecret = (Deno.env.get('SESSION_SECRET') ?? '').trim();
 
   if (!correctPin || !body.pin || String(body.pin).trim() !== correctPin) {
     return jsonRes({ ok: false }, 401);
