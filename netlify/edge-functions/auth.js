@@ -27,7 +27,8 @@ export default async function auth(request, context) {
   // ── Auth check ───────────────────────────────────────────────────────────
   if (!PUBLIC_PATHS.has(url.pathname)) {
     const cookie = request.headers.get('Cookie') ?? '';
-    const authed = await isValidSession(cookie, Deno.env.get('SESSION_SECRET'));
+    const secret = (Netlify.env.get('SESSION_SECRET') ?? Deno.env.get('SESSION_SECRET') ?? '').trim();
+    const authed = await isValidSession(cookie, secret);
 
     if (!authed) {
       const dest = new URL('/lock.html', url.origin);
@@ -47,11 +48,14 @@ async function handleVerify(request, context) {
   try { body = await request.json(); }
   catch { return jsonRes({ ok: false }, 400); }
 
-  if (!body.pin || body.pin !== Deno.env.get('CORRECT_PIN')) {
+  const correctPin    = (Netlify.env.get('CORRECT_PIN')    ?? Deno.env.get('CORRECT_PIN')    ?? '').trim();
+  const sessionSecret = (Netlify.env.get('SESSION_SECRET') ?? Deno.env.get('SESSION_SECRET') ?? '').trim();
+
+  if (!correctPin || !body.pin || String(body.pin).trim() !== correctPin) {
     return jsonRes({ ok: false }, 401);
   }
 
-  const token = await makeToken(Deno.env.get('SESSION_SECRET'));
+  const token = await makeToken(sessionSecret);
   return jsonRes({ ok: true }, 200, {
     'Set-Cookie':
       `${COOKIE}=${token}; HttpOnly; Secure; SameSite=Strict; Max-Age=${SESSION_MS / 1000}; Path=/`
