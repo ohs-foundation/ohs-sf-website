@@ -21,3 +21,8 @@ docs/
 # Editor
 .vscode/
 .idea/
+
+# Playwright test artifacts
+.playwright-mcp/
+verify-*.png
+debug-*.png
