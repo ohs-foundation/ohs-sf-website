@@ -77,3 +77,91 @@
 [83835879ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://www.youtube.com/generate_204:0
 [83879455ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://www.youtube.com/generate_204:0
 [83959937ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://www.youtube.com/generate_204:0
+[118656904ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://www.youtube.com/generate_204:0
+[118700989ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://www.youtube.com/generate_204:0
+[134537623ms] [ERROR] Framing 'https://www.google.com/' violates the following report-only Content Security Policy directive: "frame-ancestors 'self'". The violation has been logged, but no further action has been taken.
+ @ :0
+[205010573ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://www.youtube.com/generate_204:0
+[205085176ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://www.youtube.com/generate_204:0
+[205085463ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/conversations?limit=100&pinned=false:0
+[205085463ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/conversations?limit=100&pinned=true:0
+[205085464ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/site:0
+[205085465ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/meta:0
+[205085465ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/parameters:0
+[205085465ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/webapp/access-mode?appCode=euIn4jrJyh5loYsx:0
+[205085465ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://cloud.dify.ai/console/api/system-features:0
+[205085466ms] [ERROR] NetworkError: Request failed due to a network error: GET https://cloud.dify.ai/console/api/system-features
+    at #o (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:22519)
+    at async #r (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:20752)
+    at async u (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:12148)
+    at async https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:13243
+    at async eg (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:27192)
+    at async r (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:1755)
+    at async eI (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:37238)
+    at async X.call (https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:9:7301)
+    at async https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:9:1906
+    at async https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:1:2626
+    at async Proxy.<anonymous> (https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:1:6350)
+    at async queryFn (https://udify.app/_next/static/chunks/0dqni040evs-3.js:1:3626) @ https://udify.app/_next/static/chunks/0r7jk8u5n050i.js:476
+[205085466ms] [ERROR] [systemFeatures] fetch failed, using defaults NetworkError: Request failed due to a network error: GET https://cloud.dify.ai/console/api/system-features
+    at #o (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:22519)
+    at async #r (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:20752)
+    at async u (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:12148)
+    at async https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:13243
+    at async eg (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:27192)
+    at async r (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:1755)
+    at async eI (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:37238)
+    at async X.call (https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:9:7301)
+    at async https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:9:1906
+    at async https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:1:2626
+    at async Proxy.<anonymous> (https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:1:6350)
+    at async queryFn (https://udify.app/_next/static/chunks/0dqni040evs-3.js:1:3626) @ https://udify.app/_next/static/chunks/0r7jk8u5n050i.js:476
+[205086536ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/site:0
+[205086538ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/webapp/access-mode?appCode=euIn4jrJyh5loYsx:0
+[205086539ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/parameters:0
+[205086540ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/meta:0
+[205088589ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/site:0
+[205088590ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/meta:0
+[205088591ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/parameters:0
+[205088592ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/webapp/access-mode?appCode=euIn4jrJyh5loYsx:0
+[205092634ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/site:0
+[205092635ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/webapp/access-mode?appCode=euIn4jrJyh5loYsx:0
+[205092636ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/parameters:0
+[205092638ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://udify.app/api/meta:0
+[232441253ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://www.youtube.com/generate_204:0
+[232454953ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://www.youtube.com/generate_204:0
+[232455077ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://www.youtube.com/generate_204:0
+[232455261ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://udify.app/api/meta:0
+[232455371ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://udify.app/api/site:0
+[232455426ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://udify.app/api/parameters:0
+[232455482ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://udify.app/api/webapp/access-mode?appCode=euIn4jrJyh5loYsx:0
+[232455482ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://cloud.dify.ai/console/api/system-features:0
+[232455717ms] [ERROR] NetworkError: Request failed due to a network error: GET https://cloud.dify.ai/console/api/system-features
+    at #o (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:22519)
+    at async #r (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:20752)
+    at async u (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:12148)
+    at async https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:13243
+    at async eg (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:27192)
+    at async r (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:1755)
+    at async eI (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:37238)
+    at async X.call (https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:9:7301)
+    at async https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:9:1906
+    at async https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:1:2626
+    at async Proxy.<anonymous> (https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:1:6350)
+    at async queryFn (https://udify.app/_next/static/chunks/0dqni040evs-3.js:1:3626) @ https://udify.app/_next/static/chunks/0r7jk8u5n050i.js:476
+[232455784ms] [ERROR] [systemFeatures] fetch failed, using defaults NetworkError: Request failed due to a network error: GET https://cloud.dify.ai/console/api/system-features
+    at #o (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:22519)
+    at async #r (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:20752)
+    at async u (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:12148)
+    at async https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:13243
+    at async eg (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:27192)
+    at async r (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:1755)
+    at async eI (https://udify.app/_next/static/chunks/01qpzbbm_0um0.js:1:37238)
+    at async X.call (https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:9:7301)
+    at async https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:9:1906
+    at async https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:1:2626
+    at async Proxy.<anonymous> (https://udify.app/_next/static/chunks/03hi3-uxfh7gg.js:1:6350)
+    at async queryFn (https://udify.app/_next/static/chunks/0dqni040evs-3.js:1:3626) @ https://udify.app/_next/static/chunks/0r7jk8u5n050i.js:476
+[234587741ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://www.youtube.com/generate_204:0
+[248934681ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://www.youtube.com/generate_204:0
+[291408388ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://www.youtube.com/generate_204:0
