@@ -227,7 +227,7 @@
     /* channels */
     .channel-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 18px;
       margin-top: 44px;
     }
@@ -373,10 +373,6 @@
         grid-template-columns: 1fr;
       }
 
-      .channel-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
       .event-row {
         flex-wrap: wrap;
         gap: 8px 16px;
@@ -447,7 +443,7 @@
       <div class="community-join reveal in d2">
         <span class="eyebrow">Join the community</span>
         <h3>Show up. Join the conversation.</h3>
-        <p>The OHS community meets regularly and the conversation never stops. Two easy ways to be part of it.</p>
+        <p>The OHS community meets regularly and the conversation never stops. Four ways to be part of it.</p>
         <div class="cj-options">
           <div class="cj-option">
             <span class="icon-chip core" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -478,6 +474,37 @@
               <p>Real-time conversation across channels for each pillar — ask questions, share what you're building and
                 connect with the broader community.</p>
               <a href="https://discord.gg/sfgUU7AHZT" class="textlink">Get the invite link <svg class="arrow" width="15"
+                  height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg></a>
+            </div>
+          </div>
+          <div class="cj-option">
+            <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg></span>
+            <div>
+              <h4>GitHub</h4>
+              <p>Code, issues, roadmaps and RFCs across every building block.</p>
+              <a href="https://github.com/ohs-foundation" target="_blank" rel="noopener" class="textlink">github.com/ohs-foundation <svg class="arrow" width="15"
+                  height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 17 17 7M9 7h8v8" />
+                </svg></a>
+            </div>
+          </div>
+          <div class="cj-option">
+            <span class="icon-chip teal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m2 7 10 6 10-6" />
+              </svg></span>
+            <div>
+              <h4>Join the mailing list</h4>
+              <p>Announcements, working-group notes and release news.</p>
+              <a href="mailto:hello@ohs.foundation" class="textlink">hello@ohs.foundation <svg class="arrow" width="15"
                   height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
                   stroke-linecap="round" stroke-linejoin="round">
                   <path d="M5 12h14M13 6l6 6-6 6" />
@@ -577,96 +604,44 @@
   <section id="events" class="events section-pad">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">Events</span>
+        <span class="eyebrow">Community events and meet-ups</span>
         <h2 class="section-title" style="margin-top:16px">Where the ecosystem comes together.</h2>
         <p class="lead">Summits, workshops and bootcamps that bring the community together — with the WHO and partners.
         </p>
       </div>
 
-      <div class="reveal d1"
-        style="margin-top:40px; border:1.5px dashed var(--line); border-radius:var(--radius-lg); padding:clamp(40px,6vw,72px); text-align:center; background:var(--surface)">
-        <span class="icon-chip teal" aria-hidden="true" style="margin:0 auto 18px"><svg viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="4" width="18" height="18" rx="2" />
-            <path d="M16 2v4M8 2v4M3 10h18" />
-          </svg></span>
-        <h3 style="font-size:1.3rem; letter-spacing:-0.01em">Event calendar coming soon</h3>
-        <p style="color:var(--ink-soft); max-width:46ch; margin:12px auto 0; line-height:1.6">We're lining up our first
-          summits, workshops and community sessions. Check back shortly — or join a channel below to hear about events
-          first.</p>
-        <div style="display:flex; justify-content:center; margin-top:26px">
-          <a href="#channels" class="btn btn-ghost">See the channels</a>
+      <div class="reveal d1" style="margin-top:40px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; padding-bottom:22px; border-bottom:1px solid var(--line)">
+        <p style="color:var(--ink-soft); font-size:0.95rem; margin:0">All times are listed in the calendar. Open to everyone.</p>
+        <a href="https://calendar.google.com/calendar/u/0?cid=Y184ZmEyNmMzMGEzMTI3YzQ2YmViMWVjOTlmYmFlM2ZlY2Q4OTVkYzQzNmU2YTk5OGQzMDY4Zjc1ODU1ZTUyMThiQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20" target="_blank" rel="noopener" class="btn btn-ghost" style="white-space:nowrap">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          Subscribe to calendar
+        </a>
+      </div>
+
+      <div class="event-list reveal d2">
+        <div class="event-row">
+          <div class="when">30 Jul 2026</div>
+          <div>
+            <div class="what">OHS SF Community Call</div>
+            <div class="where">9pm SGT · 2pm GMT · 9am ET · Online · Open to all</div>
+            <div class="where" style="margin-top:5px">Join the community for engineering updates across pillars, demos and implementer spotlights.</div>
+          </div>
+          <span class="tag teal etag">Community call</span>
+        </div>
+        <div class="event-row">
+          <div class="when">2–4 Dec 2026</div>
+          <div>
+            <div class="what">Global Digital Health Forum '26</div>
+            <div class="where">Bangkok, Thailand</div>
+            <div class="where" style="margin-top:5px">We're planning to host a community gathering at GDHF '26. Details to be confirmed — <a href="mailto:hello@ohs.foundation" style="color:var(--teal-deep)">get in touch</a> if you'll be there.</div>
+          </div>
+          <span class="tag etag">In-person</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CHANNELS -->
-  <section id="channels" class="section-pad">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow">Stay connected</span>
-        <h2 class="section-title" style="margin-top:16px">Find your channel.</h2>
-        <p class="lead">Everything happens in the open. Jump in wherever you're most comfortable.</p>
-      </div>
-      <div class="channel-grid">
-        <div class="channel card reveal d1">
-          <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-              <path
-                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-            </svg></span>
-          <h3>GitHub</h3>
-          <p>Code, issues, roadmaps and RFCs across every building block.</p>
-          <a href="https://github.com/ohs-foundation" class="textlink">github.com/ohs-foundation <svg class="arrow"
-              width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M7 17 17 7M9 7h8v8" />
-            </svg></a>
-        </div>
-        <div class="channel card reveal d2">
-          <span class="icon-chip teal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="4" width="20" height="16" rx="2" />
-              <path d="m2 7 10 6 10-6" />
-            </svg></span>
-          <h3>Mailing list</h3>
-          <p>Announcements, working-group notes and release news.</p>
-          <a href="mailto:hello@ohs.foundation" class="textlink">hello@ohs.foundation <svg class="arrow" width="15"
-              height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14M13 6l6 6-6 6" />
-            </svg></a>
-        </div>
-        <div class="channel card reveal d3">
-          <span class="icon-chip core" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-            </svg></span>
-          <h3>Community calls</h3>
-          <p>Open working-group calls for Core and the AI Commons.</p>
-          <a href="#events" class="textlink">See the calendar <svg class="arrow" width="15" height="15"
-              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path d="M5 12h14M13 6l6 6-6 6" />
-            </svg></a>
-        </div>
-        <div class="channel card reveal d4">
-          <span class="icon-chip ai" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16v12H7l-3 3z" />
-            </svg></span>
-          <h3>Developer docs</h3>
-          <p>Guides, tutorials, codelabs and example applications.</p>
-          <a href="https://developers.google.com/open-health-stack/learn" class="textlink">Start learning <svg
-              class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M7 17 17 7M9 7h8v8" />
-            </svg></a>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
   <!-- CONTRIBUTOR CTA -->
   <section class="contrib-cta section-pad">
