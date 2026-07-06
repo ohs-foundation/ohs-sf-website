@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <title>Welcome to the community — Open Health Stack Software Foundation</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ===== Welcome page ===== */
+    .welcome-hero { padding-top: clamp(48px, 7vw, 96px); padding-bottom: clamp(20px, 3vw, 32px); text-align: center; }
+    .welcome-hero .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--teal-deep); background: var(--teal-wash);
+      padding: 7px 14px; border-radius: 999px;
+    }
+    .welcome-hero h1 {
+      font-size: clamp(2.1rem, 4.6vw, 3.4rem); font-weight: 800; letter-spacing: -0.035em;
+      line-height: 1.04; margin-top: 22px;
+    }
+    .welcome-hero .lead { max-width: 56ch; margin: 20px auto 0; }
+
+    .welcome-body { max-width: 720px; margin: 0 auto; padding-bottom: clamp(48px, 7vw, 96px); }
+    .welcome-card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
+      padding: clamp(28px, 4vw, 44px); margin-top: 28px; box-shadow: var(--shadow-sm);
+    }
+    .welcome-card h2 { font-size: clamp(1.3rem, 2.2vw, 1.7rem); letter-spacing: -0.02em; }
+    .welcome-card > p { color: var(--ink-soft); margin-top: 12px; line-height: 1.7; }
+    .welcome-card ol, .welcome-card ul { margin: 18px 0 0; padding-left: 0; list-style: none; display: grid; gap: 12px; }
+    .welcome-card ol { counter-reset: step; }
+    .welcome-card ol li {
+      position: relative; padding-left: 40px; color: oklch(0.34 0.018 210); line-height: 1.6;
+    }
+    .welcome-card ol li::before {
+      counter-increment: step; content: counter(step);
+      position: absolute; left: 0; top: -1px;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--teal-wash); color: var(--teal-deep);
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; font-weight: 600;
+      display: grid; place-items: center;
+    }
+    .welcome-card ul li {
+      position: relative; padding-left: 24px; color: oklch(0.34 0.018 210); line-height: 1.6;
+    }
+    .welcome-card ul li::before {
+      content: ""; position: absolute; left: 4px; top: 9px;
+      width: 8px; height: 8px; border-radius: 2px; background: var(--teal);
+    }
+    .welcome-card b, .welcome-card strong { color: var(--ink); font-weight: 700; }
+    .welcome-card .cta-row { margin-top: 24px; }
+    .welcome-note {
+      max-width: 720px; margin: 28px auto 0; text-align: center;
+      color: var(--ink-faint); font-size: 0.95rem; line-height: 1.6; font-style: italic;
+    }
+    .welcome-note a { color: var(--teal-deep); font-weight: 600; }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html" aria-label="Open Health Stack Foundation home">
+        <span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="brandname"><b>Open Health Stack</b><span>Software Foundation</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="foundation.html">Foundation</a>
+        <a href="projects.html">Projects</a>
+        <a href="community.html">Community</a>
+        <a href="blog.html">Blog</a>
+      </div>
+      <div class="nav-spacer"></div>
+      <div class="nav-cta">
+        <a href="foundation.html#membership" class="btn btn-primary">Become a member</a>
+        <button class="nav-toggle btn" aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <path d="M3 6h18M3 12h18M3 18h18" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+  <div class="mobile-nav" aria-label="Mobile">
+    <a href="foundation.html">Foundation</a>
+    <a href="projects.html">Projects</a>
+    <a href="community.html">Community</a>
+    <a href="blog.html">Blog</a>
+    <a href="foundation.html#membership" class="btn btn-primary">Become a member</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="welcome-hero">
+    <div class="wrap">
+      <span class="badge">🎉 You're almost in</span>
+      <h1>Welcome to the community.</h1>
+      <p class="lead">Thank you for joining the <b>OHS Software Foundation</b> community. We're excited to collaborate
+        with you on building the foundation for global digital health.</p>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <section class="welcome-body">
+    <div class="wrap">
+      <div class="welcome-card">
+        <h2>⚠️ One quick step: whitelist us</h2>
+        <p>Because institutional, university and hospital firewalls have incredibly strict spam filters, our invites can
+          sometimes get lost. To make sure you receive our newsletter and calendar links:</p>
+        <ol>
+          <li>Open your email client.</li>
+          <li>Add <b>hello@ohs.foundation</b> to your address book or safe-senders list.</li>
+          <li>If you find our first email in your “Promotions” or “Spam” folder, drag it to your primary inbox.</li>
+        </ol>
+      </div>
+
+      <div class="welcome-card">
+        <h2>🗓️ Step 2: Save the community calls</h2>
+        <p>Don't wait for the next newsletter to plan your schedule. Access our public calendar of upcoming live sessions
+          and technical working groups right now:</p>
+        <div class="cta-row">
+          <a href="https://calendar.google.com/calendar/u/0?cid=Y184ZmEyNmMzMGEzMTI3YzQ2YmViMWVjOTlmYmFlM2ZlY2Q4OTVkYzQzNmU2YTk5OGQzMDY4Zjc1ODU1ZTUyMThiQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
+            target="_blank" rel="noopener" class="btn btn-primary">📅 Add community calls to my calendar <svg
+              class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17 17 7M9 7h8v8" />
+            </svg></a>
+        </div>
+      </div>
+
+      <div class="welcome-card">
+        <h2>What to expect next</h2>
+        <ul>
+          <li><b>Monthly newsletter:</b> Deep dives into open-source health software building blocks, architecture
+            updates and foundation news.</li>
+          <li><b>Community invites:</b> Direct links to join our live technical calls, developer demos and collaborative
+            working sessions.</li>
+        </ul>
+      </div>
+
+      <p class="welcome-note">Have immediate questions or open-source infrastructure proposals? Reply directly to any of
+        our emails, or <a href="mailto:hello@ohs.foundation">get in touch</a> to reach the foundation team.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap-wide">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html" style="color:#fff">
+            <span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="brandname"><b>Open Health Stack</b><span style="color:oklch(0.66 0.02 200)">Software
+                Foundation</span></span>
+          </a>
+          <p class="footer-about">A neutral, community-owned home for open-source building blocks accelerating next-gen,
+            AI-powered digital health.</p>
+        </div>
+        <div>
+          <h4>Foundation</h4>
+          <ul>
+            <li><a href="foundation.html#mission">Mission &amp; charter</a></li>
+            <li><a href="foundation.html#governance">Governance</a></li>
+            <li><a href="foundation.html#membership">Membership</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Projects</h4>
+          <ul>
+            <li><a href="projects.html#core">FHIR Foundations</a></li>
+            <li><a href="projects.html#toolkit">Reference Toolkit</a></li>
+            <li><a href="projects.html#ai">AI Commons</a></li>
+            <li><a href="projects.html#get-involved">Get involved</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Community</h4>
+          <ul>
+            <li><a href="community.html#involved">Get involved</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="community.html#events">Events</a></li>
+            <li><a href="community.html#channels">Channels</a></li>
+            <li><a href="mailto:hello@ohs.foundation">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Open Health Stack Software Foundation · a project of the <a
+            href="https://www.linuxfoundation.org/">Linux Foundation</a>.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
