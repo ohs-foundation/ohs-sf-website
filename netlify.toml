@@ -1,7 +1,11 @@
 [build]
   publish = "."
 
-# Run the auth gate on every request
-[[edge_functions]]
-  path = "/*"
-  function = "auth"
+# ── Preview lock (disabled) ───────────────────────────────────────────────
+# The site is public. To re-enable the PIN gate, uncomment the block below
+# (the edge function at netlify/edge-functions/auth.js and lock.html remain
+# in the repo, dormant, for exactly this purpose).
+#
+# [[edge_functions]]
+#   path = "/*"
+#   function = "auth"
