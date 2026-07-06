@@ -14,7 +14,13 @@
 const COOKIE      = 'ohs_session';
 const SESSION_MS  = 24 * 60 * 60 * 1000; // 24 hours
 
-const PUBLIC_PATHS = new Set(['/lock.html', '/styles.css', '/favicon.svg']);
+const PUBLIC_PATHS = new Set([
+  '/lock.html',
+  '/styles.css',
+  '/favicon.svg',
+  '/welcome-to-community',
+  '/welcome-to-community.html'
+]);
 
 export default async function auth(request, context) {
   const url = new URL(request.url);

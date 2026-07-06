@@ -271,6 +271,81 @@ section { position: relative; }
 .footer-bottom { margin-top: 56px; padding-top: 26px; border-top: 1px solid oklch(0.34 0.015 210); display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; color: oklch(0.64 0.015 200); font-size: 0.85rem; }
 .footer-badge { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.06em; }
 
+/* ---------- Newsletter signup (dark band, flows into the footer) ---------- */
+.newsletter { background: var(--ink); padding-block: clamp(56px, 8vw, 96px) clamp(8px, 1.5vw, 18px); }
+/* Standalone variant — a self-contained mid-page section (balanced padding) */
+.newsletter.standalone { padding-block: clamp(56px, 8vw, 104px); }
+.newsletter-inner { max-width: 600px; margin: 0 auto; text-align: center; }
+.newsletter .eyebrow { justify-content: center; color: var(--teal-bright); }
+.newsletter-copy h2 { color: #fff; font-size: clamp(1.7rem, 3vw, 2.35rem); letter-spacing: -0.03em; margin-top: 14px; }
+.newsletter-copy p { color: oklch(0.78 0.015 200); margin: 12px auto 0; max-width: 48ch; }
+
+/* CTA variant (pages that route to the community signup form) */
+.newsletter-cta { margin-top: 28px; }
+
+/* EmailOctopus form theming — dark surface */
+.newsletter-form { margin-top: 24px; }
+/* Neutralize EmailOctopus's own white card + built-in title/description so the form
+   blends into our section (the section already provides heading, copy and background).
+   Selectors are extra-specific to beat EmailOctopus's [data-form] .pt-5/.p-3 rules. */
+.newsletter-form .nurture-container { display: block !important; background: transparent !important; border-radius: 0 !important; box-shadow: none !important; }
+.newsletter-form .nurture-container .align-mid { padding: 0 !important; }
+.newsletter-form .nurture-container .p-3 { padding: 0 !important; }
+.newsletter-form .emailoctopus-form-wrapper { margin-top: 0 !important; }
+.newsletter-form .text-block { display: none !important; }
+/* Force EmailOctopus's shrink-to-fit wrappers to full width so the form can center */
+.newsletter-form .nurture-container,
+.newsletter-form .inline-container,
+.newsletter-form .align-mid,
+.newsletter-form .p-3 { width: 100% !important; max-width: 100% !important; box-sizing: border-box; }
+.newsletter-form .emailoctopus-form { width: 100% !important; max-width: 440px !important; margin: 0 auto !important; display: flex; flex-direction: column; }
+/* Stack fields vertically full-width (EmailOctopus defaults to a ~50% wrapping row) */
+.newsletter-form [eo-form-fields-container] { display: flex; flex-direction: column; align-items: stretch; }
+.newsletter-form .form-control {
+  width: 100%; box-sizing: border-box; padding: 15px 18px; font-size: 1rem; font-family: inherit;
+  border: 1px solid oklch(0.4 0.015 210); border-radius: var(--radius);
+  background: oklch(0.31 0.018 210); color: #fff; outline: none; transition: border-color 0.2s, background 0.2s;
+}
+.newsletter-form .form-control::placeholder { color: oklch(0.6 0.015 200); }
+.newsletter-form .form-control:focus { border-color: var(--teal-bright); }
+/* Spacing between stacked fields (First name + Email) — .mb-2 isn't defined site-side */
+.newsletter-form .emailoctopus-form-row { width: 100%; flex: none; margin: 0 0 16px; }
+/* Field labels, if the form is configured to show them */
+.newsletter-form .emailoctopus-form-row label {
+  display: block; text-align: left; margin-bottom: 6px;
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.04em;
+  text-transform: uppercase; color: oklch(0.78 0.015 200);
+}
+.newsletter-form input[type="submit"] {
+  width: 100%; margin-top: 6px; padding: 15px 20px; font-size: 1rem; font-weight: 600;
+  font-family: inherit; border: 0; border-radius: 999px; cursor: pointer;
+  background: var(--teal-bright); color: #fff;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.25s;
+}
+.newsletter-form input[type="submit"]:hover { background: var(--teal); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.newsletter-form .emailoctopus-form-row-consent { order: -1; margin: 0 0 20px; display: flex; align-items: flex-start; gap: 10px; text-align: left; }
+.newsletter-form .emailoctopus-form-row-consent input { margin-top: 3px; flex: none; accent-color: var(--teal-bright); }
+.newsletter-form .emailoctopus-form-row-consent label,
+.newsletter-form .emailoctopus-form-row-consent { font-size: 0.8rem; color: oklch(0.75 0.015 200) !important; line-height: 1.5; }
+.newsletter-form .emailoctopus-success-message, .newsletter-form .emailoctopus-error-message { color: #fff; margin-top: 12px; font-size: 0.92rem; }
+.newsletter-form a { color: var(--teal-bright); }
+
+/* Standalone (community) subscribe — light treatment */
+.newsletter.standalone { background: var(--teal-wash); }
+.newsletter.standalone .eyebrow { color: var(--teal-deep); }
+.newsletter.standalone .newsletter-copy h2 { color: var(--ink); }
+.newsletter.standalone .newsletter-copy p { color: var(--ink-soft); }
+.newsletter.standalone .newsletter-form .form-control { background: rgba(255, 255, 255, 0.6); border-color: color-mix(in oklch, var(--teal-deep) 20%, var(--line)); color: var(--ink); }
+.newsletter.standalone .newsletter-form .form-control::placeholder { color: var(--ink-faint); }
+.newsletter.standalone .newsletter-form .form-control:focus { border-color: var(--teal-deep); background: rgba(255, 255, 255, 0.85); }
+.newsletter.standalone .newsletter-form .emailoctopus-form-row label { color: var(--ink-faint); }
+.newsletter.standalone .newsletter-form input[type="submit"] { background: var(--teal-deep); }
+.newsletter.standalone .newsletter-form input[type="submit"]:hover { background: oklch(0.37 0.078 205); }
+.newsletter.standalone .newsletter-form .emailoctopus-form-row-consent label,
+.newsletter.standalone .newsletter-form .emailoctopus-form-row-consent { color: var(--ink-faint) !important; }
+.newsletter.standalone .newsletter-form .emailoctopus-form-row-consent input { accent-color: var(--teal-deep); }
+.newsletter.standalone .newsletter-form a { color: var(--teal-deep); }
+
 /* ---------- Generic helpers ---------- */
 .grid { display: grid; gap: 22px; }
 .cols-2 { grid-template-columns: repeat(2, 1fr); }
