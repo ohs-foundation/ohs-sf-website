@@ -2,39 +2,51 @@
    Open Health Stack Foundation — Design System
    Humanist sans (Hanken Grotesk) + mono labels (IBM Plex Mono)
    Teal signature + dual pillar accents (Core / AI Commons)
+
+   Dark mode: driven at the token layer with CSS light-dark().
+   - Follows the OS by default (color-scheme: light dark).
+   - Force a theme by setting data-theme="dark" | "light" on <html>.
+   Requires a 2024+ browser (light-dark() baseline).
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 :root {
-  /* Neutrals — cool, faintly green-tinted ink on a warm near-white */
-  --bg:        oklch(0.985 0.004 165);
-  --bg-2:      oklch(0.965 0.006 175);
-  --surface:   #ffffff;
-  --ink:       oklch(0.245 0.018 210);
-  --ink-soft:  oklch(0.46 0.018 210);
-  --ink-faint: oklch(0.60 0.015 210);
-  --line:      oklch(0.905 0.008 200);
-  --line-soft: oklch(0.945 0.006 200);
+  color-scheme: light dark;
 
-  /* Signature indigo */
-  --teal:      oklch(0.55 0.13 290);
-  --teal-deep: oklch(0.42 0.11 292);
-  --teal-bright: oklch(0.66 0.14 288);
-  --teal-wash: oklch(0.957 0.022 290);
+  /* Neutrals — cool, faintly green-tinted ink on a warm near-white (light),
+     deep cool near-black with near-white ink (dark) */
+  --bg:        light-dark(oklch(0.985 0.004 165), oklch(0.17 0.008 220));
+  --bg-2:      light-dark(oklch(0.965 0.006 175), oklch(0.205 0.009 220));
+  --surface:   light-dark(#ffffff,               oklch(0.225 0.010 220));
+  --ink:       light-dark(oklch(0.245 0.018 210), oklch(0.945 0.006 200));
+  --ink-soft:  light-dark(oklch(0.46 0.018 210),  oklch(0.75 0.012 200));
+  --ink-faint: light-dark(oklch(0.60 0.015 210),  oklch(0.60 0.012 200));
+  --line:      light-dark(oklch(0.905 0.008 200), oklch(0.33 0.012 210));
+  --line-soft: light-dark(oklch(0.945 0.006 200), oklch(0.27 0.010 210));
 
-  /* Pillar accents — shared chroma/lightness, varied hue */
-  --core:      oklch(0.58 0.105 222);   /* teal-blue   */
-  --core-wash: oklch(0.955 0.022 222);
-  --ai:        oklch(0.56 0.115 292);   /* indigo-violet */
-  --ai-wash:   oklch(0.957 0.022 292);
-  --toolkit:      oklch(0.56 0.094 200);
-  --toolkit-wash: oklch(0.955 0.018 195);
+  /* Signature indigo — brightened in dark so links/eyebrows read on the dark bg */
+  --teal:        light-dark(oklch(0.55 0.13 290),  oklch(0.70 0.13 290));
+  --teal-deep:   light-dark(oklch(0.42 0.11 292),  oklch(0.72 0.125 291));
+  --teal-bright: light-dark(oklch(0.66 0.14 288),  oklch(0.68 0.145 288));
+  --teal-wash:   light-dark(oklch(0.957 0.022 290), oklch(0.27 0.035 290));
+
+  /* Pillar accents — in dark, washes go deep + tinted, accents go light */
+  --core:      light-dark(oklch(0.58 0.105 222),  oklch(0.76 0.11 222));
+  --core-wash: light-dark(oklch(0.955 0.022 222), oklch(0.27 0.035 222));
+  --ai:        light-dark(oklch(0.56 0.115 292),  oklch(0.76 0.12 292));
+  --ai-wash:   light-dark(oklch(0.957 0.022 292), oklch(0.27 0.035 292));
+  --toolkit:      light-dark(oklch(0.56 0.094 200),  oklch(0.76 0.10 200));
+  --toolkit-wash: light-dark(oklch(0.955 0.018 195), oklch(0.27 0.03 200));
 
   /* Project / tag hues */
-  --green:     oklch(0.60 0.11 155);
-  --amber:     oklch(0.70 0.115 75);
-  --rose:      oklch(0.62 0.13 18);
+  --green:     light-dark(oklch(0.60 0.11 155), oklch(0.72 0.12 155));
+  --amber:     light-dark(oklch(0.70 0.115 75), oklch(0.78 0.12 75));
+  --rose:      light-dark(oklch(0.62 0.13 18),  oklch(0.72 0.13 18));
+
+  /* Dark bands (footer + newsletter) — intentionally dark in BOTH themes,
+     so they don't invert when --ink flips. */
+  --band-bg: light-dark(oklch(0.245 0.018 210), oklch(0.13 0.006 220));
 
   --maxw: 1200px;
   --gut: clamp(20px, 5vw, 64px);
@@ -46,6 +58,27 @@
   --shadow-lg: 0 10px 30px oklch(0.40 0.02 210 / 0.10), 0 30px 70px oklch(0.40 0.02 210 / 0.12);
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Manual theme override (optional). Without these, the theme follows the OS
+   via color-scheme + light-dark(). Set data-theme on <html> to force it. */
+:root[data-theme="light"] { color-scheme: only light; }
+:root[data-theme="dark"]  { color-scheme: only dark; }
+
+/* Shadows use multi-layer values that light-dark() can't wrap (internal commas),
+   so flip them explicitly — darker + more opaque to read on a dark surface.
+   Covers both OS dark mode and the manual dark toggle. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.5), 0 2px 6px oklch(0 0 0 / 0.4);
+    --shadow-md: 0 4px 14px oklch(0 0 0 / 0.5), 0 12px 34px oklch(0 0 0 / 0.55);
+    --shadow-lg: 0 10px 30px oklch(0 0 0 / 0.55), 0 30px 70px oklch(0 0 0 / 0.6);
+  }
+}
+:root[data-theme="dark"] {
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.5), 0 2px 6px oklch(0 0 0 / 0.4);
+  --shadow-md: 0 4px 14px oklch(0 0 0 / 0.5), 0 12px 34px oklch(0 0 0 / 0.55);
+  --shadow-lg: 0 10px 30px oklch(0 0 0 / 0.55), 0 30px 70px oklch(0 0 0 / 0.6);
 }
 
 * { box-sizing: border-box; }
@@ -136,16 +169,19 @@ section { position: relative; }
   white-space: nowrap;
 }
 .btn:active { transform: translateY(1px); }
+/* Primary is decoupled from --teal-deep (which is a light text tone in dark mode):
+   an explicit mid indigo keeps white label text legible in both themes. */
 .btn-primary {
-  background: var(--teal-deep); color: #fff;
+  background: light-dark(oklch(0.42 0.11 292), oklch(0.56 0.145 291)); color: #fff;
   box-shadow: var(--shadow-sm);
 }
-.btn-primary:hover { background: oklch(0.37 0.078 205); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn-primary:hover { background: light-dark(oklch(0.37 0.078 205), oklch(0.62 0.145 291)); transform: translateY(-2px); box-shadow: var(--shadow-md); }
 .btn-ghost {
   background: transparent; color: var(--ink); border-color: var(--line);
 }
 .btn-ghost:hover { border-color: var(--ink); transform: translateY(-2px); background: var(--surface); }
-.btn-light { background: #fff; color: var(--teal-deep); }
+/* On-white button — text stays deep indigo in both themes (the button is always white) */
+.btn-light { background: #fff; color: oklch(0.42 0.11 292); }
 .btn-light:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 .btn-on-dark { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.22); }
 .btn-on-dark:hover { background: rgba(255,255,255,0.16); transform: translateY(-2px); }
@@ -165,7 +201,7 @@ section { position: relative; }
 /* ---------- Header / Nav ---------- */
 .site-header {
   position: sticky; top: 0; z-index: 100;
-  background: oklch(0.985 0.004 165 / 0.82);
+  background: light-dark(oklch(0.985 0.004 165 / 0.82), oklch(0.17 0.008 220 / 0.82));
   backdrop-filter: saturate(1.4) blur(14px);
   -webkit-backdrop-filter: saturate(1.4) blur(14px);
   border-bottom: 1px solid transparent;
@@ -225,6 +261,10 @@ section { position: relative; }
 }
 .card.hover:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: transparent; }
 
+.northstar { background: var(--surface); color: var(--ink); }
+.northstar .lead,
+.northstar p { color: var(--ink-soft); }
+
 .tag {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
@@ -259,8 +299,8 @@ section { position: relative; }
   html { scroll-behavior: auto; }
 }
 
-/* ---------- Footer ---------- */
-.site-footer { background: var(--ink); color: oklch(0.86 0.01 200); padding-block: 72px 40px; }
+/* ---------- Footer (always-dark band) ---------- */
+.site-footer { background: var(--band-bg); color: oklch(0.86 0.01 200); padding-block: 72px 40px; }
 .footer-grid { display: grid; grid-template-columns: 1.6fr repeat(3, 1fr); gap: 40px; }
 .site-footer h4 { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.66 0.02 200); font-weight: 500; margin-bottom: 16px; }
 .site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
@@ -272,7 +312,7 @@ section { position: relative; }
 .footer-badge { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.06em; }
 
 /* ---------- Newsletter signup (dark band, flows into the footer) ---------- */
-.newsletter { background: var(--ink); padding-block: clamp(56px, 8vw, 96px) clamp(8px, 1.5vw, 18px); }
+.newsletter { background: var(--band-bg); padding-block: clamp(56px, 8vw, 96px) clamp(8px, 1.5vw, 18px); }
 /* Standalone variant — a self-contained mid-page section (balanced padding) */
 .newsletter.standalone { padding-block: clamp(56px, 8vw, 104px); }
 .newsletter-inner { max-width: 600px; margin: 0 auto; text-align: center; }
@@ -330,17 +370,17 @@ section { position: relative; }
 .newsletter-form .emailoctopus-success-message, .newsletter-form .emailoctopus-error-message { color: #fff; margin-top: 12px; font-size: 0.92rem; }
 .newsletter-form a { color: var(--teal-bright); }
 
-/* Standalone (community) subscribe — light treatment */
+/* Standalone (community) subscribe — light treatment in light mode, tinted-dark in dark */
 .newsletter.standalone { background: var(--teal-wash); }
 .newsletter.standalone .eyebrow { color: var(--teal-deep); }
 .newsletter.standalone .newsletter-copy h2 { color: var(--ink); }
 .newsletter.standalone .newsletter-copy p { color: var(--ink-soft); }
-.newsletter.standalone .newsletter-form .form-control { background: rgba(255, 255, 255, 0.6); border-color: color-mix(in oklch, var(--teal-deep) 20%, var(--line)); color: var(--ink); }
+.newsletter.standalone .newsletter-form .form-control { background: light-dark(rgba(255, 255, 255, 0.6), oklch(1 0 0 / 0.06)); border-color: color-mix(in oklch, var(--teal-deep) 20%, var(--line)); color: var(--ink); }
 .newsletter.standalone .newsletter-form .form-control::placeholder { color: var(--ink-faint); }
-.newsletter.standalone .newsletter-form .form-control:focus { border-color: var(--teal-deep); background: rgba(255, 255, 255, 0.85); }
+.newsletter.standalone .newsletter-form .form-control:focus { border-color: var(--teal-deep); background: light-dark(rgba(255, 255, 255, 0.85), oklch(1 0 0 / 0.10)); }
 .newsletter.standalone .newsletter-form .emailoctopus-form-row label { color: var(--ink-faint); }
-.newsletter.standalone .newsletter-form input[type="submit"] { background: var(--teal-deep); }
-.newsletter.standalone .newsletter-form input[type="submit"]:hover { background: oklch(0.37 0.078 205); }
+.newsletter.standalone .newsletter-form input[type="submit"] { background: light-dark(oklch(0.42 0.11 292), oklch(0.56 0.145 291)); }
+.newsletter.standalone .newsletter-form input[type="submit"]:hover { background: light-dark(oklch(0.37 0.078 205), oklch(0.62 0.145 291)); }
 .newsletter.standalone .newsletter-form .emailoctopus-form-row-consent label,
 .newsletter.standalone .newsletter-form .emailoctopus-form-row-consent { color: var(--ink-faint) !important; }
 .newsletter.standalone .newsletter-form .emailoctopus-form-row-consent input { accent-color: var(--teal-deep); }
