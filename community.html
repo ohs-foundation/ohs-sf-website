@@ -342,6 +342,41 @@
       text-decoration: underline;
     }
 
+    /* event filters */
+    .event-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 28px;
+    }
+
+    .filter-chip {
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 7px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: border-color .2s, background .2s, color .2s;
+    }
+
+    .filter-chip:hover {
+      border-color: var(--ink-faint);
+    }
+
+    .filter-chip.is-active {
+      background: var(--teal-deep);
+      border-color: var(--teal-deep);
+      color: #fff;
+    }
+
+    [data-events-loading] .where {
+      color: var(--ink-soft);
+    }
+
     /* channels */
     .channel-grid {
       display: grid;
@@ -746,63 +781,19 @@
         </a>
       </div>
 
+      <div class="event-filters reveal d1" role="group" aria-label="Filter events by type">
+        <button type="button" class="filter-chip is-active" data-filter="all">All</button>
+        <button type="button" class="filter-chip" data-filter="community">Community calls</button>
+        <button type="button" class="filter-chip" data-filter="working-group">Working groups</button>
+        <button type="button" class="filter-chip" data-filter="in-person">In-person</button>
+      </div>
+
       <div class="event-list reveal d2">
-        <details class="event-row event-expandable">
-          <summary>
-            <div class="when">27 Aug 2026</div>
-            <div class="event-summary-main">
-              <div class="what">OHS SF Monthly Community Call</div>
-              <div class="where">Thursday, 27 August · 9:00 ET | 14:00 BST | 16:00 EAT | 18:30 IST | 21:00 SGT · Online (Google Meet)</div>
-            </div>
-            <div class="event-summary-meta">
-              <span class="tag teal etag">Community call</span>
-              <span class="event-toggle-cue">Details <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m6 9 6 6 6-6" />
-                </svg></span>
-            </div>
-          </summary>
+        <div class="event-row" data-events-loading>
+          <div class="where">Loading upcoming events…</div>
+        </div>
 
-          <div class="event-expanded-body">
-            <div class="where" style="color:var(--ink); font-size:0.95rem">
-              Join the Open Health Stack Software Foundation community for our monthly call.
-            </div>
-
-            <div class="event-agenda">
-              <div class="event-agenda-label">Agenda</div>
-              <ul class="event-agenda-items">
-                <li>OHS Software Foundation update</li>
-                <li>Pillar updates: FHIR Foundations</li>
-                <li>Pillar updates: OHS Player</li>
-                <li>Upcoming events and community initiatives</li>
-              </ul>
-            </div>
-
-            <div class="event-actions">
-              <a href="https://meet.google.com/qof-iuwy-vyo" target="_blank" rel="noopener" class="btn btn-primary">
-                Join Google Meet
-                <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7 17 17 7M9 7h8v8" />
-                </svg>
-              </a>
-              <a href="https://discord.com/invite/sfgUU7AHZT" target="_blank" rel="noopener" class="btn btn-ghost">
-                Drop questions in Discord
-                <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7 17 17 7M9 7h8v8" />
-                </svg>
-              </a>
-            </div>
-
-            <div class="event-dialin">
-              <b>Dial-in:</b> (KE) +254 20 3893887 PIN: 989 191 695 7422# ·
-              <a href="https://tel.meet/qof-iuwy-vyo?pin=9891916957422" target="_blank" rel="noopener">More phone numbers</a>
-            </div>
-          </div>
-        </details>
-
-        <div class="event-row">
+        <div class="event-row" data-category="in-person" data-pinned>
           <div class="when">2–4 Dec 2026</div>
           <div>
             <div class="what">Global Digital Health Forum '26</div>
