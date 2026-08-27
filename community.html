@@ -224,6 +224,124 @@
       margin-left: auto;
     }
 
+    details.event-row {
+      display: block;
+      padding: 0;
+      cursor: default;
+    }
+
+    details.event-row summary {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      padding: 20px 24px;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+
+    details.event-row summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.event-row summary::marker {
+      display: none;
+      content: "";
+    }
+
+    .event-summary-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .event-summary-meta {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .event-toggle-cue {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--teal-deep);
+      background: var(--bg-2);
+      padding: 4px 10px;
+      border-radius: 999px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    details.event-row summary:hover .event-toggle-cue {
+      background: var(--teal-wash);
+      color: var(--teal-deep);
+    }
+
+    .event-toggle-cue svg {
+      transition: transform 0.25s var(--ease);
+    }
+
+    details.event-row[open] .event-toggle-cue svg {
+      transform: rotate(180deg);
+    }
+
+    .event-expanded-body {
+      padding: 18px 24px 24px;
+      border-top: 1px dashed var(--line);
+    }
+
+    .event-agenda {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .event-agenda-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 6px;
+    }
+
+    .event-agenda-items {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .event-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .event-actions .btn {
+      font-size: 0.88rem;
+      padding: 0.55em 1.2em;
+    }
+
+    .event-dialin {
+      margin-top: 12px;
+      font-size: 0.82rem;
+      color: var(--ink-faint);
+      line-height: 1.5;
+    }
+
+    .event-dialin a {
+      color: var(--teal-deep);
+      text-decoration: underline;
+    }
+
     /* channels */
     .channel-grid {
       display: grid;
@@ -384,6 +502,29 @@
 
       .event-row .etag {
         margin-left: 0;
+      }
+
+      details.event-row summary {
+        flex-wrap: wrap;
+        gap: 8px 14px;
+        padding: 16px 18px;
+      }
+
+      details.event-row summary .when {
+        width: auto;
+      }
+
+      .event-summary-meta {
+        margin-left: auto;
+      }
+
+      .event-expanded-body {
+        padding: 16px 18px 20px;
+      }
+
+      .event-actions .btn {
+        width: 100%;
+        justify-content: center;
       }
     }
 
@@ -593,8 +734,7 @@
 
       <div class="reveal d1"
         style="margin-top:40px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; padding-bottom:22px; border-bottom:1px solid var(--line)">
-        <p style="color:var(--ink-soft); font-size:0.95rem; margin:0">All times are listed in the calendar. Open to
-          everyone.</p>
+        <p style="color:var(--ink-soft); font-size:0.95rem; margin:0">To add this and future calls to your calendar, subscribe to our <a href="https://calendar.google.com/calendar/u/0?cid=Y184ZmEyNmMzMGEzMTI3YzQ2YmViMWVjOTlmYmFlM2ZlY2Q4OTVkYzQzNmU2YTk5OGQzMDY4Zjc1ODU1ZTUyMThiQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20" target="_blank" rel="noopener" style="color:var(--teal-deep); font-weight:600; text-decoration:underline">Community Calendar</a>. Open to everyone.</p>
         <a href="https://calendar.google.com/calendar/u/0?cid=Y184ZmEyNmMzMGEzMTI3YzQ2YmViMWVjOTlmYmFlM2ZlY2Q4OTVkYzQzNmU2YTk5OGQzMDY4Zjc1ODU1ZTUyMThiQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
           target="_blank" rel="noopener" class="btn btn-ghost" style="white-space:nowrap">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -607,16 +747,61 @@
       </div>
 
       <div class="event-list reveal d2">
-        <div class="event-row">
-          <div class="when">30 Jul 2026</div>
-          <div>
-            <div class="what">OHS SF Community Call</div>
-            <div class="where">9pm SGT · 2pm GMT · 9am ET · Online · Open to all</div>
-            <div class="where" style="margin-top:5px">Join the community for engineering updates across pillars, demos
-              and implementer spotlights.</div>
+        <details class="event-row event-expandable">
+          <summary>
+            <div class="when">27 Aug 2026</div>
+            <div class="event-summary-main">
+              <div class="what">OHS SF Monthly Community Call</div>
+              <div class="where">Thursday, 27 August · 9:00 ET | 14:00 BST | 16:00 EAT | 18:30 IST | 21:00 SGT · Online (Google Meet)</div>
+            </div>
+            <div class="event-summary-meta">
+              <span class="tag teal etag">Community call</span>
+              <span class="event-toggle-cue">Details <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m6 9 6 6 6-6" />
+                </svg></span>
+            </div>
+          </summary>
+
+          <div class="event-expanded-body">
+            <div class="where" style="color:var(--ink); font-size:0.95rem">
+              Join the Open Health Stack Software Foundation community for our monthly call.
+            </div>
+
+            <div class="event-agenda">
+              <div class="event-agenda-label">Agenda</div>
+              <ul class="event-agenda-items">
+                <li>OHS Software Foundation update</li>
+                <li>Pillar updates: FHIR Foundations</li>
+                <li>Pillar updates: OHS Player</li>
+                <li>Upcoming events and community initiatives</li>
+              </ul>
+            </div>
+
+            <div class="event-actions">
+              <a href="https://meet.google.com/qof-iuwy-vyo" target="_blank" rel="noopener" class="btn btn-primary">
+                Join Google Meet
+                <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 17 17 7M9 7h8v8" />
+                </svg>
+              </a>
+              <a href="https://discord.com/invite/sfgUU7AHZT" target="_blank" rel="noopener" class="btn btn-ghost">
+                Drop questions in Discord
+                <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 17 17 7M9 7h8v8" />
+                </svg>
+              </a>
+            </div>
+
+            <div class="event-dialin">
+              <b>Dial-in:</b> (KE) +254 20 3893887 PIN: 989 191 695 7422# ·
+              <a href="https://tel.meet/qof-iuwy-vyo?pin=9891916957422" target="_blank" rel="noopener">More phone numbers</a>
+            </div>
           </div>
-          <span class="tag teal etag">Community call</span>
-        </div>
+        </details>
+
         <div class="event-row">
           <div class="when">2–4 Dec 2026</div>
           <div>
