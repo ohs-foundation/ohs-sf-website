@@ -224,6 +224,105 @@
     });
   });
 
+  /* ─── Community events (fetched from netlify/functions/community-events) */
+  var EVENT_CATEGORY_LABEL = {
+    'community': 'Community call',
+    'working-group': 'Working group',
+    'in-person': 'In-person'
+  };
+  var EVENT_CATEGORY_TAG_CLASS = {
+    'community': 'tag teal etag',
+    'working-group': 'tag core etag',
+    'in-person': 'tag etag'
+  };
+  var DETAILS_ARROW = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
+  var BTN_ARROW = '<svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>';
+
+  function formatEventTime(iso) {
+    var d = new Date(iso);
+    return {
+      date: d.toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' }),
+      local: d.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' }),
+      utc: d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' })
+    };
+  }
+
+  function renderEventCard(e) {
+    var t = formatEventTime(e.start);
+    var label = EVENT_CATEGORY_LABEL[e.category] || 'Event';
+    var tagClass = EVENT_CATEGORY_TAG_CLASS[e.category] || 'tag etag';
+    var whereText = e.isOnline ? 'Online' : (e.location ? esc(e.location) : 'Location to be confirmed');
+
+    var actions = '';
+    if (e.joinUrl) {
+      actions += '<a href="' + esc(e.joinUrl) + '" target="_blank" rel="noopener" class="btn btn-primary">Join call ' + BTN_ARROW + '</a>';
+    }
+    actions += '<a href="https://discord.com/invite/sfgUU7AHZT" target="_blank" rel="noopener" class="btn btn-ghost">Drop questions in Discord ' + BTN_ARROW + '</a>';
+
+    var dialin = e.dialInUrl
+      ? '<div class="event-dialin"><a href="' + esc(e.dialInUrl) + '" target="_blank" rel="noopener">More phone numbers</a></div>'
+      : '';
+
+    return '<details class="event-row event-expandable" data-category="' + esc(e.category) + '">' +
+      '<summary>' +
+        '<div class="when">' + esc(t.date) + '</div>' +
+        '<div class="event-summary-main">' +
+          '<div class="what">' + esc(e.title) + '</div>' +
+          '<div class="where">' + esc(t.local) + ' your time · ' + esc(t.utc) + ' UTC · ' + whereText + '</div>' +
+        '</div>' +
+        '<div class="event-summary-meta">' +
+          '<span class="' + tagClass + '">' + esc(label) + '</span>' +
+          '<span class="event-toggle-cue">Details ' + DETAILS_ARROW + '</span>' +
+        '</div>' +
+      '</summary>' +
+      '<div class="event-expanded-body">' +
+        '<div class="event-actions">' + actions + '</div>' +
+        dialin +
+      '</div>' +
+    '</details>';
+  }
+
+  function initCommunityEvents() {
+    var list = document.querySelector('.event-list');
+    if (!list) return;
+    var loading = list.querySelector('[data-events-loading]');
+    var pinned = list.querySelector('[data-pinned]');
+
+    fetch('/.netlify/functions/community-events')
+      .then(function (r) { if (!r.ok) throw new Error('bad status'); return r.json(); })
+      .then(function (data) {
+        if (loading) loading.remove();
+        var events = data && data.events ? data.events : [];
+        if (!events.length) return;
+        var html = events.map(renderEventCard).join('');
+        if (pinned) pinned.insertAdjacentHTML('beforebegin', html);
+        else list.insertAdjacentHTML('afterbegin', html);
+      })
+      .catch(function () {
+        if (loading) loading.querySelector('.where').textContent =
+          "Couldn't load the latest schedule — subscribe to the calendar above to see all upcoming calls.";
+      });
+  }
+
+  function initEventFilters() {
+    var bar = document.querySelector('.event-filters');
+    if (!bar) return;
+    var chips = bar.querySelectorAll('.filter-chip');
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        chips.forEach(function (c) { c.classList.remove('is-active'); });
+        chip.classList.add('is-active');
+        var filter = chip.getAttribute('data-filter');
+        document.querySelectorAll('.event-list [data-category]').forEach(function (row) {
+          row.style.display = (filter === 'all' || row.getAttribute('data-category') === filter) ? '' : 'none';
+        });
+      });
+    });
+  }
+
+  initCommunityEvents();
+  initEventFilters();
+
   /* ─── Current year ──────────────────────────────────────────────────── */
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();
