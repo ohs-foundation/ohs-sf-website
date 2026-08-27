@@ -26,3 +26,6 @@ docs/
 .playwright-mcp/
 verify-*.png
 debug-*.png
+
+# Local Netlify folder
+.netlify
