@@ -330,14 +330,44 @@ section { position: relative; }
 .newsletter-form .emailoctopus-form-row-consent input { margin-top: 3px; flex: none; accent-color: var(--teal-bright); }
 .newsletter-form .emailoctopus-form-row-consent label,
 .newsletter-form .emailoctopus-form-row-consent { font-size: 0.8rem; color: oklch(0.75 0.015 200) !important; line-height: 1.5; }
-.newsletter-form .emailoctopus-success-message, .newsletter-form .emailoctopus-error-message { color: #fff; margin-top: 12px; font-size: 0.92rem; }
+/* Inline success / error response. EmailOctopus renders both <p>s empty and fills one on submit.
+   Extra .newsletter class outranks its [data-form] p color rules. */
+.newsletter .newsletter-form .emailoctopus-success-message,
+.newsletter .newsletter-form .emailoctopus-error-message {
+  display: flex; align-items: flex-start; gap: 12px; max-width: 440px; margin: 16px auto 0; padding: 14px 18px;
+  border-radius: var(--radius); text-align: left; font-size: 0.95rem; line-height: 1.5; font-weight: 500;
+  color: #fff !important; background: oklch(0.31 0.018 210); border: 1px solid oklch(0.4 0.015 210);
+  animation: eo-response-in 0.35s ease-out;
+}
+.newsletter .newsletter-form .emailoctopus-success-message:empty,
+.newsletter .newsletter-form .emailoctopus-error-message:empty { display: none; }
+.newsletter .newsletter-form .emailoctopus-success-message::before,
+.newsletter .newsletter-form .emailoctopus-error-message::before {
+  content: ""; flex: none; width: 22px; height: 22px; margin-top: 0.5px; border-radius: 50%;
+  background: var(--green) center / 14px no-repeat;
+}
+.newsletter .newsletter-form .emailoctopus-success-message::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E");
+}
+.newsletter .newsletter-form .emailoctopus-error-message::before {
+  background-color: var(--rose);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M12 7v6M12 17.5v.01'/%3E%3C/svg%3E");
+}
+@keyframes eo-response-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .newsletter .newsletter-form .emailoctopus-success-message,
+  .newsletter .newsletter-form .emailoctopus-error-message { animation: none; }
+}
 .newsletter-form a { color: var(--teal-bright); }
+/* Small helper line under a form */
+.newsletter-note { max-width: 440px; margin: 14px auto 0; font-size: 0.85rem; line-height: 1.5; color: oklch(0.72 0.015 200); }
 
 /* Standalone (community) subscribe — light treatment */
 .newsletter.standalone { background: var(--teal-wash); }
 .newsletter.standalone .eyebrow { color: var(--teal-deep); }
 .newsletter.standalone .newsletter-copy h2 { color: var(--ink); }
 .newsletter.standalone .newsletter-copy p { color: var(--ink-soft); }
+.newsletter.standalone .newsletter-note { color: var(--ink-faint); }
 .newsletter.standalone .newsletter-form .form-control { background: rgba(255, 255, 255, 0.6); border-color: color-mix(in oklch, var(--teal-deep) 20%, var(--line)); color: var(--ink); }
 .newsletter.standalone .newsletter-form .form-control::placeholder { color: var(--ink-faint); }
 .newsletter.standalone .newsletter-form .form-control:focus { border-color: var(--teal-deep); background: rgba(255, 255, 255, 0.85); }
@@ -346,6 +376,12 @@ section { position: relative; }
 .newsletter.standalone .newsletter-form input[type="submit"]:hover { background: oklch(0.37 0.078 205); }
 .newsletter.standalone .newsletter-form .emailoctopus-form-row-consent label,
 .newsletter.standalone .newsletter-form .emailoctopus-form-row-consent { color: var(--ink-faint) !important; }
+.newsletter.standalone .newsletter-form .emailoctopus-success-message,
+.newsletter.standalone .newsletter-form .emailoctopus-error-message {
+  color: var(--ink) !important; background: var(--surface); box-shadow: var(--shadow-sm);
+  border-color: oklch(0.84 0.06 155);
+}
+.newsletter.standalone .newsletter-form .emailoctopus-error-message { border-color: oklch(0.84 0.06 18); }
 .newsletter.standalone .newsletter-form .emailoctopus-form-row-consent input { accent-color: var(--teal-deep); }
 .newsletter.standalone .newsletter-form a { color: var(--teal-deep); }
 
