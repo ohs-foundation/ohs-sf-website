@@ -9,3 +9,11 @@
 # [[edge_functions]]
 #   path = "/*"
 #   function = "auth"
+
+# ── Short links ───────────────────────────────────────────────────────────
+# Working-group sign-up (EmailOctopus form tagged "working-groups").
+# 302 so the target can move without browsers caching the old one.
+[[redirects]]
+  from = "/get-involved"
+  to = "/community.html#working-groups"
+  status = 302

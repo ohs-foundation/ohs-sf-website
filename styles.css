@@ -289,6 +289,9 @@ section { position: relative; }
    blends into our section (the section already provides heading, copy and background).
    Selectors are extra-specific to beat EmailOctopus's [data-form] .pt-5/.p-3 rules. */
 .newsletter-form .nurture-container { display: block !important; background: transparent !important; border-radius: 0 !important; box-shadow: none !important; }
+/* Newer EmailOctopus template wraps the form in a white bordered .inline-container card.
+   Its background is !important at [data-form] .inline-container, so outrank it by one class. */
+.newsletter .newsletter-form .inline-container { background: transparent !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; padding: 0 !important; }
 .newsletter-form .nurture-container .align-mid { padding: 0 !important; }
 .newsletter-form .nurture-container .p-3 { padding: 0 !important; }
 .newsletter-form .emailoctopus-form-wrapper { margin-top: 0 !important; }
@@ -317,7 +320,7 @@ section { position: relative; }
   text-transform: uppercase; color: oklch(0.78 0.015 200);
 }
 .newsletter-form input[type="submit"] {
-  width: 100%; margin-top: 6px; padding: 15px 20px; font-size: 1rem; font-weight: 600;
+  width: 100%; margin: 6px 0 8px !important; padding: 15px 20px; font-size: 1rem; font-weight: 600;
   font-family: inherit; border: 0; border-radius: 999px; cursor: pointer;
   background: var(--teal-bright); color: #fff;
   transition: background 0.2s, transform 0.2s, box-shadow 0.25s;
