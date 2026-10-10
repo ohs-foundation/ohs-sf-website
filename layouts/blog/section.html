@@ -16,12 +16,7 @@
       {{- with index $posts 0 }}
       {{- $cover := partial "blog/cover.html" (dict "page" . "width" 1200 "height" 630) }}
       <!-- ===== FEATURED (LATEST) POST ===== -->
-      <a class="featured reveal d1{{ if $cover }} is-stacked{{ end }}" href="{{ .RelPermalink }}" aria-label="Read: {{ .Params.shortTitle | default .Title }}">
-        {{- with $cover }}
-        <div class="featured-art has-cover">
-          <img src="{{ .src }}" srcset="{{ .srcset }}" sizes="(max-width: 1200px) 100vw, 1072px" width="{{ .width }}" height="{{ .height }}" alt="{{ .alt }}" loading="eager" />
-        </div>
-        {{- end }}
+      <a class="featured reveal d1{{ if $cover }} with-cover{{ end }}" href="{{ .RelPermalink }}" aria-label="Read: {{ .Params.shortTitle | default .Title }}">
         <div class="featured-body">
           <div class="featured-tags">
             <span class="tag teal">{{ T "latest" }}</span>
@@ -38,7 +33,11 @@
             <span class="textlink">{{ .Params.readMore | default (T "readThePost") }} {{ partial "icon.html" "arrow-right-16" }}</span>
           </div>
         </div>
-        {{- if not $cover }}
+        {{- with $cover }}
+        <div class="featured-art has-cover">
+          <img src="{{ .src }}" srcset="{{ .srcset }}" sizes="(max-width: 960px) 100vw, 640px" width="{{ .width }}" height="{{ .height }}" alt="{{ .alt }}" loading="eager" />
+        </div>
+        {{- else }}
         <div class="featured-art" aria-hidden="true">
           <span class="glow"></span>
           <div class="fa-stack">
