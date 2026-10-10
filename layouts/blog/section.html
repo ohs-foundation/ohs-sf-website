@@ -1,13 +1,14 @@
 {{ define "main" }}
   <!-- ===== HERO ===== -->
+  {{- with .Params.hero }}
   <section class="page-hero" data-screen-label="Blog hero">
     <div class="wrap">
-      <span class="eyebrow reveal in">The blog</span>
-      <h1 class="reveal in" style="max-width:16ch">News, releases and notes from the foundation.</h1>
-      <p class="lead reveal in d1">Announcements, project milestones and perspectives from the community building
-        open-source building blocks for global digital health.</p>
+      <span class="eyebrow reveal in">{{ .eyebrow }}</span>
+      <h1 class="reveal in" style="max-width:16ch">{{ .heading }}</h1>
+      <p class="lead reveal in d1">{{ .lead | markdownify }}</p>
     </div>
   </section>
+  {{- end }}
 
   {{- $posts := .RegularPages.ByDate.Reverse }}
   <section style="padding-bottom: clamp(48px, 7vw, 100px)">
@@ -23,7 +24,7 @@
         {{- end }}
         <div class="featured-body">
           <div class="featured-tags">
-            <span class="tag teal">Latest</span>
+            <span class="tag teal">{{ T "latest" }}</span>
             {{- with .Params.category }}
             <span class="tag">{{ . }}</span>
             {{- end }}
@@ -34,20 +35,20 @@
             {{ partial "blog/meta.html" . }}
           </div>
           <div class="featured-foot">
-            <span class="textlink">{{ .Params.readMore | default "Read the post" }} {{ partial "icon.html" "arrow-right-16" }}</span>
+            <span class="textlink">{{ .Params.readMore | default (T "readThePost") }} {{ partial "icon.html" "arrow-right-16" }}</span>
           </div>
         </div>
         {{- if not $cover }}
         <div class="featured-art" aria-hidden="true">
           <span class="glow"></span>
           <div class="fa-stack">
-            <div class="fa-roof">Apps &amp; solutions</div>
+            <div class="fa-roof">{{ T "illustrationTop" }}</div>
             <div class="fa-cols">
               <div class="fa-col c1"><span><i></i><i style="width:70%"></i></span></div>
               <div class="fa-col c2"><span><i></i><i style="width:70%"></i></span></div>
               <div class="fa-col c3"><span><i></i><i style="width:70%"></i></span></div>
             </div>
-            <div class="fa-base">Grounded in open standards</div>
+            <div class="fa-base">{{ T "illustrationBase" }}</div>
           </div>
         </div>
         {{- end }}
@@ -56,7 +57,7 @@
 
       {{- with after 1 $posts }}
       <!-- ===== EARLIER POSTS ===== -->
-      <div class="more-rail reveal">More posts</div>
+      <div class="more-rail reveal">{{ $.Params.moreLabel | default "More posts" }}</div>
       <div class="post-rows">
         {{- range . }}
         <a class="post-row reveal" href="{{ .RelPermalink }}">

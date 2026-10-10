@@ -1,10 +1,11 @@
 {{- /*
   Links in posts.
   - External links open in a new tab.
+  - @discord / @calendar / @email:general … use the shared links from hugo.yaml.
   - Relative links are resolved: a file next to the post (e.g. report.pdf)
     or another page/post (e.g. ../other-post/ or /projects.md) gets its real URL.
 */ -}}
-{{- $dest := .Destination -}}
+{{- $dest := partial "url.html" .Destination -}}
 {{- $u := urls.Parse $dest -}}
 {{- $external := and $u.IsAbs (in (slice "http" "https") $u.Scheme) (ne $u.Host (urls.Parse site.BaseURL).Host) -}}
 {{- if and (not $u.IsAbs) $u.Path -}}
@@ -17,7 +18,7 @@
     {{- end -}}
   {{- end -}}
   {{- with $u.RawQuery }}{{ $dest = printf "%s?%s" $dest . }}{{ end -}}
-  {{- with $u.Fragment }}{{ if ne $dest $.Destination }}{{ $dest = printf "%s#%s" $dest . }}{{ end }}{{ end -}}
+  {{- with $u.Fragment }}{{ if ne $dest $u.String }}{{ $dest = printf "%s#%s" $dest . }}{{ end }}{{ end -}}
 {{- end -}}
 <a href="{{ $dest | safeURL }}"
   {{- with .Title }} title="{{ . }}"{{ end }}

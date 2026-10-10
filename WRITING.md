@@ -1,137 +1,232 @@
 # Managing the site's content
 
-How to change anything on ohs.foundation: blog posts, members, events, projects, and the text on every page. You don't need to know Hugo; you edit plain text files, commit, and Netlify publishes the result within a minute or two.
+Everything you can read on ohs.foundation is kept in plain text files: Markdown and YAML. You don't need to touch HTML or know Hugo. Edit a file, commit, and Netlify publishes the change within a minute or two.
 
 **Contents**
 
-1. [How editing works](#1-how-editing-works)
-2. [Across the whole site](#2-across-the-whole-site): menu, footer, newsletter band, links and emails, page titles, share image
-3. [Home page](#3-home-page)
-4. [Foundation page](#4-foundation-page)
-5. [Projects page](#5-projects-page)
-6. [Community page](#6-community-page), including events
-7. [Blog](#7-blog)
-8. [Members](#8-members)
-9. [Welcome and 404 pages](#9-welcome-and-404-pages)
-10. [Quick reference](#10-quick-reference)
-11. [When something goes wrong](#11-when-something-goes-wrong)
+1. [Where content lives](#1-where-content-lives)
+2. [Editing basics](#2-editing-basics): YAML, Markdown, links, icons, preview and publish
+3. [Across the whole site](#3-across-the-whole-site): menu, footer, newsletter band, 404, shared links
+4. [Home page](#4-home-page) · [Foundation](#5-foundation-page) · [Projects](#6-projects-page) · [Community](#7-community-page) · [Welcome](#8-welcome-page)
+5. [Blog](#9-blog)
+6. [Members](#10-members)
+7. [Quick reference](#11-quick-reference)
+8. [When something goes wrong](#12-when-something-goes-wrong)
 
 ---
 
-## 1. How editing works
+## 1. Where content lives
 
-Content lives in three kinds of files:
+| File | What's in it |
+|---|---|
+| `content/_index.md` | Home page text |
+| `content/foundation.md` | Foundation page text, including the membership tiers |
+| `content/projects.md` | Projects page heading and "Get involved" band |
+| `content/community.md` | Community page text |
+| `content/welcome-to-community.md` | The page new newsletter subscribers land on |
+| `content/blog/_index.md` | Blog page heading, plus the purple band at the end of every post |
+| `content/blog/<post>/index.md` | One blog post, with its images beside it |
+| `data/pillars.yaml` | The three pillars and every project card (used on Home, Projects and in the footer) |
+| `data/members.yaml` | Member organisations and their tiers (Home and Foundation pages) |
+| `data/events.yaml` | Conferences pinned to the Community page's event list |
+| `hugo.yaml` | Menus, footer, the "Stay in the loop" band, the 404 page, site name, shared links and emails |
+| `i18n/en.yaml` | Small interface labels such as "Latest" and "Share this post" |
 
-| Kind | Where | How easy |
-|---|---|---|
-| **Data files** (YAML) | `data/*.yaml`, `hugo.toml` | Easy: lists of name/value pairs. Projects, members, events, home page labels, shared links. |
-| **Content files** (Markdown) | `content/` | Easy: blog posts, plus each page's title and search/share description. |
-| **Page templates** (HTML) | `layouts/` | Edit with care: the fixed wording of each page (headings, paragraphs, buttons). |
+Each page file in `content/` starts with a block between two `---` lines (the *front matter*). That block holds the page's title, its search and share description, and **all of its text**, organised top to bottom in the order the sections appear on the page. Section names match what you see:
 
-### Editing text in a page template
+```yaml
+---
+title: Foundation
+description: "An independent, community-owned software foundation …"
 
-Most of the wording on the Foundation, Community and Home pages is written straight into the page's HTML template. Changing it is safe if you only change the words:
+hero:                                   ← the big heading at the top
+  eyebrow: The next chapter             ← the small label above it
+  heading: An independent, community-owned software foundation.
+  lead: We're transitioning the current Open Health Stack …
 
-1. Open the template listed for that section in this guide, and search for a few words of the sentence you want to change. Each section also starts with a comment such as `<!-- GOVERNANCE -->`.
-2. Change **only the text between the tags**. Leave everything inside `<` `>` alone, and anything inside `{{` `}}`.
-3. Write `&amp;` for "&". Other characters (— · ’ “ ” ®) can be typed as normal.
-4. A sentence may wrap over several lines in the file. That's fine; line breaks inside a paragraph don't show on the site.
-
-```html
-<h3>Balanced board</h3>                 ← change "Balanced board"
-<p>A capped board size balances …</p>   ← change the sentence, keep <p> and </p>
+governance:                             ← the "Governance" section
+  heading: Balanced voices, transparent decisions.
+  cards:                                ← a list: one entry per card
+    - icon: users
+      color: core
+      title: External Advisory Council
+      text: Voices from multilaterals, NGOs and Ministries of Health …
+---
 ```
 
-### Editing a YAML data file
+The words used throughout:
 
-- Indent with **spaces, never tabs**, and keep each line at the same indentation as its neighbours.
-- Text containing a colon followed by a space (`: `), or starting with a quote or `#`, must be wrapped in double quotes: `title: "GDHF '26: Bangkok"`.
-- A line starting with `#` is a comment, a note for people that the site ignores.
-- A list item starts with `- `. To add one, copy an existing item, including all of its indented lines.
+- **eyebrow**: the small all-caps label above a heading.
+- **heading**: the heading.
+- **lead**: the larger intro paragraph under it.
+- **text**: an ordinary paragraph.
+
+**The layout and design aren't in these files.** You change what the page says, not how it looks. A section left out of the file simply isn't shown.
+
+---
+
+## 2. Editing basics
+
+### YAML: the rules that matter
+
+- Indent with **spaces, never tabs**. Items in the same list or block line up exactly.
+- **Lists** are lines starting with `- `. To add a card, tier or button, copy an existing entry, including all of its indented lines, and edit it. To remove one, delete the entry. Order in the file is order on the page.
+- **Long text** can run over several lines after `>-`. Indent the following lines and they're joined into one paragraph:
+
+  ```yaml
+  text: >-
+    This sentence continues
+    on the next line.
+  ```
+
+- **Quote text** (`"…"`) if it contains a colon followed by a space or ends with a colon, starts with `@`, `#`, `*`, `[` or a quote, or is a number you want kept as text: `title: "Step 2: Save the calls"`.
+- `#` starts a comment, a note to people that the site ignores.
+- Short items can sit on one line in braces: `{ label: Join now, url: /community.html }`.
+
+### Markdown inside text
+
+Every `text`, `lead` and `note` field accepts Markdown:
+
+| Write | Get |
+|---|---|
+| `**bold**` | **bold** |
+| `*italic*` | *italic* |
+| `[Discord](@discord)` | a link |
+
+### Links
+
+Anywhere a URL goes (`url:` fields, menu items, links in Markdown) you can use:
+
+| Write | Goes to |
+|---|---|
+| `/projects.html`, `/foundation.html#membership` | a page on this site, or a section of it |
+| `#events` | a section of the same page |
+| `https://…` | another website |
+| `@discord`, `@calendar`, `@github`, `@governanceDocs`, `@lfxEnrollment`, `@linuxFoundation`, `@netlify` | the shared links set in `hugo.yaml` → `params.links` |
+| `@email:general`, `@email:membership`, `@email:proposals` | an email to the addresses in `hugo.yaml` → `params.contact` |
+
+With shared links, a change (say, a new Discord invite) is made once in `hugo.yaml` and every page follows. Add your own under `params.links` and use them as `@name`.
+
+### Buttons
+
+```yaml
+buttons:
+  - { label: Join the community, url: /community.html, style: primary, icon: arrow-right-17 }
+  - { label: Explore the repositories, url: "@github", style: ghost, newTab: true }
+```
+
+- **style**: `primary` (solid indigo), `ghost` (outlined), `light` (white, for purple bands) or `on-dark` (outlined, for purple bands).
+- **icon** (optional): `arrow-right-15`, `arrow-right-16`, `arrow-right-17` or `arrow-right-18` for a plain arrow; `arrow-ext-14` or `arrow-ext-16` for the "opens elsewhere" arrow. The number is the size.
+- **newTab: true** (optional): opens an external link in a new tab.
+
+### Icons
+
+Cards with a small rounded icon take `icon:` and an optional `color:`.
+
+- **icon**: `building`, `banknote`, `bulb`, `wrench`, `users`, `balance`, `document`, `x-circle`, `calendar`, `chat`, `code`, `spark`, `globe`, `dollar`, `layers`, `search`, `monitor`, `phone`, `desktop`, `shield`, `chart`, `pulse`, `checkbox`, `hub`, `plus`.
+- **color**: `core` (teal-blue), `toolkit` (teal) or `ai` (violet). Leave it out for the default indigo.
+
+An unknown icon name stops the build, and the message lists the valid names.
 
 ### Preview, then publish
 
 ```bash
 hugo server            # → http://localhost:1313, refreshes as you save
-hugo server -e demo    # the same, plus sample members and sample posts
+hugo server -e demo    # the same, plus sample members and sample blog posts
 ```
 
-Commit and push to `main` to publish. To check a change first, push a branch and open a pull request; Netlify adds a preview link to it. If the build fails, the live site stays as it was (see [section 11](#11-when-something-goes-wrong)).
+Commit and push to `main` to publish. To check first, push a branch and open a pull request; Netlify adds a preview link. If a change has a mistake, the build stops and the live site stays as it was (see [section 12](#12-when-something-goes-wrong)).
 
 ---
 
-## 2. Across the whole site
+## 3. Across the whole site
 
-| To change… | Edit | Notes |
-|---|---|---|
-| **Top menu** (Foundation, Projects, Community, Blog) and the **Become a member** button | `layouts/_partials/header.html` | The list of menu items is at the top of the file. The mobile menu uses the same list. |
-| **Footer** text and links | `layouts/_partials/footer.html` | The "Projects" column is built automatically from the pillar names in `data/pillars.yaml`. |
-| **"Stay in the loop" band** above the footer (most pages) | `layouts/_partials/newsletter-band.html` | Its button goes to the sign-up form on the Community page. |
-| **Contact emails**: general (hello@), membership, project proposals | `hugo.toml` → `[params.contact]` | Used everywhere these addresses appear. |
-| **Discord invite, community calendar, GitHub, governance docs, LFX "Join now" link** | `hugo.toml` → `[params.links]` | Change once and every page updates. |
-| **Newsletter / working-group sign-up forms** | `hugo.toml` → `[params.emailOctopus]` | These are the EmailOctopus form IDs. The form fields, consent text and thank-you message are edited in EmailOctopus, not here. |
-| **Browser-tab title and search/share description** of a page | The page's file in `content/`: `foundation.md`, `projects.md`, `community.md`, `blog/_index.md`, `_index.md` (home) | `title:` becomes "Title — Open Health Stack Software Foundation"; `description:` is what Google and LinkedIn show. The home page tab title is `pageTitle:` in `content/_index.md`. |
-| **Default share image** (what LinkedIn and Slack show for pages other than blog posts) | Replace `assets/images/og-default.png` | Keep the same name; 1200 × 630 px. |
-| **Site icon** in the browser tab | `static/favicon.svg` (and `static/apple-touch-icon.png`, 180 × 180, for phones) | |
-| **Short links** such as `ohs.foundation/get-involved` | `netlify.toml` → the `[[redirects]]` blocks | Copy an existing block to add another. |
+All in **`hugo.yaml`**:
 
----
-
-## 3. Home page
-
-`https://ohs.foundation/`, top to bottom:
-
-| Section | Edit | What's there |
-|---|---|---|
-| **"New" pill** above the headline | `data/home.yaml` → `announcement:` | `tag`, `text`, `url`. Delete the whole block to hide the pill. |
-| **Headline, intro paragraph, the two buttons, "Hosted by the Linux Foundation" badge** | `layouts/home.html`, under `<!-- ===== HERO ===== -->` | The headline's coloured part is the `<span class="grad">…</span>`. |
-| **Diagram** on the right (Apps & solutions → three pillars → Open standards) | Labels: `data/home.yaml` → `diagram:`. Pillar names, statuses and one-line descriptions: `data/pillars.yaml` (`name`, `status`, `home.diagramDesc`) | `baseChips` are the "HL7® FHIR® / MCP / Skills" chips; `appTileColors` are the small app tiles. |
-| **"Three pillars" heading and intro** | `data/home.yaml` → `pillarsSection:` | |
-| **The three pillar cards** | `data/pillars.yaml`, the `home:` block of each pillar | `heading`, `body`, `bullets` (the ticked lines), `linkLabel`. The tag line "Pillar 01 · FHIR Foundations · Active" comes from `num`, `name` and `status`. |
-| **"Why a foundation"** (four cards) | `layouts/home.html`, under `<!-- ===== WHY A FOUNDATION ===== -->` | |
-| **Premier members strip** | `data/members.yaml` | Appears automatically once there are members in a tier marked `showOnHome: true`. Its small label and heading are the `home:` block at the top of that file. See [Members](#8-members). |
-| **"The ask" purple band** ("Help us build the future…") | `layouts/home.html`, under `<!-- ===== CTA ===== -->` | |
-
----
-
-## 4. Foundation page
-
-`/foundation.html`. Everything except the members directory is in **`layouts/foundation.html`**; look for these comments:
-
-| Section | Comment in the template |
+| To change… | Where in `hugo.yaml` |
 |---|---|
-| Hero: "An independent, community-owned software foundation." | `<!-- HERO -->` |
-| Mission: "Catalyze sustainable, next-gen digital health solutions." | `<!-- NORTH STAR / MISSION -->` |
-| Charter: the four commitments, plus "The boundary" | `<!-- CHARTER -->` |
-| Governance: External Advisory Council, Balanced board | `<!-- GOVERNANCE -->` |
-| "Why this model" (four cards) | `<!-- WHY THIS MODEL -->` |
-| Membership tiers and prices (Premier, General, Associate, Inclusive, Sponsorships or grants) | `<!-- MEMBERSHIP -->` |
-| Governance docs box, plus the **Join now** / **Get in touch** buttons | `<!-- GOVERNANCE DOCS CALLOUT -->`. The links themselves are in `hugo.toml` (`governanceDocs`, `lfxEnrollment`, `contact.membership`). |
-| **"Our members"** directory at the bottom (`/foundation.html#members`) | `data/members.yaml`, see [Members](#8-members) |
+| **Top menu** (Foundation, Projects, Community, Blog) | `menus:` → `main:`. Items appear in `weight` order. `identifier` must match the page's name (e.g. `community`) so the menu highlights the page you're on. |
+| **Become a member** button in the header | `params:` → `header:` → `button:` |
+| **"Stay in the loop" band** above the footer | `params:` → `newsletter:` |
+| **Footer** text | `params:` → `footer:` (`about`, `copyright`, `hostedBy`, `poweredBy`) |
+| **Footer** columns and links | Column headings: `params:` → `footer:` → `columns:`. Links: `menus:` → `footerFoundation`, `footerProjects`, `footerCommunity`. The Projects column lists the pillars from `data/pillars.yaml` first. |
+| **"Page not found"** page | `params:` → `notFound:` |
+| **Shared links** (Discord, calendar, GitHub, governance docs, LFX enrolment…) | `params:` → `links:` |
+| **Contact emails** | `params:` → `contact:` |
+| **Newsletter and working-group sign-up forms** | `params:` → `emailOctopus:`. These are the EmailOctopus form IDs; the form fields, consent text and thank-you messages are edited in EmailOctopus. |
+| **Site name** next to the logo in the header and footer | `params:` → `brand:` |
+| **Site description** (used when a page has none of its own) | `params:` → `description:` |
 
-The membership tiers described in this page's text (prices and benefits) and the tier names in `data/members.yaml` (used to group member logos) are separate. Keep them consistent when tiers change.
+Elsewhere:
+
+| To change… | Edit |
+|---|---|
+| A page's **browser-tab title** and **search/share description** | `title:` and `description:` at the top of its file in `content/`. The home page tab title is `pageTitle:` in `content/_index.md`. |
+| **Default share image** (what LinkedIn and Slack show for pages other than blog posts) | Replace `assets/images/og-default.png`, keeping the name; 1200 × 630 px. |
+| **Site icon** in the browser tab | `static/favicon.svg` (and `static/apple-touch-icon.png`, 180 × 180, for phones) |
+| **Short links** such as `ohs.foundation/get-involved` | `netlify.toml` → the `[[redirects]]` blocks. Copy one to add another. |
+| **Small interface labels** ("Latest", "Read the post", "Share this post", "min read", "Loading upcoming events…") | `i18n/en.yaml` |
 
 ---
 
-## 5. Projects page
+## 4. Home page
 
-`/projects.html`
+**`content/_index.md`**, top to bottom:
 
-| Section | Edit |
+| Block | What it is |
 |---|---|
-| Hero: "Three pillars. Many building blocks." | `layouts/projects.html`, under `<!-- HERO -->` |
-| Each **pillar band** (tag line, heading, description, "View collection on GitHub" link) | `data/pillars.yaml`, the `projects:` block of each pillar (`heading`, `body`, `collectionUrl`; delete `collectionUrl` to hide the GitHub link) |
-| The **project cards** | `data/pillars.yaml` → `projects:` → `items:` |
-| "Get involved" band at the bottom | `layouts/projects.html`, under `<!-- GET INVOLVED -->` |
+| `announcement` | The "New" pill above the headline (`tag`, `text`, `url`). Delete the block to hide it. |
+| `hero` | `eyebrow`; `heading` plus `headingAccent` (the coloured end of the headline); `lead`; `buttons`; `badge` ("Hosted by the Linux Foundation") |
+| `diagram` | Labels of the diagram beside the headline, the colours of its small app tiles, and the standards chips at its base. The pillar names and short descriptions in it come from `data/pillars.yaml`. |
+| `pillars` | Heading and intro of the "Three pillars" section, and its button label. The three cards themselves come from `data/pillars.yaml` (the `home:` block of each pillar). |
+| `why` | "Why a foundation": heading, intro and the four cards (`icon`, `title`, `text`) |
+| `members` | Heading of the premier-members logo strip. The strip appears once `data/members.yaml` has members in a tier marked `showOnHome: true`. |
+| `cta` | The purple "The ask" band: `eyebrow`, `heading`, `lead`, `buttons` |
 
-### Add, change or remove a project card
+---
 
-Copy an existing item under the right pillar's `items:` and edit it:
+## 5. Foundation page
+
+**`content/foundation.md`**, top to bottom:
+
+| Block | What it is |
+|---|---|
+| `hero` | Top heading and intro |
+| `mission` | "The charter · North star" box |
+| `charter` | Heading and intro; `commitments` (the numbered cards, numbered automatically 01, 02, … in list order); `boundary` (the "no complete products" box) |
+| `governance` | Heading and intro; `cards`; `docsButton` (the label of the governance docs button; its link is `@governanceDocs`) |
+| `model` | "Why this model": heading and `items` |
+| `membership` | Heading and intro. `groups` holds the membership options with their prices and benefits: each group has a `label` (e.g. "Standard tiers · Linux Foundation model") and `tiers` (`name`, `meta` for the price line, `text`). `docs` is the governance docs box. `joinButton` and `contactButton` are the button labels. `directory` is the heading of the "Our members" logo section. |
+
+**Example: add a membership option.** Copy a tier under the right group and edit it:
+
+```yaml
+        - name: Supporter
+          meta: $2k / year · individuals and small teams
+          text: >-
+            For people who want to back the mission. Includes the supporter newsletter and an
+            invitation to the annual community summit.
+```
+
+The membership options described here (prices and benefits) are separate from the tiers in `data/members.yaml`, which only group the member logos. Keep the two consistent when tiers change.
+
+---
+
+## 6. Projects page
+
+| Part | Edit |
+|---|---|
+| Top heading and intro | `content/projects.md` → `hero` |
+| "Get involved" band at the bottom | `content/projects.md` → `involved` |
+| Each pillar band (tag line, heading, description, GitHub collection link) | `data/pillars.yaml`, the `projects:` block of each pillar |
+| The project cards | `data/pillars.yaml` → `projects:` → `items:` |
+
+**Add, change or remove a project card.** Copy an item under the right pillar's `items:`:
 
 ```yaml
     - name: FHIR Info Gateway
       kind: Gateway                     # small tag at the top of the card
-      icon: shield                      # see the list below
+      icon: shield                      # any icon from "Icons" above
       description: >-
         A privacy-preserving access layer that ensures only relevant
         healthcare workers can reach the patient data they need.
@@ -142,36 +237,31 @@ Copy an existing item under the right pillar's `items:` and edit it:
       linkLabel: View repository
 ```
 
-- `icon`: one of `layers`, `search`, `monitor`, `phone`, `shield`, `chart`, `desktop`, `pulse`, `checkbox`, `hub`, `plus`.
-- `description: >-` lets a long description wrap over several lines in the file. Indent its lines a little further, as shown.
-- Links starting with `http` get the "external" arrow; links within the site (`/community.html#involved`) get the plain arrow.
 - `openCall: true` gives the dashed "Propose an initiative" card style.
-- Cards appear in the order listed. To remove one, delete the item and all its indented lines.
+- Links starting with `http` get the "opens elsewhere" arrow.
 
-### Change a pillar's name or status
-
-Edit `name` or `status` in `data/pillars.yaml`. That updates the home page diagram, the pillar cards, the Projects page and the footer together. The AI Commons entry also has a `projectsStatus:` line, which overrides the status on the Projects page only (it currently says "Launching soon" there and "Launching" elsewhere). Delete that line to use one wording everywhere.
+**Rename a pillar or change its status.** Edit `name` or `status` in `data/pillars.yaml`. That updates the home diagram, the home cards, the Projects page and the footer together. The AI Commons entry also has `projectsStatus:`, which overrides the status on the Projects page only (currently "Launching soon" there and "Launching" elsewhere). Delete that line to use one wording everywhere.
 
 ---
 
-## 6. Community page
+## 7. Community page
 
-`/community.html`. Text is in **`layouts/community.html`**:
+**`content/community.md`**, top to bottom:
 
-| Section | Comment in the template |
+| Block | What it is |
 |---|---|
-| Hero: "A global movement for open digital health." | `<!-- HERO -->` |
-| "Show up. Join the conversation." (monthly calls, Discord) | `<!-- JOIN THE COMMUNITY -->` |
-| "Four ways to build with us" | `<!-- GET INVOLVED -->` |
-| Working-group sign-up (text above the form) | `<!-- WORKING GROUP SIGN-UP … -->` |
-| Events: heading, intro, calendar button, filter buttons | `<!-- EVENTS -->` |
-| "Help build the future…" purple band | `<!-- CONTRIBUTOR CTA -->` |
-| Newsletter sign-up at the bottom | `<!-- NEWSLETTER SIGNUP … -->` |
+| `hero` | Top heading and intro |
+| `join` | "Show up. Join the conversation.": the two `options` (calls, Discord), each with a `link`; `mailingList` (the text and button above the sign-up link) |
+| `involved` | "Four ways to build with us": the `cards`, each with a `link` |
+| `workingGroups` | Text above the working-group sign-up form, and the `note` pill |
+| `events` | Heading and intro; `calendarText` (with a link to the calendar); `calendarButton`; the labels of the four `filters` |
+| `cta` | The purple "Help build the future…" band: `eyebrow`, `heading`, `lead`, `buttons` |
+| `subscribe` | Text above the newsletter sign-up form at the bottom |
 
 ### Events
 
-- **Community calls and working-group meetings appear automatically** from the public community Google Calendar. Add, move or cancel them in Google Calendar and the site follows within about 10 minutes. Events with "Community call" in the title are labelled *Community call*; online events are labelled *Working group*; events with a physical address are labelled *In-person*.
-- **Conferences and other one-off events** you want pinned to the list go in `data/events.yaml`:
+- **Community calls and working-group meetings appear automatically** from the public community Google Calendar. Add, move or cancel them in Google Calendar and the site follows within about 10 minutes. Events with "Community call" in the title are labelled *Community call*; other online events *Working group*; events with a street address *In-person*.
+- **Conferences and other one-off events** pinned to the list go in **`data/events.yaml`**:
 
 ```yaml
 pinned:
@@ -180,12 +270,24 @@ pinned:
     endDate: 2026-12-04           # the row disappears after this day
     location: "Bangkok, Thailand"
     category: in-person           # in-person, community or working-group
-    note: "Optional text. [Links](mailto:hello@ohs.foundation) are allowed."
+    note: "Optional text. [Links](@email:general) are allowed."
 ```
 
 ---
 
-## 7. Blog
+## 8. Welcome page
+
+**`content/welcome-to-community.md`**: the page new newsletter subscribers are sent to (set in EmailOctopus). It isn't in the menus and is hidden from search engines.
+
+- `hero`: `badge`, `heading`, `lead`.
+- `cards`: each has a `title` and a `text` written in Markdown, which can include paragraphs, numbered lists (`1.`) and bullet lists (`-`). A card can also have a `button`.
+- `note`: the closing line.
+
+The welcome **email** EmailOctopus sends is kept in `email-templates/welcome-email.html` for reference only. Changing that file doesn't change the email; edit it in EmailOctopus.
+
+---
+
+## 9. Blog
 
 ### Write a post
 
@@ -198,9 +300,9 @@ content/blog/gdhf-2026-recap/      →  https://ohs.foundation/blog/gdhf-2026-re
   panel-photo.jpg   ← any other images
 ```
 
-File names are case-sensitive (`Cover.JPG` isn't `cover.jpg`); lowercase names without spaces are safest. If you have Hugo installed, `hugo new content blog/gdhf-2026-recap` creates the folder and `index.md` from the template.
+File names are case-sensitive (`Cover.JPG` isn't `cover.jpg`); lowercase names without spaces are safest. With Hugo installed, `hugo new content blog/gdhf-2026-recap` creates the folder and `index.md` from the template.
 
-**2. Start `index.md` with this block** (iA Writer and Ulysses show it as plain text, which is fine):
+**2. Start `index.md` with this block:**
 
 ```markdown
 ---
@@ -222,7 +324,7 @@ draft: false
 | `author` | Shown as "By …". |
 | `category` | A short label such as *Foundation news*, *Events* or *Releases*, shown as a tag. |
 | `summary` | The teaser on the blog page and the description in LinkedIn and Slack previews. |
-| `cover` | File name of the cover image in the post folder (JPG, PNG or WebP). Strongly recommended: it's the picture on the blog page and in LinkedIn previews. Without one, the blog page shows the default illustration. If the file named here is missing, the build stops with a message saying so. |
+| `cover` | File name of the cover image in the post folder (JPG, PNG or WebP). Strongly recommended: it's the picture on the blog page and in LinkedIn previews. Without one, the blog page shows the default illustration. |
 | `coverAlt` | A short description of the cover image for screen readers. |
 | `draft` | `true` keeps the post off the live site; `false` publishes it. |
 
@@ -234,7 +336,7 @@ Optional extras:
 | `badge` | The chip next to the author on the post page. Defaults to `category`. |
 | `shortTitle` | A shorter title for the browser tab. |
 | `readMore` | The link text on the blog page card. Defaults to "Read the post". |
-| `coverCaption` | A caption shown under the cover image. |
+| `coverCaption` | A caption under the cover image. |
 | `coverFocus` | Which part of the cover to keep if it isn't 1.91 : 1 and has to be trimmed on the blog page and in LinkedIn previews: `center` (default), `top`, `bottom`, `left`, `right`, `top-left`, `top-right`, `bottom-left` or `bottom-right`. |
 
 **3. Write the post in Markdown:**
@@ -270,7 +372,7 @@ Video:
 
 Use YouTube or Vimeo for anything longer than a few seconds, because large video files slow down the repository. Large photos are fine; the site resizes and compresses them automatically.
 
-**4. Preview** with `hugo server` (then open `/blog.html`; add `-D` to include drafts). **5. Publish**: set `draft: false`, commit and push.
+**4. Preview** with `hugo server` (open `/blog.html`; add `-D` to include drafts). **5. Publish**: set `draft: false`, commit and push.
 
 ### Cover image size
 
@@ -283,23 +385,28 @@ Make covers **2400 × 1260 px**: any image at the 1.91 : 1 shape works, but it s
 
 Paste the post's URL into a LinkedIn post. The preview card (cover, title and summary) is filled in automatically, and every post also has a **LinkedIn** share button at the bottom. LinkedIn caches previews: if you change the cover or summary after sharing, paste the URL into the [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) to refresh it. The blog's RSS feed is at `/feed.xml`.
 
-### Other blog text
+### Blog page text
 
-| To change… | Edit |
+In **`content/blog/_index.md`**:
+
+| Block | What it is |
 |---|---|
-| The blog page heading ("News, releases and notes from the foundation.") and intro | `layouts/blog/section.html`, under `<!-- ===== HERO ===== -->` |
-| The purple "A place for everyone who builds." band at the end of every post | `layouts/blog/page.html`, under `<!-- ===== CTA ===== -->` |
-| The home page "New" pill pointing at a post | `data/home.yaml` → `announcement:` |
+| `hero` | The blog page heading and intro |
+| `moreLabel` | The "More posts" divider above earlier posts |
+| `postCta` | The purple band at the end of every post |
+
+To point the home page "New" pill at a post, edit `content/_index.md` → `announcement`.
 
 ---
 
-## 8. Members
+## 10. Members
 
 Members appear in two places:
+
 - a logo strip on the **home page**, for tiers marked `showOnHome: true` (currently Premier);
 - the **"Our members"** directory on the **Foundation page**, for all tiers, grouped by tier.
 
-Both are hidden while there are no members. Everything is in `data/members.yaml`.
+Both are hidden while there are no members. Everything is in **`data/members.yaml`**.
 
 ### Add a member
 
@@ -316,11 +423,9 @@ members:
 
 - Within a tier, members appear in the order listed.
 - **Without a `url`** the card isn't clickable. **Without a `logo`** the card shows the organisation's initials.
-- To remove a member, delete its entry (the `- name:` line and the lines under it), and its logo file if it's no longer needed.
+- To remove a member, delete its entry, and its logo file if it's no longer needed.
 
 ### Tiers
-
-The `tiers:` list at the top of the file sets the tier names, their order, and which tiers appear on the home page:
 
 ```yaml
 tiers:
@@ -331,59 +436,53 @@ tiers:
     name: Gold
 ```
 
-Rename, add or reorder tiers freely. If you change an `id`, update the members that use it. The label and heading of the home page strip are the `home:` block in the same file.
+Rename, add or reorder tiers freely. If you change an `id`, update the members that use it. The headings of the members sections are in the page files: `content/_index.md` → `members` and `content/foundation.md` → `membership` → `directory`.
 
-To see the sections with sample members, run `hugo server -e demo` (it reads `data/members_demo.yaml` instead).
-
----
-
-## 9. Welcome and 404 pages
-
-| Page | Edit | Notes |
-|---|---|---|
-| `/welcome-to-community.html`: "Welcome to the community." with steps for new subscribers | `layouts/welcome.html` | Not linked from the site menus and hidden from search engines; it's meant as the page new subscribers are sent to (set in EmailOctopus). |
-| The "page not found" page | `layouts/404.html` | Shown for any address that doesn't exist. |
-
-The welcome **email** that EmailOctopus sends is kept in `email-templates/welcome-email.html` for reference. Changing that file doesn't change the email; edit it in EmailOctopus.
+`hugo server -e demo` shows the sections with sample members (from `data/members_demo.yaml`).
 
 ---
 
-## 10. Quick reference
+## 11. Quick reference
 
 | I want to… | Edit |
 |---|---|
-| Publish a blog post | New folder in `content/blog/` ([section 7](#7-blog)) |
+| Publish a blog post | New folder in `content/blog/` ([section 9](#9-blog)) |
+| Change any text on a page | That page's file in `content/` ([section 1](#1-where-content-lives)) |
+| Change the home page headline | `content/_index.md` → `hero` |
+| Change the home page "New" pill | `content/_index.md` → `announcement` |
+| Change membership prices or benefits | `content/foundation.md` → `membership` → `groups` |
 | Add or remove a member | `data/members.yaml` + logo in `assets/members/` |
-| Rename membership tiers used for member logos | `data/members.yaml` → `tiers:` |
-| Change membership prices or benefits | `layouts/foundation.html` → `<!-- MEMBERSHIP -->` |
-| Add or edit a project card | `data/pillars.yaml` → `items:` |
+| Rename member tiers | `data/members.yaml` → `tiers` |
+| Add or edit a project card | `data/pillars.yaml` → `items` |
 | Rename a pillar or change its status | `data/pillars.yaml` → `name` / `status` |
-| Change the home page "New" pill | `data/home.yaml` → `announcement:` |
-| Change the home page headline | `layouts/home.html` → `<!-- ===== HERO ===== -->` |
 | Pin a conference to the events list | `data/events.yaml` |
 | Change a regular call's time | Google Calendar (the site updates itself) |
-| Change the Discord invite or calendar link | `hugo.toml` → `[params.links]` |
-| Change a contact email | `hugo.toml` → `[params.contact]` |
-| Change a menu or footer link | `layouts/_partials/header.html` / `footer.html` |
+| Change the menu, footer or newsletter band | `hugo.yaml` → `menus` / `params.footer` / `params.newsletter` |
+| Change the Discord invite, calendar or other shared link | `hugo.yaml` → `params.links` |
+| Change a contact email | `hugo.yaml` → `params.contact` |
 | Change how a page looks in Google or LinkedIn | `description:` in its `content/*.md` file |
 | Add a short link like `/get-involved` | `netlify.toml` → `[[redirects]]` |
 
 ---
 
-## 11. When something goes wrong
+## 12. When something goes wrong
 
-If a change has a mistake that would break the site, **the build stops and the live site stays as it was**. In a pull request, the Netlify check turns red; on `hugo server`, the error is shown in the terminal and the browser. The message says which file is wrong. Common ones:
+If a change has a mistake that would break the site, **the build stops and the live site stays as it was**. In a pull request, the Netlify check turns red; on `hugo server`, the error appears in the terminal and the browser. The message names the file. Common ones:
 
 | Message | Fix |
 |---|---|
+| `failed to load data: "…/events.yaml:2:12" … mapping value is not allowed`, or `… found character that cannot start any token` | A formatting slip in that YAML file, at the line and column shown: usually a colon in unquoted text (wrap the text in double quotes), a tab instead of spaces, or uneven indentation. The same problems in a page's front matter show the `content/…md` file instead. |
+| `Unknown icon "people". Available: …` | Use one of the listed icon names. |
+| `Unknown link "@discrod"` / `Unknown email "@email:info"` | A typo in a shared link, or one that isn't defined in `hugo.yaml` → `params.links` / `params.contact`. |
 | `cover image "cover.jpg" not found next to the post's index.md` | The file name in `cover:` doesn't match the file in the post folder. Check the spelling and case. |
 | `image "photo.jpg" not found next to index.md` | Same problem for an image in the post text. |
-| `has tier "Premier", which isn't one of the tier ids` | The member's `tier:` must match an `id` in the tiers list exactly, including upper/lower case. |
-| `logo "x.svg" (for "…") not found in assets/members/` | The logo file is missing or its name is spelled differently. |
+| `has tier "Premier", which isn't one of the tier ids` | A member's `tier:` must match a tier `id` exactly, including upper/lower case. |
+| `logo "x.svg" (for "…") not found in assets/members/` | The logo file is missing or named differently. |
 | `coverFocus "middle" isn't one of: …` | Use one of the listed values. |
-| `failed to load data: "…/events.yaml:2:12" … mapping value is not allowed` or `… found character that cannot start any token` | A formatting slip in that YAML file, at the line and column shown (here line 2, column 12): usually a colon in unquoted text (wrap the text in double quotes), a tab instead of spaces, or uneven indentation. |
 
 Other things to check:
+
 - **A post doesn't appear.** It probably still says `draft: true`.
+- **A section disappeared.** Its block may be misnamed or wrongly indented in the page file. Compare it with the names in this guide.
 - **LinkedIn shows an old preview.** Refresh it in the [Post Inspector](https://www.linkedin.com/post-inspector/).
-- **The events list says it couldn't load.** That's normal under `hugo server`, because the events come from a Netlify function. They load on Netlify previews and on the live site.
+- **The events list says it couldn't load.** That's normal under `hugo server`, because events come from a Netlify function. They load on Netlify previews and the live site.

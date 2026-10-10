@@ -2,9 +2,6 @@
 # (`hugo server --environment demo`) to preview the members sections.
 # The live site reads data/members.yaml.
 
-home:
-  eyebrow: Premier members
-  heading: Backed by our premier members.
 
 tiers:
   - id: premier

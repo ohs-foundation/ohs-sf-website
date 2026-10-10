@@ -1,3 +1,5 @@
+{{- /* Site footer. Text and columns: hugo.yaml → params.footer; links: menus.footer* */ -}}
+{{- $f := site.Params.footer -}}
   <!-- ===== FOOTER ===== -->
   <footer class="site-footer">
     <div class="wrap-wide">
@@ -5,43 +7,31 @@
         <div class="footer-brand">
           <a class="brand" href="/" style="color:#fff">
             <span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-            <span class="brandname"><b>Open Health Stack</b><span style="color:oklch(0.66 0.02 200)">Software
-                Foundation</span></span>
+            <span class="brandname"><b>{{ site.Params.brand.name }}</b><span style="color:oklch(0.66 0.02 200)">{{ site.Params.brand.tagline }}</span></span>
           </a>
-          <p class="footer-about">A neutral, community-owned home for open-source building blocks accelerating next-gen,
-            AI-powered digital health.</p>
+          <p class="footer-about">{{ $f.about | markdownify }}</p>
         </div>
+        {{- range $f.columns }}
         <div>
-          <h4>Foundation</h4>
+          <h4>{{ .title }}</h4>
           <ul>
-            <li><a href="/foundation.html#mission">Mission &amp; charter</a></li>
-            <li><a href="/foundation.html#governance">Governance</a></li>
-            <li><a href="/foundation.html#membership">Membership</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Projects</h4>
-          <ul>
+            {{- if .pillars }}
             {{- range hugo.Data.pillars.pillars }}
             <li><a href="/projects.html#{{ .id }}">{{ .name }}</a></li>
             {{- end }}
-            <li><a href="/projects.html#get-involved">Get involved</a></li>
+            {{- end }}
+            {{- range index site.Menus (lower .menu) }}
+            <li><a href="{{ partial "url.html" .URL }}">{{ .Name }}</a></li>
+            {{- end }}
           </ul>
         </div>
-        <div>
-          <h4>Community</h4>
-          <ul>
-            <li><a href="/community.html#involved">Get involved</a></li>
-            <li><a href="/blog.html">Blog</a></li>
-            <li><a href="/community.html#events">Events</a></li>
-            <li><a href="/community.html#join">Channels</a></li>
-            <li><a href="mailto:{{ site.Params.contact.general }}">Contact</a></li>
-          </ul>
-        </div>
+        {{- end }}
       </div>
       <div class="footer-bottom">
-        <span>© <span data-year>{{ now.Year }}</span> Open Health Stack Software Foundation · a project of the <a href="{{ site.Params.links.linuxFoundation }}">Linux Foundation</a>.</span>
-        <span>This site is powered by <a href="{{ site.Params.links.netlify }}">Netlify</a>.</span>
+        <span>© <span data-year>{{ now.Year }}</span> {{ $f.copyright }}{{ with $f.hostedBy }} <a href="{{ partial "url.html" .url }}">{{ .label }}</a>{{ end }}.</span>
+        {{- with $f.poweredBy }}
+        <span>{{ .text }} <a href="{{ partial "url.html" .url }}">{{ .label }}</a>.</span>
+        {{- end }}
       </div>
     </div>
   </footer>

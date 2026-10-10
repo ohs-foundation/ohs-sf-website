@@ -1,4 +1,4 @@
 {{- /* "By … · date · N min read" line used on the blog index. */ -}}
-{{- with .Params.author }}<span>By {{ . }}</span>{{ end }}
+{{- with .Params.author }}<span>{{ T "by" }} {{ . }}</span>{{ end }}
             <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
-            <span>· {{ .ReadingTime }} min read</span>
+            <span>· {{ .ReadingTime }} {{ T "minRead" }}</span>

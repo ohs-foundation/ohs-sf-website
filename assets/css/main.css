@@ -356,7 +356,7 @@ section { position: relative; }
   background: oklch(0.34 0.04 290); border: 1px solid oklch(0.45 0.06 290);
 }
 .newsletter-note svg { flex: none; color: var(--teal-bright); }
-.newsletter-note b { font-weight: 700; }
+.newsletter-note b, .newsletter-note strong { font-weight: 700; }
 .newsletter-note + .newsletter-form { margin-top: 16px; }
 @media (max-width: 520px) { .newsletter-note { border-radius: var(--radius); } }
 

@@ -1,190 +1,114 @@
 {{ define "main" }}
+  {{- $p := .Params }}
   <!-- HERO -->
+  {{- with $p.hero }}
   <section class="page-hero" data-screen-label="Community hero">
     <div class="wrap">
-      <span class="eyebrow reveal in">The community</span>
-      <h1 class="reveal in" style="margin-top:18px; max-width:16ch">A global movement for open digital health.</h1>
-      <p class="lead reveal in d1">A vibrant community of developers, ecosystem partners and supporters — building the
-        blocks once, so they can be reused everywhere.</p>
+      <span class="eyebrow reveal in">{{ .eyebrow }}</span>
+      <h1 class="reveal in" style="margin-top:18px; max-width:16ch">{{ .heading }}</h1>
+      <p class="lead reveal in d1">{{ .lead | markdownify }}</p>
     </div>
   </section>
+  {{- end }}
 
   <!-- JOIN THE COMMUNITY -->
+  {{- with $p.join }}
   <section id="join" class="section-pad" style="background:var(--bg-2)">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">Join the community</span>
-        <h2 class="section-title" style="margin-top:16px">Show up. Join the conversation.</h2>
-        <p class="lead">The OHS community meets regularly and the conversation never stops. Two easy ways to take part.
-        </p>
+        <span class="eyebrow">{{ .eyebrow }}</span>
+        <h2 class="section-title" style="margin-top:16px">{{ .heading }}</h2>
+        <p class="lead">{{ .lead | markdownify }}</p>
       </div>
       <div class="cj-options">
-        <div class="cj-option reveal d1">
-          <span class="icon-chip core" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="4" width="18" height="18" rx="2" />
-              <path d="M16 2v4M8 2v4M3 10h18" />
-              <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" />
-            </svg></span>
+        {{- range $i, $o := .options }}
+        <div class="cj-option reveal d{{ add $i 1 }}">
+          {{ partial "chip.html" (dict "icon" .icon "color" .color) }}
           <div>
-            <h4>Monthly Community Calls</h4>
-            <p>Open calls for contributors, partners and curious builders — a standing forum to share progress, ask
-              questions and shape direction together.</p>
-            <a href="#events" class="textlink">See the calendar <svg class="arrow" width="15" height="15"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg></a>
+            <h4>{{ .title }}</h4>
+            <p>{{ .text | markdownify }}</p>
+            {{- with .link }}
+            <a href="{{ partial "url.html" .url }}" class="textlink">{{ .label }} {{ partial "icon.html" "arrow-right-15" }}</a>
+            {{- end }}
           </div>
         </div>
-        <div class="cj-option reveal d2">
-          <span class="icon-chip toolkit" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-              <path d="M8 10h8M8 14h5" />
-            </svg></span>
-          <div>
-            <h4>Join us on Discord</h4>
-            <p>Real-time conversation across channels for each pillar — ask questions, share what you're building and
-              connect with the broader community.</p>
-            <a href="{{ site.Params.links.discord }}" class="textlink">Get the invite link <svg class="arrow" width="15"
-                height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg></a>
-          </div>
-        </div>
+        {{- end }}
       </div>
+      {{- with .mailingList }}
       <div class="reveal d2" style="text-align:center; margin-top:40px">
-        <p style="color:var(--ink-soft); font-size:1.05rem; margin-bottom:18px">To receive regular updates from the
-          foundation:</p>
-        <a href="#subscribe" class="btn btn-primary" style="font-size:1.05rem; padding:1em 2em">Join the mailing list
-          <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M13 6l6 6-6 6" />
-          </svg></a>
+        <p style="color:var(--ink-soft); font-size:1.05rem; margin-bottom:18px">{{ .text | markdownify }}</p>
+        <a href="#subscribe" class="btn btn-primary" style="font-size:1.05rem; padding:1em 2em">{{ .button }} {{ partial "icon.html" "arrow-right-18" }}</a>
       </div>
+      {{- end }}
     </div>
   </section>
+  {{- end }}
 
   <!-- GET INVOLVED -->
+  {{- with $p.involved }}
   <section id="involved" class="section-pad">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">Get involved</span>
-        <h2 class="section-title" style="margin-top:16px">Four ways to build with us.</h2>
-        <p class="lead">Whether you write code, run a deployment, set standards or fund the mission — there's a place
-          for you.</p>
+        <span class="eyebrow">{{ .eyebrow }}</span>
+        <h2 class="section-title" style="margin-top:16px">{{ .heading }}</h2>
+        <p class="lead">{{ .lead | markdownify }}</p>
       </div>
 
       <div class="involved-grid">
-        <div class="inv card reveal d1">
-          <span class="icon-chip core" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-              <path d="m8 6-6 6 6 6M16 6l6 6-6 6" />
-            </svg></span>
+        {{- range $i, $c := .cards }}
+        <div class="inv card reveal d{{ add (div $i 2) 1 }}">
+          {{ partial "chip.html" (dict "icon" .icon "color" .color) }}
           <div>
-            <h3>Contribute code</h3>
-            <p>Explore the Github repositories for getting started, pick up a good-first-issue or join a working group.
-              All work happens in
-              the open under transparent governance.</p>
-            <a href="https://github.com/ohs-foundation#start-here" class="textlink">Browse the repositories <svg
-                class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M7 17 17 7M9 7h8v8" />
-              </svg></a>
+            <h3>{{ .title }}</h3>
+            <p>{{ .text | markdownify }}</p>
+            {{- with .link }}
+            {{- $url := partial "url.html" .url }}
+            <a href="{{ $url }}" class="textlink">{{ .label }} {{ partial "icon.html" (cond (strings.HasPrefix $url "http") "arrow-ext-16" "arrow-right-16") }}</a>
+            {{- end }}
           </div>
         </div>
-        <div class="inv card reveal d1">
-          <span class="icon-chip ai" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="3" />
-              <path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2" />
-            </svg></span>
-          <div>
-            <h3>Join a working group</h3>
-            <p>Working groups are forming under the AI Commons pillar, shaping the building blocks with the community. To
-              receive updates, join us on <a href="{{ site.Params.links.discord }}" class="textlink"
-                style="display:inline">Discord</a> and register your interest to hear when groups kick off.</p>
-            <a href="#working-groups" class="textlink">Register interest <svg class="arrow" width="16" height="16"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg></a>
-          </div>
-        </div>
-        <div class="inv card reveal d2">
-          <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20" />
-              <circle cx="12" cy="12" r="10" />
-            </svg></span>
-          <div>
-            <h3>Deploy in your context</h3>
-            <p>Building with or for a Ministry of Health, an NGO or startup? Start with FHIR Foundations or the OHS
-              Player reference toolkit and join the
-              community of technical partners developing next-gen digital health solutions
-            </p>
-            <a href="/projects.html#toolkit" class="textlink">See the projects <svg class="arrow" width="16" height="16"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg></a>
-          </div>
-        </div>
-        <div class="inv card reveal d2">
-          <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-            </svg></span>
-          <div>
-            <h3>Fund the mission</h3>
-            <p>Become a founding member or strategic grantor and help secure a neutral, sustainable home for global
-              digital health.</p>
-            <a href="/foundation.html#membership" class="textlink">Explore membership <svg class="arrow" width="16"
-                height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg></a>
-          </div>
-        </div>
+        {{- end }}
       </div>
     </div>
   </section>
+  {{- end }}
 
   <!-- WORKING GROUP SIGN-UP (EmailOctopus form on the newsletter list, tags contacts "working-groups") -->
+  {{- with $p.workingGroups }}
   <section id="working-groups" class="newsletter standalone">
     <div class="wrap newsletter-inner">
       <div class="newsletter-copy">
-        <span class="eyebrow">Working groups</span>
-        <h2>Shape the building blocks with us.</h2>
-        <p>Working groups are forming under the AI Commons pillar. To receive updates, register your interest and
-          we'll email you when a group kicks off, with the first call and how to join.</p>
+        <span class="eyebrow">{{ .eyebrow }}</span>
+        <h2>{{ .heading }}</h2>
+        <p>{{ .text | markdownify }}</p>
       </div>
+      {{- with .note }}
       <p class="newsletter-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
           stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="10" />
           <path d="M12 16v-4M12 8h.01" />
-        </svg><span><b>Already on our newsletter?</b> Use the same email — no duplicates.</span></p>
+        </svg><span>{{ . | markdownify }}</span></p>
+      {{- end }}
       <div class="newsletter-form">
         <script async src="https://eocampaign1.com/form/{{ site.Params.emailOctopus.workingGroupsForm }}.js" data-form="{{ site.Params.emailOctopus.workingGroupsForm }}"></script>
       </div>
     </div>
   </section>
+  {{- end }}
 
   <!-- EVENTS -->
+  {{- with $p.events }}
   <section id="events" class="events section-pad">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">Community events and meet-ups</span>
-        <h2 class="section-title" style="margin-top:16px">Where the ecosystem comes together.</h2>
-        <p class="lead">Summits, workshops and bootcamps that bring the community together — with the WHO and partners.
-        </p>
+        <span class="eyebrow">{{ .eyebrow }}</span>
+        <h2 class="section-title" style="margin-top:16px">{{ .heading }}</h2>
+        <p class="lead">{{ .lead | markdownify }}</p>
       </div>
 
-      <div class="reveal d1"
+      <div class="events-calendar reveal d1"
         style="margin-top:40px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; padding-bottom:22px; border-bottom:1px solid var(--line)">
-        <p style="color:var(--ink-soft); font-size:0.95rem; margin:0">To add this and future calls to your calendar, subscribe to our <a href="{{ site.Params.links.calendar }}" target="_blank" rel="noopener" style="color:var(--teal-deep); font-weight:600; text-decoration:underline">Community Calendar</a>. Open to everyone.</p>
+        <p style="color:var(--ink-soft); font-size:0.95rem; margin:0">{{ .calendarText | markdownify }}</p>
         <a href="{{ site.Params.links.calendar }}"
           target="_blank" rel="noopener" class="btn btn-ghost" style="white-space:nowrap">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -192,20 +116,21 @@
             <rect x="3" y="4" width="18" height="18" rx="2" />
             <path d="M16 2v4M8 2v4M3 10h18" />
           </svg>
-          Subscribe to calendar
+          {{ .calendarButton }}
         </a>
       </div>
 
+      {{- $f := .filters | default dict }}
       <div class="event-filters reveal d1" role="group" aria-label="Filter events by type">
-        <button type="button" class="filter-chip is-active" data-filter="all">All</button>
-        <button type="button" class="filter-chip" data-filter="community">Community calls</button>
-        <button type="button" class="filter-chip" data-filter="working-group">Working groups</button>
-        <button type="button" class="filter-chip" data-filter="in-person">In-person</button>
+        <button type="button" class="filter-chip is-active" data-filter="all">{{ $f.all | default "All" }}</button>
+        <button type="button" class="filter-chip" data-filter="community">{{ $f.community | default "Community calls" }}</button>
+        <button type="button" class="filter-chip" data-filter="working-group">{{ $f.workingGroup | default "Working groups" }}</button>
+        <button type="button" class="filter-chip" data-filter="in-person">{{ $f.inPerson | default "In-person" }}</button>
       </div>
 
       <div class="event-list reveal d2" data-discord="{{ site.Params.links.discord }}">
         <div class="event-row" data-events-loading>
-          <div class="where">Loading upcoming events…</div>
+          <div class="where">{{ T "loadingEvents" }}</div>
         </div>
 
         {{- range hugo.Data.events.pinned }}
@@ -227,33 +152,32 @@
       </div>
     </div>
   </section>
-
-
+  {{- end }}
 
   <!-- CONTRIBUTOR CTA -->
+  {{- with $p.cta }}
   <section class="contrib-cta section-pad">
     <div class="wrap">
-      <span class="eyebrow bare reveal" style="color:oklch(0.92 0.04 195); justify-content:center">Build once, reuse
-        everywhere</span>
-      <h2 class="section-title reveal d1" style="margin-top:16px">Help build the future of global digital health.</h2>
-      <p class="lead reveal d1">Join a community of developers and partners catalyzing AI-powered, locally-owned digital
-        health solutions at scale.</p>
+      <span class="eyebrow bare reveal" style="color:oklch(0.92 0.04 195); justify-content:center">{{ .eyebrow }}</span>
+      <h2 class="section-title reveal d1" style="margin-top:16px">{{ .heading }}</h2>
+      <p class="lead reveal d1">{{ .lead | markdownify }}</p>
       <div class="hero-cta reveal d2">
-        <a href="https://github.com/google/android-fhir" class="btn btn-light">Start contributing</a>
-        <a href="/foundation.html#membership" class="btn btn-on-dark">Become a member</a>
+        {{- range .buttons }}
+        {{ partial "button.html" . }}
+        {{- end }}
       </div>
     </div>
   </section>
+  {{- end }}
 
   <!-- NEWSLETTER SIGNUP (prominent, pre-footer) -->
+  {{- with $p.subscribe }}
   <section id="subscribe" class="newsletter standalone">
     <div class="wrap newsletter-inner">
       <div class="newsletter-copy">
-        <span class="eyebrow">Stay in the loop</span>
-        <h2>Get updates from the foundation.</h2>
-        <p>Regular newsletter, community calls and project milestones — straight to your inbox. No spam, unsubscribe
-          anytime.
-        </p>
+        <span class="eyebrow">{{ .eyebrow }}</span>
+        <h2>{{ .heading }}</h2>
+        <p>{{ .text | markdownify }}</p>
       </div>
       <div class="newsletter-form">
         <script async src="https://eocampaign1.com/form/{{ site.Params.emailOctopus.newsletterForm }}.js"
@@ -261,6 +185,5 @@
       </div>
     </div>
   </section>
-
-  
+  {{- end }}
 {{ end }}

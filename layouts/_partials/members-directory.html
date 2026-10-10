@@ -1,10 +1,11 @@
 {{- /* Foundation page: every member, grouped by tier. Hidden when there are no members. */ -}}
+{{- $copy := .copy | default dict }}
 {{- with partial "members/groups.html" "all" }}
       <!-- ===== OUR MEMBERS ===== -->
       <div id="members" class="members-directory">
         <div class="section-head center reveal">
-          <span class="eyebrow bare" style="justify-content:center">Our members</span>
-          <h2 class="section-title" style="margin-top:16px">The organisations at the table.</h2>
+          <span class="eyebrow bare" style="justify-content:center">{{ $copy.eyebrow | default "Our members" }}</span>
+          <h2 class="section-title" style="margin-top:16px">{{ $copy.heading | default "The organisations at the table." }}</h2>
         </div>
         {{- range $i, $g := . }}
         <div class="member-tier reveal">

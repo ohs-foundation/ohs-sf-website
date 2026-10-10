@@ -1,7 +1,8 @@
-{{- /* Home page: members of tiers marked showOnHome in data/members.yaml. Hidden when empty. */ -}}
+{{- /* Home page: members of tiers marked showOnHome in data/members.yaml. Hidden when empty.
+       Arg: dict "copy" (eyebrow/heading/link from content/_index.md) */ -}}
+{{- $copy := .copy | default dict -}}
 {{- $groups := partial "members/groups.html" "home" -}}
 {{- with $groups }}
-  {{- $copy := (index hugo.Data (site.Params.membersData | default "members")).home | default dict }}
   <!-- ===== MEMBERS ===== -->
   <section class="members-strip section-pad">
     <div class="wrap">
@@ -15,7 +16,7 @@
         {{- end }}{{ end }}
       </div>
       <div class="members-more reveal d2">
-        <a href="/foundation.html#members" class="textlink">Meet all our members {{ partial "icon.html" "arrow-right-16" }}</a>
+        <a href="/foundation.html#members" class="textlink">{{ $copy.link | default "Meet all our members" }} {{ partial "icon.html" "arrow-right-16" }}</a>
       </div>
     </div>
   </section>

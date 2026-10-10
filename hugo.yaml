@@ -1,0 +1,151 @@
+# Site settings for ohs.foundation (Hugo).
+#
+# Content people edit lives in:
+#   content/*.md   each page's text (in the block between the --- lines)
+#   data/*.yaml    pillars & projects, members, pinned events
+#   this file      menus, footer, newsletter band, 404 text, shared links & emails
+# See WRITING.md for a guide to all of it.
+
+baseURL: https://ohs.foundation/
+locale: en-US
+title: Open Health Stack Software Foundation
+
+# Keep the site's existing URLs (/foundation.html, /blog/<post>.html, …)
+# so links already shared on LinkedIn, in emails and in docs keep working.
+uglyURLs: true
+
+enableRobotsTXT: true
+
+# A post's `date` is only the date shown on it — publishing is controlled by
+# `draft`. (Without this, a post dated "today" can stay hidden for part of the
+# day depending on time zones, until the next push rebuilds the site.)
+buildFuture: true
+
+disableKinds: [taxonomy, term]
+
+outputs:
+  home: [html, rss]      # rss = the blog feed at /feed.xml
+  section: [html]
+  page: [html]
+
+outputFormats:
+  rss:
+    baseName: feed
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true                # allow raw HTML inside Markdown (e.g. an embed snippet)
+    extensions:
+      typographer: false          # keep quotes and apostrophes exactly as typed
+    parser:
+      wrapStandAloneImageWithinParagraph: false   # images on their own line become <figure>s
+      attribute:
+        block: true
+
+imaging:
+  resampleFilter: Lanczos
+  jpeg:
+    quality: 82
+  webp:
+    quality: 82
+
+# ─── Menus ──────────────────────────────────────────────────────────────────
+# Items appear in `weight` order (lowest first). `url` can be a page
+# (/projects.html), an anchor (/foundation.html#membership), a full URL, or a
+# shared link/email such as @discord or @email:general (see params below).
+menus:
+  # Top navigation (desktop and mobile). `identifier` lets the menu highlight
+  # the page you're on.
+  main:
+    - { identifier: foundation, name: Foundation, url: /foundation.html, weight: 10 }
+    - { identifier: projects,   name: Projects,   url: /projects.html,   weight: 20 }
+    - { identifier: community,  name: Community,  url: /community.html,  weight: 30 }
+    - { identifier: blog,       name: Blog,       url: /blog.html,       weight: 40 }
+
+  # Footer columns (headings are under params.footer.columns).
+  footerFoundation:
+    - { name: Mission & charter, url: /foundation.html#mission,    weight: 10 }
+    - { name: Governance,        url: /foundation.html#governance, weight: 20 }
+    - { name: Membership,        url: /foundation.html#membership, weight: 30 }
+  footerProjects:              # shown after the pillar links (from data/pillars.yaml)
+    - { name: Get involved,      url: /projects.html#get-involved, weight: 10 }
+  footerCommunity:
+    - { name: Get involved,      url: /community.html#involved,    weight: 10 }
+    - { name: Blog,              url: /blog.html,                  weight: 20 }
+    - { name: Events,            url: /community.html#events,      weight: 30 }
+    - { name: Channels,          url: /community.html#join,        weight: 40 }
+    - { name: Contact,           url: "@email:general",            weight: 50 }
+
+# ─── Site-wide text and settings ────────────────────────────────────────────
+params:
+  description: >-
+    A neutral, community-owned home for open-source building blocks — helping developers everywhere
+    create standards-based, AI-ready health solutions.
+
+  # Default social-sharing image (1200×630) for pages without their own.
+  ogImage: images/og-default.png
+
+  # Which data file the members sections read. The "demo" environment
+  # (config/demo/) points this at sample data for previews.
+  membersData: members
+
+  # The name shown in the header and footer (two lines next to the logo).
+  brand:
+    name: Open Health Stack
+    tagline: Software Foundation
+
+  # Header: the button at the right of the top menu.
+  header:
+    button: { label: Become a member, url: /foundation.html#membership }
+
+  # "Stay in the loop" band above the footer on most pages.
+  newsletter:
+    eyebrow: Stay in the loop
+    heading: Get updates from the foundation.
+    text: Release news, community calls and project milestones — straight to your inbox. No spam, unsubscribe anytime.
+    button: { label: Subscribe to the newsletter, url: /community.html#subscribe }
+
+  footer:
+    about: >-
+      A neutral, community-owned home for open-source building blocks accelerating next-gen,
+      AI-powered digital health.
+    columns:
+      - { title: Foundation, menu: footerFoundation }
+      - { title: Projects,   menu: footerProjects, pillars: true }   # pillars: list the pillars first
+      - { title: Community,  menu: footerCommunity }
+    copyright: Open Health Stack Software Foundation · a project of the
+    hostedBy: { label: Linux Foundation, url: "@linuxFoundation" }
+    poweredBy: { text: This site is powered by, label: Netlify, url: "@netlify" }
+
+  # The "page not found" page.
+  notFound:
+    eyebrow: Error 404
+    heading: This page isn't part of the stack.
+    lead: "The link may be out of date, or the page may have moved. These are good places to pick things up again:"
+    buttons:
+      - { label: Home,      url: /,               style: primary, icon: arrow-right-16 }
+      - { label: Projects,  url: /projects.html,  style: ghost }
+      - { label: Community, url: /community.html, style: ghost }
+      - { label: Blog,      url: /blog.html,      style: ghost }
+
+  # Shared email addresses — use them in content as @email:general etc.
+  contact:
+    general: hello@ohs.foundation
+    membership: membership@ohs.foundation
+    proposals: fred@ohs.foundation
+
+  # Shared links — use them in content as @discord, @calendar, @github …
+  links:
+    github: https://github.com/ohs-foundation
+    discord: https://discord.gg/sfgUU7AHZT
+    calendar: https://calendar.google.com/calendar/u/0?cid=Y184ZmEyNmMzMGEzMTI3YzQ2YmViMWVjOTlmYmFlM2ZlY2Q4OTVkYzQzNmU2YTk5OGQzMDY4Zjc1ODU1ZTUyMThiQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20
+    governanceDocs: https://cdn.platform.linuxfoundation.org/agreements/open-health-stack-foundation.pdf
+    lfxEnrollment: https://enrollment.lfx.linuxfoundation.org/?project=open-health-stack-foundation
+    linuxFoundation: https://www.linuxfoundation.org/
+    netlify: https://www.netlify.com/
+
+  # EmailOctopus form IDs (the forms themselves are edited in EmailOctopus).
+  emailOctopus:
+    newsletterForm: 62af0b0e-7909-11f1-aa8b-9b373d9376b3
+    workingGroupsForm: b0f88fd6-bb50-11f1-96db-2fba969ef908

@@ -349,3 +349,21 @@ details.event-row[open] .event-toggle-cue svg {
 .event-row .where a {
   color: var(--teal-deep);
 }
+
+/* Links written in Markdown inside page text (content/community.md) */
+.inv p a {
+  font-weight: 600;
+  color: var(--teal-deep);
+  border-bottom: 1.5px solid transparent;
+  transition: gap 0.2s, border-color 0.2s;
+}
+
+.inv p a:hover {
+  border-color: currentColor;
+}
+
+.events-calendar p a {
+  color: var(--teal-deep);
+  font-weight: 600;
+  text-decoration: underline;
+}

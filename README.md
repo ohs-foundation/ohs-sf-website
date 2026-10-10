@@ -20,13 +20,13 @@ hugo server -e demo        # same, plus sample members and sample blog posts
 
 | Path | What it is |
 |---|---|
-| `content/` | Pages. `content/blog/<post>/index.md` is one blog post (with its images beside it) |
+| `content/*.md` | One file per page. **All of a page's text** lives in its front matter, as YAML grouped by section (`hero`, `governance`, `membership`, …); the templates only hold layout. `content/blog/<post>/index.md` is one blog post, with its images beside it |
+| `data/pillars.yaml` | The three pillars and their projects (home cards and diagram, Projects page, footer) |
 | `data/members.yaml` | Member organisations and tiers (home page strip + Foundation page directory) |
-| `data/pillars.yaml` | The three pillars and their projects (home page cards and diagram, Projects page, footer) |
-| `data/home.yaml` | Home page announcement pill, hero diagram labels, pillars intro |
 | `data/events.yaml` | Events pinned to the Community page (recurring calls come from the Google Calendar) |
-| `hugo.toml` | Site settings, plus shared links and emails (`[params]`): Discord, calendar, contacts, EmailOctopus form IDs |
-| `layouts/` | Templates. `baseof.html` is the page shell; `_partials/` holds the header, footer, newsletter band and `<head>` (SEO and social-share tags) |
+| `hugo.yaml` | Site settings, menus (`menus.main`, `menus.footer*`), site-wide text (`params.header`, `newsletter`, `footer`, `notFound`), shared links and emails (`params.links`, `params.contact`) and the EmailOctopus form IDs |
+| `i18n/en.yaml` | Interface labels used by templates ("Latest", "Share this post", …) |
+| `layouts/` | Templates (layout only, no copy). `baseof.html` is the page shell; one template per page; `_partials/` holds the header, footer, newsletter band, `<head>` (SEO and share tags), `chip.html` (icon library), `button.html` and `url.html` (resolves `@discord`-style shared links) |
 | `layouts/_markup/`, `layouts/_shortcodes/` | How Markdown renders (headings, links, images) and the extra post components (`pillars`, `closer`, `video`) |
 | `assets/css/main.css` | Design system and shared styles; `assets/css/pages/*.css` hold page-specific styles |
 | `assets/js/app.js` | Small vanilla JS: mobile nav, scroll reveal, community events, share buttons |
@@ -40,7 +40,8 @@ hugo server -e demo        # same, plus sample members and sample blog posts
 ## Conventions
 
 - **URLs are stable.** Pages are served as `/foundation.html`, `/blog/<post>.html` and so on (`uglyURLs`) so links already in emails and social posts keep working. Keep a post's folder name once it's published, because the folder name is its URL.
-- **Shared links go in one place.** Contact emails, Discord, calendar and governance links live in `hugo.toml` `[params]`. Templates read them from there instead of hard-coding them.
+- **Content stays out of templates.** Page text goes in the page's front matter, lists shared between pages in `data/`, site-wide text and menus in `hugo.yaml`. A template change should only ever be a layout or design change.
+- **Shared links go in one place.** Contact emails, Discord, calendar and governance links live in `hugo.yaml` → `params`. Content refers to them as `@discord`, `@email:general` etc. (resolved by `layouts/_partials/url.html`), so nothing is hard-coded twice.
 - **No build tooling beyond Hugo.** There's no npm install and no bundler. Hugo minifies and fingerprints the CSS and JS itself.
 - **Design.** The fonts are Hanken Grotesk and IBM Plex Mono, and colours are defined as tokens in `main.css` `:root`. The `--teal*` variables actually hold the indigo signature colour; the names predate a palette change.
 

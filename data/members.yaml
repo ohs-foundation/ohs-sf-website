@@ -18,10 +18,9 @@
 #     logo: example-health.svg
 #
 # When there are no members, the members sections are hidden.
+# The heading of the home page strip is in content/_index.md (members:), and
+# the heading of the Foundation page directory in content/foundation.md.
 
-home:
-  eyebrow: Premier members
-  heading: Backed by our premier members.
 
 tiers:
   - id: premier

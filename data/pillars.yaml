@@ -5,7 +5,7 @@
 #
 # Adding a project: copy one item under `projects.items` and edit it.
 #   icon:        one of layers, search, monitor, phone, shield, chart, desktop,
-#                pulse, checkbox, hub, plus (see layouts/_partials/icon-chip.html)
+#                pulse, checkbox, hub, plus … (full list: WRITING.md → "Icons")
 #   statusStyle: colour of the status dot — active, maintenance, incubating, proposed
 #   openCall:    true renders the dashed "call for proposals" card style
 #

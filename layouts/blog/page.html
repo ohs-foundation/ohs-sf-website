@@ -4,7 +4,7 @@
     <section class="article-hero">
       <div class="wrap">
         <div class="breadcrumb reveal in">
-          <a href="/blog.html">Blog</a>{{ with .Params.category }}<span>/</span>{{ . }}{{ end }}
+          <a href="{{ .Parent.RelPermalink }}">{{ .Parent.Title }}</a>{{ with .Params.category }}<span>/</span>{{ . }}{{ end }}
         </div>
         <h1 class="reveal in">{{ .Title }}</h1>
         {{- with .Params.subtitle | default .Summary }}
@@ -15,10 +15,10 @@
           <span class="mchip">{{ . }}</span>
           {{- end }}
           {{- with .Params.author }}
-          <span class="byline">By <b>{{ . }}</b></span>
+          <span class="byline">{{ T "by" }} <b>{{ . }}</b></span>
           {{- end }}
           <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
-          <span>· {{ .ReadingTime }} min read</span>
+          <span>· {{ .ReadingTime }} {{ T "minRead" }}</span>
         </div>
       </div>
     </section>
@@ -48,20 +48,20 @@
     <!-- ===== SHARE ===== -->
     {{ partial "blog/share.html" . }}
 
-    <!-- ===== CTA ===== -->
+    <!-- ===== CTA (text in content/blog/_index.md → postCta) ===== -->
+    {{- with .Parent.Params.postCta }}
     <section class="cta-band section-pad">
       <div class="wrap">
-        <span class="eyebrow bare reveal" style="color:oklch(0.92 0.04 195); justify-content:center">Get involved</span>
-        <h2 class="section-title reveal d1" style="margin-top:16px">A place for everyone who builds.</h2>
-        <p class="lead reveal d1">Developers, health technology organizations, governments, funders and NGOs — explore
-          the projects, join the community, and help build the future of global digital health.</p>
+        <span class="eyebrow bare reveal" style="color:oklch(0.92 0.04 195); justify-content:center">{{ .eyebrow }}</span>
+        <h2 class="section-title reveal d1" style="margin-top:16px">{{ .heading }}</h2>
+        <p class="lead reveal d1">{{ .lead | markdownify }}</p>
         <div class="cta-row reveal d2">
-          <a href="{{ site.Params.links.github }}" target="_blank" rel="noopener" class="btn btn-light">Explore the
-            repositories</a>
-          <a href="/foundation.html#membership" class="btn btn-on-dark">Become a founding member</a>
-          <a href="/community.html" class="btn btn-on-dark">Join the community</a>
+          {{- range .buttons }}
+          {{ partial "button.html" . }}
+          {{- end }}
         </div>
       </div>
     </section>
+    {{- end }}
   </article>
 {{ end }}

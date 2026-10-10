@@ -1,0 +1,8 @@
+{{- /*
+  A button from content: dict "label" "…" "url" "…" "style" "primary|ghost|light|on-dark"
+  Optional: "icon" (a name from _partials/icon.html, e.g. "arrow-right-16"), "attrs" (extra HTML attributes)
+*/ -}}
+{{- $url := partial "url.html" .url -}}
+{{- $external := and (strings.HasPrefix $url "http") (not (strings.HasPrefix $url site.BaseURL)) -}}
+<a href="{{ $url }}"{{ if and $external .newTab }} target="_blank" rel="noopener"{{ end }} class="btn btn-{{ .style | default "primary" }}"{{ with .attrs }} {{ . | safeHTMLAttr }}{{ end }}>{{ .label }}{{ with .icon }} {{ partial "icon.html" . }}{{ end }}</a>
+{{- /* chomp */ -}}

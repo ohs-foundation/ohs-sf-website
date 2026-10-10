@@ -1,25 +1,23 @@
+{{- /* Top navigation. Menu items: hugo.yaml → menus.main; button: params.header. */ -}}
 {{- $section := .Params.navSection | default .Section -}}
-{{- $nav := slice
-  (dict "id" "foundation" "label" "Foundation" "url" "/foundation.html")
-  (dict "id" "projects" "label" "Projects" "url" "/projects.html")
-  (dict "id" "community" "label" "Community" "url" "/community.html")
-  (dict "id" "blog" "label" "Blog" "url" "/blog.html")
--}}
+{{- $btn := site.Params.header.button -}}
   <!-- ===== HEADER ===== -->
   <header class="site-header">
     <nav class="nav" aria-label="Primary">
       <a class="brand" href="/" aria-label="Open Health Stack Foundation home">
         <span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-        <span class="brandname"><b>Open Health Stack</b><span>Software Foundation</span></span>
+        <span class="brandname"><b>{{ site.Params.brand.name }}</b><span>{{ site.Params.brand.tagline }}</span></span>
       </a>
       <div class="nav-links">
-        {{- range $nav }}
-        <a href="{{ .url }}"{{ if eq .id $section }} class="active" aria-current="page"{{ end }}>{{ .label }}</a>
+        {{- range site.Menus.main }}
+        <a href="{{ partial "url.html" .URL }}"{{ if eq .Identifier $section }} class="active" aria-current="page"{{ end }}>{{ .Name }}</a>
         {{- end }}
       </div>
       <div class="nav-spacer"></div>
       <div class="nav-cta">
-        <a href="/foundation.html#membership" class="btn btn-primary">Become a member</a>
+        {{- with $btn }}
+        <a href="{{ partial "url.html" .url }}" class="btn btn-primary">{{ .label }}</a>
+        {{- end }}
         <button class="nav-toggle btn" aria-label="Open menu" aria-expanded="false">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round">
@@ -30,8 +28,10 @@
     </nav>
   </header>
   <div class="mobile-nav" aria-label="Mobile">
-    {{- range $nav }}
-    <a href="{{ .url }}">{{ .label }}</a>
+    {{- range site.Menus.main }}
+    <a href="{{ partial "url.html" .URL }}">{{ .Name }}</a>
     {{- end }}
-    <a href="/foundation.html#membership" class="btn btn-primary">Become a member</a>
+    {{- with $btn }}
+    <a href="{{ partial "url.html" .url }}" class="btn btn-primary">{{ .label }}</a>
+    {{- end }}
   </div>

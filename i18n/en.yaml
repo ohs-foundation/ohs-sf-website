@@ -1,0 +1,13 @@
+# Small interface labels used by the templates (not page content — that lives
+# in content/*.md). Hugo's standard place for such strings.
+
+latest: Latest                       # tag on the featured (newest) blog post
+readThePost: Read the post           # default link text on blog cards (posts can set readMore)
+by: By                               # "By <author>"
+minRead: min read                    # "· 3 min read"
+shareThisPost: Share this post
+copyLink: Copy link
+loadingEvents: Loading upcoming events…
+# Labels inside the illustration shown on the blog page for posts without a cover
+illustrationTop: Apps & solutions
+illustrationBase: Grounded in open standards

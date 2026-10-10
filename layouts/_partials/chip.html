@@ -1,0 +1,39 @@
+{{- /*
+  Rounded icon tile used on cards across the site.
+  Usage: partial "chip.html" (dict "icon" "users" "color" "core")
+    icon:  a name from the list below
+    color: optional — core (teal-blue), toolkit (teal), ai (violet); default indigo
+*/ -}}
+{{- $icons := dict
+  "layers"    `<path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/>`
+  "search"    `<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>`
+  "monitor"   `<rect height="14" rx="2" width="20" x="2" y="4"/><path d="M8 21h8M12 18v3"/>`
+  "phone"     `<rect height="20" rx="2" width="14" x="5" y="2"/><path d="M12 18h.01"/>`
+  "shield"    `<path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6Z"/><path d="m9 12 2 2 4-4"/>`
+  "chart"     `<path d="M3 3v18h18"/><path d="m7 14 3-3 3 3 5-5"/>`
+  "desktop"   `<rect height="14" rx="2" width="20" x="2" y="3"/><path d="M8 21h8M12 17v4"/>`
+  "pulse"     `<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>`
+  "checkbox"  `<path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/>`
+  "hub"       `<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>`
+  "spark"     `<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2"/>`
+  "plus"      `<path d="M12 5v14M5 12h14"/>`
+  "building"  `<path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/>`
+  "banknote"  `<rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/>`
+  "bulb"      `<path d="M12 2a7 7 0 0 0-4 12.7V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.3A7 7 0 0 0 12 2Z"/><path d="M9 22h6"/>`
+  "wrench"    `<path d="M14.7 6.3a4 4 0 0 1 0 5.6l-7 7a2 2 0 0 1-2.8-2.8l7-7a4 4 0 0 1 2.8-1.2Z"/><path d="m15 5 4 4"/>`
+  "x-circle"  `<circle cx="12" cy="12" r="9"/><path d="m9 9 6 6M15 9l-6 6"/>`
+  "users"     `<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>`
+  "balance"   `<path d="M12 3v18M5 7l7-4 7 4M3 21h18M6 11l-3 6h6zM21 11l-3 6h6z"/>`
+  "document"  `<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>`
+  "calendar"  `<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>`
+  "chat"      `<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h8M8 14h5"/>`
+  "code"      `<path d="m8 6-6 6 6 6M16 6l6 6-6 6"/>`
+  "globe"     `<path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/><circle cx="12" cy="12" r="10"/>`
+  "dollar"    `<path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>`
+-}}
+{{- /* a few icons were drawn with a slightly heavier stroke */ -}}
+{{- $heavy := slice "x-circle" -}}
+{{- $paths := index $icons .icon -}}
+{{- if not $paths }}{{ $names := slice }}{{ range $k, $_ := $icons }}{{ $names = $names | append $k }}{{ end }}{{ errorf "Unknown icon %q. Available: %s" .icon (delimit $names ", ") }}{{ end -}}
+<span class="icon-chip{{ with .color }} {{ . }}{{ end }}" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="{{ cond (in $heavy .icon) "2" "1.9" }}" stroke-linecap="round" stroke-linejoin="round">{{ $paths | safeHTML }}</svg></span>
+{{- /* chomp */ -}}
