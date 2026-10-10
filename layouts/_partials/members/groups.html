@@ -1,0 +1,22 @@
+{{- /*
+  Reads the members data file (data/members.yaml, or the file named by
+  site.Params.membersData) and returns a list of tier groups:
+    [ { tier: <tier map>, members: [<member>, …] }, … ]
+  Only tiers that have at least one member are returned.
+  Arg: "home" → only tiers with showOnHome: true; anything else → all tiers.
+*/ -}}
+{{- $scope := . -}}
+{{- $data := index hugo.Data (site.Params.membersData | default "members") | default dict -}}
+{{- $members := $data.members | default slice -}}
+{{- $groups := slice -}}
+{{- $tierIDs := slice -}}
+{{- range $t := $data.tiers }}
+  {{- $tierIDs = $tierIDs | append $t.id -}}
+  {{- if or (ne $scope "home") $t.showOnHome }}
+    {{- with where $members "tier" $t.id }}{{ $groups = $groups | append (dict "tier" $t "members" .) }}{{ end -}}
+  {{- end }}
+{{- end }}
+{{- if eq $scope "home" }}{{ range $members }}
+  {{- if not (in $tierIDs .tier) }}{{ warnf "data/members.yaml: %q has tier %q, which isn't in the tiers list, so it isn't shown" .name .tier }}{{ end -}}
+{{- end }}{{ end }}
+{{- return $groups -}}

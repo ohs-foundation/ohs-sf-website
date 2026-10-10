@@ -1,0 +1,4 @@
+# `hugo server --environment demo` — preview the site with sample members.
+# Sample data lives in data/members_demo.yaml and assets/members/demo/.
+[params]
+  membersData = "members_demo"

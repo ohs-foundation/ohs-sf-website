@@ -289,7 +289,8 @@
           </svg></a>
         <a href="mailto:{{ site.Params.contact.membership }}" class="btn btn-ghost">Get in touch</a>
       </div>
-  </section>
 
-  
+      {{ partial "members-directory.html" . }}
+    </div>
+  </section>
 {{ end }}

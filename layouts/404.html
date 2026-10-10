@@ -1,0 +1,16 @@
+{{ define "main" }}
+  <section class="page-hero notfound">
+    <div class="wrap">
+      <span class="eyebrow reveal in">Error 404</span>
+      <h1 class="reveal in">This page isn't part of the stack.</h1>
+      <p class="lead reveal in d1">The link may be out of date, or the page may have moved. These are good places to
+        pick things up again:</p>
+      <div class="notfound-links reveal in d1">
+        <a href="/" class="btn btn-primary">Home {{ partial "icon.html" "arrow-right-16" }}</a>
+        <a href="/projects.html" class="btn btn-ghost">Projects</a>
+        <a href="/community.html" class="btn btn-ghost">Community</a>
+        <a href="/blog.html" class="btn btn-ghost">Blog</a>
+      </div>
+    </div>
+  </section>
+{{ end }}
