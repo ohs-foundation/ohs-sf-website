@@ -4,6 +4,7 @@
 {{- $desc := .Description | default .Summary | default site.Params.description | plainify | htmlUnescape | strings.TrimSpace -}}
 {{- $desc = $desc | truncate 200 -}}
 {{- $ogImage := partial "og-image.html" . -}}
+{{- $url := cond .IsHome site.Home.Permalink .Permalink | replaceRE `/index\.html$` "/" -}}
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{{ $title }}</title>
@@ -11,7 +12,9 @@
   {{- if or .Params.noindex (not hugo.IsProduction) (eq .Kind "404") }}
   <meta name="robots" content="noindex" />
   {{- end }}
-  <link rel="canonical" href="{{ .Permalink }}" />
+  {{- if ne .Kind "404" }}
+  <link rel="canonical" href="{{ $url }}" />
+  {{- end }}
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <meta name="theme-color" content="#4b3a8c" />
@@ -20,7 +23,7 @@
   <meta property="og:site_name" content="{{ site.Title }}" />
   <meta property="og:title" content="{{ .Params.shareTitle | default (cond .IsHome site.Title .Title) }}" />
   <meta property="og:description" content="{{ $desc }}" />
-  <meta property="og:url" content="{{ .Permalink }}" />
+  <meta property="og:url" content="{{ $url }}" />
   <meta property="og:type" content="{{ cond (eq .Section "blog" | and .IsPage) "article" "website" }}" />
   <meta property="og:locale" content="en_US" />
   {{- with $ogImage }}
