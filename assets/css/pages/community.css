@@ -16,35 +16,6 @@
   margin-top: 22px;
 }
 
-/* community stats strip */
-.cstats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-  margin-top: 44px;
-}
-
-.cstat {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 22px;
-  background: var(--surface);
-}
-
-.cstat .num {
-  font-size: 2.2rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--teal-deep);
-  font-variant-numeric: tabular-nums;
-}
-
-.cstat .lbl {
-  color: var(--ink-soft);
-  font-size: 0.9rem;
-  margin-top: 6px;
-}
-
 /* get involved */
 .involved-grid {
   display: grid;
@@ -80,90 +51,6 @@
 /* events */
 .events {
   background: var(--bg-2);
-}
-
-.event-feature {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 0;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  margin-top: 44px;
-}
-
-.event-feature .ef-body {
-  padding: clamp(28px, 4vw, 46px);
-}
-
-.event-feature .ef-body h3 {
-  font-size: clamp(1.5rem, 2.4vw, 2rem);
-  margin-top: 14px;
-}
-
-.event-feature .ef-body p {
-  color: var(--ink-soft);
-  margin-top: 14px;
-  max-width: 48ch;
-}
-
-.event-feature .ef-body .stat-inline {
-  display: flex;
-  gap: 36px;
-  margin-top: 26px;
-}
-
-.event-feature .ef-body .stat-inline b {
-  display: block;
-  font-size: 1.8rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--ink);
-}
-
-.event-feature .ef-body .stat-inline span {
-  font-size: 0.85rem;
-  color: var(--ink-soft);
-}
-
-.event-feature .ef-visual {
-  background: linear-gradient(150deg, var(--ink), oklch(0.30 0.04 215));
-  position: relative;
-  display: grid;
-  place-items: center;
-  padding: 30px;
-  min-height: 260px;
-}
-
-.ef-globe {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 9px;
-  width: 84%;
-}
-
-.ef-globe i {
-  aspect-ratio: 1;
-  border-radius: 6px;
-  background: var(--teal-bright);
-  opacity: 0.25;
-  transition: opacity .4s;
-}
-
-.ef-globe i:nth-child(3n) {
-  opacity: 0.55;
-  background: var(--core);
-}
-
-.ef-globe i:nth-child(5n) {
-  opacity: 0.85;
-  background: var(--teal-bright);
-}
-
-.ef-globe i:nth-child(7n) {
-  opacity: 0.4;
-  background: var(--ai);
 }
 
 .event-list {
@@ -281,30 +168,6 @@ details.event-row[open] .event-toggle-cue svg {
   border-top: 1px dashed var(--line);
 }
 
-.event-agenda {
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line-soft);
-}
-
-.event-agenda-label {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  margin-bottom: 6px;
-}
-
-.event-agenda-items {
-  margin: 0;
-  padding-left: 18px;
-  color: var(--ink-soft);
-  font-size: 0.92rem;
-  line-height: 1.65;
-}
-
 .event-actions {
   margin-top: 18px;
   display: flex;
@@ -363,63 +226,6 @@ details.event-row[open] .event-toggle-cue svg {
 
 [data-events-loading] .where {
   color: var(--ink-soft);
-}
-
-/* channels */
-.channel-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
-  margin-top: 44px;
-}
-
-.channel {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 14px;
-}
-
-.channel .icon-chip {
-  width: 46px;
-  height: 46px;
-}
-
-.channel h3 {
-  font-size: 1.05rem;
-}
-
-.channel p {
-  color: var(--ink-soft);
-  font-size: 0.88rem;
-}
-
-.channel a.textlink {
-  margin-top: auto;
-  font-size: 0.9rem;
-}
-
-/* join community */
-.community-join {
-  margin-top: 56px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  background: var(--surface);
-  padding: clamp(28px, 4vw, 44px);
-}
-
-.community-join h3 {
-  font-size: clamp(1.25rem, 2vw, 1.65rem);
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  margin-top: 10px;
-}
-
-.community-join>p {
-  color: var(--ink-soft);
-  margin-top: 10px;
-  max-width: 54ch;
-  font-size: 0.97rem;
 }
 
 .cj-options {
@@ -493,21 +299,9 @@ details.event-row[open] .event-toggle-cue svg {
 }
 
 @media (max-width: 860px) {
-  .cstats {
-    grid-template-columns: 1fr 1fr;
-  }
 
   .involved-grid {
     grid-template-columns: 1fr;
-  }
-
-  .event-feature {
-    grid-template-columns: 1fr;
-  }
-
-  .event-feature .ef-visual {
-    order: -1;
-    min-height: 200px;
   }
 
   .cj-options {
@@ -551,10 +345,7 @@ details.event-row[open] .event-toggle-cue svg {
   }
 }
 
-@media (max-width:560px) {
-
-  .cstats,
-  .channel-grid {
-    grid-template-columns: 1fr;
-  }
+/* Links inside pinned-event notes (rendered from data/events.yaml) */
+.event-row .where a {
+  color: var(--teal-deep);
 }

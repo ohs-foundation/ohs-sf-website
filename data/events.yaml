@@ -1,0 +1,16 @@
+# Events pinned to the Community page's event list, below the calendar feed.
+# (Recurring calls come automatically from the public Google Calendar —
+# see netlify/functions/community-events.js.)
+#
+#   when:     the date as it should be shown
+#   endDate:  YYYY-MM-DD — the row hides itself after this day
+#   category: in-person (default), community or working-group
+#   note:     optional; Markdown allowed (links etc.)
+
+pinned:
+  - title: "Global Digital Health Forum '26"
+    when: "2–4 Dec 2026"
+    endDate: 2026-12-04
+    location: "Bangkok, Thailand"
+    category: in-person
+    note: "We're planning to host a community gathering at GDHF '26. Details to be confirmed — [get in touch](mailto:hello@ohs.foundation) if you'll be there."

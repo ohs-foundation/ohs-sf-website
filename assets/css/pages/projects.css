@@ -178,127 +178,6 @@
   background: var(--bg-2);
 }
 
-.committee-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  margin-top: 44px;
-}
-
-.committee .icon-chip {
-  margin-bottom: 16px;
-}
-
-.committee h3 {
-  font-size: 1.12rem;
-}
-
-.committee p {
-  color: var(--ink-soft);
-  margin-top: 10px;
-  font-size: 0.93rem;
-}
-
-.committee .roster {
-  margin-top: 18px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.avatar {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 2px solid var(--surface);
-  display: grid;
-  place-items: center;
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #fff;
-  margin-left: -8px;
-}
-
-.avatar:first-child {
-  margin-left: 0;
-}
-
-.committee .roster small {
-  color: var(--ink-faint);
-  font-size: 0.82rem;
-  margin-left: 6px;
-}
-
-/* Deployments */
-.deploy-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  margin-top: 44px;
-}
-
-.deploy {
-  display: flex;
-  flex-direction: column;
-}
-
-.deploy .dep-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.deploy .flagdot {
-  width: 36px;
-  height: 36px;
-  border-radius: 9px;
-  display: grid;
-  place-items: center;
-  font-weight: 800;
-  color: #fff;
-  font-size: 0.9rem;
-}
-
-.deploy h3 {
-  margin-top: 18px;
-  font-size: 1.2rem;
-}
-
-.deploy .org {
-  font-size: 0.8rem;
-  color: var(--ink-faint);
-  font-family: 'IBM Plex Mono', monospace;
-  margin-top: 4px;
-}
-
-.deploy p {
-  margin-top: 14px;
-  color: var(--ink-soft);
-  font-size: 0.93rem;
-  flex: 1;
-}
-
-.deploy .metric {
-  margin-top: 18px;
-  padding-top: 16px;
-  border-top: 1px solid var(--line);
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-}
-
-.deploy .metric b {
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-}
-
-.deploy .metric span {
-  font-size: 0.85rem;
-  color: var(--ink-soft);
-}
-
 @media (max-width: 860px) {
   .pillar-band {
     grid-template-columns: 1fr;
@@ -308,9 +187,7 @@
     order: -1;
   }
 
-  .proj-grid,
-  .committee-grid,
-  .deploy-grid {
+  .proj-grid {
     grid-template-columns: 1fr;
   }
 }

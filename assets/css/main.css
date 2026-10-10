@@ -1,9 +1,10 @@
 /* ============================================================
    Open Health Stack Foundation — Design System
    Humanist sans (Hanken Grotesk) + mono labels (IBM Plex Mono)
-   Teal signature + dual pillar accents (Core / AI Commons)
+   Indigo signature + pillar accents (FHIR Foundations / Toolkit / AI Commons)
+   Note: the --teal* variables hold the indigo signature colour (the names
+   predate a palette change; kept so existing rules keep working).
    ============================================================ */
-
 
 :root {
   /* Neutrals — cool, faintly green-tinted ink on a warm near-white */
@@ -74,12 +75,6 @@ h1, h2, h3, h4 {
   font-weight: 700;
   text-wrap: balance;
 }
-.display {
-  font-size: clamp(2.6rem, 6vw, 4.6rem);
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 1.0;
-}
 h2.section-title {
   font-size: clamp(1.9rem, 3.6vw, 3rem);
   letter-spacing: -0.03em;
@@ -114,14 +109,11 @@ p { margin: 0; }
 }
 .eyebrow.bare::before { display: none; }
 
-.mono { font-family: 'IBM Plex Mono', monospace; }
-
 /* ---------- Layout ---------- */
 .wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--gut); }
 .wrap-wide { max-width: 1360px; margin: 0 auto; padding-inline: var(--gut); }
 section { position: relative; }
 .section-pad { padding-block: clamp(64px, 9vw, 130px); }
-.muted { color: var(--ink-soft); }
 
 /* ---------- Buttons ---------- */
 .btn {
@@ -177,7 +169,6 @@ section { position: relative; }
   max-width: 1360px; margin: 0 auto; padding-inline: var(--gut);
 }
 .brand { display: flex; align-items: center; gap: 11px; font-weight: 700; letter-spacing: -0.02em; flex: none; }
-.brand .mark { flex: none; }
 .brand .brandname { font-size: 0.96rem; line-height: 1.12; white-space: nowrap; }
 .brand .brandname b { display: block; font-weight: 700; }
 .brand .brandname span { display: block; font-size: 0.69rem; font-weight: 500; color: var(--ink-faint); letter-spacing: 0.04em; }
@@ -231,18 +222,18 @@ section { position: relative; }
   background: var(--bg-2); color: var(--ink-soft);
   display: inline-flex; align-items: center; gap: 6px;
 }
-.tag.core    { background: var(--core-wash);    color: var(--core); }
-.tag.ai      { background: var(--ai-wash);      color: var(--ai); }
+.tag.core { background: var(--core-wash);    color: var(--core); }
+.tag.ai { background: var(--ai-wash);      color: var(--ai); }
 .tag.toolkit { background: var(--toolkit-wash); color: var(--toolkit); }
-.tag.teal    { background: var(--teal-wash);    color: var(--teal-deep); }
+.tag.teal { background: var(--teal-wash);    color: var(--teal-deep); }
 
 .icon-chip {
   width: 52px; height: 52px; border-radius: 13px;
   display: grid; place-items: center; flex: none;
   background: var(--teal-wash); color: var(--teal-deep);
 }
-.icon-chip.core    { background: var(--core-wash);    color: var(--core); }
-.icon-chip.ai      { background: var(--ai-wash);      color: var(--ai); }
+.icon-chip.core { background: var(--core-wash);    color: var(--core); }
+.icon-chip.ai { background: var(--ai-wash);      color: var(--ai); }
 .icon-chip.toolkit { background: var(--toolkit-wash); color: var(--toolkit); }
 .icon-chip svg { width: 26px; height: 26px; }
 
@@ -268,7 +259,6 @@ section { position: relative; }
 .footer-brand .logo-mark i:nth-child(1) { background: var(--teal-bright); }
 .footer-about { color: oklch(0.72 0.015 200); font-size: 0.95rem; max-width: 32ch; margin-top: 16px; }
 .footer-bottom { margin-top: 56px; padding-top: 26px; border-top: 1px solid oklch(0.34 0.015 210); display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; color: oklch(0.64 0.015 200); font-size: 0.85rem; }
-.footer-badge { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.06em; }
 
 /* ---------- Newsletter signup (dark band, flows into the footer) ---------- */
 .newsletter { background: var(--ink); padding-block: clamp(56px, 8vw, 96px) clamp(8px, 1.5vw, 18px); }
@@ -395,20 +385,12 @@ section { position: relative; }
 .newsletter.standalone .newsletter-form a { color: var(--teal-deep); }
 
 /* ---------- Generic helpers ---------- */
-.grid { display: grid; gap: 22px; }
-.cols-2 { grid-template-columns: repeat(2, 1fr); }
-.cols-3 { grid-template-columns: repeat(3, 1fr); }
-.cols-4 { grid-template-columns: repeat(4, 1fr); }
-.stack-sm > * + * { margin-top: 14px; }
 .center { text-align: center; }
 .section-head { max-width: 720px; }
 .section-head.center { margin-inline: auto; }
 .section-head .lead { margin-top: 18px; }
-.divider { height: 1px; background: var(--line); border: 0; margin: 0; }
 
 @media (max-width: 920px) {
-  .cols-4 { grid-template-columns: repeat(2, 1fr); }
-  .cols-3 { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 860px) {
@@ -419,7 +401,6 @@ section { position: relative; }
 }
 @media (max-width: 620px) {
   body { font-size: 16px; }
-  .cols-2 { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 30px; }
   .card { padding: 24px; }
 }

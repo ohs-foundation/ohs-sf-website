@@ -102,7 +102,7 @@
   margin-top: 0;
 }
 
-.article-body>p .lead-in,
+/* A post that opens with **bold text** gets the lead-in treatment */
 .article-body>p:first-child>strong:first-child {
   font-weight: 600;
   color: var(--ink);
@@ -172,8 +172,7 @@
   line-height: 1.6;
 }
 
-/* Definition-style lists (Why LF / Governance) */
-.def-list,
+/* Bullet lists in posts: definition style (bold lead-in + left rule) */
 .article-body>ul {
   display: grid;
   gap: 18px;
@@ -182,7 +181,6 @@
   list-style: none;
 }
 
-.def-list li,
 .article-body>ul>li {
   border-left: 3px solid color-mix(in oklch, var(--teal) 60%, var(--line));
   padding: 4px 0 4px 20px;
@@ -191,7 +189,6 @@
   color: oklch(0.34 0.018 210);
 }
 
-.def-list b,
 .article-body>ul>li>strong {
   color: var(--ink);
   font-weight: 700;
@@ -208,7 +205,6 @@
   color: oklch(0.34 0.018 210);
 }
 
-.closer p.kick,
 .closer p+p {
   font-weight: 700;
   color: var(--ink);
@@ -459,4 +455,3 @@
   color: var(--teal-deep);
   transform: translateY(-1px);
 }
-

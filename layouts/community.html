@@ -47,7 +47,7 @@
             <h4>Join us on Discord</h4>
             <p>Real-time conversation across channels for each pillar — ask questions, share what you're building and
               connect with the broader community.</p>
-            <a href="https://discord.gg/sfgUU7AHZT" class="textlink">Get the invite link <svg class="arrow" width="15"
+            <a href="{{ site.Params.links.discord }}" class="textlink">Get the invite link <svg class="arrow" width="15"
                 height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
                 stroke-linecap="round" stroke-linejoin="round">
                 <path d="M5 12h14M13 6l6 6-6 6" />
@@ -104,7 +104,7 @@
           <div>
             <h3>Join a working group</h3>
             <p>Working groups are forming under the AI Commons pillar, shaping the building blocks with the community. To
-              receive updates, join us on <a href="https://discord.gg/sfgUU7AHZT" class="textlink"
+              receive updates, join us on <a href="{{ site.Params.links.discord }}" class="textlink"
                 style="display:inline">Discord</a> and register your interest to hear when groups kick off.</p>
             <a href="#working-groups" class="textlink">Register interest <svg class="arrow" width="16" height="16"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
@@ -167,7 +167,7 @@
           <path d="M12 16v-4M12 8h.01" />
         </svg><span><b>Already on our newsletter?</b> Use the same email — no duplicates.</span></p>
       <div class="newsletter-form">
-        <script async src="https://eocampaign1.com/form/b0f88fd6-bb50-11f1-96db-2fba969ef908.js" data-form="b0f88fd6-bb50-11f1-96db-2fba969ef908"></script>
+        <script async src="https://eocampaign1.com/form/{{ site.Params.emailOctopus.workingGroupsForm }}.js" data-form="{{ site.Params.emailOctopus.workingGroupsForm }}"></script>
       </div>
     </div>
   </section>
@@ -184,8 +184,8 @@
 
       <div class="reveal d1"
         style="margin-top:40px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; padding-bottom:22px; border-bottom:1px solid var(--line)">
-        <p style="color:var(--ink-soft); font-size:0.95rem; margin:0">To add this and future calls to your calendar, subscribe to our <a href="https://calendar.google.com/calendar/u/0?cid=Y184ZmEyNmMzMGEzMTI3YzQ2YmViMWVjOTlmYmFlM2ZlY2Q4OTVkYzQzNmU2YTk5OGQzMDY4Zjc1ODU1ZTUyMThiQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20" target="_blank" rel="noopener" style="color:var(--teal-deep); font-weight:600; text-decoration:underline">Community Calendar</a>. Open to everyone.</p>
-        <a href="https://calendar.google.com/calendar/u/0?cid=Y184ZmEyNmMzMGEzMTI3YzQ2YmViMWVjOTlmYmFlM2ZlY2Q4OTVkYzQzNmU2YTk5OGQzMDY4Zjc1ODU1ZTUyMThiQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
+        <p style="color:var(--ink-soft); font-size:0.95rem; margin:0">To add this and future calls to your calendar, subscribe to our <a href="{{ site.Params.links.calendar }}" target="_blank" rel="noopener" style="color:var(--teal-deep); font-weight:600; text-decoration:underline">Community Calendar</a>. Open to everyone.</p>
+        <a href="{{ site.Params.links.calendar }}"
           target="_blank" rel="noopener" class="btn btn-ghost" style="white-space:nowrap">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -203,22 +203,27 @@
         <button type="button" class="filter-chip" data-filter="in-person">In-person</button>
       </div>
 
-      <div class="event-list reveal d2">
+      <div class="event-list reveal d2" data-discord="{{ site.Params.links.discord }}">
         <div class="event-row" data-events-loading>
           <div class="where">Loading upcoming events…</div>
         </div>
 
-        <div class="event-row" data-category="in-person" data-pinned>
-          <div class="when">2–4 Dec 2026</div>
+        {{- range hugo.Data.events.pinned }}
+        {{- $label := index (dict "community" "Community call" "working-group" "Working group" "in-person" "In-person") (.category | default "in-person") }}
+        <div class="event-row" data-category="{{ .category | default "in-person" }}" data-pinned{{ with .endDate }} data-ends="{{ time.Format "2006-01-02" . }}"{{ end }}>
+          <div class="when">{{ .when }}</div>
           <div>
-            <div class="what">Global Digital Health Forum '26</div>
-            <div class="where">Bangkok, Thailand</div>
-            <div class="where" style="margin-top:5px">We're planning to host a community gathering at GDHF '26. Details
-              to be confirmed — <a href="mailto:hello@ohs.foundation" style="color:var(--teal-deep)">get in touch</a> if
-              you'll be there.</div>
+            <div class="what">{{ .title }}</div>
+            {{- with .location }}
+            <div class="where">{{ . }}</div>
+            {{- end }}
+            {{- with .note }}
+            <div class="where" style="margin-top:5px">{{ . | markdownify }}</div>
+            {{- end }}
           </div>
-          <span class="tag etag">In-person</span>
+          <span class="tag etag">{{ $label }}</span>
         </div>
+        {{- end }}
       </div>
     </div>
   </section>
@@ -251,8 +256,8 @@
         </p>
       </div>
       <div class="newsletter-form">
-        <script async src="https://eocampaign1.com/form/62af0b0e-7909-11f1-aa8b-9b373d9376b3.js"
-          data-form="62af0b0e-7909-11f1-aa8b-9b373d9376b3"></script>
+        <script async src="https://eocampaign1.com/form/{{ site.Params.emailOctopus.newsletterForm }}.js"
+          data-form="{{ site.Params.emailOctopus.newsletterForm }}"></script>
       </div>
     </div>
   </section>

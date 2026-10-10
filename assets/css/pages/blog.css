@@ -205,25 +205,6 @@
   flex: 1;
 }
 
-.upcoming {
-  margin-top: 26px;
-  border: 1.5px dashed var(--line);
-  border-radius: var(--radius-lg);
-  padding: 36px;
-  text-align: center;
-}
-
-.upcoming p {
-  color: var(--ink-soft);
-  max-width: 46ch;
-  margin: 0 auto;
-}
-
-.upcoming .eyebrow {
-  justify-content: center;
-  margin-bottom: 12px;
-}
-
 /* Version post rows */
 .post-rows {
   display: grid;

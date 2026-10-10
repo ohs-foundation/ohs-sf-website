@@ -39,7 +39,7 @@
   content: ""; position: absolute; left: 4px; top: 9px;
   width: 8px; height: 8px; border-radius: 2px; background: var(--teal);
 }
-.welcome-card b, .welcome-card strong { color: var(--ink); font-weight: 700; }
+.welcome-card b { color: var(--ink); font-weight: 700; }
 .welcome-card .cta-row { margin-top: 24px; }
 .welcome-note {
   max-width: 720px; margin: 28px auto 0; text-align: center;
