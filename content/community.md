@@ -12,14 +12,14 @@ hideNewsletter: true
 # @email:general … (see WRITING.md → "Links").
 
 hero:
-  eyebrow: The community
+  label: The community
   heading: A global movement for open digital health.
   lead: >-
     A vibrant community of developers, ecosystem partners and supporters — building the blocks
     once, so they can be reused everywhere.
 
 join:
-  eyebrow: Join the community
+  label: Join the community
   heading: Show up. Join the conversation.
   lead: The OHS community meets regularly and the conversation never stops. Two easy ways to take part.
   options:
@@ -42,7 +42,7 @@ join:
     button: Join the mailing list
 
 involved:
-  eyebrow: Get involved
+  label: Get involved
   heading: Four ways to build with us.
   lead: >-
     Whether you write code, run a deployment, set standards or fund the mission — there's a place
@@ -79,7 +79,7 @@ involved:
 
 # Sign-up form for working-group updates (the form itself is managed in EmailOctopus).
 workingGroups:
-  eyebrow: Working groups
+  label: Working groups
   heading: Shape the building blocks with us.
   text: >-
     Working groups are forming under the AI Commons pillar. To receive updates, register your
@@ -89,7 +89,7 @@ workingGroups:
 # Upcoming calls come from the community Google Calendar automatically;
 # one-off events pinned to the list live in data/events.yaml.
 events:
-  eyebrow: Community events and meet-ups
+  label: Community events and meet-ups
   heading: Where the ecosystem comes together.
   lead: Summits, workshops and bootcamps that bring the community together — with the WHO and partners.
   calendarText: >-
@@ -103,7 +103,7 @@ events:
     inPerson: In-person
 
 cta:
-  eyebrow: Build once, reuse everywhere
+  label: Build once, reuse everywhere
   heading: Help build the future of global digital health.
   lead: >-
     Join a community of developers and partners catalyzing AI-powered, locally-owned digital health
@@ -114,7 +114,7 @@ cta:
 
 # Newsletter sign-up form (managed in EmailOctopus).
 subscribe:
-  eyebrow: Stay in the loop
+  label: Stay in the loop
   heading: Get updates from the foundation.
   text: >-
     Regular newsletter, community calls and project milestones — straight to your inbox. No spam,

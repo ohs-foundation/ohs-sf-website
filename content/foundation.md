@@ -10,7 +10,7 @@ navSection: foundation
 # Icons: see WRITING.md → "Icons". Colours: core, toolkit, ai (or leave out).
 
 hero:
-  eyebrow: The next chapter
+  label: The next chapter
   heading: An independent, community-owned software foundation.
   lead: >-
     We're transitioning the current Open Health Stack from a Google-led project into an umbrella
@@ -18,7 +18,7 @@ hero:
     ecosystem it serves.
 
 mission:
-  eyebrow: The charter · North star
+  label: The charter · North star
   heading: Catalyze sustainable, next-gen digital health solutions.
   text: >-
     The OHS-SF aims to accelerate "next-gen" digital health aligned with the "Full-STAC remedy"
@@ -26,7 +26,7 @@ mission:
     the cost of innovation and promoting open standards for health.
 
 charter:
-  eyebrow: The charter
+  label: The charter
   heading: Four commitments, one clear boundary.
   lead: What the foundation will do — and the one thing it deliberately won't.
   # Numbered 01, 02, … automatically, in this order.
@@ -54,7 +54,7 @@ charter:
       blocks; the community builds the applications.
 
 governance:
-  eyebrow: Governance
+  label: Governance
   heading: Balanced voices, transparent decisions.
   lead: Multiple pathways ensure inclusivity, balance and strategic focus for the global health ecosystem.
   cards:
@@ -74,7 +74,7 @@ governance:
   docsButton: View Governance Docs
 
 model:
-  eyebrow: Why this model
+  label: Why this model
   heading: Built for neutrality, sustainability and scale.
   items:
     - icon: building
@@ -96,7 +96,7 @@ model:
         majority of funds support coordination of technical projects and the community.
 
 membership:
-  eyebrow: Membership
+  label: Membership
   heading: Take a seat at the table.
   lead: >-
     Help shape the charter, budget and direction — and build an enduring association with a
@@ -149,6 +149,6 @@ membership:
 
   # Heading above the member logos (shown once data/members.yaml lists members).
   directory:
-    eyebrow: Our members
+    label: Our members
     heading: The organisations at the table.
 ---

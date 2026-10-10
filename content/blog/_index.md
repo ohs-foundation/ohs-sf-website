@@ -13,7 +13,7 @@ cascade:
 # next to this file — see WRITING.md → "Blog".
 
 hero:
-  eyebrow: The blog
+  label: The blog
   heading: News, releases and notes from the foundation.
   lead: >-
     Announcements, project milestones and perspectives from the community building open-source
@@ -22,7 +22,7 @@ moreLabel: More posts          # the divider above earlier posts
 
 # The purple band at the end of every post.
 postCta:
-  eyebrow: Get involved
+  label: Get involved
   heading: A place for everyone who builds.
   lead: >-
     Developers, health technology organizations, governments, funders and NGOs — explore the

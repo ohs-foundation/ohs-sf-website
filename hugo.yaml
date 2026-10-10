@@ -101,7 +101,7 @@ params:
 
   # "Stay in the loop" band above the footer on most pages.
   newsletter:
-    eyebrow: Stay in the loop
+    label: Stay in the loop
     heading: Get updates from the foundation.
     text: Release news, community calls and project milestones — straight to your inbox. No spam, unsubscribe anytime.
     button: { label: Subscribe to the newsletter, url: /community.html#subscribe }
@@ -120,7 +120,7 @@ params:
 
   # The "page not found" page.
   notFound:
-    eyebrow: Error 404
+    label: Error 404
     heading: This page isn't part of the stack.
     lead: "The link may be out of date, or the page may have moved. These are good places to pick things up again:"
     buttons:

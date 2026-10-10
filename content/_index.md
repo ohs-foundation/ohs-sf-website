@@ -15,7 +15,7 @@ announcement:
   url: /blog/blog-launch-announcement.html
 
 hero:
-  eyebrow: An independent software foundation
+  label: An independent software foundation
   heading: Building blocks for the future of
   headingAccent: global digital health.     # the coloured end of the headline
   lead: >-
@@ -28,8 +28,8 @@ hero:
 
 # The diagram beside the headline. Pillar names/statuses come from data/pillars.yaml.
 diagram:
-  appsEyebrow: Built on top
-  appsLabel: Apps & solutions
+  appsLabel: Built on top
+  appsTitle: Apps & solutions
   appsByline: Built by developers everywhere
   connectorTop: held up by the three pillars
   connectorBottom: grounded in
@@ -48,7 +48,7 @@ diagram:
     - Skills
 
 pillars:
-  eyebrow: Three pillars
+  label: Three pillars
   heading: One foundation, three pillars of work.
   lead: >-
     An umbrella structure that maintains the building blocks developers rely on today, opens the
@@ -57,7 +57,7 @@ pillars:
   button: Explore all projects
 
 why:
-  eyebrow: Why a foundation
+  label: Why a foundation
   heading: Built for neutrality, sustainability and scale.
   lead: The first software foundation purpose-built for global digital health — hosted by the Linux Foundation.
   items:
@@ -81,12 +81,12 @@ why:
 # Logo strip of members whose tier has showOnHome: true (data/members.yaml).
 # Hidden while there are no such members.
 members:
-  eyebrow: Premier members
+  label: Premier members
   heading: Backed by our premier members.
   link: Meet all our members
 
 cta:
-  eyebrow: The ask
+  label: The ask
   heading: Help us build the future of global digital health.
   lead: >-
     We're recruiting founding members ahead of our public launch. Take a seat at the table shaping

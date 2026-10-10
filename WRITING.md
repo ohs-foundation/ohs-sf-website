@@ -40,7 +40,7 @@ title: Foundation
 description: "An independent, community-owned software foundation …"
 
 hero:                                   ← the big heading at the top
-  eyebrow: The next chapter             ← the small label above it
+  label: The next chapter               ← the small label above it
   heading: An independent, community-owned software foundation.
   lead: We're transitioning the current Open Health Stack …
 
@@ -56,7 +56,7 @@ governance:                             ← the "Governance" section
 
 The words used throughout:
 
-- **eyebrow**: the small all-caps label above a heading.
+- **label**: the small all-caps label above a heading.
 - **heading**: the heading.
 - **lead**: the larger intro paragraph under it.
 - **text**: an ordinary paragraph.
@@ -176,12 +176,12 @@ Elsewhere:
 | Block | What it is |
 |---|---|
 | `announcement` | The "New" pill above the headline (`tag`, `text`, `url`). Delete the block to hide it. |
-| `hero` | `eyebrow`; `heading` plus `headingAccent` (the coloured end of the headline); `lead`; `buttons`; `badge` ("Hosted by the Linux Foundation") |
+| `hero` | `label`; `heading` plus `headingAccent` (the coloured end of the headline); `lead`; `buttons`; `badge` ("Hosted by the Linux Foundation") |
 | `diagram` | Labels of the diagram beside the headline, the colours of its small app tiles, and the standards chips at its base. The pillar names and short descriptions in it come from `data/pillars.yaml`. |
 | `pillars` | Heading and intro of the "Three pillars" section, and its button label. The three cards themselves come from `data/pillars.yaml` (the `home:` block of each pillar). |
 | `why` | "Why a foundation": heading, intro and the four cards (`icon`, `title`, `text`) |
 | `members` | Heading of the premier-members logo strip. The strip appears once `data/members.yaml` has members in a tier marked `showOnHome: true`. |
-| `cta` | The purple "The ask" band: `eyebrow`, `heading`, `lead`, `buttons` |
+| `cta` | The purple "The ask" band: `label`, `heading`, `lead`, `buttons` |
 
 ---
 
@@ -255,7 +255,7 @@ The membership options described here (prices and benefits) are separate from th
 | `involved` | "Four ways to build with us": the `cards`, each with a `link` |
 | `workingGroups` | Text above the working-group sign-up form, and the `note` pill |
 | `events` | Heading and intro; `calendarText` (with a link to the calendar); `calendarButton`; the labels of the four `filters` |
-| `cta` | The purple "Help build the future…" band: `eyebrow`, `heading`, `lead`, `buttons` |
+| `cta` | The purple "Help build the future…" band: `label`, `heading`, `lead`, `buttons` |
 | `subscribe` | Text above the newsletter sign-up form at the bottom |
 
 ### Events

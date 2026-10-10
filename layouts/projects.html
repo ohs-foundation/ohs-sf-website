@@ -4,7 +4,7 @@
   {{- with $page.hero }}
   <section class="page-hero" data-screen-label="Projects hero">
     <div class="wrap">
-      <span class="eyebrow reveal in">{{ .eyebrow }}</span>
+      <span class="eyebrow reveal in">{{ .label }}</span>
       <h1 class="reveal in" style="margin-top:18px; max-width:16ch">{{ .heading }}</h1>
       <p class="lead reveal in d1">{{ .lead | markdownify }}</p>
     </div>
@@ -51,7 +51,7 @@
   <section id="get-involved" class="committees section-pad">
     <div class="wrap">
       <div class="section-head reveal" style="text-align:center; max-width:760px; margin-inline:auto">
-        <span class="eyebrow bare" style="justify-content:center">{{ .eyebrow }}</span>
+        <span class="eyebrow bare" style="justify-content:center">{{ .label }}</span>
         <h2 class="section-title" style="margin-top:16px">{{ .heading }}</h2>
         <p class="lead" style="margin-inline:auto">{{ .lead | markdownify }}</p>
         <div class="cta-row reveal d1"

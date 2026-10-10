@@ -9,14 +9,14 @@ navSection: projects
 # The pillar bands and project cards in between come from data/pillars.yaml.
 
 hero:
-  eyebrow: The ecosystem
+  label: The ecosystem
   heading: Three pillars. Many building blocks.
   lead: >-
     Projects are independently maintained, openly governed by a steering committee, and designed to
     be composed into next-gen digital health solutions.
 
 involved:
-  eyebrow: Get involved
+  label: Get involved
   heading: Build a block. Or build on them.
   lead: >-
     Every project is open and openly governed. Developers, ministries, funders and partners are

@@ -3,7 +3,7 @@
   {{- with .Params.hero }}
   <section class="page-hero" data-screen-label="Blog hero">
     <div class="wrap">
-      <span class="eyebrow reveal in">{{ .eyebrow }}</span>
+      <span class="eyebrow reveal in">{{ .label }}</span>
       <h1 class="reveal in" style="max-width:16ch">{{ .heading }}</h1>
       <p class="lead reveal in d1">{{ .lead | markdownify }}</p>
     </div>

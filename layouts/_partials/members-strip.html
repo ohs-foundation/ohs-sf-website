@@ -1,5 +1,5 @@
 {{- /* Home page: members of tiers marked showOnHome in data/members.yaml. Hidden when empty.
-       Arg: dict "copy" (eyebrow/heading/link from content/_index.md) */ -}}
+       Arg: dict "copy" (label/heading/link from content/_index.md) */ -}}
 {{- $copy := .copy | default dict -}}
 {{- $groups := partial "members/groups.html" "home" -}}
 {{- with $groups }}
@@ -7,7 +7,7 @@
   <section class="members-strip section-pad">
     <div class="wrap">
       <div class="section-head center reveal">
-        <span class="eyebrow bare" style="justify-content:center">{{ $copy.eyebrow | default "Our members" }}</span>
+        <span class="eyebrow bare" style="justify-content:center">{{ $copy.label | default "Our members" }}</span>
         <h2 class="section-title" style="margin-top:16px">{{ $copy.heading | default "Backed by our members." }}</h2>
       </div>
       <div class="member-grid is-featured reveal d1">
