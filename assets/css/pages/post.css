@@ -367,8 +367,7 @@
 }
 
 .article-figure img,
-.article-figure video,
-.article-body iframe {
+.article-figure video {
   display: block;
   width: 100%;
   height: auto;
@@ -377,9 +376,20 @@
   background: var(--bg-2);
 }
 
-.article-body iframe {
-  aspect-ratio: 16 / 9;
+/* Embeds: Hugo's {{< youtube >}} / {{< vimeo >}} wrappers, or a pasted <iframe> */
+.article-body>div:has(> iframe),
+.article-body>iframe {
   margin-top: 2em;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-2);
+}
+
+.article-body>iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
 }
 
 .article-figure figcaption,

@@ -1,4 +1,16 @@
-# `hugo server --environment demo` — preview the site with sample members.
-# Sample data lives in data/members_demo.yaml and assets/members/demo/.
+# `hugo server --environment demo` — preview the site with sample content:
+#   - sample members (data/members_demo.yaml, assets/members/demo/)
+#   - sample blog posts (demo/content/blog/ — marked draft, never published)
+# The production build ignores all of this.
+
+buildDrafts = true
+
 [params]
   membersData = "members_demo"
+
+[[module.mounts]]
+  source = "content"
+  target = "content"
+[[module.mounts]]
+  source = "demo/content"
+  target = "content"
