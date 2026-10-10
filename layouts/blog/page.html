@@ -1,0 +1,66 @@
+{{ define "main" }}
+  <article data-screen-label="Blog post">
+    <!-- ===== ARTICLE HERO ===== -->
+    <section class="article-hero">
+      <div class="wrap">
+        <div class="breadcrumb reveal in">
+          <a href="/blog.html">Blog</a>{{ with .Params.category }}<span>/</span>{{ . }}{{ end }}
+        </div>
+        <h1 class="reveal in">{{ .Title }}</h1>
+        {{- with .Params.subtitle | default .Summary }}
+        <p class="lead article-dek reveal in d1">{{ . | plainify }}</p>
+        {{- end }}
+        <div class="article-meta reveal in d1">
+          {{- with .Params.badge | default .Params.category }}
+          <span class="mchip">{{ . }}</span>
+          {{- end }}
+          {{- with .Params.author }}
+          <span class="byline">By <b>{{ . }}</b></span>
+          {{- end }}
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+          <span>· {{ .ReadingTime }} min read</span>
+        </div>
+      </div>
+    </section>
+
+    {{- with .Params.cover }}{{ with $.Resources.Get . }}
+    <!-- ===== COVER ===== -->
+    {{- $one := .Resize "1200x webp" }}
+    {{- $two := .Resize "2400x webp" }}
+    <figure class="article-cover reveal in d1">
+      <img src="{{ $one.RelPermalink }}" srcset="{{ $one.RelPermalink }} 1200w, {{ $two.RelPermalink }} 2400w"
+        sizes="(max-width: 1040px) 100vw, 960px" width="{{ $one.Width }}" height="{{ $one.Height }}"
+        alt="{{ $.Params.coverAlt }}" fetchpriority="high" />
+      {{- with $.Params.coverCaption }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+    </figure>
+    {{- end }}{{ end }}
+
+    <!-- ===== ARTICLE BODY ===== -->
+    <section style="padding-bottom: clamp(48px, 7vw, 96px)">
+      <div class="wrap">
+        <div class="article-body reveal">
+          {{ .Content }}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SHARE ===== -->
+    {{ partial "blog/share.html" . }}
+
+    <!-- ===== CTA ===== -->
+    <section class="cta-band section-pad">
+      <div class="wrap">
+        <span class="eyebrow bare reveal" style="color:oklch(0.92 0.04 195); justify-content:center">Get involved</span>
+        <h2 class="section-title reveal d1" style="margin-top:16px">A place for everyone who builds.</h2>
+        <p class="lead reveal d1">Developers, health technology organizations, governments, funders and NGOs — explore
+          the projects, join the community, and help build the future of global digital health.</p>
+        <div class="cta-row reveal d2">
+          <a href="{{ site.Params.links.github }}" target="_blank" rel="noopener" class="btn btn-light">Explore the
+            repositories</a>
+          <a href="/foundation.html#membership" class="btn btn-on-dark">Become a founding member</a>
+          <a href="/community.html" class="btn btn-on-dark">Join the community</a>
+        </div>
+      </div>
+    </section>
+  </article>
+{{ end }}

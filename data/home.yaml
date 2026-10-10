@@ -1,0 +1,33 @@
+# Home page copy that is rendered from data (hero diagram + pillars intro).
+# Pillar names/descriptions come from data/pillars.yaml.
+
+# The pill above the hero headline. Delete this block to hide it.
+announcement:
+  tag: New
+  text: Read the intention to launch announcement
+  url: /blog/blog-launch-announcement.html
+
+pillarsSection:
+  eyebrow: Three pillars
+  heading: One foundation, three pillars of work.
+  lead: >-
+    An umbrella structure that maintains the building blocks developers rely on today, opens the fastest
+    path to building a next-gen digital health solution, and creates a neutral space for what comes next.
+diagram:
+  appsLabel: Apps & solutions
+  appsByline: Built by developers everywhere
+  connectorTop: held up by the three pillars
+  connectorBottom: grounded in
+  baseLabel: The base
+  baseTitle: Open standards
+  appTileColors:
+  - oklch(0.58 0.105 222)
+  - oklch(0.56 0.115 292)
+  - oklch(0.56 0.094 200)
+  - oklch(0.60 0.11 155)
+  - oklch(0.70 0.115 75)
+  - oklch(0.62 0.13 18)
+  baseChips:
+  - HL7® FHIR®
+  - MCP
+  - Skills

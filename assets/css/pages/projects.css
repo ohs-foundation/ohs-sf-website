@@ -1,0 +1,316 @@
+/* ===== Projects page ===== */
+.page-hero {
+  padding-top: clamp(56px, 8vw, 110px);
+  padding-bottom: clamp(32px, 5vw, 60px);
+}
+
+.page-hero h1 {
+  font-size: clamp(2.5rem, 5.2vw, 4.2rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.0;
+}
+
+.page-hero .lead {
+  max-width: 58ch;
+  margin-top: 22px;
+}
+
+/* Pillar header band */
+.pillar-band {
+  border-radius: var(--radius-lg);
+  padding: clamp(28px, 4vw, 46px);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 28px;
+  align-items: center;
+}
+
+.pillar-band.core {
+  background: linear-gradient(120deg, var(--core-wash), var(--surface));
+  border: 1px solid color-mix(in oklch, var(--core) 18%, transparent);
+}
+
+.pillar-band.ai {
+  background: linear-gradient(120deg, var(--ai-wash), var(--surface));
+  border: 1px solid color-mix(in oklch, var(--ai) 18%, transparent);
+}
+
+.pillar-band h2 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  margin-top: 16px;
+}
+
+.pillar-band p {
+  color: var(--ink-soft);
+  margin-top: 14px;
+  max-width: 52ch;
+}
+
+.pillar-band .pb-mark {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  width: 128px;
+  flex: none;
+}
+
+.pillar-band .pb-mark i {
+  aspect-ratio: 1;
+  border-radius: 9px;
+}
+
+.pillar-band.core .pb-mark i {
+  background: var(--core);
+}
+
+.pillar-band.core .pb-mark i:nth-child(even) {
+  opacity: 0.45;
+}
+
+.pillar-band.ai .pb-mark i {
+  background: var(--ai);
+}
+
+.pillar-band.ai .pb-mark i:nth-child(odd) {
+  opacity: 0.45;
+}
+
+.pillar-band.toolkit {
+  background: linear-gradient(120deg, var(--toolkit-wash), var(--surface));
+  border: 1px solid color-mix(in oklch, var(--toolkit) 18%, transparent);
+}
+
+.pillar-band.toolkit .pb-mark i {
+  background: var(--toolkit);
+}
+
+.pillar-band.toolkit .pb-mark i:nth-child(even) {
+  opacity: 0.45;
+}
+
+/* Project cards */
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-top: 28px;
+}
+
+.proj {
+  display: flex;
+  flex-direction: column;
+}
+
+.proj-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.proj h3 {
+  font-size: 1.3rem;
+  margin-top: 18px;
+}
+
+.proj p {
+  color: var(--ink-soft);
+  margin-top: 12px;
+  font-size: 0.95rem;
+  flex: 1;
+}
+
+.proj-meta {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  align-items: center;
+}
+
+.proj-meta .status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+.proj-meta .status .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.proj-meta .status.active .dot {
+  background: var(--green);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--green) 22%, transparent);
+}
+
+.proj-meta .status.incubating .dot {
+  background: var(--amber);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--amber) 22%, transparent);
+}
+
+.proj-meta .status.proposed .dot {
+  background: var(--ink-faint);
+}
+
+.proj-meta .status.maintenance .dot {
+  background: var(--ink-faint);
+}
+
+.proj-meta .lang {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.74rem;
+  color: var(--ink-faint);
+}
+
+.proj .repo {
+  margin-top: 16px;
+}
+
+/* Steering committee */
+.committees {
+  background: var(--bg-2);
+}
+
+.committee-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 44px;
+}
+
+.committee .icon-chip {
+  margin-bottom: 16px;
+}
+
+.committee h3 {
+  font-size: 1.12rem;
+}
+
+.committee p {
+  color: var(--ink-soft);
+  margin-top: 10px;
+  font-size: 0.93rem;
+}
+
+.committee .roster {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--surface);
+  display: grid;
+  place-items: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+  margin-left: -8px;
+}
+
+.avatar:first-child {
+  margin-left: 0;
+}
+
+.committee .roster small {
+  color: var(--ink-faint);
+  font-size: 0.82rem;
+  margin-left: 6px;
+}
+
+/* Deployments */
+.deploy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 44px;
+}
+
+.deploy {
+  display: flex;
+  flex-direction: column;
+}
+
+.deploy .dep-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.deploy .flagdot {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.deploy h3 {
+  margin-top: 18px;
+  font-size: 1.2rem;
+}
+
+.deploy .org {
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  font-family: 'IBM Plex Mono', monospace;
+  margin-top: 4px;
+}
+
+.deploy p {
+  margin-top: 14px;
+  color: var(--ink-soft);
+  font-size: 0.93rem;
+  flex: 1;
+}
+
+.deploy .metric {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.deploy .metric b {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.deploy .metric span {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 860px) {
+  .pillar-band {
+    grid-template-columns: 1fr;
+  }
+
+  .pillar-band .pb-mark {
+    order: -1;
+  }
+
+  .proj-grid,
+  .committee-grid,
+  .deploy-grid {
+    grid-template-columns: 1fr;
+  }
+}

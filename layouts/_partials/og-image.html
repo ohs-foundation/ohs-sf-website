@@ -1,0 +1,17 @@
+{{- /*
+  Returns the social-sharing image for a page as a dict {url,width,height,alt}.
+  Blog posts use their cover image, cropped to 1200×630 (the size LinkedIn
+  and others display). Everything else uses site.Params.ogImage.
+*/ -}}
+{{- $alt := .Params.coverAlt | default .Title | default site.Title -}}
+{{- $img := false -}}
+{{- with .Params.cover }}{{ $img = $.Resources.Get . }}{{ end -}}
+{{- if not $img }}{{ $img = resources.Get site.Params.ogImage }}{{ $alt = site.Title }}{{ end -}}
+{{- $out := dict -}}
+{{- with $img -}}
+  {{- if in (slice "jpeg" "png" "webp" "gif" "bmp" "tiff") .MediaType.SubType -}}
+    {{- $c := .Fill "1200x630 Center jpg q85" -}}
+    {{- $out = dict "url" $c.Permalink "width" $c.Width "height" $c.Height "alt" $alt -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

@@ -1,0 +1,83 @@
+{{ define "main" }}
+  <!-- ===== HERO ===== -->
+  <section class="page-hero" data-screen-label="Blog hero">
+    <div class="wrap">
+      <span class="eyebrow reveal in">The blog</span>
+      <h1 class="reveal in" style="max-width:16ch">News, releases and notes from the foundation.</h1>
+      <p class="lead reveal in d1">Announcements, project milestones and perspectives from the community building
+        open-source building blocks for global digital health.</p>
+    </div>
+  </section>
+
+  {{- $posts := .RegularPages.ByDate.Reverse }}
+  <section style="padding-bottom: clamp(48px, 7vw, 100px)">
+    <div class="wrap">
+      {{- with index $posts 0 }}
+      <!-- ===== FEATURED (LATEST) POST ===== -->
+      <a class="featured reveal d1" href="{{ .RelPermalink }}" aria-label="Read: {{ .Params.shortTitle | default .Title }}">
+        <div class="featured-body">
+          <div class="featured-tags">
+            <span class="tag teal">Latest</span>
+            {{- with .Params.category }}
+            <span class="tag">{{ . }}</span>
+            {{- end }}
+          </div>
+          <h2>{{ .Title }}</h2>
+          <p class="excerpt">{{ .Summary | plainify }}</p>
+          <div class="featured-meta">
+            {{ partial "blog/meta.html" . }}
+          </div>
+          <div class="featured-foot">
+            <span class="textlink">{{ .Params.readMore | default "Read the post" }} {{ partial "icon.html" "arrow-right-16" }}</span>
+          </div>
+        </div>
+        {{- with partial "blog/cover.html" (dict "page" . "width" 960 "height" 720) }}
+        <div class="featured-art has-cover">
+          <img src="{{ .src }}" srcset="{{ .srcset }}" sizes="(max-width: 800px) 100vw, 45vw" width="{{ .width }}" height="{{ .height }}" alt="{{ .alt }}" loading="eager" />
+        </div>
+        {{- else }}
+        <div class="featured-art" aria-hidden="true">
+          <span class="glow"></span>
+          <div class="fa-stack">
+            <div class="fa-roof">Apps &amp; solutions</div>
+            <div class="fa-cols">
+              <div class="fa-col c1"><span><i></i><i style="width:70%"></i></span></div>
+              <div class="fa-col c2"><span><i></i><i style="width:70%"></i></span></div>
+              <div class="fa-col c3"><span><i></i><i style="width:70%"></i></span></div>
+            </div>
+            <div class="fa-base">Grounded in open standards</div>
+          </div>
+        </div>
+        {{- end }}
+      </a>
+      {{- end }}
+
+      {{- with after 1 $posts }}
+      <!-- ===== EARLIER POSTS ===== -->
+      <div class="more-rail reveal">More posts</div>
+      <div class="post-rows">
+        {{- range . }}
+        <a class="post-row reveal" href="{{ .RelPermalink }}">
+          <div class="pr-thumb{{ if not .Params.cover }} pr-thumb-art{{ end }}" aria-hidden="true">
+            {{- with partial "blog/cover.html" (dict "page" . "width" 320 "height" 240) }}
+            <img src="{{ .src }}" srcset="{{ .srcset }}" sizes="160px" width="{{ .width }}" height="{{ .height }}" alt="" loading="lazy" />
+            {{- else }}
+            <span class="logo-mark"><i></i><i></i><i></i><i></i></span>
+            {{- end }}
+          </div>
+          <div class="pr-main">
+            {{- with .Params.category }}
+            <div class="pr-tags"><span class="tag">{{ . }}</span></div>
+            {{- end }}
+            <h3>{{ .Title }}</h3>
+            <p class="pr-excerpt">{{ .Summary | plainify }}</p>
+            <div class="pr-meta">{{ partial "blog/meta.html" . }}</div>
+          </div>
+          {{ partial "icon.html" "arrow-right-16" }}
+        </a>
+        {{- end }}
+      </div>
+      {{- end }}
+    </div>
+  </section>
+{{ end }}

@@ -1,0 +1,48 @@
+/* ===== Welcome page ===== */
+.welcome-hero { padding-top: clamp(48px, 7vw, 96px); padding-bottom: clamp(20px, 3vw, 32px); text-align: center; }
+.welcome-hero .badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--teal-deep); background: var(--teal-wash);
+  padding: 7px 14px; border-radius: 999px;
+}
+.welcome-hero h1 {
+  font-size: clamp(2.1rem, 4.6vw, 3.4rem); font-weight: 800; letter-spacing: -0.035em;
+  line-height: 1.04; margin-top: 22px;
+}
+.welcome-hero .lead { max-width: 56ch; margin: 20px auto 0; }
+
+.welcome-body { max-width: 720px; margin: 0 auto; padding-bottom: clamp(48px, 7vw, 96px); }
+.welcome-card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
+  padding: clamp(28px, 4vw, 44px); margin-top: 28px; box-shadow: var(--shadow-sm);
+}
+.welcome-card h2 { font-size: clamp(1.3rem, 2.2vw, 1.7rem); letter-spacing: -0.02em; }
+.welcome-card > p { color: var(--ink-soft); margin-top: 12px; line-height: 1.7; }
+.welcome-card ol, .welcome-card ul { margin: 18px 0 0; padding-left: 0; list-style: none; display: grid; gap: 12px; }
+.welcome-card ol { counter-reset: step; }
+.welcome-card ol li {
+  position: relative; padding-left: 40px; color: oklch(0.34 0.018 210); line-height: 1.6;
+}
+.welcome-card ol li::before {
+  counter-increment: step; content: counter(step);
+  position: absolute; left: 0; top: -1px;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--teal-wash); color: var(--teal-deep);
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; font-weight: 600;
+  display: grid; place-items: center;
+}
+.welcome-card ul li {
+  position: relative; padding-left: 24px; color: oklch(0.34 0.018 210); line-height: 1.6;
+}
+.welcome-card ul li::before {
+  content: ""; position: absolute; left: 4px; top: 9px;
+  width: 8px; height: 8px; border-radius: 2px; background: var(--teal);
+}
+.welcome-card b, .welcome-card strong { color: var(--ink); font-weight: 700; }
+.welcome-card .cta-row { margin-top: 24px; }
+.welcome-note {
+  max-width: 720px; margin: 28px auto 0; text-align: center;
+  color: var(--ink-faint); font-size: 0.95rem; line-height: 1.6; font-style: italic;
+}
+.welcome-note a { color: var(--teal-deep); font-weight: 600; }

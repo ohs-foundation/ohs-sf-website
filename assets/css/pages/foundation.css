@@ -1,0 +1,429 @@
+/* ===== Foundation page ===== */
+.page-hero {
+  padding-top: clamp(56px, 8vw, 110px);
+  padding-bottom: clamp(40px, 6vw, 72px);
+}
+
+.page-hero .lead {
+  max-width: 56ch;
+  margin-top: 22px;
+}
+
+.page-hero h1 {
+  font-size: clamp(2.5rem, 5.2vw, 4.2rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.0;
+}
+
+/* North star band */
+.northstar {
+  background: var(--ink);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: clamp(32px, 5vw, 60px);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+}
+
+.northstar .eyebrow {
+  color: var(--teal-bright);
+}
+
+.northstar h2 {
+  color: #fff;
+  font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+  margin-top: 16px;
+}
+
+.northstar p {
+  color: oklch(0.8 0.012 200);
+  margin-top: 16px;
+}
+
+.northstar .ns-mark {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.northstar .ns-mark i {
+  aspect-ratio: 1;
+  border-radius: 12px;
+}
+
+.northstar .ns-mark i:nth-child(3n+1) {
+  background: var(--teal);
+}
+
+.northstar .ns-mark i:nth-child(3n+2) {
+  background: var(--core);
+}
+
+.northstar .ns-mark i:nth-child(3n) {
+  background: var(--ai);
+}
+
+.northstar .ns-mark i:nth-child(even) {
+  opacity: 0.55;
+}
+
+/* Charter cards */
+.charter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-top: 44px;
+}
+
+.charter-card {
+  display: flex;
+  gap: 18px;
+}
+
+.charter-card .num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--teal-deep);
+  flex: none;
+  width: 34px;
+}
+
+.charter-card h3 {
+  font-size: 1.18rem;
+}
+
+.charter-card p {
+  margin-top: 10px;
+  color: var(--ink-soft);
+  font-size: 0.96rem;
+}
+
+.constraint {
+  margin-top: 24px;
+  border: 1.5px dashed color-mix(in oklch, var(--rose) 40%, var(--line));
+  background: color-mix(in oklch, var(--rose) 5%, var(--surface));
+  border-radius: var(--radius);
+  padding: 22px 26px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.constraint .icon-chip {
+  background: color-mix(in oklch, var(--rose) 14%, transparent);
+  color: var(--rose);
+}
+
+.constraint h3 {
+  font-size: 1.05rem;
+}
+
+.constraint p {
+  color: var(--ink-soft);
+  margin-top: 6px;
+  font-size: 0.95rem;
+}
+
+/* Governance */
+.gov-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-top: 44px;
+}
+
+.gov-card .icon-chip {
+  margin-bottom: 18px;
+}
+
+.gov-card h3 {
+  font-size: 1.15rem;
+}
+
+.gov-card p {
+  color: var(--ink-soft);
+  margin-top: 10px;
+  font-size: 0.94rem;
+}
+
+.gov-card .pending {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber);
+  background: color-mix(in oklch, var(--amber) 12%, transparent);
+  padding: 4px 9px;
+  border-radius: 6px;
+}
+
+/* Why model */
+.model-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-top: 44px;
+}
+
+.model-item {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.model-item .icon-chip {
+  flex: none;
+}
+
+.model-item h3 {
+  font-size: 1.12rem;
+}
+
+.model-item p {
+  color: var(--ink-soft);
+  margin-top: 8px;
+  font-size: 0.94rem;
+}
+
+/* Roadmap timeline */
+.timeline {
+  margin-top: 48px;
+  position: relative;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--line);
+}
+
+.tl-item {
+  position: relative;
+  padding-left: 54px;
+  padding-bottom: 34px;
+}
+
+.tl-item:last-child {
+  padding-bottom: 0;
+}
+
+.tl-dot {
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--line);
+  display: grid;
+  place-items: center;
+}
+
+.tl-dot i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--line);
+  display: block;
+}
+
+.tl-item.done .tl-dot {
+  border-color: var(--teal);
+}
+
+.tl-item.done .tl-dot i {
+  background: var(--teal);
+}
+
+.tl-item.now .tl-dot {
+  border-color: var(--ai);
+  box-shadow: 0 0 0 5px var(--ai-wash);
+}
+
+.tl-item.now .tl-dot i {
+  background: var(--ai);
+}
+
+.tl-item.next .tl-dot {
+  border-color: var(--core);
+}
+
+.tl-item.next .tl-dot i {
+  background: transparent;
+}
+
+.tl-status {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.tl-item.done .tl-status {
+  color: var(--teal-deep);
+}
+
+.tl-item.now .tl-status {
+  color: var(--ai);
+}
+
+.tl-item h3 {
+  font-size: 1.18rem;
+  margin-top: 6px;
+}
+
+.tl-item p {
+  color: var(--ink-soft);
+  margin-top: 8px;
+  font-size: 0.95rem;
+  max-width: 60ch;
+}
+
+/* Membership */
+.membership {
+  background: var(--bg-2);
+}
+
+.tier-list {
+  margin-top: 36px;
+  max-width: 880px;
+  margin-inline: auto;
+}
+
+.tier-grouplabel {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 40px 0 2px;
+}
+
+.tier-grouplabel:first-child {
+  margin-top: 0;
+}
+
+.tier-row {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 36px;
+  padding: 26px 0;
+  border-top: 1px solid var(--line);
+  align-items: baseline;
+}
+
+.tier-row h3 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.tier-row .tier-meta {
+  margin-top: 6px;
+  font-size: 0.84rem;
+  color: var(--ink-faint);
+}
+
+.tier-row-body p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.96rem;
+  max-width: 58ch;
+  text-wrap: pretty;
+}
+
+.gov-docs-callout {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: 880px;
+  margin-inline: auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 26px 32px;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s, border-color 0.25s;
+}
+
+.gov-docs-callout:hover {
+  border-color: color-mix(in oklch, var(--teal) 35%, var(--line));
+  box-shadow: var(--shadow-sm);
+}
+
+.gov-docs-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.gov-docs-left h3 {
+  font-size: 1.15rem;
+  margin: 0;
+}
+
+.gov-docs-left p {
+  margin: 4px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+  max-width: 52ch;
+}
+
+.membership-cta {
+  margin-top: 44px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.membership-note {
+  margin-top: 26px;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  text-align: center;
+  max-width: 62ch;
+  margin-inline: auto;
+}
+
+@media (max-width: 768px) {
+  .gov-docs-callout {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    padding: 22px;
+  }
+  .gov-docs-callout .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 860px) {
+  .northstar {
+    grid-template-columns: 1fr;
+  }
+
+  .charter-grid,
+  .gov-grid,
+  .model-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tier-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}

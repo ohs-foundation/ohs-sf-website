@@ -1,0 +1,15 @@
+{{- /*
+  Self-hosted video stored next to the post (keep files small — prefer YouTube/Vimeo for long videos):
+    {{< video src="clip.mp4" poster="poster.jpg" caption="Optional caption" >}}
+  For YouTube or Vimeo use Hugo's built-ins: {{< youtube VIDEO_ID >}} / {{< vimeo VIDEO_ID >}}
+*/ -}}
+{{- $src := .Get "src" -}}
+{{- with .Page.Resources.Get $src }}{{ $src = .RelPermalink }}{{ end -}}
+{{- $poster := "" -}}
+{{- with .Get "poster" }}{{ with $.Page.Resources.Get . }}{{ $poster = .RelPermalink }}{{ else }}{{ $poster = . }}{{ end }}{{ end -}}
+<figure class="article-figure article-video">
+  <video controls preload="metadata" playsinline{{ with $poster }} poster="{{ . }}"{{ end }}>
+    <source src="{{ $src }}" type="video/mp4" />
+  </video>
+  {{- with .Get "caption" }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+</figure>

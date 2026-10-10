@@ -1,0 +1,64 @@
+baseURL = "https://ohs.foundation/"
+locale = "en-US"
+title = "Open Health Stack Software Foundation"
+
+# Keep the site's existing URLs (/foundation.html, /blog/<post>.html, …)
+# so links already shared on LinkedIn, in emails and in docs keep working.
+uglyURLs = true
+
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
+
+[outputs]
+  home = ["html", "rss"]   # rss = the blog feed at /feed.xml
+  section = ["html"]
+  page = ["html"]
+
+[outputFormats.rss]
+  baseName = "feed"
+
+[markup.goldmark.renderer]
+  # Allow raw HTML inside Markdown posts (e.g. an embed snippet).
+  unsafe = true
+
+[markup.goldmark.extensions]
+  # Keep quotes and apostrophes exactly as typed (editors like iA Writer
+  # already produce typographic quotes when wanted).
+  typographer = false
+
+[markup.goldmark.parser.attribute]
+  block = true
+
+[imaging]
+  resampleFilter = "Lanczos"
+  [imaging.jpeg]
+    quality = 82
+  [imaging.webp]
+    quality = 82
+
+[params]
+  description = "A neutral, community-owned home for open-source building blocks — helping developers everywhere create standards-based, AI-ready health solutions."
+  # Default social-sharing image (1200×630) for pages without their own.
+  ogImage = "images/og-default.png"
+
+  # Which data file the members sections read. The "demo" environment
+  # (config/demo/) points this at sample data for previews.
+  membersData = "members"
+
+  [params.contact]
+    general = "hello@ohs.foundation"
+    membership = "membership@ohs.foundation"
+    proposals = "fred@ohs.foundation"
+
+  [params.links]
+    github = "https://github.com/ohs-foundation"
+    discord = "https://discord.gg/sfgUU7AHZT"
+    calendar = "https://calendar.google.com/calendar/u/0?cid=Y184ZmEyNmMzMGEzMTI3YzQ2YmViMWVjOTlmYmFlM2ZlY2Q4OTVkYzQzNmU2YTk5OGQzMDY4Zjc1ODU1ZTUyMThiQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
+    governanceDocs = "https://cdn.platform.linuxfoundation.org/agreements/open-health-stack-foundation.pdf"
+    lfxEnrollment = "https://enrollment.lfx.linuxfoundation.org/?project=open-health-stack-foundation"
+    linuxFoundation = "https://www.linuxfoundation.org/"
+    netlify = "https://www.netlify.com/"
+
+  [params.emailOctopus]
+    newsletterForm = "62af0b0e-7909-11f1-aa8b-9b373d9376b3"
+    workingGroupsForm = "b0f88fd6-bb50-11f1-96db-2fba969ef908"

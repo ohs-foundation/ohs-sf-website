@@ -1,0 +1,5 @@
+{{- /* Headings in posts. `## Title {kicker="Small label"}` adds the mono label above an h2. */ -}}
+<h{{ .Level }} id="{{ .Anchor }}">
+  {{- with .Attributes.kicker }}<span class="kicker">{{ . }}</span>{{ end -}}
+  {{- .Text -}}
+</h{{ .Level }}>

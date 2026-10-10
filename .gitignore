@@ -1,31 +1,36 @@
+# Hugo build output and caches
+/public/
+/resources/_gen/
+.hugo_build.lock
+
+# Netlify CLI
+.netlify
+
 # macOS
 .DS_Store
 .AppleDouble
 .LSOverride
 
-# Archives
-*.zip
-*.tar.gz
-
-# Node (future use)
-node_modules/
-npm-debug.log*
+# Editors
+.vscode/
+.idea/
 
 # Env
 .env
 .env.local
 
-# Design handoffs and internal docs (source files, not part of production repo)
+# Node (tooling only — the site itself has no Node dependencies)
+node_modules/
+npm-debug.log*
+
+# Archives
+*.zip
+*.tar.gz
+
+# Design handoffs and internal docs (kept out of the public repo)
 docs/
 
-# Editor
-.vscode/
-.idea/
-
-# Playwright test artifacts
+# Browser-automation / screenshot artifacts
 .playwright-mcp/
 verify-*.png
 debug-*.png
-
-# Local Netlify folder
-.netlify
