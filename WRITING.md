@@ -17,10 +17,10 @@ content/blog/gdhf-2026-recap/      →  https://ohs.foundation/blog/gdhf-2026-re
 Inside it, put:
 
 - `index.md`, the post itself (template below)
-- `cover.jpg` (or `.png`), the cover image
+- `cover.jpg` (or `.png`), the cover image: **2400 × 1260 px** (see [Cover image size](#cover-image-size))
+- any other images the post uses
 
 File names are case-sensitive (`Cover.JPG` isn't `cover.jpg`). Avoid spaces in them to be safe.
-- any other images the post uses
 
 ```
 content/blog/gdhf-2026-recap/
@@ -68,6 +68,7 @@ Optional extras:
 | `shortTitle` | A shorter title for the browser tab. |
 | `readMore` | The link text on the blog page card. Defaults to "Read the post". |
 | `coverCaption` | A caption shown under the cover image. |
+| `coverFocus` | Which part of the cover to keep if it isn't 1.91 : 1 and has to be trimmed on the blog page and in LinkedIn previews: `center` (default), `top`, `bottom`, `left`, `right`, `top-left`, `top-right`, `bottom-left` or `bottom-right`. |
 
 ### 3. Write the post in Markdown
 
@@ -102,7 +103,14 @@ Normal paragraphs, **bold**, *italic*, [a link](https://example.org).
 
 Use YouTube or Vimeo for anything longer than a few seconds, because large video files slow down the repository.
 
-**Images:** large photos are fine. The site resizes and compresses them automatically. For the cover, a landscape image at least 1600 px wide works best. It's cropped to 1200×630 for LinkedIn and to 4:3 on the blog page, so keep the important part near the centre.
+**Images:** large photos are fine. The site resizes and compresses them automatically.
+
+#### Cover image size
+
+Make covers **2400 × 1260 px**: any image at the 1.91 : 1 shape works, but it should be at least 1200 × 630. That's the shape LinkedIn uses for link previews, and the blog page uses the same shape, so an image of this shape is never cropped anywhere.
+
+- **On the post page** the cover is always shown whole, whatever its shape.
+- **On the blog page and in LinkedIn previews** a cover of a different shape is trimmed to fit, evenly from the centre by default. To keep a different part, add `coverFocus: top` (or `bottom`, `left`, `right`, `top-left`, …) to the post's front matter.
 
 ### 4. Preview (optional)
 

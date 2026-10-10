@@ -1,0 +1,15 @@
+{{- /*
+  Which part of a cover to keep when it has to be cropped (blog listings and
+  social previews only — the post page never crops). Front matter:
+    coverFocus: center (default) | top | bottom | left | right |
+                top-left | top-right | bottom-left | bottom-right
+  Returns a Hugo image anchor (e.g. "TopLeft").
+*/ -}}
+{{- $map := dict
+  "center" "Center" "top" "Top" "bottom" "Bottom" "left" "Left" "right" "Right"
+  "top-left" "TopLeft" "top-right" "TopRight" "bottom-left" "BottomLeft" "bottom-right" "BottomRight"
+-}}
+{{- $focus := lower (.Params.coverFocus | default "center") -}}
+{{- $anchor := index $map $focus -}}
+{{- if not $anchor }}{{ errorf "%s: coverFocus %q isn't one of: center, top, bottom, left, right, top-left, top-right, bottom-left, bottom-right" .File.Path $focus }}{{ end -}}
+{{- return ($anchor | default "Center") -}}

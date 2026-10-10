@@ -5,12 +5,13 @@
 */ -}}
 {{- $alt := .Params.coverAlt | default .Title | default site.Title -}}
 {{- $img := false -}}
-{{- if and .IsPage (eq .Section "blog") }}{{ $img = partial "blog/cover-resource.html" . }}{{ end -}}
+{{- $anchor := "Center" -}}
+{{- if and .IsPage (eq .Section "blog") }}{{ $img = partial "blog/cover-resource.html" . }}{{ $anchor = partial "blog/cover-anchor.html" . }}{{ end -}}
 {{- if not $img }}{{ $img = resources.Get site.Params.ogImage }}{{ $alt = site.Title }}{{ end -}}
 {{- $out := dict -}}
 {{- with $img -}}
   {{- if reflect.IsImageResourceProcessable . -}}
-    {{- $c := .Fill "1200x630 Center jpg q85" -}}
+    {{- $c := .Fill (printf "1200x630 %s jpg q85" $anchor) -}}
     {{- $out = dict "url" $c.Permalink "width" $c.Width "height" $c.Height "alt" $alt -}}
   {{- end -}}
 {{- end -}}

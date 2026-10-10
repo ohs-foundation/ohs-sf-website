@@ -408,12 +408,11 @@
   box-sizing: content-box;
 }
 
+/* Shown at the image's own shape — never cropped on the post page */
 .article-cover img {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
 }

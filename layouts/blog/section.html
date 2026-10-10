@@ -13,8 +13,14 @@
   <section style="padding-bottom: clamp(48px, 7vw, 100px)">
     <div class="wrap">
       {{- with index $posts 0 }}
+      {{- $cover := partial "blog/cover.html" (dict "page" . "width" 1200 "height" 630) }}
       <!-- ===== FEATURED (LATEST) POST ===== -->
-      <a class="featured reveal d1" href="{{ .RelPermalink }}" aria-label="Read: {{ .Params.shortTitle | default .Title }}">
+      <a class="featured reveal d1{{ if $cover }} is-stacked{{ end }}" href="{{ .RelPermalink }}" aria-label="Read: {{ .Params.shortTitle | default .Title }}">
+        {{- with $cover }}
+        <div class="featured-art has-cover">
+          <img src="{{ .src }}" srcset="{{ .srcset }}" sizes="(max-width: 1200px) 100vw, 1072px" width="{{ .width }}" height="{{ .height }}" alt="{{ .alt }}" loading="eager" />
+        </div>
+        {{- end }}
         <div class="featured-body">
           <div class="featured-tags">
             <span class="tag teal">Latest</span>
@@ -31,11 +37,7 @@
             <span class="textlink">{{ .Params.readMore | default "Read the post" }} {{ partial "icon.html" "arrow-right-16" }}</span>
           </div>
         </div>
-        {{- with partial "blog/cover.html" (dict "page" . "width" 960 "height" 720) }}
-        <div class="featured-art has-cover">
-          <img src="{{ .src }}" srcset="{{ .srcset }}" sizes="(max-width: 800px) 100vw, 45vw" width="{{ .width }}" height="{{ .height }}" alt="{{ .alt }}" loading="eager" />
-        </div>
-        {{- else }}
+        {{- if not $cover }}
         <div class="featured-art" aria-hidden="true">
           <span class="glow"></span>
           <div class="fa-stack">
@@ -59,8 +61,8 @@
         {{- range . }}
         <a class="post-row reveal" href="{{ .RelPermalink }}">
           <div class="pr-thumb{{ if not .Params.cover }} pr-thumb-art{{ end }}" aria-hidden="true">
-            {{- with partial "blog/cover.html" (dict "page" . "width" 320 "height" 240) }}
-            <img src="{{ .src }}" srcset="{{ .srcset }}" sizes="160px" width="{{ .width }}" height="{{ .height }}" alt="" loading="lazy" />
+            {{- with partial "blog/cover.html" (dict "page" . "width" 400 "height" 210) }}
+            <img src="{{ .src }}" srcset="{{ .srcset }}" sizes="200px" width="{{ .width }}" height="{{ .height }}" alt="" loading="lazy" />
             {{- else }}
             <span class="logo-mark"><i></i><i></i><i></i><i></i></span>
             {{- end }}

@@ -265,10 +265,25 @@
   transform: translateX(3px);
 }
 
-/* Featured post with a cover image */
+/* Featured post with a cover image: image on top at the cover's 1.91:1
+   shape (same as LinkedIn previews), text below — nothing is cropped */
+.featured.is-stacked {
+  grid-template-columns: 1fr;
+}
+
 .featured-art.has-cover {
   padding: 0;
+  min-height: 0;
+  aspect-ratio: 1200 / 630;
   background: var(--bg-2);
+}
+
+.featured.is-stacked .featured-body h2 {
+  max-width: 30ch;
+}
+
+.featured.is-stacked .featured-body .excerpt {
+  max-width: 68ch;
 }
 
 .featured-art.has-cover img {
@@ -287,8 +302,8 @@
 /* Earlier posts: thumbnail + text rows */
 .post-row .pr-thumb {
   flex: none;
-  width: 160px;
-  aspect-ratio: 4 / 3;
+  width: 200px;
+  aspect-ratio: 1200 / 630;
   border-radius: 10px;
   overflow: hidden;
   background: var(--bg-2);
@@ -342,7 +357,6 @@
 
   .post-row .pr-thumb {
     width: 100%;
-    aspect-ratio: 16 / 9;
   }
 }
 

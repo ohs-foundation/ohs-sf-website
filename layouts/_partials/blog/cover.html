@@ -1,18 +1,20 @@
 {{- /*
-  Resizes a post's cover image for listings (never upscales).
+  Resizes a post's cover image for listings to the given box (1.91:1 on the
+  blog page), cropping per coverFocus only if the shape differs; never upscales.
   Args: dict "page" <post> "width" <px> "height" <px>
   Returns dict {src, srcset, width, height, alt} or false when the post has no cover.
 */ -}}
 {{- $p := .page -}}
 {{- $out := false -}}
+{{- $anchor := partial "blog/cover-anchor.html" $p -}}
 {{- with partial "blog/cover-resource.html" $p -}}
   {{- $w := $.width }}{{ $h := $.height -}}
   {{- /* shrink the target box if the source is smaller */ -}}
   {{- if lt .Width $w }}{{ $h = div (mul $h .Width) $w }}{{ $w = .Width }}{{ end -}}
-  {{- $one := .Fill (printf "%dx%d Center webp" $w $h) -}}
+  {{- $one := .Fill (printf "%dx%d %s webp" $w $h $anchor) -}}
   {{- $srcset := printf "%s %dw" $one.RelPermalink $one.Width -}}
   {{- if ge .Width (mul $w 2) -}}
-    {{- $two := .Fill (printf "%dx%d Center webp" (mul $w 2) (mul $h 2)) -}}
+    {{- $two := .Fill (printf "%dx%d %s webp" (mul $w 2) (mul $h 2) $anchor) -}}
     {{- $srcset = printf "%s, %s %dw" $srcset $two.RelPermalink $two.Width -}}
   {{- end -}}
   {{- $out = dict "src" $one.RelPermalink "srcset" $srcset "width" $one.Width "height" $one.Height "alt" ($p.Params.coverAlt | default "") -}}
