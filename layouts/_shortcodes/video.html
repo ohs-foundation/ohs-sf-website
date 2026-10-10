@@ -4,7 +4,7 @@
   For YouTube or Vimeo use Hugo's built-ins: {{< youtube VIDEO_ID >}} / {{< vimeo VIDEO_ID >}}
 */ -}}
 {{- $src := .Get "src" -}}
-{{- with .Page.Resources.Get $src }}{{ $src = .RelPermalink }}{{ end -}}
+{{- with .Page.Resources.Get (urls.Parse $src).Path }}{{ $src = .RelPermalink }}{{ end -}}
 {{- $poster := "" -}}
 {{- with .Get "poster" }}{{ with $.Page.Resources.Get . }}{{ $poster = .RelPermalink }}{{ else }}{{ $poster = . }}{{ end }}{{ end -}}
 <figure class="article-figure article-video">

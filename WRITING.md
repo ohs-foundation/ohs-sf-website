@@ -18,6 +18,8 @@ Inside it, put:
 
 - `index.md`, the post itself (template below)
 - `cover.jpg` (or `.png`), the cover image
+
+File names are case-sensitive (`Cover.JPG` isn't `cover.jpg`). Avoid spaces in them to be safe.
 - any other images the post uses
 
 ```
@@ -49,11 +51,11 @@ draft: false
 | Field | What it does |
 |---|---|
 | `title` | The post title. Keep the quotes. |
-| `date` | Publication date, `YYYY-MM-DD`. The newest post is featured at the top of the blog page. **A future date won't appear until the site is rebuilt on or after that day**, so use today's date to publish now. |
+| `date` | The date shown on the post, `YYYY-MM-DD`. Posts are ordered by it, and the newest one is featured at the top of the blog page. Publishing is controlled by `draft`, not by the date. |
 | `author` | Shown as "By …". |
 | `category` | A short label such as *Foundation news*, *Events* or *Releases*, shown as a tag. |
 | `summary` | The teaser on the blog page and the description in LinkedIn and Slack previews. |
-| `cover` | File name of the cover image in the post folder. Required: the build stops with a clear message if the file is missing. |
+| `cover` | File name of the cover image in the post folder (JPG, PNG or WebP). Strongly recommended: it's the picture on the blog page and in LinkedIn previews. Without one, the blog page shows the site's default illustration and LinkedIn shows the site's default image. If the file named here is missing, the build stops with a message saying so. |
 | `coverAlt` | A short description of the cover image for screen readers. |
 | `draft` | `true` keeps the post off the live site; `false` publishes it. |
 
@@ -142,8 +144,8 @@ members:
 ```
 
 - Within a tier, members appear in the order they're listed.
-- Without a `logo`, the organisation's initials are shown instead.
-- The `tiers:` list at the top sets the tier names and their order. Rename or add tiers freely. Members refer to a tier by its `id`, and `showOnHome: true` puts that tier's members in the logo strip on the home page.
+- Without a `logo`, the organisation's initials are shown instead. If a `logo` is named but the file isn't in `assets/members/`, the build stops with a message saying so, and the live site stays as it was.
+- The `tiers:` list at the top sets the tier names and their order. Rename or add tiers freely. Members refer to a tier by its `id` (case-sensitive: a mistyped tier also stops the build with a message), and `showOnHome: true` puts that tier's members in the logo strip on the home page.
 - With no members listed, both members sections stay hidden.
 
 To see what it looks like with sample members, run `hugo server -e demo`.

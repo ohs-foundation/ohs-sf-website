@@ -33,7 +33,7 @@ function parseProperty(line) {
   const params = {};
   paramParts.forEach((p) => {
     const eq = p.indexOf('=');
-    if (eq !== -1) params[p.slice(0, eq)] = p.slice(eq + 1);
+    if (eq !== -1) params[p.slice(0, eq)] = p.slice(eq + 1).replace(/^"(.*)"$/, '$1'); // TZID="Europe/London" → Europe/London
   });
   return { name: name.toUpperCase(), params, value };
 }
@@ -95,29 +95,34 @@ function wallClockToUtc(wc) {
 }
 
 function zonedTimeToUtc(year, monthIdx, day, hour, minute, second, tzid) {
-  const utcGuess = Date.UTC(year, monthIdx, day, hour, minute, second);
-  let parts;
+  const wallAsUtc = Date.UTC(year, monthIdx, day, hour, minute, second);
+  let fmt;
   try {
-    parts = new Intl.DateTimeFormat('en-US', {
+    fmt = new Intl.DateTimeFormat('en-US', {
       timeZone: tzid,
       hourCycle: 'h23',
       year: 'numeric', month: '2-digit', day: '2-digit',
       hour: '2-digit', minute: '2-digit', second: '2-digit'
-    }).formatToParts(new Date(utcGuess));
+    });
   } catch (e) {
-    return new Date(utcGuess); // Unknown TZID — fall back to UTC.
+    return new Date(wallAsUtc); // Unknown TZID — fall back to UTC.
   }
-  const map = {};
-  parts.forEach((p) => { map[p.type] = p.value; });
-  const asIfUtc = Date.UTC(+map.year, +map.month - 1, +map.day, +map.hour, +map.minute, +map.second);
-  const offset = asIfUtc - utcGuess;
-  return new Date(utcGuess - offset);
+  // UTC offset of the zone at instant t (ms).
+  const offsetAt = (t) => {
+    const map = {};
+    fmt.formatToParts(new Date(t)).forEach((p) => { map[p.type] = p.value; });
+    return Date.UTC(+map.year, +map.month - 1, +map.day, +map.hour, +map.minute, +map.second) - t;
+  };
+  // Two passes, so times shortly after a DST switch use the right offset.
+  const first = wallAsUtc - offsetAt(wallAsUtc);
+  return new Date(wallAsUtc - offsetAt(first));
 }
 
 /* ─── Recurrence (RRULE) ─────────────────────────────────────────────
  * Supports what Google Calendar produces for meeting series:
  *   FREQ=WEEKLY  with INTERVAL, BYDAY, WKST, UNTIL, COUNT
- *   FREQ=MONTHLY with INTERVAL, BYDAY (e.g. 2TH, -1FR) or BYMONTHDAY, UNTIL, COUNT
+ *   FREQ=MONTHLY with INTERVAL, BYDAY (e.g. 2TH, -1FR), BYMONTHDAY, BYSETPOS,
+ *                UNTIL, COUNT
  * plus EXDATE (cancelled occurrences) and RECURRENCE-ID overrides
  * (single occurrences that were moved or edited). */
 
@@ -131,8 +136,8 @@ function parseRRule(prop) {
   return rule;
 }
 
-// Max days to walk from DTSTART (about 8 years) — a safety bound only.
-const MAX_WALK_DAYS = 3000;
+// Max days to walk (a safety bound only; COUNT rules walk from DTSTART).
+const MAX_WALK_DAYS = 4000;
 
 function parseByDay(rule, fallbackWeekday) {
   return (rule.BYDAY || WEEKDAYS[fallbackWeekday]).split(',').map((code) => {
@@ -161,31 +166,52 @@ function dayMatches(rule, day, start) {
   if (rule.FREQ === 'MONTHLY') {
     const months = (d.getUTCFullYear() - start.year) * 12 + (d.getUTCMonth() - (start.month - 1));
     if (months < 0 || months % interval !== 0) return false;
-    const dom = d.getUTCDate();
-    const dim = daysInMonth(d.getUTCFullYear(), d.getUTCMonth());
-    if (rule.BYMONTHDAY) {
-      return rule.BYMONTHDAY.split(',').some((v) => {
+    if (rule.BYSETPOS) {
+      // e.g. BYDAY=TH;BYSETPOS=2 → the 2nd matching day of the month (-1 = last)
+      const y = d.getUTCFullYear(), m = d.getUTCMonth();
+      const matches = [];
+      for (let i = 1; i <= daysInMonth(y, m); i++) {
+        const t = Date.UTC(y, m, i);
+        if (monthlyDayMatches(rule, t, start)) matches.push(t);
+      }
+      return rule.BYSETPOS.split(',').some((v) => {
         const n = parseInt(v, 10);
-        return n > 0 ? dom === n : dom === dim + n + 1;
+        return matches[n > 0 ? n - 1 : matches.length + n] === day;
       });
     }
-    if (rule.BYDAY) {
-      return parseByDay(rule, start.weekday).some((b) => {
-        if (b.wd !== weekday) return false;
-        if (b.ord === 0) return true;
-        return b.ord > 0 ? Math.ceil(dom / 7) === b.ord : Math.ceil((dim - dom + 1) / 7) === -b.ord;
-      });
-    }
-    return dom === start.dom;
+    return monthlyDayMatches(rule, day, start);
   }
 
   return false;
 }
 
-// Next occurrence (as a UTC Date) at or after `notBefore`, skipping cancelled
-// (EXDATE) and overridden (RECURRENCE-ID) occurrences. Returns null if none
-// within the search window.
-function nextOccurrence(dtstartProp, rule, notBefore, skip) {
+// MONTHLY rule match for one day, ignoring INTERVAL and BYSETPOS.
+function monthlyDayMatches(rule, day, start) {
+  const d = new Date(day);
+  const weekday = d.getUTCDay();
+  const dom = d.getUTCDate();
+  const dim = daysInMonth(d.getUTCFullYear(), d.getUTCMonth());
+  if (rule.BYMONTHDAY) {
+    return rule.BYMONTHDAY.split(',').some((v) => {
+      const n = parseInt(v, 10);
+      return n > 0 ? dom === n : dom === dim + n + 1;
+    });
+  }
+  if (rule.BYDAY) {
+    return parseByDay(rule, start.weekday).some((b) => {
+      if (b.wd !== weekday) return false;
+      if (b.ord === 0) return true;
+      return b.ord > 0 ? Math.ceil(dom / 7) === b.ord : Math.ceil((dim - dom + 1) / 7) === -b.ord;
+    });
+  }
+  return dom === start.dom;
+}
+
+// Start of the current or next occurrence (as a UTC Date) — i.e. the first one
+// that hasn't ended by `notBefore`, so a call in progress still shows —
+// skipping cancelled (EXDATE) and overridden (RECURRENCE-ID) occurrences.
+// Returns null if none within the search window.
+function nextOccurrence(dtstartProp, rule, notBefore, skip, durationMs) {
   const wc = parseWallClock(dtstartProp);
   if (!wc) return null;
   const startDay = Date.UTC(wc.year, wc.month - 1, wc.day);
@@ -194,9 +220,14 @@ function nextOccurrence(dtstartProp, rule, notBefore, skip) {
   const count = rule.COUNT ? parseInt(rule.COUNT, 10) : Infinity;
   const horizon = notBefore.getTime() + SEARCH_WINDOW_DAYS * DAY_MS;
 
+  // Matching is computed relative to DTSTART, so without COUNT we can start
+  // walking just before `notBefore` instead of from DTSTART.
+  const today = Date.UTC(notBefore.getUTCFullYear(), notBefore.getUTCMonth(), notBefore.getUTCDate());
+  const walkFrom = rule.COUNT ? startDay : Math.max(startDay, today - 2 * DAY_MS);
+
   let seen = 0;
   for (let i = 0; i <= MAX_WALK_DAYS; i++) {
-    const day = startDay + i * DAY_MS;
+    const day = walkFrom + i * DAY_MS;
     if (day > horizon) return null;
     if (!dayMatches(rule, day, start)) continue;
     seen++;
@@ -212,7 +243,7 @@ function nextOccurrence(dtstartProp, rule, notBefore, skip) {
     });
     if (until && occurrence > until) return null;
     if (skip.has(occurrence.getTime())) continue;
-    if (occurrence.getTime() >= notBefore.getTime()) return occurrence;
+    if (occurrence.getTime() + (durationMs || 0) > notBefore.getTime()) return occurrence;
   }
   return null;
 }
@@ -286,6 +317,21 @@ function categorize(title, location) {
   return locationLooksPhysical(location) ? 'in-person' : 'working-group';
 }
 
+// Occurrences that were moved/edited appear as separate VEVENTs carrying
+// RECURRENCE-ID; the series must skip those slots. Map of UID → [UTC ms].
+function overriddenOccurrences(vevents) {
+  const overridden = new Map();
+  vevents.forEach((p) => {
+    if (!p['RECURRENCE-ID'] || !p.UID) return;
+    const t = parseDateValue(p['RECURRENCE-ID']);
+    if (!t) return;
+    const list = overridden.get(p.UID.value) || [];
+    list.push(t.getTime());
+    overridden.set(p.UID.value, list);
+  });
+  return overridden;
+}
+
 /* ─── Main ────────────────────────────────────────────────────────────── */
 
 function buildEvent(props, now, overridden) {
@@ -309,7 +355,7 @@ function buildEvent(props, now, overridden) {
     if (rrule.FREQ !== 'WEEKLY' && rrule.FREQ !== 'MONTHLY') return null;
     const skip = exdates(props);
     (overridden.get(props.UID ? props.UID.value : '') || []).forEach((t) => skip.add(t));
-    start = nextOccurrence(dtstartProp, rrule, now, skip);
+    start = nextOccurrence(dtstartProp, rrule, now, skip, durationMs);
     if (!start) return null;
   } else {
     start = dtstart;
@@ -343,18 +389,7 @@ exports.handler = async () => {
     const now = new Date();
 
     const vevents = extractVEvents(ics);
-
-    // Occurrences that were moved/edited appear as separate VEVENTs carrying
-    // RECURRENCE-ID; the series must skip those slots.
-    const overridden = new Map();
-    vevents.forEach((p) => {
-      if (!p['RECURRENCE-ID'] || !p.UID) return;
-      const t = parseDateValue(p['RECURRENCE-ID']);
-      if (!t) return;
-      const list = overridden.get(p.UID.value) || [];
-      list.push(t.getTime());
-      overridden.set(p.UID.value, list);
-    });
+    const overridden = overriddenOccurrences(vevents);
 
     const events = vevents
       .map((props) => buildEvent(props, now, overridden))
@@ -379,4 +414,4 @@ exports.handler = async () => {
 };
 
 // Exposed for tests (tests/community-events.test.js).
-exports._internal = { extractVEvents, unfold, buildEvent, nextOccurrence, parseRRule };
+exports._internal = { extractVEvents, unfold, buildEvent, overriddenOccurrences, zonedTimeToUtc };

@@ -24,4 +24,4 @@ Paragraphs, [links](https://example.org), **bold**, *italic*, lists:
 >
 > — Who said it
 
-{{</* youtube VIDEO_ID */>}}
+<!-- Videos (YouTube, Vimeo, small clips): see WRITING.md → "Video". -->

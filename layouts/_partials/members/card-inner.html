@@ -1,11 +1,11 @@
 {{- $img := false -}}
 {{- with .logo -}}
   {{- $img = resources.Get (printf "members/%s" .) -}}
-  {{- if not $img }}{{ warnf "data/members.yaml: logo %q not found in assets/members/" . }}{{ end -}}
+  {{- if not $img }}{{ errorf "data/members.yaml: logo %q (for %q) not found in assets/members/ (file names are case-sensitive)" . $.name }}{{ end -}}
 {{- end -}}
 <span class="member-logo">
   {{- with $img }}
-    {{- if eq .MediaType.SubType "svg" }}
+    {{- if not (reflect.IsImageResourceProcessable .) }}
   <img src="{{ (. | fingerprint).RelPermalink }}" alt="{{ $.name }}" loading="lazy" />
     {{- else }}
     {{- $r := .Resize "x136 webp" }}

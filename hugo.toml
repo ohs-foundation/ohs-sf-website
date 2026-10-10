@@ -7,6 +7,11 @@ title = "Open Health Stack Software Foundation"
 uglyURLs = true
 
 enableRobotsTXT = true
+
+# A post's `date` is only the date shown on it — publishing is controlled by
+# `draft`. (Without this, a post dated "today" can stay hidden for part of the
+# day depending on time zones, until the next push rebuilds the site.)
+buildFuture = true
 disableKinds = ["taxonomy", "term"]
 
 [outputs]
@@ -25,6 +30,10 @@ disableKinds = ["taxonomy", "term"]
   # Keep quotes and apostrophes exactly as typed (editors like iA Writer
   # already produce typographic quotes when wanted).
   typographer = false
+
+[markup.goldmark.parser]
+  # Images on their own line become <figure>s, so don't wrap them in <p>.
+  wrapStandAloneImageWithinParagraph = false
 
 [markup.goldmark.parser.attribute]
   block = true

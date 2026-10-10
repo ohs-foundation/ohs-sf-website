@@ -17,6 +17,6 @@
   {{- end }}
 {{- end }}
 {{- if eq $scope "home" }}{{ range $members }}
-  {{- if not (in $tierIDs .tier) }}{{ warnf "data/members.yaml: %q has tier %q, which isn't in the tiers list, so it isn't shown" .name .tier }}{{ end -}}
+  {{- if not (in $tierIDs .tier) }}{{ errorf "data/members.yaml: %q has tier %q, which isn't one of the tier ids (%s). Tier ids are case-sensitive." .name .tier (delimit $tierIDs ", ") }}{{ end -}}
 {{- end }}{{ end }}
 {{- return $groups -}}

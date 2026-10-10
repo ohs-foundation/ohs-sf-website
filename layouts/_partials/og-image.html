@@ -5,11 +5,11 @@
 */ -}}
 {{- $alt := .Params.coverAlt | default .Title | default site.Title -}}
 {{- $img := false -}}
-{{- with .Params.cover }}{{ $img = $.Resources.Get . }}{{ end -}}
+{{- if and .IsPage (eq .Section "blog") }}{{ $img = partial "blog/cover-resource.html" . }}{{ end -}}
 {{- if not $img }}{{ $img = resources.Get site.Params.ogImage }}{{ $alt = site.Title }}{{ end -}}
 {{- $out := dict -}}
 {{- with $img -}}
-  {{- if in (slice "jpeg" "png" "webp" "gif" "bmp" "tiff") .MediaType.SubType -}}
+  {{- if reflect.IsImageResourceProcessable . -}}
     {{- $c := .Fill "1200x630 Center jpg q85" -}}
     {{- $out = dict "url" $c.Permalink "width" $c.Width "height" $c.Height "alt" $alt -}}
   {{- end -}}

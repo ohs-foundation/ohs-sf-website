@@ -3,11 +3,14 @@
   Images stored next to the post's index.md are resized and served as WebP;
   remote images are used as-is.
 */ -}}
-{{- $src := .Destination -}}
-{{- $img := .PageInner.Resources.Get $src -}}
-{{- if not $img }}{{ with urls.Parse $src }}{{ if not .IsAbs }}{{ errorf "%s: image %q not found next to index.md" $.PageInner.File.Path $src }}{{ end }}{{ end }}{{ end -}}
+{{- $u := urls.Parse .Destination -}}
+{{- $img := false -}}
+{{- if not $u.IsAbs -}}
+  {{- $img = .PageInner.Resources.Get $u.Path -}}
+  {{- if not $img }}{{ errorf "%s: image %q not found next to index.md (check the spelling; file names are case-sensitive)" .PageInner.File.Path $u.Path }}{{ end -}}
+{{- end -}}
 <figure class="article-figure">
-  {{- if and $img (in (slice "jpeg" "png" "webp" "tiff" "bmp") $img.MediaType.SubType) }}
+  {{- if and $img (reflect.IsImageResourceProcessable $img) }}
   {{- $w := cond (gt $img.Width 1440) 1440 $img.Width }}
   {{- $one := $img.Resize (printf "%dx webp" (cond (gt $w 720) 720 $w)) }}
   {{- $two := $img.Resize (printf "%dx webp" $w) }}
@@ -16,7 +19,7 @@
   {{- else if $img }}
   <img src="{{ $img.RelPermalink }}" alt="{{ .PlainText }}" loading="lazy" decoding="async" />
   {{- else }}
-  <img src="{{ $src | safeURL }}" alt="{{ .PlainText }}" loading="lazy" decoding="async" />
+  <img src="{{ .Destination | safeURL }}" alt="{{ .PlainText }}" loading="lazy" decoding="async" />
   {{- end }}
   {{- with .Title }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
 </figure>

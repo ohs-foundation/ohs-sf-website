@@ -23,17 +23,18 @@
       </div>
     </section>
 
-    {{- with .Params.cover }}{{ with $.Resources.Get . }}
+    {{- with partial "blog/cover-resource.html" . }}
     <!-- ===== COVER ===== -->
-    {{- $one := .Resize "1200x webp" }}
-    {{- $two := .Resize "2400x webp" }}
+    {{- $one := .Resize (printf "%dx webp" (cond (gt .Width 1200) 1200 .Width)) }}
+    {{- $srcset := printf "%s %dw" $one.RelPermalink $one.Width }}
+    {{- if ge .Width 2400 }}{{ $two := .Resize "2400x webp" }}{{ $srcset = printf "%s, %s %dw" $srcset $two.RelPermalink $two.Width }}{{ end }}
     <figure class="article-cover reveal in d1">
-      <img src="{{ $one.RelPermalink }}" srcset="{{ $one.RelPermalink }} 1200w, {{ $two.RelPermalink }} 2400w"
+      <img src="{{ $one.RelPermalink }}" srcset="{{ $srcset }}"
         sizes="(max-width: 1040px) 100vw, 960px" width="{{ $one.Width }}" height="{{ $one.Height }}"
         alt="{{ $.Params.coverAlt }}" fetchpriority="high" />
       {{- with $.Params.coverCaption }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
     </figure>
-    {{- end }}{{ end }}
+    {{- end }}
 
     <!-- ===== ARTICLE BODY ===== -->
     <section style="padding-bottom: clamp(48px, 7vw, 96px)">

@@ -9,7 +9,6 @@
   # Pin Hugo so a new Hugo release can't change the site unannounced.
   # Bump deliberately (and check the build) when upgrading.
   HUGO_VERSION = "0.166.0"
-  HUGO_ENVIRONMENT = "production"
   HUGO_ENABLEGITINFO = "true"
   TZ = "UTC"
 
