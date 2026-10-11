@@ -1,7 +1,20 @@
+{{- if hugo.IsProduction -}}
 User-agent: *
-{{- if hugo.IsProduction }}
 Allow: /
-{{- else }}
+{{- else -}}
+# Deploy previews: keep search engines out, but let link-preview bots in so
+# share cards can be tested before a post goes live.
+User-agent: LinkedInBot
+User-agent: facebookexternalhit
+User-agent: Facebot
+User-agent: Twitterbot
+User-agent: WhatsApp
+User-agent: Slackbot-LinkExpanding
+User-agent: TelegramBot
+User-agent: Discordbot
+Allow: /
+
+User-agent: *
 Disallow: /
 {{- end }}
 

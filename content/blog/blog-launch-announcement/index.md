@@ -4,7 +4,7 @@ date: 2026-07-09
 author: "the OHS-SF team"
 category: "Foundation news"
 summary: "The Open Health Stack Software Foundation is launching at the Linux Foundation. Here's why it matters, what we're building, and how to get involved."
-shareImage: share.jpg     # the picture LinkedIn shows (this post has no cover)
+shareImage: share.jpg     # the picture shown when the post is shared (this post has no cover)
 
 # Optional extras
 subtitle: "An independent, community-owned foundation, launching at the Linux Foundation. What we're building, why it matters, and how to get involved."

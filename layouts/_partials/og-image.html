@@ -1,6 +1,7 @@
 {{- /*
   Returns the social-sharing image for a page as a dict {url,width,height,alt},
-  cropped to 1200×630 (the size LinkedIn and others display).
+  cropped to 1200×630 (the size LinkedIn, Facebook, X, WhatsApp and others
+  display) and kept under ~300 KB.
 
   Blog posts: `shareImage` if set, otherwise the cover, otherwise
   site.Params.blogShareImage (also used for the blog page itself).
@@ -32,7 +33,11 @@
 {{- $out := dict -}}
 {{- with $img -}}
   {{- if reflect.IsImageResourceProcessable . -}}
+    {{- /* WhatsApp skips preview images over ~300 KB; step the quality down until it fits. */ -}}
     {{- $c := .Fill (printf "1200x630 %s jpg q85" $anchor) -}}
+    {{- range slice 75 65 55 -}}
+      {{- if gt (len $c.Content) 290000 }}{{ $c = $img.Fill (printf "1200x630 %s jpg q%d" $anchor .) }}{{ end -}}
+    {{- end -}}
     {{- $out = dict "url" $c.Permalink "width" $c.Width "height" $c.Height "alt" $alt -}}
   {{- end -}}
 {{- end -}}

@@ -162,7 +162,7 @@ Elsewhere:
 | To change… | Edit |
 |---|---|
 | A page's **browser-tab title** and **search/share description** | `title:` and `description:` at the top of its file in `content/`. The home page tab title is `pageTitle:` in `content/_index.md`. |
-| **Default share image** (what LinkedIn and Slack show for pages other than the blog; the blog has its own, see [Sharing on LinkedIn](#sharing-on-linkedin)) | Replace `assets/images/og-default.png`, keeping the name; 1200 × 630 px. |
+| **Default share image** (what LinkedIn, WhatsApp, X and others show for pages other than the blog; the blog has its own, see [Sharing on social media](#sharing-on-social-media)) | Replace `assets/images/og-default.png`, keeping the name; 1200 × 630 px. |
 | **Site icon** in the browser tab | `static/favicon.svg` (and `static/apple-touch-icon.png`, 180 × 180, for phones) |
 | **Short links** such as `ohs.foundation/get-involved` | `netlify.toml` → the `[[redirects]]` blocks. Copy one to add another. |
 | **Small interface labels** ("Latest", "Read the post", "Share this post", "min read", "Loading upcoming events…") | `i18n/en.yaml` |
@@ -310,7 +310,7 @@ title: "GDHF 2026: what we heard in Bangkok"
 date: 2026-12-08
 author: "Fred Hersch"
 category: "Events"
-summary: "One or two sentences. Shown on the blog page and as the preview text when the post is shared on LinkedIn."
+summary: "One or two sentences. Shown on the blog page and as the preview text when the post is shared (LinkedIn, WhatsApp, X …)."
 cover: cover.jpg
 coverAlt: "The OHS community gathering at GDHF 2026"
 draft: false
@@ -323,8 +323,8 @@ draft: false
 | `date` | The date shown on the post, `YYYY-MM-DD`. Posts are ordered by it, and the newest one is featured at the top of the blog page. Publishing is controlled by `draft`, not by the date. |
 | `author` | Shown as "By …". |
 | `category` | A short label such as *Foundation news*, *Events* or *Releases*, shown as a tag. |
-| `summary` | The teaser on the blog page and the description in LinkedIn and Slack previews. |
-| `cover` | File name of the cover image in the post folder (JPG, PNG or WebP). Strongly recommended: it's the picture on the blog page and in LinkedIn previews. Without one, the blog page shows the default illustration. |
+| `summary` | The teaser on the blog page and the text in social-media previews (LinkedIn, WhatsApp, X …). |
+| `cover` | File name of the cover image in the post folder (JPG, PNG or WebP). Strongly recommended: it's the picture on the blog page and in social-media previews. Without one, the blog page shows the default illustration. |
 | `coverAlt` | A short description of the cover image for screen readers. |
 | `draft` | `true` keeps the post off the live site; `false` publishes it. |
 
@@ -337,8 +337,8 @@ Optional extras:
 | `shortTitle` | A shorter title for the browser tab. |
 | `readMore` | The link text on the blog page card. Defaults to "Read the post". |
 | `coverCaption` | A caption under the cover image. |
-| `shareImage` | File name of a picture in the post folder to show in LinkedIn and Slack previews instead of the cover. Use it for a post without a cover, or when the preview should differ from the cover (say, a card with the title on it). 2400 × 1260 px, like covers. |
-| `coverFocus` | Which part of the cover to keep if it isn't 1.91 : 1 and has to be trimmed on the blog page and in LinkedIn previews: `center` (default), `top`, `bottom`, `left`, `right`, `top-left`, `top-right`, `bottom-left` or `bottom-right`. |
+| `shareImage` | File name of a picture in the post folder to show in social-media previews instead of the cover. Use it for a post without a cover, or when the preview should differ from the cover (say, a card with the title on it). 2400 × 1260 px, like covers. |
+| `coverFocus` | Which part of the cover to keep if it isn't 1.91 : 1 and has to be trimmed on the blog page and in social-media previews: `center` (default), `top`, `bottom`, `left`, `right`, `top-left`, `top-right`, `bottom-left` or `bottom-right`. |
 
 **3. Write the post in Markdown:**
 
@@ -377,14 +377,20 @@ Use YouTube or Vimeo for anything longer than a few seconds, because large video
 
 ### Cover image size
 
-Make covers **2400 × 1260 px**: any image at the 1.91 : 1 shape works, but it should be at least 1200 × 630. That's the shape LinkedIn uses for link previews, and the blog page uses the same shape, so an image of this shape is never cropped anywhere.
+Make covers **2400 × 1260 px**: any image at the 1.91 : 1 shape works, but it should be at least 1200 × 630. That's the shape LinkedIn, Facebook, X and WhatsApp use for link previews, and the blog page uses the same shape, so an image of this shape is never cropped anywhere.
 
 - **On the post page** the cover is always shown whole, whatever its shape.
-- **On the blog page and in LinkedIn previews** a cover of a different shape is trimmed to fit, evenly from the centre by default. Use `coverFocus` to keep a different part.
+- **On the blog page and in social-media previews** a cover of a different shape is trimmed to fit, evenly from the centre by default. Use `coverFocus` to keep a different part.
 
-### Sharing on LinkedIn
+### Sharing on social media
 
-Paste the post's URL into a LinkedIn post. The preview card (image, title and summary) is filled in automatically, and every post also has a **LinkedIn** share button at the bottom. The preview image is the post's `shareImage` if it has one, otherwise its cover. A post with neither shows the blog's default share image (`assets/images/og-blog-default.jpg`, also used when the blog page itself is shared). To change that default, replace the file keeping its name, or point `blogShareImage` in `hugo.yaml` at another file; 2400 × 1260 px. LinkedIn caches previews: if you change the image or summary after sharing, paste the URL into the [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) to refresh it. The blog's RSS feed is at `/feed.xml`.
+Paste a post's URL anywhere people share links: LinkedIn, Facebook, X, WhatsApp, Slack, Teams, Discord, Telegram, iMessage and others. Each fills in a preview card (image, title and summary) automatically from the post; there is nothing to set up per network. Every post also has a **LinkedIn** share button and a **Copy link** button at the bottom.
+
+- **Image:** the post's `shareImage` if it has one, otherwise its cover. A post with neither uses the blog's default share image (`assets/images/og-blog-default.jpg`, also used when the blog page itself is shared). To change that default, replace the file keeping its name, or point `blogShareImage` in `hugo.yaml` at another file; 2400 × 1260 px. The site crops every share image to 1200 × 630 and keeps it small enough for WhatsApp, which drops large preview images.
+- **Title and text:** the post's `title` and `summary`.
+- **X:** if the foundation has an X account, put its handle in `hugo.yaml` → `params.social.x` and X cards will credit it.
+
+Networks remember a preview the first time a link is shared. If you change the image or summary afterwards, refresh it: LinkedIn's [Post Inspector](https://www.linkedin.com/post-inspector/) and Facebook's [Sharing Debugger](https://developers.facebook.com/tools/debug/) fetch the page again; X and WhatsApp update on their own after a while. Deploy Previews let these preview bots in (search engines stay out), so you can check a card before a post goes live. The blog's RSS feed is at `/feed.xml`.
 
 ### Blog page text
 
@@ -461,7 +467,7 @@ Rename, add or reorder tiers freely. If you change an `id`, update the members t
 | Change the menu, footer or newsletter band | `hugo.yaml` → `menus` / `params.footer` / `params.newsletter` |
 | Change the Discord invite, calendar or other shared link | `hugo.yaml` → `params.links` |
 | Change a contact email | `hugo.yaml` → `params.contact` |
-| Change how a page looks in Google or LinkedIn | `description:` in its `content/*.md` file |
+| Change how a page looks in Google or when shared | `description:` in its `content/*.md` file |
 | Add a short link like `/get-involved` | `netlify.toml` → `[[redirects]]` |
 
 ---
@@ -485,5 +491,5 @@ Other things to check:
 
 - **A post doesn't appear.** It probably still says `draft: true`.
 - **A section disappeared.** Its block may be misnamed or wrongly indented in the page file. Compare it with the names in this guide.
-- **LinkedIn shows an old preview.** Refresh it in the [Post Inspector](https://www.linkedin.com/post-inspector/).
+- **A shared link shows an old preview.** Refresh it in LinkedIn's [Post Inspector](https://www.linkedin.com/post-inspector/) or Facebook's [Sharing Debugger](https://developers.facebook.com/tools/debug/); X and WhatsApp update on their own after a while.
 - **The events list says it couldn't load.** That's normal under `hugo server`, because events come from a Netlify function. They load on Netlify previews and the live site.
