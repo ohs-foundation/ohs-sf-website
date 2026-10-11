@@ -162,7 +162,7 @@ Elsewhere:
 | To change… | Edit |
 |---|---|
 | A page's **browser-tab title** and **search/share description** | `title:` and `description:` at the top of its file in `content/`. The home page tab title is `pageTitle:` in `content/_index.md`. |
-| **Default share image** (what LinkedIn and Slack show for pages other than blog posts, and for posts without a share image or cover) | Replace `assets/images/og-default.png`, keeping the name; 1200 × 630 px. |
+| **Default share image** (what LinkedIn and Slack show for pages other than the blog; the blog has its own, see [Sharing on LinkedIn](#sharing-on-linkedin)) | Replace `assets/images/og-default.png`, keeping the name; 1200 × 630 px. |
 | **Site icon** in the browser tab | `static/favicon.svg` (and `static/apple-touch-icon.png`, 180 × 180, for phones) |
 | **Short links** such as `ohs.foundation/get-involved` | `netlify.toml` → the `[[redirects]]` blocks. Copy one to add another. |
 | **Small interface labels** ("Latest", "Read the post", "Share this post", "min read", "Loading upcoming events…") | `i18n/en.yaml` |
@@ -384,7 +384,7 @@ Make covers **2400 × 1260 px**: any image at the 1.91 : 1 shape works, but it s
 
 ### Sharing on LinkedIn
 
-Paste the post's URL into a LinkedIn post. The preview card (image, title and summary) is filled in automatically, and every post also has a **LinkedIn** share button at the bottom. The preview image is the post's `shareImage` if it has one, otherwise its cover. A post with neither shows the site's default image (`assets/images/og-default.png`), and the build prints a warning so it doesn't go unnoticed. LinkedIn caches previews: if you change the image or summary after sharing, paste the URL into the [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) to refresh it. The blog's RSS feed is at `/feed.xml`.
+Paste the post's URL into a LinkedIn post. The preview card (image, title and summary) is filled in automatically, and every post also has a **LinkedIn** share button at the bottom. The preview image is the post's `shareImage` if it has one, otherwise its cover. A post with neither shows the blog's default share image (`assets/images/og-blog-default.jpg`, also used when the blog page itself is shared). To change that default, replace the file keeping its name, or point `blogShareImage` in `hugo.yaml` at another file; 2400 × 1260 px. LinkedIn caches previews: if you change the image or summary after sharing, paste the URL into the [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) to refresh it. The blog's RSS feed is at `/feed.xml`.
 
 ### Blog page text
 
@@ -476,7 +476,6 @@ If a change has a mistake that would break the site, **the build stops and the l
 | `Unknown icon "people". Available: …` | Use one of the listed icon names. |
 | `Unknown link "@discrod"` / `Unknown email "@email:info"` | A typo in a shared link, or one that isn't defined in `hugo.yaml` → `params.links` / `params.contact`. |
 | `cover image "cover.jpg" not found next to the post's index.md` | The file name in `cover:` doesn't match the file in the post folder. Check the spelling and case. The same goes for `share image … not found` and `shareImage:`. |
-| `WARN … no shareImage or cover` | Only a warning: the post still builds, but LinkedIn will show the site's default image. Add a `cover` or a `shareImage`. |
 | `image "photo.jpg" not found next to index.md` | Same problem for an image in the post text. |
 | `has tier "Premier", which isn't one of the tier ids` | A member's `tier:` must match a tier `id` exactly, including upper/lower case. |
 | `logo "x.svg" (for "…") not found in assets/members/` | The logo file is missing or named differently. |

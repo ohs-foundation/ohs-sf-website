@@ -83,8 +83,11 @@ params:
     A neutral, community-owned home for open-source building blocks — helping developers everywhere
     create standards-based, AI-ready health solutions.
 
-  # Default social-sharing image (1200×630) for pages without their own.
+  # Social-sharing images (what LinkedIn, Slack etc. show), in assets/.
+  # ogImage: pages other than the blog (1200×630).
+  # blogShareImage: the blog page, and posts with no shareImage or cover (2400×1260).
   ogImage: images/og-default.png
+  blogShareImage: images/og-blog-default.jpg
 
   # Which data file the members sections read. The "demo" environment
   # (config/demo/) points this at sample data for previews.

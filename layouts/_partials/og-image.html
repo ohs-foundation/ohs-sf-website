@@ -2,8 +2,8 @@
   Returns the social-sharing image for a page as a dict {url,width,height,alt},
   cropped to 1200×630 (the size LinkedIn and others display).
 
-  Blog posts: `shareImage` if set, otherwise the cover. A post with neither
-  falls back to the site default and prints a build warning.
+  Blog posts: `shareImage` if set, otherwise the cover, otherwise
+  site.Params.blogShareImage (also used for the blog page itself).
   Everything else: site.Params.ogImage.
 */ -}}
 {{- $alt := .Title | default site.Title -}}
@@ -26,10 +26,8 @@
       {{- $alt = $.Params.coverAlt | default $alt -}}
     {{- end -}}
   {{- end -}}
-  {{- if not $img -}}
-    {{- warnf "%s: no shareImage or cover, so LinkedIn will show the site's default image. Add one (see WRITING.md → \"Sharing on LinkedIn\")." .File.Path -}}
-  {{- end -}}
 {{- end -}}
+{{- if and (not $img) (eq .Section "blog") }}{{ with site.Params.blogShareImage }}{{ $img = resources.Get . }}{{ $alt = site.Title }}{{ end }}{{ end -}}
 {{- if not $img }}{{ $img = resources.Get site.Params.ogImage }}{{ $alt = site.Title }}{{ end -}}
 {{- $out := dict -}}
 {{- with $img -}}

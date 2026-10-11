@@ -30,7 +30,7 @@ hugo server -e demo        # same, plus sample members and sample blog posts
 | `layouts/_markup/`, `layouts/_shortcodes/` | How Markdown renders (headings, links, images) and the extra post components (`pillars`, `closer`, `video`) |
 | `assets/css/main.css` | Design system and shared styles; `assets/css/pages/*.css` hold page-specific styles |
 | `assets/js/app.js` | Small vanilla JS: mobile nav, scroll reveal, community events, share buttons |
-| `assets/images/og-default.png` | Default image shown when a page is shared (1200×630) |
+| `assets/images/og-default.png`, `og-blog-default.jpg` | Default images shown when a page / a blog post is shared (set in `hugo.yaml` → `params.ogImage`, `blogShareImage`) |
 | `assets/members/` | Member logos |
 | `netlify/functions/community-events.js` | Reads the public community calendar (ICS) and returns upcoming events as JSON for the Community page |
 | `email-templates/` | Source of the EmailOctopus welcome email (not published on the site) |
