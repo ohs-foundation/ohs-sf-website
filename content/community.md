@@ -109,7 +109,7 @@ cta:
     Join a community of developers and partners catalyzing AI-powered, locally-owned digital health
     solutions at scale.
   buttons:
-    - { label: Start contributing, url: "https://github.com/google/android-fhir", style: light }
+    - { label: Start contributing, url: "https://github.com/ohs-foundation/android-fhir", style: light }
     - { label: Become a member, url: /foundation.html#membership, style: on-dark }
 
 # Newsletter sign-up form (managed in EmailOctopus).

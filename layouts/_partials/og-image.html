@@ -1,12 +1,35 @@
 {{- /*
-  Returns the social-sharing image for a page as a dict {url,width,height,alt}.
-  Blog posts use their cover image, cropped to 1200×630 (the size LinkedIn
-  and others display). Everything else uses site.Params.ogImage.
+  Returns the social-sharing image for a page as a dict {url,width,height,alt},
+  cropped to 1200×630 (the size LinkedIn and others display).
+
+  Blog posts: `shareImage` if set, otherwise the cover. A post with neither
+  falls back to the site default and prints a build warning.
+  Everything else: site.Params.ogImage.
 */ -}}
-{{- $alt := .Params.coverAlt | default .Title | default site.Title -}}
+{{- $alt := .Title | default site.Title -}}
 {{- $img := false -}}
 {{- $anchor := "Center" -}}
-{{- if and .IsPage (eq .Section "blog") }}{{ $img = partial "blog/cover-resource.html" . }}{{ $anchor = partial "blog/cover-anchor.html" . }}{{ end -}}
+{{- if and .IsPage (eq .Section "blog") -}}
+  {{- with .Params.shareImage -}}
+    {{- $path := (urls.Parse .).Path -}}
+    {{- $r := $.Resources.Get $path -}}
+    {{- if not $r -}}
+      {{- errorf "%s: share image %q not found next to the post's index.md (check the spelling; file names are case-sensitive)" $.File.Path $path -}}
+    {{- else if not (reflect.IsImageResourceProcessable $r) -}}
+      {{- errorf "%s: share image %q must be a JPG, PNG, WebP or GIF file" $.File.Path $path -}}
+    {{- end -}}
+    {{- $img = $r -}}
+  {{- else -}}
+    {{- with partial "blog/cover-resource.html" $ -}}
+      {{- $img = . -}}
+      {{- $anchor = partial "blog/cover-anchor.html" $ -}}
+      {{- $alt = $.Params.coverAlt | default $alt -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if not $img -}}
+    {{- warnf "%s: no shareImage or cover, so LinkedIn will show the site's default image. Add one (see WRITING.md → \"Sharing on LinkedIn\")." .File.Path -}}
+  {{- end -}}
+{{- end -}}
 {{- if not $img }}{{ $img = resources.Get site.Params.ogImage }}{{ $alt = site.Title }}{{ end -}}
 {{- $out := dict -}}
 {{- with $img -}}

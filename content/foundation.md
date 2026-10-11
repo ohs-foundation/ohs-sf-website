@@ -112,11 +112,11 @@ membership:
             For organizations shaping the foundation. Includes a dedicated Governing Board seat, a
             hand in the charter, budget and direction, and founding-member brand association.
             Up-front grants may be accepted in lieu of fees.
-        - name: General
+        - name: Gold
           meta: Sliding scale, by organization size · incl. $5k/yr Linux Foundation membership
           text: >-
             The fee scales with organization size — indicatively $10k/year up to 100 employees.
-            General members nominate a board representative (one per five members, up to three
+            Gold members nominate a board representative (one per five members, up to three
             total) and take part in working groups and the technical, outreach and other committees.
         - name: Associate
           meta: No fee · non-profit, academic & government entities
@@ -129,7 +129,7 @@ membership:
         - name: Inclusive
           meta: No fee · LMIC for-profits under 100 employees
           text: >-
-            The standard $10k/year General fee is waived to maximize accessibility for entrepreneurs
+            The standard $10k/year Gold fee is waived to maximize accessibility for entrepreneurs
             in lower- and middle-income countries, with full participation in working groups.
         - name: Sponsorships or grants
           meta: Custom · funders & multilaterals

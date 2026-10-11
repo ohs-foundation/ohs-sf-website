@@ -164,9 +164,6 @@ pillars:
   num: '03'
   name: AI Commons
   status: Launching
-  # The Projects page currently says "Launching soon" while the home page says
-  # "Launching". Delete this override once one wording is agreed.
-  projectsStatus: Launching soon
   home:
     heading: AI Commons for Global Digital Health
     body: >-

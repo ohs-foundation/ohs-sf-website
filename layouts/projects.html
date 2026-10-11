@@ -18,7 +18,7 @@
   <section id="{{ .id }}" class="wrap" style="padding-bottom: clamp(40px,6vw,72px)">
     <div class="pillar-band {{ .id }} reveal">
       <div>
-        <span class="tag {{ .id }}">Pillar {{ .num }} · {{ .name }} · {{ .projectsStatus | default .status }}</span>
+        <span class="tag {{ .id }}">Pillar {{ .num }} · {{ .name }} · {{ .status }}</span>
         <h2>{{ .projects.heading }}</h2>
         <p>{{ .projects.body }}</p>
         {{- with .projects.collectionUrl }}

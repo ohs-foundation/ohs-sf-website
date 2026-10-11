@@ -89,7 +89,7 @@ cta:
   label: The ask
   heading: Help us build the future of global digital health.
   lead: >-
-    We're recruiting founding members ahead of our public launch. Take a seat at the table shaping
+    We're recruiting founding members ahead of our official launch. Take a seat at the table shaping
     the charter, budget and direction.
   buttons:
     - { label: Become a founding member, url: /foundation.html#membership, style: light }

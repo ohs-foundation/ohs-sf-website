@@ -162,7 +162,7 @@ Elsewhere:
 | To change… | Edit |
 |---|---|
 | A page's **browser-tab title** and **search/share description** | `title:` and `description:` at the top of its file in `content/`. The home page tab title is `pageTitle:` in `content/_index.md`. |
-| **Default share image** (what LinkedIn and Slack show for pages other than blog posts) | Replace `assets/images/og-default.png`, keeping the name; 1200 × 630 px. |
+| **Default share image** (what LinkedIn and Slack show for pages other than blog posts, and for posts without a share image or cover) | Replace `assets/images/og-default.png`, keeping the name; 1200 × 630 px. |
 | **Site icon** in the browser tab | `static/favicon.svg` (and `static/apple-touch-icon.png`, 180 × 180, for phones) |
 | **Short links** such as `ohs.foundation/get-involved` | `netlify.toml` → the `[[redirects]]` blocks. Copy one to add another. |
 | **Small interface labels** ("Latest", "Read the post", "Share this post", "min read", "Loading upcoming events…") | `i18n/en.yaml` |
@@ -240,7 +240,7 @@ The membership options described here (prices and benefits) are separate from th
 - `openCall: true` gives the dashed "Propose an initiative" card style.
 - Links starting with `http` get the "opens elsewhere" arrow.
 
-**Rename a pillar or change its status.** Edit `name` or `status` in `data/pillars.yaml`. That updates the home diagram, the home cards, the Projects page and the footer together. The AI Commons entry also has `projectsStatus:`, which overrides the status on the Projects page only (currently "Launching soon" there and "Launching" elsewhere). Delete that line to use one wording everywhere.
+**Rename a pillar or change its status.** Edit `name` or `status` in `data/pillars.yaml`. That updates the home diagram, the home cards, the Projects page and the footer together.
 
 ---
 
@@ -337,6 +337,7 @@ Optional extras:
 | `shortTitle` | A shorter title for the browser tab. |
 | `readMore` | The link text on the blog page card. Defaults to "Read the post". |
 | `coverCaption` | A caption under the cover image. |
+| `shareImage` | File name of a picture in the post folder to show in LinkedIn and Slack previews instead of the cover. Use it for a post without a cover, or when the preview should differ from the cover (say, a card with the title on it). 2400 × 1260 px, like covers. |
 | `coverFocus` | Which part of the cover to keep if it isn't 1.91 : 1 and has to be trimmed on the blog page and in LinkedIn previews: `center` (default), `top`, `bottom`, `left`, `right`, `top-left`, `top-right`, `bottom-left` or `bottom-right`. |
 
 **3. Write the post in Markdown:**
@@ -383,7 +384,7 @@ Make covers **2400 × 1260 px**: any image at the 1.91 : 1 shape works, but it s
 
 ### Sharing on LinkedIn
 
-Paste the post's URL into a LinkedIn post. The preview card (cover, title and summary) is filled in automatically, and every post also has a **LinkedIn** share button at the bottom. LinkedIn caches previews: if you change the cover or summary after sharing, paste the URL into the [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) to refresh it. The blog's RSS feed is at `/feed.xml`.
+Paste the post's URL into a LinkedIn post. The preview card (image, title and summary) is filled in automatically, and every post also has a **LinkedIn** share button at the bottom. The preview image is the post's `shareImage` if it has one, otherwise its cover. A post with neither shows the site's default image (`assets/images/og-default.png`), and the build prints a warning so it doesn't go unnoticed. LinkedIn caches previews: if you change the image or summary after sharing, paste the URL into the [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) to refresh it. The blog's RSS feed is at `/feed.xml`.
 
 ### Blog page text
 
@@ -474,7 +475,8 @@ If a change has a mistake that would break the site, **the build stops and the l
 | `failed to load data: "…/events.yaml:2:12" … mapping value is not allowed`, or `… found character that cannot start any token` | A formatting slip in that YAML file, at the line and column shown: usually a colon in unquoted text (wrap the text in double quotes), a tab instead of spaces, or uneven indentation. The same problems in a page's front matter show the `content/…md` file instead. |
 | `Unknown icon "people". Available: …` | Use one of the listed icon names. |
 | `Unknown link "@discrod"` / `Unknown email "@email:info"` | A typo in a shared link, or one that isn't defined in `hugo.yaml` → `params.links` / `params.contact`. |
-| `cover image "cover.jpg" not found next to the post's index.md` | The file name in `cover:` doesn't match the file in the post folder. Check the spelling and case. |
+| `cover image "cover.jpg" not found next to the post's index.md` | The file name in `cover:` doesn't match the file in the post folder. Check the spelling and case. The same goes for `share image … not found` and `shareImage:`. |
+| `WARN … no shareImage or cover` | Only a warning: the post still builds, but LinkedIn will show the site's default image. Add a `cover` or a `shareImage`. |
 | `image "photo.jpg" not found next to index.md` | Same problem for an image in the post text. |
 | `has tier "Premier", which isn't one of the tier ids` | A member's `tier:` must match a tier `id` exactly, including upper/lower case. |
 | `logo "x.svg" (for "…") not found in assets/members/` | The logo file is missing or named differently. |

@@ -41,6 +41,10 @@
 }
 .welcome-card b, .welcome-card strong { color: var(--ink); font-weight: 700; }
 .welcome-card .cta-row { margin-top: 24px; }
+/* Long button labels wrap on narrow screens instead of running off the card. */
+@media (max-width: 560px) {
+  .welcome-card .cta-row .btn { white-space: normal; text-align: center; max-width: 100%; }
+}
 .welcome-note {
   max-width: 720px; margin: 28px auto 0; text-align: center;
   color: var(--ink-faint); font-size: 0.95rem; line-height: 1.6; font-style: italic;
