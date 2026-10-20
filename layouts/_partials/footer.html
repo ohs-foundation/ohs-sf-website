@@ -1,0 +1,37 @@
+{{- /* Site footer. Text and columns: hugo.yaml → params.footer; links: menus.footer* */ -}}
+{{- $f := site.Params.footer -}}
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="wrap-wide">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="/" style="color:#fff">
+            <span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="brandname"><b>{{ site.Params.brand.name }}</b><span style="color:oklch(0.66 0.02 200)">{{ site.Params.brand.tagline }}</span></span>
+          </a>
+          <p class="footer-about">{{ $f.about | markdownify }}</p>
+        </div>
+        {{- range $f.columns }}
+        <div>
+          <h4>{{ .title }}</h4>
+          <ul>
+            {{- if .pillars }}
+            {{- range hugo.Data.pillars.pillars }}
+            <li><a href="/projects.html#{{ .id }}">{{ .name }}</a></li>
+            {{- end }}
+            {{- end }}
+            {{- range index site.Menus (lower .menu) }}
+            <li><a href="{{ partial "url.html" .URL }}">{{ .Name }}</a></li>
+            {{- end }}
+          </ul>
+        </div>
+        {{- end }}
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>{{ now.Year }}</span> {{ $f.copyright }}{{ with $f.hostedBy }} <a href="{{ partial "url.html" .url }}">{{ .label }}</a>{{ end }}.</span>
+        {{- with $f.poweredBy }}
+        <span>{{ .text }} <a href="{{ partial "url.html" .url }}">{{ .label }}</a>.</span>
+        {{- end }}
+      </div>
+    </div>
+  </footer>

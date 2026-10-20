@@ -1,0 +1,18 @@
+{{- /*
+  Returns a post's cover image resource, or false if the post has no `cover`.
+  Fails the build with a plain-language message if the file is missing or
+  isn't a JPG/PNG/WebP/GIF image.
+*/ -}}
+{{- $out := false -}}
+{{- with .Params.cover -}}
+  {{- $path := (urls.Parse .).Path -}}
+  {{- $r := $.Resources.Get $path -}}
+  {{- if not $r -}}
+    {{- errorf "%s: cover image %q not found next to the post's index.md (check the spelling; file names are case-sensitive)" $.File.Path $path -}}
+  {{- else if not (reflect.IsImageResourceProcessable $r) -}}
+    {{- errorf "%s: cover image %q must be a JPG, PNG, WebP or GIF file" $.File.Path $path -}}
+  {{- else -}}
+    {{- $out = $r -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

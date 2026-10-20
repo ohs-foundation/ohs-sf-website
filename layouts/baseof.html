@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Locale | default "en" }}">
+
+<head>
+  {{- partial "head.html" . }}
+</head>
+
+<body>
+  {{- partial "header.html" . }}
+
+  {{ block "main" . }}{{ end }}
+
+  {{- if not (.Params.hideNewsletter) }}
+  {{ partial "newsletter-band.html" . }}
+  {{- end }}
+
+  {{ partial "footer.html" . }}
+
+  {{ with resources.Get "js/app.js" | minify | fingerprint -}}
+  <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}"></script>
+  {{- end }}
+</body>
+
+</html>

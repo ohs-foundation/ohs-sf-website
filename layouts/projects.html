@@ -1,0 +1,67 @@
+{{ define "main" }}
+  {{- $page := .Params }}
+  <!-- HERO -->
+  {{- with $page.hero }}
+  <section class="page-hero" data-screen-label="Projects hero">
+    <div class="wrap">
+      <span class="eyebrow reveal in">{{ .label }}</span>
+      <h1 class="reveal in" style="margin-top:18px; max-width:16ch">{{ .heading }}</h1>
+      <p class="lead reveal in d1">{{ .lead | markdownify }}</p>
+    </div>
+  </section>
+  {{- end }}
+
+  {{- range hugo.Data.pillars.pillars }}
+  {{- $p := . }}
+
+  <!-- PILLAR {{ .num }} — {{ upper .name }} -->
+  <section id="{{ .id }}" class="wrap" style="padding-bottom: clamp(40px,6vw,72px)">
+    <div class="pillar-band {{ .id }} reveal">
+      <div>
+        <span class="tag {{ .id }}">Pillar {{ .num }} · {{ .name }} · {{ .status }}</span>
+        <h2>{{ .projects.heading }}</h2>
+        <p>{{ .projects.body }}</p>
+        {{- with .projects.collectionUrl }}
+        <a href="{{ . }}" target="_blank" rel="noopener" class="textlink" style="margin-top:18px">View collection on GitHub {{ partial "icon.html" "arrow-ext-16" }}</a>
+        {{- end }}
+      </div>
+      <div class="pb-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+
+    <div class="proj-grid">
+      {{- range $i, $item := .projects.items }}
+      {{- /* staggered reveal: 1st–2nd card d1, 3rd–5th d2, then d3 */}}
+      {{- $delay := cond (lt $i 2) "d1" (cond (lt $i 5) "d2" "d3") }}
+      <article class="card hover proj reveal {{ $delay }}"{{ if .openCall }} style="background:var(--bg-2); border-style:dashed;"{{ end }}>
+        <div class="proj-top">{{ partial "chip.html" (dict "icon" .icon "color" (cond .openCall "" $p.id)) }}<span class="tag{{ if not .openCall }} {{ $p.id }}{{ end }}">{{ .kind }}</span></div>
+        <h3>{{ .name }}</h3>
+        <p>{{ .description }}</p>
+        <div class="proj-meta"><span class="status {{ .statusStyle }}"><span class="dot"></span> {{ .status }}</span>
+          {{- with .tech }}<span class="lang">{{ . }}</span>{{ end }}</div>
+        {{- $external := strings.HasPrefix .link "http" }}
+        <a href="{{ .link }}" class="textlink repo">{{ .linkLabel }} {{ partial "icon.html" (cond $external "arrow-ext-16" "arrow-right-16") }}</a>
+      </article>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+
+  <!-- GET INVOLVED -->
+  {{- with $page.involved }}
+  <section id="get-involved" class="committees section-pad">
+    <div class="wrap">
+      <div class="section-head reveal" style="text-align:center; max-width:760px; margin-inline:auto">
+        <span class="eyebrow bare" style="justify-content:center">{{ .label }}</span>
+        <h2 class="section-title" style="margin-top:16px">{{ .heading }}</h2>
+        <p class="lead" style="margin-inline:auto">{{ .lead | markdownify }}</p>
+        <div class="cta-row reveal d1"
+          style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:32px">
+          {{- range .buttons }}
+          {{ partial "button.html" . }}
+          {{- end }}
+        </div>
+      </div>
+    </div>
+  </section>
+  {{- end }}
+{{ end }}

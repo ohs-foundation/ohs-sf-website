@@ -1,0 +1,4 @@
+{{- /* Closing call-out at the end of a post. The last paragraph is set larger and bold. */ -}}
+<div class="closer reveal">
+{{ .Inner | .Page.RenderString (dict "display" "block") }}
+</div>

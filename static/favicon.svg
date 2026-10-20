@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <!-- The official Open Health Stack logo mark. -->
+  <rect x="0" y="0" width="229" height="229" rx="66" fill="#07858a"/>
+  <rect x="271" y="0" width="229" height="229" rx="66" fill="#0c87a7"/>
+  <rect x="0" y="271" width="229" height="229" rx="66" fill="#7666b2"/>
+  <rect x="271" y="271" width="229" height="229" rx="66" fill="#005961"/>
+</svg>

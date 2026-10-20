@@ -1,0 +1,17 @@
+{{ define "main" }}
+  {{- /* Text: hugo.yaml → params.notFound */}}
+  {{- with site.Params.notFound }}
+  <section class="page-hero notfound">
+    <div class="wrap">
+      <span class="eyebrow reveal in">{{ .label }}</span>
+      <h1 class="reveal in">{{ .heading }}</h1>
+      <p class="lead reveal in d1">{{ .lead | markdownify }}</p>
+      <div class="notfound-links reveal in d1">
+        {{- range .buttons }}
+        {{ partial "button.html" . }}
+        {{- end }}
+      </div>
+    </div>
+  </section>
+  {{- end }}
+{{ end }}

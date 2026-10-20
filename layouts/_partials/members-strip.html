@@ -1,0 +1,23 @@
+{{- /* Home page: members of tiers marked showOnHome in data/members.yaml. Hidden when empty.
+       Arg: dict "copy" (label/heading/link from content/_index.md) */ -}}
+{{- $copy := .copy | default dict -}}
+{{- $groups := partial "members/groups.html" "home" -}}
+{{- with $groups }}
+  <!-- ===== MEMBERS ===== -->
+  <section class="members-strip section-pad">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow bare" style="justify-content:center">{{ $copy.label | default "Our members" }}</span>
+        <h2 class="section-title" style="margin-top:16px">{{ $copy.heading | default "Backed by our members." }}</h2>
+      </div>
+      <div class="member-grid is-featured reveal d1">
+        {{- range $groups }}{{ range .members }}
+        {{ partial "members/card.html" . }}
+        {{- end }}{{ end }}
+      </div>
+      <div class="members-more reveal d2">
+        <a href="/foundation.html#members" class="textlink">{{ $copy.link | default "Meet all our members" }} {{ partial "icon.html" "arrow-right-16" }}</a>
+      </div>
+    </div>
+  </section>
+{{- end }}

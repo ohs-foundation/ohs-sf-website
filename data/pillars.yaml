@@ -1,0 +1,228 @@
+# The three pillars and their projects.
+#
+# Used by: the home page hero diagram and pillar cards, the Projects page
+# (pillar bands + project cards) and the footer "Projects" links.
+#
+# Adding a project: copy one item under `projects.items` and edit it.
+#   icon:        one of layers, search, monitor, phone, shield, chart, desktop,
+#                pulse, checkbox, hub, plus … (full list: WRITING.md → "Icons")
+#   statusStyle: colour of the status dot — active, maintenance, incubating, proposed
+#   openCall:    true renders the dashed "call for proposals" card style
+#
+pillars:
+- id: core
+  num: '01'
+  name: FHIR Foundations
+  status: Active
+  home:
+    heading: FHIR-native core libraries
+    body: >-
+      The foundational libraries for working with FHIR. Includes new multi-platform kotlin FHIR SDK and
+      battle-tested components for Android, access control and analytics, sustained by an active community
+      of technical partners.
+    bullets:
+    - 'Core FHIR Libraries: kotlin-fhir, kotlin-fhirpath'
+    - Client SDK and server side libraries for building on FHIR
+    - HL7® FHIR® interoperability by default
+    linkLabel: Explore FHIR Foundations
+    diagramDesc: FHIR-native core libraries
+  projects:
+    heading: FHIR-native core libraries
+    body: >-
+      The foundational Kotlin Multiplatform libraries for working with FHIR, plus battle-tested components
+      for Android, access control and analytics.
+    collectionUrl: https://github.com/orgs/ohs-foundation/repositories?q=topic:ohs-fhir-foundations
+    items:
+    - name: kotlin-fhir
+      kind: Core Library
+      icon: layers
+      description: >-
+        A lean, fast KMP implementation of the HL7® FHIR® data model — the foundational library for all
+        OHS components.
+      status: Active
+      statusStyle: active
+      tech: Kotlin Multiplatform
+      link: https://github.com/ohs-foundation/kotlin-fhir
+      linkLabel: View repository
+    - name: kotlin-fhirpath
+      kind: Core Library
+      icon: search
+      description: >-
+        KMP implementation of FHIRPath for querying and evaluating FHIR resources across platforms.
+      status: Active
+      statusStyle: active
+      tech: Kotlin Multiplatform
+      link: https://github.com/ohs-foundation/kotlin-fhirpath
+      linkLabel: View repository
+    - name: Kotlin Multiplatform FHIR SDK
+      kind: SDK
+      icon: monitor
+      description: >-
+        The next-generation, multiplatform SDK for building FHIR-native apps across Android, iOS and web
+        from a single Kotlin codebase — the successor to the Android FHIR SDK.
+      status: Active
+      statusStyle: active
+      tech: Kotlin Multiplatform
+      link: https://github.com/orgs/ohs-foundation/repositories?q=topic:kmp-fhir-sdk
+      linkLabel: View repositories
+    - name: Android FHIR SDK
+      kind: SDK
+      icon: phone
+      description: >-
+        FHIR-native libraries to build Android apps that are secure, offline-capable, and provide on-device
+        decision support for patient-centered care.
+      status: Maintenance
+      statusStyle: maintenance
+      tech: Kotlin · Android
+      link: https://github.com/ohs-foundation/android-fhir
+      linkLabel: View repository
+    - name: FHIR Info Gateway
+      kind: Gateway
+      icon: shield
+      description: >-
+        A privacy-preserving access layer that ensures only relevant healthcare workers can reach the
+        patient data they need.
+      status: Active
+      statusStyle: active
+      tech: Java · Proxy
+      link: https://github.com/ohs-foundation/fhir-gateway
+      linkLabel: View repository
+    - name: FHIR Analytics
+      kind: Analytics
+      icon: chart
+      description: >-
+        Transform FHIR data into analytics-ready formats so programs can generate trusted insights faster
+        and make better decisions.
+      status: Active
+      statusStyle: active
+      tech: Python · Pipelines
+      link: https://github.com/ohs-foundation/fhir-data-pipes
+      linkLabel: View repository
+- id: toolkit
+  num: '02'
+  name: Reference Toolkit
+  status: Active
+  home:
+    heading: Multiplatform AI-ready Reference Toolkit
+    body: >-
+      The fastest way to develop and deploy a next-gen digital health solution — a complete, composable
+      reference implementation built on the FHIR Foundations libraries, ready for Android, iOS and web.
+    bullets:
+    - OHS Player — the reference runtime
+    - KMP client app, web portal & backend
+    - AI-ready by design
+    linkLabel: Explore the toolkit
+    diagramDesc: Multiplatform, AI-ready
+  projects:
+    heading: Multiplatform AI-ready Reference Toolkit
+    body: >-
+      The fastest way to develop and deploy a next-gen digital health solution — a complete, composable
+      reference implementation built on the FHIR Foundations libraries.
+    collectionUrl: https://github.com/orgs/ohs-foundation/repositories?q=topic:ohs-player
+    items:
+    - name: OHS Player
+      kind: Runtime
+      icon: layers
+      description: >-
+        The reference runtime for OHS — orchestrates the building blocks into a deployable, AI-ready digital
+        health solution.
+      status: Active
+      statusStyle: active
+      tech: Kotlin Multiplatform
+      link: https://github.com/ohs-foundation/ohs-player
+      linkLabel: View repository
+    - name: Reference Client App
+      kind: Mobile
+      icon: phone
+      description: >-
+        A KMP-based configurable reference application built on OHS components for Android and iOS.
+      status: Active
+      statusStyle: active
+      tech: Kotlin Multiplatform
+      link: https://github.com/ohs-foundation/ohs-player-reference-client-app
+      linkLabel: View repository
+    - name: Reference Web Portal
+      kind: Web
+      icon: desktop
+      description: >-
+        A web-based management tool for healthcare organisations to manage workforce hierarchies and configuration.
+      status: Active
+      statusStyle: active
+      tech: TypeScript
+      link: https://github.com/ohs-foundation/ohs-player-reference-web-portal
+      linkLabel: View repository
+    - name: Reference Backend
+      kind: Backend
+      icon: pulse
+      description: Custom endpoints and access checker plugins powering all OHS Player clients.
+      status: Active
+      statusStyle: active
+      tech: Kotlin
+      link: https://github.com/ohs-foundation/ohs-player-reference-backend
+      linkLabel: View repository
+- id: ai
+  num: '03'
+  name: AI Commons
+  status: Launching
+  home:
+    heading: AI Commons for Global Digital Health
+    body: >-
+      A neutral space for collaboration on safe, effective and Verifiable AI for Global Health — focused
+      on model-agnostic capabilities like evals, benchmarks, tooling for Verifiable AI, developed with
+      the WHO and partners.
+    bullets:
+    - Tooling to support Evals & benchmarks for Health AI
+    - Model-agnostic libraries, relevant skills & MCPs
+    - Open and modular by design
+    linkLabel: Explore AI Commons
+    diagramDesc: Safe, verifiable AI · with the WHO
+  projects:
+    heading: AI Commons
+    body: >-
+      A neutral, model-agnostic space for collaboration on safe, effective and verifiable AI — developed
+      with the WHO and ecosystem partners.
+    items:
+    - name: Verifiable AI · WHO
+      kind: WHO
+      icon: shield
+      description: >-
+        Supporting "verifiable AI" efforts with the WHO and ecosystem partners to ensure safe development
+        and adoption of health AI.
+      status: Forming
+      statusStyle: incubating
+      tech: Partnership
+      link: /foundation.html#mission
+      linkLabel: Read the charter
+    - name: Evals & Benchmarks
+      kind: Evals
+      icon: checkbox
+      description: >-
+        Open tooling and shared datasets to measure the safety, quality and effectiveness of AI applied
+        to global health workflows.
+      status: Incubating
+      statusStyle: incubating
+      tech: Model-agnostic
+      link: /community.html#involved
+      linkLabel: Get involved
+    - name: Health MCPs
+      kind: MCP
+      icon: hub
+      description: >-
+        Model-agnostic context tooling and connectors that let AI systems work safely with standards-based
+        health data and workflows.
+      status: Proposed
+      statusStyle: proposed
+      tech: Protocol · Tooling
+      link: /community.html#involved
+      linkLabel: Get involved
+    - name: Propose an initiative
+      kind: Open call
+      icon: plus
+      description: >-
+        Have a project to donate or an idea to support? As a Linux Foundation project, there's room to
+        collaborate with related foundations and contribute new building blocks.
+      status: Always open
+      statusStyle: proposed
+      link: mailto:fred@ohs.foundation
+      linkLabel: Let's talk
+      openCall: true

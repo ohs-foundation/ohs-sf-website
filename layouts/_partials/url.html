@@ -1,0 +1,17 @@
+{{- /*
+  Resolves a URL written in content:
+    @discord, @calendar, @github, @governanceDocs, @lfxEnrollment …  → that link from
+        params.links in hugo.yaml (one place to change shared links)
+    @email:general, @email:membership, @email:proposals → mailto: the address in params.contact
+    anything else (https://…, /community.html, #events, mailto:…) → unchanged
+*/ -}}
+{{- $u := . | default "" -}}
+{{- $out := $u -}}
+{{- if strings.HasPrefix $u "@email:" -}}
+  {{- $key := strings.TrimPrefix "@email:" $u -}}
+  {{- with index site.Params.contact $key }}{{ $out = printf "mailto:%s" . }}{{ else }}{{ errorf "Unknown email %q — add it under params.contact in hugo.yaml" $u }}{{ end -}}
+{{- else if strings.HasPrefix $u "@" -}}
+  {{- $key := strings.TrimPrefix "@" $u -}}
+  {{- with index site.Params.links $key }}{{ $out = . }}{{ else }}{{ errorf "Unknown link %q — add it under params.links in hugo.yaml" $u }}{{ end -}}
+{{- end -}}
+{{- return $out -}}

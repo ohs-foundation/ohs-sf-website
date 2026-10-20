@@ -1,0 +1,36 @@
+{{ define "main" }}
+  {{- $page := . }}
+  <!-- HERO -->
+  {{- with .Params.hero }}
+  <section class="welcome-hero">
+    <div class="wrap">
+      {{- with .badge }}
+      <span class="badge">{{ . }}</span>
+      {{- end }}
+      <h1>{{ .heading }}</h1>
+      <p class="lead">{{ .lead | markdownify }}</p>
+    </div>
+  </section>
+  {{- end }}
+
+  <!-- BODY -->
+  <section class="welcome-body">
+    <div class="wrap">
+      {{- range .Params.cards }}
+      <div class="welcome-card">
+        <h2>{{ .title }}</h2>
+        {{ $page.RenderString (dict "display" "block") .text }}
+        {{- with .button }}
+        <div class="cta-row">
+          {{ partial "button.html" . }}
+        </div>
+        {{- end }}
+      </div>
+      {{- end }}
+
+      {{- with .Params.note }}
+      <p class="welcome-note">{{ . | markdownify }}</p>
+      {{- end }}
+    </div>
+  </section>
+{{ end }}

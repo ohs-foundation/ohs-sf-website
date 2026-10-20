@@ -1,0 +1,44 @@
+# SAMPLE DATA — fictional organisations used only by the "demo" environment
+# (`hugo server --environment demo`) to preview the members sections.
+# The live site reads data/members.yaml.
+
+
+tiers:
+  - id: premier
+    name: Premier
+    showOnHome: true
+  - id: gold
+    name: Gold
+  - id: associate
+    name: Associate
+
+members:
+  - name: Contoso Health
+    tier: premier
+    url: https://example.com/contoso
+    logo: demo/contoso-health.svg
+  - name: Northwind Digital
+    tier: premier
+    url: https://example.com/northwind
+    logo: demo/northwind-digital.svg
+  - name: Fabrikam Labs
+    tier: gold
+    url: https://example.com/fabrikam
+    logo: demo/fabrikam-labs.svg
+  - name: Tailspin Data
+    tier: gold
+    url: https://example.com/tailspin
+    logo: demo/tailspin-data.svg
+  - name: Adventure Works
+    tier: gold
+    url: https://example.com/adventure-works
+    logo: demo/adventure-works.svg
+  - name: Example University
+    tier: associate
+    url: https://example.com/university
+    logo: demo/example-university.svg
+  - name: Sample Health Alliance
+    tier: associate
+    url: https://example.com/alliance
+  - name: Ministry of Example
+    tier: associate

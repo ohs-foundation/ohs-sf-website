@@ -1,0 +1,11 @@
+{{- /* {{< pillar id="core|toolkit|ai" status="Pillar 01 · Active" title="FHIR Foundations" >}}Text{{< /pillar >}} */ -}}
+{{- $id := .Get "id" -}}
+<div class="pp {{ $id }}">
+  <div class="pp-head">
+    {{- with .Get "status" }}
+    <span class="tag {{ $id }}">{{ . }}</span>
+    {{- end }}
+    <h3>{{ .Get "title" }}</h3>
+  </div>
+  {{ .Inner | .Page.RenderString (dict "display" "block") }}
+</div>

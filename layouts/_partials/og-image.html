@@ -1,0 +1,44 @@
+{{- /*
+  Returns the social-sharing image for a page as a dict {url,width,height,alt},
+  cropped to 1200×630 (the size LinkedIn, Facebook, X, WhatsApp and others
+  display) and kept under ~300 KB.
+
+  Blog posts: `shareImage` if set, otherwise the cover, otherwise
+  site.Params.blogShareImage (also used for the blog page itself).
+  Everything else: site.Params.ogImage.
+*/ -}}
+{{- $alt := .Title | default site.Title -}}
+{{- $img := false -}}
+{{- $anchor := "Center" -}}
+{{- if and .IsPage (eq .Section "blog") -}}
+  {{- with .Params.shareImage -}}
+    {{- $path := (urls.Parse .).Path -}}
+    {{- $r := $.Resources.Get $path -}}
+    {{- if not $r -}}
+      {{- errorf "%s: share image %q not found next to the post's index.md (check the spelling; file names are case-sensitive)" $.File.Path $path -}}
+    {{- else if not (reflect.IsImageResourceProcessable $r) -}}
+      {{- errorf "%s: share image %q must be a JPG, PNG, WebP or GIF file" $.File.Path $path -}}
+    {{- end -}}
+    {{- $img = $r -}}
+  {{- else -}}
+    {{- with partial "blog/cover-resource.html" $ -}}
+      {{- $img = . -}}
+      {{- $anchor = partial "blog/cover-anchor.html" $ -}}
+      {{- $alt = $.Params.coverAlt | default $alt -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if and (not $img) (eq .Section "blog") }}{{ with site.Params.blogShareImage }}{{ $img = resources.Get . }}{{ $alt = site.Title }}{{ end }}{{ end -}}
+{{- if not $img }}{{ $img = resources.Get site.Params.ogImage }}{{ $alt = site.Title }}{{ end -}}
+{{- $out := dict -}}
+{{- with $img -}}
+  {{- if reflect.IsImageResourceProcessable . -}}
+    {{- /* WhatsApp skips preview images over ~300 KB; step the quality down until it fits. */ -}}
+    {{- $c := .Fill (printf "1200x630 %s jpg q85" $anchor) -}}
+    {{- range slice 75 65 55 -}}
+      {{- if gt (len $c.Content) 290000 }}{{ $c = $img.Fill (printf "1200x630 %s jpg q%d" $anchor .) }}{{ end -}}
+    {{- end -}}
+    {{- $out = dict "url" $c.Permalink "width" $c.Width "height" $c.Height "alt" $alt -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

@@ -1,0 +1,369 @@
+/* ===== Community page ===== */
+.page-hero {
+  padding-top: clamp(56px, 8vw, 110px);
+  padding-bottom: clamp(32px, 5vw, 56px);
+}
+
+.page-hero h1 {
+  font-size: clamp(2.5rem, 5.2vw, 4.2rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.0;
+}
+
+.page-hero .lead {
+  max-width: 56ch;
+  margin-top: 22px;
+}
+
+/* get involved */
+.involved-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-top: 44px;
+}
+
+.inv {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.inv .icon-chip {
+  flex: none;
+}
+
+.inv h3 {
+  font-size: 1.18rem;
+}
+
+.inv p {
+  color: var(--ink-soft);
+  margin-top: 8px;
+  font-size: 0.94rem;
+}
+
+.inv .textlink {
+  margin-top: 14px;
+}
+
+/* events */
+.events {
+  background: var(--bg-2);
+}
+
+.event-list {
+  margin-top: 22px;
+  display: grid;
+  gap: 14px;
+}
+
+.event-row {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 20px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+}
+
+.event-row:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--ink-faint);
+}
+
+.event-row .when {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--teal-deep);
+  width: 96px;
+  flex: none;
+}
+
+.event-row .what {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.event-row .where {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  margin-top: 3px;
+}
+
+.event-row .etag {
+  margin-left: auto;
+}
+
+details.event-row {
+  display: block;
+  padding: 0;
+  cursor: default;
+}
+
+details.event-row summary {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 20px 24px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+details.event-row summary::-webkit-details-marker {
+  display: none;
+}
+
+details.event-row summary::marker {
+  display: none;
+  content: "";
+}
+
+.event-summary-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.event-summary-meta {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.event-toggle-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--teal-deep);
+  background: var(--bg-2);
+  padding: 4px 10px;
+  border-radius: 999px;
+  transition: background 0.2s, color 0.2s;
+}
+
+details.event-row summary:hover .event-toggle-cue {
+  background: var(--teal-wash);
+  color: var(--teal-deep);
+}
+
+.event-toggle-cue svg {
+  transition: transform 0.25s var(--ease);
+}
+
+details.event-row[open] .event-toggle-cue svg {
+  transform: rotate(180deg);
+}
+
+.event-expanded-body {
+  padding: 18px 24px 24px;
+  border-top: 1px dashed var(--line);
+}
+
+.event-actions {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.event-actions .btn {
+  font-size: 0.88rem;
+  padding: 0.55em 1.2em;
+}
+
+.event-dialin {
+  margin-top: 12px;
+  font-size: 0.82rem;
+  color: var(--ink-faint);
+  line-height: 1.5;
+}
+
+.event-dialin a {
+  color: var(--teal-deep);
+  text-decoration: underline;
+}
+
+/* event filters */
+.event-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.filter-chip {
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color .2s, background .2s, color .2s;
+}
+
+.filter-chip:hover {
+  border-color: var(--ink-faint);
+}
+
+.filter-chip.is-active {
+  background: var(--teal-deep);
+  border-color: var(--teal-deep);
+  color: #fff;
+}
+
+[data-events-loading] .where {
+  color: var(--ink-soft);
+}
+
+.cj-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.cj-option {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.cj-option:hover {
+  border-color: var(--ink-faint);
+  box-shadow: var(--shadow-sm);
+}
+
+.cj-option .icon-chip {
+  flex: none;
+}
+
+.cj-option h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.cj-option p {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+
+.cj-option .textlink {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  display: inline-flex;
+}
+
+/* contributor cta */
+.contrib-cta {
+  background: linear-gradient(135deg, var(--teal-deep), oklch(0.34 0.07 215));
+  color: #fff;
+  text-align: center;
+}
+
+.contrib-cta h2 {
+  color: #fff;
+}
+
+.contrib-cta .lead {
+  color: oklch(0.92 0.02 195);
+  margin-inline: auto;
+  max-width: 46ch;
+}
+
+.contrib-cta .hero-cta {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 860px) {
+
+  .involved-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cj-options {
+    grid-template-columns: 1fr;
+  }
+
+  .event-row {
+    flex-wrap: wrap;
+    gap: 8px 16px;
+  }
+
+  .event-row .when {
+    width: auto;
+  }
+
+  .event-row .etag {
+    margin-left: 0;
+  }
+
+  details.event-row summary {
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    padding: 16px 18px;
+  }
+
+  details.event-row summary .when {
+    width: auto;
+  }
+
+  .event-summary-meta {
+    margin-left: auto;
+  }
+
+  .event-expanded-body {
+    padding: 16px 18px 20px;
+  }
+
+  .event-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Links inside pinned-event notes (rendered from data/events.yaml) */
+.event-row .where a {
+  color: var(--teal-deep);
+}
+
+/* Links written in Markdown inside page text (content/community.md) */
+.inv p a {
+  font-weight: 600;
+  color: var(--teal-deep);
+  border-bottom: 1.5px solid transparent;
+  transition: gap 0.2s, border-color 0.2s;
+}
+
+.inv p a:hover {
+  border-color: currentColor;
+}
+
+.events-calendar p a {
+  color: var(--teal-deep);
+  font-weight: 600;
+  text-decoration: underline;
+}

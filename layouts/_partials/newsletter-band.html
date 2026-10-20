@@ -1,0 +1,18 @@
+{{- /* "Stay in the loop" band above the footer. Text: hugo.yaml → params.newsletter */ -}}
+{{- with site.Params.newsletter }}
+  <!-- ===== NEWSLETTER BAND ===== -->
+  <section class="newsletter">
+    <div class="wrap newsletter-inner">
+      <div class="newsletter-copy">
+        <span class="eyebrow">{{ .label }}</span>
+        <h2>{{ .heading }}</h2>
+        <p>{{ .text | markdownify }}</p>
+      </div>
+      {{- with .button }}
+      <div class="newsletter-cta">
+        <a href="{{ partial "url.html" .url }}" class="btn btn-light">{{ .label }} {{ partial "icon.html" "arrow-right-16" }}</a>
+      </div>
+      {{- end }}
+    </div>
+  </section>
+{{- end }}

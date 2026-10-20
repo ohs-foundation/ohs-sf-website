@@ -1,0 +1,20 @@
+{{- $img := false -}}
+{{- with .logo -}}
+  {{- $img = resources.Get (printf "members/%s" .) -}}
+  {{- if not $img }}{{ errorf "data/members.yaml: logo %q (for %q) not found in assets/members/ (file names are case-sensitive)" . $.name }}{{ end -}}
+{{- end -}}
+<span class="member-logo">
+  {{- with $img }}
+    {{- if not (reflect.IsImageResourceProcessable .) }}
+  <img src="{{ (. | fingerprint).RelPermalink }}" alt="{{ $.name }}" loading="lazy" />
+    {{- else }}
+    {{- $r := .Resize "x136 webp" }}
+  <img src="{{ $r.RelPermalink }}" width="{{ div $r.Width 2 }}" height="{{ div $r.Height 2 }}" alt="{{ $.name }}" loading="lazy" />
+    {{- end }}
+  {{- else }}
+    {{- /* No logo: show up to two initials (capitalised words only, so "Ministry of Health" → "MH") */}}
+    {{- $initials := delimit (first 2 (findRE `\b\p{Lu}` .name)) "" | default (substr .name 0 1) }}
+  <span class="member-initials" aria-hidden="true">{{ upper $initials }}</span>
+  {{- end }}
+</span>
+<span class="member-name">{{ .name }}</span>

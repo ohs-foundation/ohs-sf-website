@@ -1,0 +1,466 @@
+/* ===== Blog article ===== */
+.article-hero {
+  padding-top: clamp(40px, 6vw, 84px);
+  padding-bottom: clamp(24px, 3vw, 40px);
+}
+
+.breadcrumb {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.breadcrumb a {
+  color: var(--teal-deep);
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  opacity: 0.5;
+}
+
+.article-hero h1 {
+  font-size: clamp(2.05rem, 4.4vw, 3.45rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+  margin-top: 22px;
+  max-width: 19ch;
+}
+
+.article-dek {
+  margin-top: 22px;
+  max-width: 60ch;
+}
+
+.article-meta {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 22px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  color: var(--ink-faint);
+}
+
+.article-meta .mchip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--teal-wash);
+  color: var(--teal-deep);
+  padding: 6px 12px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.66rem;
+}
+
+.article-meta .byline b {
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+/* Body measure */
+.article-body {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.article-body a {
+  color: var(--teal-deep);
+  font-weight: 600;
+  border-bottom: 1.5px solid color-mix(in oklch, var(--teal-deep) 35%, transparent);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.article-body a:hover {
+  border-color: var(--teal-deep);
+  color: var(--teal);
+}
+
+.article-body>p {
+  margin-top: 1.35em;
+  font-size: 1.14rem;
+  line-height: 1.72;
+  color: oklch(0.34 0.018 210);
+  text-wrap: pretty;
+}
+
+.article-body>p:first-child {
+  margin-top: 0;
+}
+
+/* A post that opens with **bold text** gets the lead-in treatment */
+.article-body>p:first-child>strong:first-child {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.article-body h2 {
+  font-size: clamp(1.5rem, 2.6vw, 2.05rem);
+  letter-spacing: -0.025em;
+  margin-top: 2.2em;
+  line-height: 1.1;
+}
+
+.article-body h2 .kicker {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  margin-bottom: 12px;
+}
+
+/* Pillars in-article */
+.post-pillars {
+  display: grid;
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.pp {
+  border: 1px solid var(--line);
+  border-left-width: 4px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 22px 24px;
+}
+
+.pp.core {
+  border-left-color: var(--core);
+}
+
+.pp.toolkit {
+  border-left-color: var(--toolkit);
+}
+
+.pp.ai {
+  border-left-color: var(--ai);
+}
+
+.pp-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pp h3 {
+  font-size: 1.2rem;
+  letter-spacing: -0.01em;
+}
+
+.pp p {
+  margin-top: 10px;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Bullet lists in posts: definition style (bold lead-in + left rule) */
+.article-body>ul {
+  display: grid;
+  gap: 18px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.article-body>ul>li {
+  border-left: 3px solid color-mix(in oklch, var(--teal) 60%, var(--line));
+  padding: 4px 0 4px 20px;
+  font-size: 1.08rem;
+  line-height: 1.62;
+  color: oklch(0.34 0.018 210);
+}
+
+.article-body>ul>li>strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.closer {
+  max-width: 720px;
+  margin: 44px auto 0;
+}
+
+.closer p {
+  font-size: 1.16rem;
+  line-height: 1.6;
+  color: oklch(0.34 0.018 210);
+}
+
+.closer p+p {
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 1.3rem;
+  margin-top: 10px;
+  letter-spacing: -0.01em;
+}
+
+/* CTA (reused from home) */
+.cta-band {
+  background: linear-gradient(135deg, var(--teal-deep), oklch(0.34 0.07 215));
+  color: #fff;
+  text-align: center;
+}
+
+.cta-band h2 {
+  color: #fff;
+}
+
+.cta-band .lead {
+  color: oklch(0.92 0.02 195);
+  margin-inline: auto;
+  max-width: 46ch;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+@media (max-width: 560px) {
+  .article-body>p {
+    font-size: 1.06rem;
+  }
+}
+
+/* ===== Markdown content =====
+   Styles for elements Markdown posts produce beyond paragraphs, h2 and lists. */
+.article-body>.post-pillars+p {
+  margin-top: 30px;
+}
+
+.article-body>h3 {
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  letter-spacing: -0.015em;
+  margin-top: 1.8em;
+  line-height: 1.2;
+}
+
+.article-body>ol {
+  margin: 1.35em 0 0;
+  padding-left: 1.4em;
+  display: grid;
+  gap: 10px;
+  font-size: 1.08rem;
+  line-height: 1.62;
+  color: oklch(0.34 0.018 210);
+}
+
+.article-body>ol>li::marker {
+  color: var(--teal-deep);
+  font-weight: 700;
+}
+
+/* Blockquotes render as the design's pull quote */
+.article-body blockquote {
+  margin: 52px 0;
+  padding: 0;
+  text-align: center;
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.28;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.article-body blockquote::before {
+  content: "\201C";
+  display: block;
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--teal);
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.article-body blockquote p+p {
+  margin-top: 22px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+}
+
+.article-body hr {
+  height: 1px;
+  background: var(--line);
+  border: 0;
+  margin: 56px 0;
+}
+
+.article-body code {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.88em;
+  background: var(--bg-2);
+  border: 1px solid var(--line-soft);
+  border-radius: 6px;
+  padding: 0.1em 0.35em;
+}
+
+.article-body pre {
+  margin: 1.6em 0 0;
+  padding: 18px 20px;
+  background: var(--ink);
+  color: oklch(0.92 0.01 200);
+  border-radius: var(--radius);
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.article-body pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+}
+
+.article-body table {
+  width: 100%;
+  margin-top: 1.6em;
+  border-collapse: collapse;
+  font-size: 0.98rem;
+}
+
+.article-body th,
+.article-body td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.article-body th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* Images & video inside a post */
+.article-figure {
+  margin: 2em 0 0;
+}
+
+.article-figure img,
+.article-figure video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+}
+
+/* Embeds: Hugo's {{< youtube >}} / {{< vimeo >}} wrappers, or a pasted <iframe> */
+.article-body>div:has(> iframe),
+.article-body>iframe {
+  margin-top: 2em;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-2);
+}
+
+.article-body>iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+.article-figure figcaption,
+.article-cover figcaption {
+  margin-top: 10px;
+  font-size: 0.86rem;
+  color: var(--ink-faint);
+  text-align: center;
+}
+
+/* Cover image under the post title */
+.article-cover {
+  max-width: 960px;
+  margin: 0 auto clamp(36px, 5vw, 56px);
+  padding-inline: var(--gut);
+  box-sizing: content-box;
+}
+
+/* Shown at the image's own shape — never cropped on the post page */
+.article-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/* Share links */
+.article-share {
+  padding-bottom: clamp(48px, 7vw, 96px);
+  margin-top: calc(-1 * clamp(24px, 4vw, 56px));
+}
+
+.share-row {
+  max-width: 720px;
+  margin: 0 auto;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.share-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-right: 6px;
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.share-btn:hover {
+  border-color: var(--teal-deep);
+  color: var(--teal-deep);
+  transform: translateY(-1px);
+}

@@ -8,7 +8,7 @@ const ICS_URL =
 
 const WEEKDAYS = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
 const DAY_MS = 24 * 60 * 60 * 1000;
-const SEARCH_WINDOW_DAYS = 60;
+const SEARCH_WINDOW_DAYS = 100; // how far ahead to look for the next occurrence
 
 /* ─── ICS parsing ────────────────────────────────────────────────────── */
 
@@ -33,21 +33,23 @@ function parseProperty(line) {
   const params = {};
   paramParts.forEach((p) => {
     const eq = p.indexOf('=');
-    if (eq !== -1) params[p.slice(0, eq)] = p.slice(eq + 1);
+    if (eq !== -1) params[p.slice(0, eq)] = p.slice(eq + 1).replace(/^"(.*)"$/, '$1'); // TZID="Europe/London" → Europe/London
   });
   return { name: name.toUpperCase(), params, value };
 }
 
 function parseVEvent(block) {
-  const ev = { props: {} };
+  const props = { EXDATE: [] };
   block.split('\n').forEach((line) => {
     if (!line.trim()) return;
     const prop = parseProperty(line);
     if (!prop) return;
-    // First occurrence wins for repeated keys (DESCRIPTION only appears once anyway).
-    if (!(prop.name in ev.props)) ev.props[prop.name] = prop;
+    // EXDATE (cancelled occurrences) can repeat; for everything else the
+    // first occurrence wins.
+    if (prop.name === 'EXDATE') props.EXDATE.push(prop);
+    else if (!(prop.name in props)) props[prop.name] = prop;
   });
-  return ev.props;
+  return props;
 }
 
 function extractVEvents(ics) {
@@ -93,30 +95,36 @@ function wallClockToUtc(wc) {
 }
 
 function zonedTimeToUtc(year, monthIdx, day, hour, minute, second, tzid) {
-  const utcGuess = Date.UTC(year, monthIdx, day, hour, minute, second);
-  let parts;
+  const wallAsUtc = Date.UTC(year, monthIdx, day, hour, minute, second);
+  let fmt;
   try {
-    parts = new Intl.DateTimeFormat('en-US', {
+    fmt = new Intl.DateTimeFormat('en-US', {
       timeZone: tzid,
       hourCycle: 'h23',
       year: 'numeric', month: '2-digit', day: '2-digit',
       hour: '2-digit', minute: '2-digit', second: '2-digit'
-    }).formatToParts(new Date(utcGuess));
+    });
   } catch (e) {
-    return new Date(utcGuess); // Unknown TZID — fall back to UTC.
+    return new Date(wallAsUtc); // Unknown TZID — fall back to UTC.
   }
-  const map = {};
-  parts.forEach((p) => { map[p.type] = p.value; });
-  const asIfUtc = Date.UTC(+map.year, +map.month - 1, +map.day, +map.hour, +map.minute, +map.second);
-  const offset = asIfUtc - utcGuess;
-  return new Date(utcGuess - offset);
+  // UTC offset of the zone at instant t (ms).
+  const offsetAt = (t) => {
+    const map = {};
+    fmt.formatToParts(new Date(t)).forEach((p) => { map[p.type] = p.value; });
+    return Date.UTC(+map.year, +map.month - 1, +map.day, +map.hour, +map.minute, +map.second) - t;
+  };
+  // Two passes, so times shortly after a DST switch use the right offset.
+  const first = wallAsUtc - offsetAt(wallAsUtc);
+  return new Date(wallAsUtc - offsetAt(first));
 }
 
-function dateOnlyUtc(d) {
-  return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
-}
-
-/* ─── RRULE (FREQ=WEEKLY only — the only frequency this calendar uses) ── */
+/* ─── Recurrence (RRULE) ─────────────────────────────────────────────
+ * Supports what Google Calendar produces for meeting series:
+ *   FREQ=WEEKLY  with INTERVAL, BYDAY, WKST, UNTIL, COUNT
+ *   FREQ=MONTHLY with INTERVAL, BYDAY (e.g. 2TH, -1FR), BYMONTHDAY, BYSETPOS,
+ *                UNTIL, COUNT
+ * plus EXDATE (cancelled occurrences) and RECURRENCE-ID overrides
+ * (single occurrences that were moved or edited). */
 
 function parseRRule(prop) {
   if (!prop) return null;
@@ -128,43 +136,128 @@ function parseRRule(prop) {
   return rule;
 }
 
-function nextWeeklyOccurrence(dtstartProp, rule, notBefore) {
+// Max days to walk (a safety bound only; COUNT rules walk from DTSTART).
+const MAX_WALK_DAYS = 4000;
+
+function parseByDay(rule, fallbackWeekday) {
+  return (rule.BYDAY || WEEKDAYS[fallbackWeekday]).split(',').map((code) => {
+    const m = /^([+-]?\d+)?([A-Z]{2})$/.exec(code.trim());
+    return m ? { ord: m[1] ? parseInt(m[1], 10) : 0, wd: WEEKDAYS.indexOf(m[2]) } : null;
+  }).filter(Boolean);
+}
+
+function daysInMonth(y, m) { return new Date(Date.UTC(y, m + 1, 0)).getUTCDate(); }
+
+// Does this calendar day (UTC midnight of the wall-clock date) belong to the series?
+function dayMatches(rule, day, start) {
+  const d = new Date(day);
+  const interval = rule.INTERVAL ? parseInt(rule.INTERVAL, 10) : 1;
+  const weekday = d.getUTCDay();
+
+  if (rule.FREQ === 'WEEKLY') {
+    const wkst = WEEKDAYS.indexOf(rule.WKST || 'MO');
+    const byday = parseByDay(rule, start.weekday).map((b) => b.wd);
+    if (!byday.includes(weekday)) return false;
+    const weekStart = (t, wd) => t - ((wd - wkst + 7) % 7) * DAY_MS;
+    const weeks = Math.round((weekStart(day, weekday) - weekStart(start.day, start.weekday)) / (7 * DAY_MS));
+    return weeks >= 0 && weeks % interval === 0;
+  }
+
+  if (rule.FREQ === 'MONTHLY') {
+    const months = (d.getUTCFullYear() - start.year) * 12 + (d.getUTCMonth() - (start.month - 1));
+    if (months < 0 || months % interval !== 0) return false;
+    if (rule.BYSETPOS) {
+      // e.g. BYDAY=TH;BYSETPOS=2 → the 2nd matching day of the month (-1 = last)
+      const y = d.getUTCFullYear(), m = d.getUTCMonth();
+      const matches = [];
+      for (let i = 1; i <= daysInMonth(y, m); i++) {
+        const t = Date.UTC(y, m, i);
+        if (monthlyDayMatches(rule, t, start)) matches.push(t);
+      }
+      return rule.BYSETPOS.split(',').some((v) => {
+        const n = parseInt(v, 10);
+        return matches[n > 0 ? n - 1 : matches.length + n] === day;
+      });
+    }
+    return monthlyDayMatches(rule, day, start);
+  }
+
+  return false;
+}
+
+// MONTHLY rule match for one day, ignoring INTERVAL and BYSETPOS.
+function monthlyDayMatches(rule, day, start) {
+  const d = new Date(day);
+  const weekday = d.getUTCDay();
+  const dom = d.getUTCDate();
+  const dim = daysInMonth(d.getUTCFullYear(), d.getUTCMonth());
+  if (rule.BYMONTHDAY) {
+    return rule.BYMONTHDAY.split(',').some((v) => {
+      const n = parseInt(v, 10);
+      return n > 0 ? dom === n : dom === dim + n + 1;
+    });
+  }
+  if (rule.BYDAY) {
+    return parseByDay(rule, start.weekday).some((b) => {
+      if (b.wd !== weekday) return false;
+      if (b.ord === 0) return true;
+      return b.ord > 0 ? Math.ceil(dom / 7) === b.ord : Math.ceil((dim - dom + 1) / 7) === -b.ord;
+    });
+  }
+  return dom === start.dom;
+}
+
+// Start of the current or next occurrence (as a UTC Date) — i.e. the first one
+// that hasn't ended by `notBefore`, so a call in progress still shows —
+// skipping cancelled (EXDATE) and overridden (RECURRENCE-ID) occurrences.
+// Returns null if none within the search window.
+function nextOccurrence(dtstartProp, rule, notBefore, skip, durationMs) {
   const wc = parseWallClock(dtstartProp);
   if (!wc) return null;
-
-  const interval = rule.INTERVAL ? parseInt(rule.INTERVAL, 10) : 1;
-  const wkst = WEEKDAYS.indexOf(rule.WKST || 'MO');
-  const dtstartDay = Date.UTC(wc.year, wc.month - 1, wc.day); // date-only anchor from DTSTART's own wall-clock date
-  const dtstartWeekday = new Date(dtstartDay).getUTCDay();
-  const byday = (rule.BYDAY || WEEKDAYS[dtstartWeekday])
-    .split(',')
-    .map((code) => WEEKDAYS.indexOf(code.replace(/^[+-]?\d+/, '')));
-
+  const startDay = Date.UTC(wc.year, wc.month - 1, wc.day);
+  const start = { day: startDay, weekday: new Date(startDay).getUTCDay(), year: wc.year, month: wc.month, dom: wc.day };
   const until = rule.UNTIL ? parseDateValue({ value: rule.UNTIL, params: {} }) : null;
-  const dtstartWeekStart = dtstartDay - (((dtstartWeekday - wkst + 7) % 7)) * DAY_MS;
+  const count = rule.COUNT ? parseInt(rule.COUNT, 10) : Infinity;
+  const horizon = notBefore.getTime() + SEARCH_WINDOW_DAYS * DAY_MS;
 
-  const searchStart = Math.max(dtstartDay, dateOnlyUtc(notBefore));
-  for (let offset = 0; offset <= SEARCH_WINDOW_DAYS; offset++) {
-    const candidateDay = searchStart + offset * DAY_MS;
-    if (candidateDay < dtstartDay) continue;
-    const weekday = new Date(candidateDay).getUTCDay();
-    if (!byday.includes(weekday)) continue;
-    const candidateWeekStart = candidateDay - (((weekday - wkst + 7) % 7)) * DAY_MS;
-    const weeksSince = Math.round((candidateWeekStart - dtstartWeekStart) / (7 * DAY_MS));
-    if (weeksSince < 0 || weeksSince % interval !== 0) continue;
+  // Matching is computed relative to DTSTART, so without COUNT we can start
+  // walking just before `notBefore` instead of from DTSTART.
+  const today = Date.UTC(notBefore.getUTCFullYear(), notBefore.getUTCMonth(), notBefore.getUTCDate());
+  const walkFrom = rule.COUNT ? startDay : Math.max(startDay, today - 2 * DAY_MS);
 
-    // Keep DTSTART's wall-clock time-of-day, but re-resolve the UTC offset
-    // for THIS candidate date so DST transitions between occurrences are honored.
-    const cd = new Date(candidateDay);
+  let seen = 0;
+  for (let i = 0; i <= MAX_WALK_DAYS; i++) {
+    const day = walkFrom + i * DAY_MS;
+    if (day > horizon) return null;
+    if (!dayMatches(rule, day, start)) continue;
+    seen++;
+    if (seen > count) return null;
+
+    // Keep DTSTART's wall-clock time-of-day, but resolve the UTC offset for
+    // THIS date so DST transitions between occurrences are honoured.
+    const cd = new Date(day);
     const occurrence = wallClockToUtc({
       year: cd.getUTCFullYear(), month: cd.getUTCMonth() + 1, day: cd.getUTCDate(),
       hour: wc.hour, minute: wc.minute, second: wc.second,
       tzid: wc.tzid, isUtc: wc.isUtc
     });
     if (until && occurrence > until) return null;
-    if (occurrence.getTime() >= notBefore.getTime()) return occurrence;
+    if (skip.has(occurrence.getTime())) continue;
+    if (occurrence.getTime() + (durationMs || 0) > notBefore.getTime()) return occurrence;
   }
   return null;
+}
+
+// All EXDATE values of an event, as UTC milliseconds.
+function exdates(props) {
+  const out = new Set();
+  props.EXDATE.forEach((prop) => {
+    prop.value.split(',').forEach((v) => {
+      const d = parseDateValue({ value: v.trim(), params: prop.params });
+      if (d) out.add(d.getTime());
+    });
+  });
+  return out;
 }
 
 /* ─── Categorization ─────────────────────────────────────────────────── */
@@ -224,12 +317,28 @@ function categorize(title, location) {
   return locationLooksPhysical(location) ? 'in-person' : 'working-group';
 }
 
+// Occurrences that were moved/edited appear as separate VEVENTs carrying
+// RECURRENCE-ID; the series must skip those slots. Map of UID → [UTC ms].
+function overriddenOccurrences(vevents) {
+  const overridden = new Map();
+  vevents.forEach((p) => {
+    if (!p['RECURRENCE-ID'] || !p.UID) return;
+    const t = parseDateValue(p['RECURRENCE-ID']);
+    if (!t) return;
+    const list = overridden.get(p.UID.value) || [];
+    list.push(t.getTime());
+    overridden.set(p.UID.value, list);
+  });
+  return overridden;
+}
+
 /* ─── Main ────────────────────────────────────────────────────────────── */
 
-function buildEvent(props, now) {
+function buildEvent(props, now, overridden) {
   const summaryProp = props.SUMMARY;
   const dtstartProp = props.DTSTART;
   if (!summaryProp || !dtstartProp) return null;
+  if (props.STATUS && /CANCELLED/i.test(props.STATUS.value)) return null;
 
   const title = unescapeText(summaryProp.value);
   const dtstart = parseDateValue(dtstartProp);
@@ -243,8 +352,10 @@ function buildEvent(props, now) {
   let start;
   const recurring = !!rrule;
   if (recurring) {
-    if (rrule.FREQ !== 'WEEKLY') return null; // Only weekly/biweekly rules appear on this calendar.
-    start = nextWeeklyOccurrence(dtstartProp, rrule, now);
+    if (rrule.FREQ !== 'WEEKLY' && rrule.FREQ !== 'MONTHLY') return null;
+    const skip = exdates(props);
+    (overridden.get(props.UID ? props.UID.value : '') || []).forEach((t) => skip.add(t));
+    start = nextOccurrence(dtstartProp, rrule, now, skip, durationMs);
     if (!start) return null;
   } else {
     start = dtstart;
@@ -277,8 +388,11 @@ exports.handler = async () => {
     const ics = unfold(await res.text());
     const now = new Date();
 
-    const events = extractVEvents(ics)
-      .map((props) => buildEvent(props, now))
+    const vevents = extractVEvents(ics);
+    const overridden = overriddenOccurrences(vevents);
+
+    const events = vevents
+      .map((props) => buildEvent(props, now, overridden))
       .filter(Boolean)
       .sort((a, b) => a.start.localeCompare(b.start));
 
@@ -298,3 +412,6 @@ exports.handler = async () => {
     };
   }
 };
+
+// Exposed for tests (tests/community-events.test.js).
+exports._internal = { extractVEvents, unfold, buildEvent, overriddenOccurrences, zonedTimeToUtc };

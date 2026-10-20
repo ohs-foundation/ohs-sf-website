@@ -1,0 +1,451 @@
+/* ============================================================
+   Open Health Stack Foundation — Design System
+   Humanist sans (Hanken Grotesk) + mono labels (IBM Plex Mono)
+   Indigo signature + pillar accents (FHIR Foundations / Toolkit / AI Commons)
+   Note: the --teal* variables hold the indigo signature colour (the names
+   predate a palette change; kept so existing rules keep working).
+   ============================================================ */
+
+:root {
+  /* Neutrals — cool, faintly green-tinted ink on a warm near-white */
+  --bg:        oklch(0.985 0.004 165);
+  --bg-2:      oklch(0.965 0.006 175);
+  --surface:   #ffffff;
+  --ink:       oklch(0.245 0.018 210);
+  --ink-soft:  oklch(0.46 0.018 210);
+  --ink-faint: oklch(0.60 0.015 210);
+  --line:      oklch(0.905 0.008 200);
+  --line-soft: oklch(0.945 0.006 200);
+
+  /* Signature indigo */
+  --teal:      oklch(0.55 0.13 290);
+  --teal-deep: oklch(0.42 0.11 292);
+  --teal-bright: oklch(0.66 0.14 288);
+  --teal-wash: oklch(0.957 0.022 290);
+
+  /* Pillar accents — shared chroma/lightness, varied hue */
+  --core:      oklch(0.58 0.105 222);   /* teal-blue   */
+  --core-wash: oklch(0.955 0.022 222);
+  --ai:        oklch(0.56 0.115 292);   /* indigo-violet */
+  --ai-wash:   oklch(0.957 0.022 292);
+  --toolkit:      oklch(0.56 0.094 200);
+  --toolkit-wash: oklch(0.955 0.018 195);
+
+  /* Project / tag hues */
+  --green:     oklch(0.60 0.11 155);
+  --amber:     oklch(0.70 0.115 75);
+  --rose:      oklch(0.62 0.13 18);
+
+  --maxw: 1200px;
+  --gut: clamp(20px, 5vw, 64px);
+  --radius: 14px;
+  --radius-lg: 22px;
+
+  --shadow-sm: 0 1px 2px oklch(0.40 0.02 210 / 0.06), 0 2px 6px oklch(0.40 0.02 210 / 0.05);
+  --shadow-md: 0 4px 14px oklch(0.40 0.02 210 / 0.07), 0 12px 34px oklch(0.40 0.02 210 / 0.08);
+  --shadow-lg: 0 10px 30px oklch(0.40 0.02 210 / 0.10), 0 30px 70px oklch(0.40 0.02 210 / 0.12);
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* Official logo colours (the four squares, top-left → bottom-right). */
+  --logo-1: #07858a;
+  --logo-2: #0c87a7;
+  --logo-3: #7666b2;
+  --logo-4: #005961;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: 'Hanken Grotesk', system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+/* ---------- Typography ---------- */
+h1, h2, h3, h4 {
+  margin: 0;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+h2.section-title {
+  font-size: clamp(1.9rem, 3.6vw, 3rem);
+  letter-spacing: -0.03em;
+}
+h3 { font-size: clamp(1.25rem, 2vw, 1.6rem); }
+p { margin: 0; }
+.lead {
+  font-size: clamp(1.12rem, 1.7vw, 1.45rem);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  font-weight: 400;
+  text-wrap: pretty;
+}
+
+/* Eyebrow / mono label */
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+}
+.eyebrow::before {
+  content: "";
+  width: 22px; height: 2px;
+  background: currentColor;
+  opacity: 0.5;
+}
+.eyebrow.bare::before { display: none; }
+
+/* ---------- Layout ---------- */
+.wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--gut); }
+.wrap-wide { max-width: 1360px; margin: 0 auto; padding-inline: var(--gut); }
+section { position: relative; }
+.section-pad { padding-block: clamp(64px, 9vw, 130px); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.55em;
+  font-family: inherit; font-weight: 600; font-size: 1rem;
+  padding: 0.82em 1.4em;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.25s var(--ease), background 0.2s, box-shadow 0.25s, border-color 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary {
+  background: var(--teal-deep); color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover { background: oklch(0.37 0.078 205); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn-ghost {
+  background: transparent; color: var(--ink); border-color: var(--line);
+}
+.btn-ghost:hover { border-color: var(--ink); transform: translateY(-2px); background: var(--surface); }
+.btn-light { background: #fff; color: var(--teal-deep); }
+.btn-light:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn-on-dark { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.22); }
+.btn-on-dark:hover { background: rgba(255,255,255,0.16); transform: translateY(-2px); }
+.btn .arrow { transition: transform 0.25s var(--ease); }
+.btn:hover .arrow { transform: translateX(3px); }
+
+.textlink {
+  display: inline-flex; align-items: center; gap: 0.4em;
+  font-weight: 600; color: var(--teal-deep);
+  border-bottom: 1.5px solid transparent;
+  transition: gap 0.2s, border-color 0.2s;
+}
+.textlink:hover { gap: 0.65em; border-color: currentColor; }
+.textlink .arrow { transition: transform 0.2s var(--ease); }
+.textlink:hover .arrow { transform: translateX(2px); }
+
+/* ---------- Header / Nav ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: oklch(0.985 0.004 165 / 0.82);
+  backdrop-filter: saturate(1.4) blur(14px);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s, background 0.3s;
+}
+.site-header.scrolled { border-color: var(--line); }
+.nav {
+  display: flex; align-items: center; gap: 28px;
+  height: 72px;
+  max-width: 1360px; margin: 0 auto; padding-inline: var(--gut);
+}
+.brand { display: flex; align-items: center; gap: 11px; font-weight: 700; letter-spacing: -0.02em; flex: none; }
+.brand .brandname { font-size: 0.96rem; line-height: 1.12; white-space: nowrap; }
+.brand .brandname b { display: block; font-weight: 700; }
+.brand .brandname span { display: block; font-size: 0.69rem; font-weight: 500; color: var(--ink-faint); letter-spacing: 0.04em; }
+.nav-links { display: flex; align-items: center; gap: 4px; margin-left: 8px; }
+.nav-links a {
+  font-weight: 500; font-size: 0.96rem; color: var(--ink-soft);
+  padding: 8px 13px; border-radius: 9px;
+  transition: color 0.18s, background 0.18s;
+}
+.nav-links a:hover { color: var(--ink); background: var(--bg-2); }
+.nav-links a.active { color: var(--ink); font-weight: 600; }
+.nav-spacer { flex: 1; }
+.nav-cta { display: flex; align-items: center; gap: 10px; }
+.nav-toggle { display: none; background: none; border: 1px solid var(--line); border-radius: 10px; width: 42px; height: 42px; cursor: pointer; align-items: center; justify-content: center; }
+/* The toggle also has .btn, whose side padding left no room for the icon (it rendered as an empty box). */
+.nav-toggle.btn { padding: 0; color: var(--ink); }
+.nav-toggle svg { display: block; flex: none; }
+
+/* mobile nav panel */
+.mobile-nav {
+  display: none;
+  position: fixed; inset: 72px 0 auto 0; z-index: 99;
+  background: var(--surface); border-bottom: 1px solid var(--line);
+  padding: 14px var(--gut) 26px;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-12px); opacity: 0; pointer-events: none;
+  transition: transform 0.3s var(--ease), opacity 0.3s;
+}
+.mobile-nav.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.mobile-nav a { display: block; padding: 13px 6px; font-size: 1.1rem; font-weight: 600; border-bottom: 1px solid var(--line-soft); }
+.mobile-nav .btn { display: flex; margin-top: 18px; width: 100%; justify-content: center; padding: 0.82em 1.4em; border-bottom: 0; }
+
+/* ---------- Brand mark (rounded-square stack — allowed simple shapes) ---------- */
+.logo-mark { display: inline-grid; grid-template-columns: repeat(2, 1fr); gap: 2.5px; width: 30px; height: 30px; }
+.logo-mark i { border-radius: 4px; display: block; }
+/* The four squares of the official logo (ohs-foundation/.github → ohs-logo-horizontal-transparent.png). */
+.logo-mark i:nth-child(1) { background: var(--logo-1); }
+.logo-mark i:nth-child(2) { background: var(--logo-2); }
+.logo-mark i:nth-child(3) { background: var(--logo-3); }
+.logo-mark i:nth-child(4) { background: var(--logo-4); }
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius-lg); padding: 30px;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s, border-color 0.3s;
+}
+.card.hover:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: transparent; }
+
+.tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 5px 10px; border-radius: 7px;
+  background: var(--bg-2); color: var(--ink-soft);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.tag.core { background: var(--core-wash);    color: var(--core); }
+.tag.ai { background: var(--ai-wash);      color: var(--ai); }
+.tag.toolkit { background: var(--toolkit-wash); color: var(--toolkit); }
+.tag.teal { background: var(--teal-wash);    color: var(--teal-deep); }
+
+.icon-chip {
+  width: 52px; height: 52px; border-radius: 13px;
+  display: grid; place-items: center; flex: none;
+  background: var(--teal-wash); color: var(--teal-deep);
+}
+.icon-chip.core { background: var(--core-wash);    color: var(--core); }
+.icon-chip.ai { background: var(--ai-wash);      color: var(--ai); }
+.icon-chip.toolkit { background: var(--toolkit-wash); color: var(--toolkit); }
+.icon-chip svg { width: 26px; height: 26px; }
+
+/* ---------- Reveal on scroll ---------- */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+.reveal.d1 { transition-delay: 0.08s; }
+.reveal.d2 { transition-delay: 0.16s; }
+.reveal.d3 { transition-delay: 0.24s; }
+.reveal.d4 { transition-delay: 0.32s; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ---------- Footer ---------- */
+.site-footer { background: var(--ink); color: oklch(0.86 0.01 200); padding-block: 72px 40px; }
+.footer-grid { display: grid; grid-template-columns: 1.6fr repeat(3, 1fr); gap: 40px; }
+.site-footer h4 { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.66 0.02 200); font-weight: 500; margin-bottom: 16px; }
+.site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
+.site-footer a { color: oklch(0.82 0.012 200); transition: color 0.18s; font-size: 0.95rem; }
+.site-footer a:hover { color: #fff; }
+.footer-about { color: oklch(0.72 0.015 200); font-size: 0.95rem; max-width: 32ch; margin-top: 16px; }
+.footer-bottom { margin-top: 56px; padding-top: 26px; border-top: 1px solid oklch(0.34 0.015 210); display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; color: oklch(0.64 0.015 200); font-size: 0.85rem; }
+
+/* ---------- Newsletter signup (dark band, flows into the footer) ---------- */
+.newsletter { background: var(--ink); padding-block: clamp(56px, 8vw, 96px) clamp(8px, 1.5vw, 18px); }
+/* Standalone variant — a self-contained mid-page section (balanced padding) */
+.newsletter.standalone { padding-block: clamp(56px, 8vw, 104px); }
+.newsletter-inner { max-width: 600px; margin: 0 auto; text-align: center; }
+.newsletter .eyebrow { justify-content: center; color: var(--teal-bright); }
+.newsletter-copy h2 { color: #fff; font-size: clamp(1.7rem, 3vw, 2.35rem); letter-spacing: -0.03em; margin-top: 14px; }
+.newsletter-copy p { color: oklch(0.78 0.015 200); margin: 12px auto 0; max-width: 48ch; }
+
+/* CTA variant (pages that route to the community signup form) */
+.newsletter-cta { margin-top: 28px; }
+
+/* EmailOctopus form theming — dark surface */
+.newsletter-form { margin-top: 24px; }
+/* Neutralize EmailOctopus's own white card + built-in title/description so the form
+   blends into our section (the section already provides heading, copy and background).
+   Selectors are extra-specific to beat EmailOctopus's [data-form] .pt-5/.p-3 rules. */
+.newsletter-form .nurture-container { display: block !important; background: transparent !important; border-radius: 0 !important; box-shadow: none !important; }
+/* Newer EmailOctopus template wraps the form in a white bordered .inline-container card.
+   Its background is !important at [data-form] .inline-container, so outrank it by one class. */
+.newsletter .newsletter-form .inline-container { background: transparent !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; padding: 0 !important; }
+.newsletter-form .nurture-container .align-mid { padding: 0 !important; }
+.newsletter-form .nurture-container .p-3 { padding: 0 !important; }
+.newsletter-form .emailoctopus-form-wrapper { margin-top: 0 !important; }
+.newsletter-form .text-block { display: none !important; }
+/* Force EmailOctopus's shrink-to-fit wrappers to full width so the form can center */
+.newsletter-form .nurture-container,
+.newsletter-form .inline-container,
+.newsletter-form .align-mid,
+.newsletter-form .p-3 { width: 100% !important; max-width: 100% !important; box-sizing: border-box; }
+.newsletter-form .emailoctopus-form { width: 100% !important; max-width: 440px !important; margin: 0 auto !important; display: flex; flex-direction: column; }
+/* Stack fields vertically full-width (EmailOctopus defaults to a ~50% wrapping row) */
+.newsletter-form [eo-form-fields-container] { display: flex; flex-direction: column; align-items: stretch; }
+.newsletter-form .form-control {
+  width: 100%; box-sizing: border-box; padding: 15px 18px; font-size: 1rem; font-family: inherit;
+  border: 1px solid oklch(0.4 0.015 210); border-radius: var(--radius);
+  background: oklch(0.31 0.018 210); color: #fff; outline: none; transition: border-color 0.2s, background 0.2s;
+}
+.newsletter-form .form-control::placeholder { color: oklch(0.6 0.015 200); }
+.newsletter-form .form-control:focus { border-color: var(--teal-bright); }
+/* Spacing between stacked fields (First name + Email) — .mb-2 isn't defined site-side */
+.newsletter-form .emailoctopus-form-row { width: 100%; flex: none; margin: 0 0 16px; }
+/* Field labels, if the form is configured to show them */
+.newsletter-form .emailoctopus-form-row label {
+  display: block; text-align: left; margin-bottom: 6px;
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.04em;
+  text-transform: uppercase; color: oklch(0.78 0.015 200);
+}
+.newsletter-form input[type="submit"] {
+  width: 100%; margin: 6px 0 8px !important; padding: 15px 20px; font-size: 1rem; font-weight: 600;
+  font-family: inherit; border: 0; border-radius: 999px; cursor: pointer;
+  background: var(--teal-bright); color: #fff;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.25s;
+}
+.newsletter-form input[type="submit"]:hover { background: var(--teal); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.newsletter-form .emailoctopus-form-row-consent { order: -1; margin: 0 0 20px; display: flex; align-items: flex-start; gap: 10px; text-align: left; }
+.newsletter-form .emailoctopus-form-row-consent input { margin-top: 3px; flex: none; accent-color: var(--teal-bright); }
+.newsletter-form .emailoctopus-form-row-consent label,
+.newsletter-form .emailoctopus-form-row-consent { font-size: 0.8rem; color: oklch(0.75 0.015 200) !important; line-height: 1.5; }
+/* Inline success / error response. EmailOctopus renders both <p>s empty and fills one on submit.
+   Extra .newsletter class outranks its [data-form] p color rules. */
+.newsletter .newsletter-form .emailoctopus-success-message,
+.newsletter .newsletter-form .emailoctopus-error-message {
+  display: flex; align-items: flex-start; gap: 12px; max-width: 440px; margin: 16px auto 0; padding: 14px 18px;
+  border-radius: var(--radius); text-align: left; font-size: 0.95rem; line-height: 1.5; font-weight: 500;
+  color: #fff !important; background: oklch(0.31 0.018 210); border: 1px solid oklch(0.4 0.015 210);
+  animation: eo-response-in 0.35s ease-out;
+}
+.newsletter .newsletter-form .emailoctopus-success-message:empty,
+.newsletter .newsletter-form .emailoctopus-error-message:empty { display: none; }
+.newsletter .newsletter-form .emailoctopus-success-message::before,
+.newsletter .newsletter-form .emailoctopus-error-message::before {
+  content: ""; flex: none; width: 22px; height: 22px; margin-top: 0.5px; border-radius: 50%;
+  background: var(--green) center / 14px no-repeat;
+}
+.newsletter .newsletter-form .emailoctopus-success-message::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E");
+}
+.newsletter .newsletter-form .emailoctopus-error-message::before {
+  background-color: var(--rose);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M12 7v6M12 17.5v.01'/%3E%3C/svg%3E");
+}
+@keyframes eo-response-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .newsletter .newsletter-form .emailoctopus-success-message,
+  .newsletter .newsletter-form .emailoctopus-error-message { animation: none; }
+}
+.newsletter-form a { color: var(--teal-bright); }
+/* Helper pill above a form (sits right over EmailOctopus's consent row) */
+.newsletter-note {
+  display: flex; align-items: center; gap: 10px; width: fit-content; max-width: 100%; margin: 26px auto 0;
+  padding: 9px 18px 9px 14px; border-radius: 999px; text-align: left;
+  font-size: 0.9rem; line-height: 1.4; color: #fff;
+  background: oklch(0.34 0.04 290); border: 1px solid oklch(0.45 0.06 290);
+}
+.newsletter-note svg { flex: none; color: var(--teal-bright); }
+.newsletter-note b, .newsletter-note strong { font-weight: 700; }
+.newsletter-note + .newsletter-form { margin-top: 16px; }
+@media (max-width: 520px) { .newsletter-note { border-radius: var(--radius); } }
+
+/* Standalone (community) subscribe — light treatment */
+.newsletter.standalone { background: var(--teal-wash); }
+.newsletter.standalone .eyebrow { color: var(--teal-deep); }
+.newsletter.standalone .newsletter-copy h2 { color: var(--ink); }
+.newsletter.standalone .newsletter-copy p { color: var(--ink-soft); }
+.newsletter.standalone .newsletter-note { color: var(--ink); background: var(--surface); border-color: color-mix(in oklch, var(--teal-deep) 28%, var(--line)); box-shadow: var(--shadow-sm); }
+.newsletter.standalone .newsletter-note svg { color: var(--teal-deep); }
+.newsletter.standalone .newsletter-form .form-control { background: rgba(255, 255, 255, 0.6); border-color: color-mix(in oklch, var(--teal-deep) 20%, var(--line)); color: var(--ink); }
+.newsletter.standalone .newsletter-form .form-control::placeholder { color: var(--ink-faint); }
+.newsletter.standalone .newsletter-form .form-control:focus { border-color: var(--teal-deep); background: rgba(255, 255, 255, 0.85); }
+.newsletter.standalone .newsletter-form .emailoctopus-form-row label { color: var(--ink-faint); }
+.newsletter.standalone .newsletter-form input[type="submit"] { background: var(--teal-deep); }
+.newsletter.standalone .newsletter-form input[type="submit"]:hover { background: oklch(0.37 0.078 205); }
+.newsletter.standalone .newsletter-form .emailoctopus-form-row-consent label,
+.newsletter.standalone .newsletter-form .emailoctopus-form-row-consent { color: var(--ink-faint) !important; }
+.newsletter.standalone .newsletter-form .emailoctopus-success-message,
+.newsletter.standalone .newsletter-form .emailoctopus-error-message {
+  color: var(--ink) !important; background: var(--surface); box-shadow: var(--shadow-sm);
+  border-color: oklch(0.84 0.06 155);
+}
+.newsletter.standalone .newsletter-form .emailoctopus-error-message { border-color: oklch(0.84 0.06 18); }
+.newsletter.standalone .newsletter-form .emailoctopus-form-row-consent input { accent-color: var(--teal-deep); }
+.newsletter.standalone .newsletter-form a { color: var(--teal-deep); }
+
+/* ---------- Generic helpers ---------- */
+.center { text-align: center; }
+.section-head { max-width: 720px; }
+.section-head.center { margin-inline: auto; }
+.section-head .lead { margin-top: 18px; }
+
+@media (max-width: 920px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+  .mobile-nav { display: block; }
+  .nav-cta .btn:not(.nav-toggle) { display: none; }
+}
+@media (max-width: 620px) {
+  body { font-size: 16px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+  .card { padding: 24px; }
+}
+
+/* ---------- Members (home strip + Foundation page directory) ---------- */
+.members-strip { background: var(--bg); }
+.member-grid {
+  display: grid; gap: 16px; margin-top: 18px; justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 220px));
+}
+.member-grid.is-featured { grid-template-columns: repeat(auto-fit, minmax(240px, 300px)); }
+.members-strip .member-grid { margin-top: 44px; }
+.member-card {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+  min-height: 132px; padding: 22px 18px; text-align: center;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  transition: border-color 0.2s, transform 0.25s var(--ease), box-shadow 0.25s;
+}
+a.member-card:hover { border-color: var(--teal); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.member-logo { display: grid; place-items: center; width: 100%; height: 52px; }
+.member-logo img { max-width: min(170px, 100%); max-height: 52px; width: auto; height: auto; object-fit: contain; }
+.is-featured .member-card { min-height: 164px; }
+.is-featured .member-logo { height: 68px; }
+.is-featured .member-logo img { max-height: 68px; max-width: min(210px, 100%); }
+.member-initials {
+  display: grid; place-items: center; width: 52px; height: 52px; border-radius: 13px;
+  background: var(--teal-wash); color: var(--teal-deep);
+  font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em;
+}
+.member-name { font-weight: 600; font-size: 0.92rem; line-height: 1.3; color: var(--ink-soft); }
+.members-more { display: flex; justify-content: center; margin-top: 34px; }
+.members-directory { margin-top: clamp(64px, 8vw, 104px); padding-top: clamp(48px, 6vw, 72px); border-top: 1px solid var(--line); scroll-margin-top: 90px; }
+.member-tier { max-width: 980px; margin: 40px auto 0; }
+.member-tier .tier-grouplabel { margin: 0; text-align: center; }
+@media (max-width: 520px) {
+  .member-grid, .member-grid.is-featured { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .member-card, .is-featured .member-card { min-height: 120px; padding: 18px 12px; }
+  .is-featured .member-logo { height: 56px; }
+  .is-featured .member-logo img { max-height: 56px; }
+}

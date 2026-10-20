@@ -1,0 +1,34 @@
+# Foundation members — shown on the home page (tiers with showOnHome: true)
+# and in the "Our members" directory on the Foundation page (/foundation.html#members).
+#
+# TIERS — display order follows this list. Rename, add or remove tiers freely;
+# members point at a tier by its `id`.
+#
+# MEMBERS — within a tier, members appear in the order listed here.
+#   name:  organisation name (shown under the logo, and used as the logo's alt text)
+#   tier:  a tier id from the list above
+#   url:   their website (optional)
+#   logo:  a file in assets/members/ (optional — SVG preferred; PNG/JPG/WebP are
+#          resized automatically). Without a logo, the name's initials are shown.
+#
+# Example:
+#   - name: Example Health
+#     tier: premier
+#     url: https://example.org
+#     logo: example-health.svg
+#
+# When there are no members, the members sections are hidden.
+# The heading of the home page strip is in content/_index.md (members:), and
+# the heading of the Foundation page directory in content/foundation.md.
+
+
+tiers:
+  - id: premier
+    name: Premier
+    showOnHome: true
+  - id: gold
+    name: Gold
+  - id: associate
+    name: Associate
+
+members: []

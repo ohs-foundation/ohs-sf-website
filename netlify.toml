@@ -1,14 +1,24 @@
-[build]
-  publish = "."
+# Netlify builds the site with Hugo on every push.
+# Production = main; every pull request also gets its own Deploy Preview URL.
 
-# ── Preview lock (disabled) ───────────────────────────────────────────────
-# The site is public. To re-enable the PIN gate, uncomment the block below
-# (the edge function at netlify/edge-functions/auth.js and lock.html remain
-# in the repo, dormant, for exactly this purpose).
-#
-# [[edge_functions]]
-#   path = "/*"
-#   function = "auth"
+[build]
+  command = "hugo --gc --minify"
+  publish = "public"
+
+[build.environment]
+  # Pin Hugo so a new Hugo release can't change the site unannounced.
+  # Bump deliberately (and check the build) when upgrading.
+  HUGO_VERSION = "0.166.0"
+  HUGO_ENABLEGITINFO = "true"
+  TZ = "UTC"
+
+# Deploy Previews and branch deploys: use their own URL as the base so
+# links and social-share tags point at the preview, not production.
+[context.deploy-preview]
+  command = "hugo --gc --minify --environment preview -b $DEPLOY_PRIME_URL"
+
+[context.branch-deploy]
+  command = "hugo --gc --minify --environment preview -b $DEPLOY_PRIME_URL"
 
 # ── Short links ───────────────────────────────────────────────────────────
 # Working-group sign-up (EmailOctopus form tagged "working-groups").
@@ -17,3 +27,21 @@
   from = "/get-involved"
   to = "/community.html#working-groups"
   status = 302
+
+# The blog index lives at /blog.html; send /blog/ there too.
+[[redirects]]
+  from = "/blog/"
+  to = "/blog.html"
+  status = 301
+
+# ── Caching ───────────────────────────────────────────────────────────────
+# CSS/JS file names include a content hash, so they can be cached forever.
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

@@ -1,0 +1,64 @@
+{{- $title := cond .IsHome site.Title (printf "%s — %s" (.Params.shortTitle | default .Title) site.Title) -}}
+{{- with .Params.pageTitle }}{{ $title = . }}{{ end -}}
+{{- if eq .Kind "404" }}{{ $title = printf "Page not found — %s" site.Title }}{{ end -}}
+{{- $desc := .Description | default .Summary | default site.Params.description | plainify | htmlUnescape | strings.TrimSpace -}}
+{{- $desc = $desc | truncate 200 -}}
+{{- $ogImage := partial "og-image.html" . -}}
+{{- $url := cond .IsHome site.Home.Permalink .Permalink | replaceRE `/index\.html$` "/" -}}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ $title }}</title>
+  <meta name="description" content="{{ $desc }}" />
+  {{- if or .Params.noindex (not hugo.IsProduction) (eq .Kind "404") }}
+  <meta name="robots" content="noindex" />
+  {{- end }}
+  {{- if ne .Kind "404" }}
+  <link rel="canonical" href="{{ $url }}" />
+  {{- end }}
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#4b3a8c" />
+
+  <!-- Social sharing: Open Graph (LinkedIn, Facebook, WhatsApp, Slack, Teams,
+       Discord, Telegram, iMessage, Mastodon …) plus X/Twitter card tags. -->
+  {{- $shareTitle := .Params.shareTitle | default (cond .IsHome site.Title .Title) }}
+  <meta property="og:site_name" content="{{ site.Title }}" />
+  <meta property="og:title" content="{{ $shareTitle }}" />
+  <meta property="og:description" content="{{ $desc }}" />
+  <meta property="og:url" content="{{ $url }}" />
+  <meta property="og:type" content="{{ cond (eq .Section "blog" | and .IsPage) "article" "website" }}" />
+  <meta property="og:locale" content="en_US" />
+  {{- with $ogImage }}
+  <meta property="og:image" content="{{ .url }}" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="{{ .width }}" />
+  <meta property="og:image:height" content="{{ .height }}" />
+  <meta property="og:image:alt" content="{{ .alt }}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="{{ .url }}" />
+  <meta name="twitter:image:alt" content="{{ .alt }}" />
+  {{- end }}
+  <meta name="twitter:title" content="{{ $shareTitle }}" />
+  <meta name="twitter:description" content="{{ $desc }}" />
+  {{- with site.Params.social.x }}
+  <meta name="twitter:site" content="@{{ strings.TrimPrefix "@" . }}" />
+  {{- end }}
+  {{- if and (eq .Section "blog") .IsPage }}
+  <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}" />
+  {{- with .Lastmod }}<meta property="article:modified_time" content="{{ .Format "2006-01-02T15:04:05Z07:00" }}" />{{ end }}
+  {{- with .Params.author }}<meta property="article:author" content="{{ . }}" />{{ end }}
+  {{- with .Params.category }}<meta property="article:section" content="{{ . }}" />{{ end }}
+  {{- end }}
+  {{- with site.Home.OutputFormats.Get "rss" }}
+  <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }} — Blog" />
+  {{- end }}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+  {{- with resources.Get "css/main.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" />
+  {{- end }}
+  {{- with .Params.pageStyle | default (cond (eq .Kind "404") "404" "") }}{{ with resources.Get (printf "css/pages/%s.css" .) | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" />
+  {{- end }}{{ end }}

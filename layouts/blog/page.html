@@ -1,0 +1,67 @@
+{{ define "main" }}
+  <article data-screen-label="Blog post">
+    <!-- ===== ARTICLE HERO ===== -->
+    <section class="article-hero">
+      <div class="wrap">
+        <div class="breadcrumb reveal in">
+          <a href="{{ .Parent.RelPermalink }}">{{ .Parent.Title }}</a>{{ with .Params.category }}<span>/</span>{{ . }}{{ end }}
+        </div>
+        <h1 class="reveal in">{{ .Title }}</h1>
+        {{- with .Params.subtitle | default .Summary }}
+        <p class="lead article-dek reveal in d1">{{ . | plainify }}</p>
+        {{- end }}
+        <div class="article-meta reveal in d1">
+          {{- with .Params.badge | default .Params.category }}
+          <span class="mchip">{{ . }}</span>
+          {{- end }}
+          {{- with .Params.author }}
+          <span class="byline">{{ T "by" }} <b>{{ . }}</b></span>
+          {{- end }}
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+          <span>· {{ .ReadingTime }} {{ T "minRead" }}</span>
+        </div>
+      </div>
+    </section>
+
+    {{- with partial "blog/cover-resource.html" . }}
+    <!-- ===== COVER ===== -->
+    {{- $one := .Resize (printf "%dx webp" (cond (gt .Width 1200) 1200 .Width)) }}
+    {{- $srcset := printf "%s %dw" $one.RelPermalink $one.Width }}
+    {{- if ge .Width 2400 }}{{ $two := .Resize "2400x webp" }}{{ $srcset = printf "%s, %s %dw" $srcset $two.RelPermalink $two.Width }}{{ end }}
+    <figure class="article-cover reveal in d1">
+      <img src="{{ $one.RelPermalink }}" srcset="{{ $srcset }}"
+        sizes="(max-width: 1040px) 100vw, 960px" width="{{ $one.Width }}" height="{{ $one.Height }}"
+        alt="{{ $.Params.coverAlt }}" fetchpriority="high" />
+      {{- with $.Params.coverCaption }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+    </figure>
+    {{- end }}
+
+    <!-- ===== ARTICLE BODY ===== -->
+    <section style="padding-bottom: clamp(48px, 7vw, 96px)">
+      <div class="wrap">
+        <div class="article-body reveal">
+          {{ .Content }}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SHARE ===== -->
+    {{ partial "blog/share.html" . }}
+
+    <!-- ===== CTA (text in content/blog/_index.md → postCta) ===== -->
+    {{- with .Parent.Params.postCta }}
+    <section class="cta-band section-pad">
+      <div class="wrap">
+        <span class="eyebrow bare reveal" style="color:oklch(0.92 0.04 195); justify-content:center">{{ .label }}</span>
+        <h2 class="section-title reveal d1" style="margin-top:16px">{{ .heading }}</h2>
+        <p class="lead reveal d1">{{ .lead | markdownify }}</p>
+        <div class="cta-row reveal d2">
+          {{- range .buttons }}
+          {{ partial "button.html" . }}
+          {{- end }}
+        </div>
+      </div>
+    </section>
+    {{- end }}
+  </article>
+{{ end }}

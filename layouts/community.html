@@ -1,0 +1,189 @@
+{{ define "main" }}
+  {{- $p := .Params }}
+  <!-- HERO -->
+  {{- with $p.hero }}
+  <section class="page-hero" data-screen-label="Community hero">
+    <div class="wrap">
+      <span class="eyebrow reveal in">{{ .label }}</span>
+      <h1 class="reveal in" style="margin-top:18px; max-width:16ch">{{ .heading }}</h1>
+      <p class="lead reveal in d1">{{ .lead | markdownify }}</p>
+    </div>
+  </section>
+  {{- end }}
+
+  <!-- JOIN THE COMMUNITY -->
+  {{- with $p.join }}
+  <section id="join" class="section-pad" style="background:var(--bg-2)">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">{{ .label }}</span>
+        <h2 class="section-title" style="margin-top:16px">{{ .heading }}</h2>
+        <p class="lead">{{ .lead | markdownify }}</p>
+      </div>
+      <div class="cj-options">
+        {{- range $i, $o := .options }}
+        <div class="cj-option reveal d{{ add $i 1 }}">
+          {{ partial "chip.html" (dict "icon" .icon "color" .color) }}
+          <div>
+            <h4>{{ .title }}</h4>
+            <p>{{ .text | markdownify }}</p>
+            {{- with .link }}
+            <a href="{{ partial "url.html" .url }}" class="textlink">{{ .label }} {{ partial "icon.html" "arrow-right-15" }}</a>
+            {{- end }}
+          </div>
+        </div>
+        {{- end }}
+      </div>
+      {{- with .mailingList }}
+      <div class="reveal d2" style="text-align:center; margin-top:40px">
+        <p style="color:var(--ink-soft); font-size:1.05rem; margin-bottom:18px">{{ .text | markdownify }}</p>
+        <a href="#subscribe" class="btn btn-primary" style="font-size:1.05rem; padding:1em 2em">{{ .button }} {{ partial "icon.html" "arrow-right-18" }}</a>
+      </div>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+
+  <!-- GET INVOLVED -->
+  {{- with $p.involved }}
+  <section id="involved" class="section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">{{ .label }}</span>
+        <h2 class="section-title" style="margin-top:16px">{{ .heading }}</h2>
+        <p class="lead">{{ .lead | markdownify }}</p>
+      </div>
+
+      <div class="involved-grid">
+        {{- range $i, $c := .cards }}
+        <div class="inv card reveal d{{ add (div $i 2) 1 }}">
+          {{ partial "chip.html" (dict "icon" .icon "color" .color) }}
+          <div>
+            <h3>{{ .title }}</h3>
+            <p>{{ .text | markdownify }}</p>
+            {{- with .link }}
+            {{- $url := partial "url.html" .url }}
+            <a href="{{ $url }}" class="textlink">{{ .label }} {{ partial "icon.html" (cond (strings.HasPrefix $url "http") "arrow-ext-16" "arrow-right-16") }}</a>
+            {{- end }}
+          </div>
+        </div>
+        {{- end }}
+      </div>
+    </div>
+  </section>
+  {{- end }}
+
+  <!-- WORKING GROUP SIGN-UP (EmailOctopus form on the newsletter list, tags contacts "working-groups") -->
+  {{- with $p.workingGroups }}
+  <section id="working-groups" class="newsletter standalone">
+    <div class="wrap newsletter-inner">
+      <div class="newsletter-copy">
+        <span class="eyebrow">{{ .label }}</span>
+        <h2>{{ .heading }}</h2>
+        <p>{{ .text | markdownify }}</p>
+      </div>
+      {{- with .note }}
+      <p class="newsletter-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 16v-4M12 8h.01" />
+        </svg><span>{{ . | markdownify }}</span></p>
+      {{- end }}
+      <div class="newsletter-form">
+        <script async src="https://eocampaign1.com/form/{{ site.Params.emailOctopus.workingGroupsForm }}.js" data-form="{{ site.Params.emailOctopus.workingGroupsForm }}"></script>
+      </div>
+    </div>
+  </section>
+  {{- end }}
+
+  <!-- EVENTS -->
+  {{- with $p.events }}
+  <section id="events" class="events section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">{{ .label }}</span>
+        <h2 class="section-title" style="margin-top:16px">{{ .heading }}</h2>
+        <p class="lead">{{ .lead | markdownify }}</p>
+      </div>
+
+      <div class="events-calendar reveal d1"
+        style="margin-top:40px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; padding-bottom:22px; border-bottom:1px solid var(--line)">
+        <p style="color:var(--ink-soft); font-size:0.95rem; margin:0">{{ .calendarText | markdownify }}</p>
+        <a href="{{ site.Params.links.calendar }}"
+          target="_blank" rel="noopener" class="btn btn-ghost" style="white-space:nowrap">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <path d="M16 2v4M8 2v4M3 10h18" />
+          </svg>
+          {{ .calendarButton }}
+        </a>
+      </div>
+
+      {{- $f := .filters | default dict }}
+      <div class="event-filters reveal d1" role="group" aria-label="Filter events by type">
+        <button type="button" class="filter-chip is-active" data-filter="all">{{ $f.all | default "All" }}</button>
+        <button type="button" class="filter-chip" data-filter="community">{{ $f.community | default "Community calls" }}</button>
+        <button type="button" class="filter-chip" data-filter="working-group">{{ $f.workingGroup | default "Working groups" }}</button>
+        <button type="button" class="filter-chip" data-filter="in-person">{{ $f.inPerson | default "In-person" }}</button>
+      </div>
+
+      <div class="event-list reveal d2" data-discord="{{ site.Params.links.discord }}">
+        <div class="event-row" data-events-loading>
+          <div class="where">{{ T "loadingEvents" }}</div>
+        </div>
+
+        {{- range hugo.Data.events.pinned }}
+        {{- $label := index (dict "community" "Community call" "working-group" "Working group" "in-person" "In-person") (.category | default "in-person") }}
+        <div class="event-row" data-category="{{ .category | default "in-person" }}" data-pinned{{ with .endDate }} data-ends="{{ time.Format "2006-01-02" . }}"{{ end }}>
+          <div class="when">{{ .when }}</div>
+          <div>
+            <div class="what">{{ .title }}</div>
+            {{- with .location }}
+            <div class="where">{{ . }}</div>
+            {{- end }}
+            {{- with .note }}
+            <div class="where" style="margin-top:5px">{{ . | markdownify }}</div>
+            {{- end }}
+          </div>
+          <span class="tag etag">{{ $label }}</span>
+        </div>
+        {{- end }}
+      </div>
+    </div>
+  </section>
+  {{- end }}
+
+  <!-- CONTRIBUTOR CTA -->
+  {{- with $p.cta }}
+  <section class="contrib-cta section-pad">
+    <div class="wrap">
+      <span class="eyebrow bare reveal" style="color:oklch(0.92 0.04 195); justify-content:center">{{ .label }}</span>
+      <h2 class="section-title reveal d1" style="margin-top:16px">{{ .heading }}</h2>
+      <p class="lead reveal d1">{{ .lead | markdownify }}</p>
+      <div class="hero-cta reveal d2">
+        {{- range .buttons }}
+        {{ partial "button.html" . }}
+        {{- end }}
+      </div>
+    </div>
+  </section>
+  {{- end }}
+
+  <!-- NEWSLETTER SIGNUP (prominent, pre-footer) -->
+  {{- with $p.subscribe }}
+  <section id="subscribe" class="newsletter standalone">
+    <div class="wrap newsletter-inner">
+      <div class="newsletter-copy">
+        <span class="eyebrow">{{ .label }}</span>
+        <h2>{{ .heading }}</h2>
+        <p>{{ .text | markdownify }}</p>
+      </div>
+      <div class="newsletter-form">
+        <script async src="https://eocampaign1.com/form/{{ site.Params.emailOctopus.newsletterForm }}.js"
+          data-form="{{ site.Params.emailOctopus.newsletterForm }}"></script>
+      </div>
+    </div>
+  </section>
+  {{- end }}
+{{ end }}

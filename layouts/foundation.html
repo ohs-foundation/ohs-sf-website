@@ -1,0 +1,160 @@
+{{ define "main" }}
+  {{- $p := .Params }}
+  <!-- HERO -->
+  {{- with $p.hero }}
+  <section class="page-hero" data-screen-label="Foundation hero">
+    <div class="wrap">
+      <span class="eyebrow reveal in">{{ .label }}</span>
+      <h1 class="reveal in" style="margin-top:18px; max-width:18ch">{{ .heading }}</h1>
+      <p class="lead reveal in d1">{{ .lead | markdownify }}</p>
+    </div>
+  </section>
+  {{- end }}
+
+  <!-- NORTH STAR / MISSION -->
+  {{- with $p.mission }}
+  <section id="mission" class="wrap" style="padding-bottom: clamp(40px,6vw,80px)">
+    <div class="northstar reveal">
+      <div>
+        <span class="eyebrow">{{ .label }}</span>
+        <h2>{{ .heading }}</h2>
+        <p>{{ .text | markdownify }}</p>
+      </div>
+      <div class="ns-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+  </section>
+  {{- end }}
+
+  <!-- CHARTER -->
+  {{- with $p.charter }}
+  <section class="section-pad" style="padding-top: clamp(32px,4vw,56px)">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">{{ .label }}</span>
+        <h2 class="section-title" style="margin-top:16px">{{ .heading }}</h2>
+        <p class="lead">{{ .lead | markdownify }}</p>
+      </div>
+      <div class="charter-grid">
+        {{- range $i, $c := .commitments }}
+        <div class="charter-card card reveal d{{ add (div $i 2) 1 }}">
+          <div class="num">{{ printf "%02d" (add $i 1) }}</div>
+          <div>
+            <h3>{{ .title }}</h3>
+            <p>{{ .text | markdownify }}</p>
+          </div>
+        </div>
+        {{- end }}
+      </div>
+      {{- with .boundary }}
+      <div class="constraint reveal d2">
+        {{ partial "chip.html" (dict "icon" "x-circle") }}
+        <div>
+          <h3>{{ .title }}</h3>
+          <p>{{ .text | markdownify }}</p>
+        </div>
+      </div>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+
+  <!-- GOVERNANCE -->
+  {{- with $p.governance }}
+  <section id="governance" class="section-pad" style="background:var(--bg-2)">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">{{ .label }}</span>
+        <h2 class="section-title" style="margin-top:16px">{{ .heading }}</h2>
+        <p class="lead">{{ .lead | markdownify }}</p>
+      </div>
+      <div class="gov-grid">
+        {{- range $i, $c := .cards }}
+        <div class="gov-card card reveal d{{ add $i 1 }}">
+          {{ partial "chip.html" (dict "icon" .icon "color" .color) }}
+          <h3>{{ .title }}</h3>
+          <p>{{ .text | markdownify }}</p>
+        </div>
+        {{- end }}
+      </div>
+      {{- with .docsButton }}
+      <div class="gov-cta reveal d3" style="margin-top: 36px; display: flex; justify-content: center;">
+        <a href="{{ site.Params.links.governanceDocs }}" target="_blank" rel="noopener" class="btn btn-ghost">{{ . }} {{ partial "icon.html" "arrow-ext-16" }}</a>
+      </div>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+
+  <!-- WHY THIS MODEL -->
+  {{- with $p.model }}
+  <section class="section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">{{ .label }}</span>
+        <h2 class="section-title" style="margin-top:16px">{{ .heading }}</h2>
+      </div>
+      <div class="model-grid">
+        {{- range $i, $m := .items }}
+        <div class="model-item reveal d{{ add (div $i 2) 1 }}">
+          {{ partial "chip.html" (dict "icon" .icon "color" .color) }}
+          <div>
+            <h3>{{ .title }}</h3>
+            <p>{{ .text | markdownify }}</p>
+          </div>
+        </div>
+        {{- end }}
+      </div>
+    </div>
+  </section>
+  {{- end }}
+
+  <!-- MEMBERSHIP -->
+  {{- with $p.membership }}
+  <section id="membership" class="membership section-pad">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow bare" style="justify-content:center">{{ .label }}</span>
+        <h2 class="section-title" style="margin-top:16px">{{ .heading }}</h2>
+        <p class="lead">{{ .lead | markdownify }}</p>
+      </div>
+      <div class="tier-list">
+        {{- range .groups }}
+        <p class="tier-grouplabel reveal">{{ .label }}</p>
+        {{- range .tiers }}
+        <div class="tier-row reveal">
+          <div>
+            <h3>{{ .name }}</h3>
+            <p class="tier-meta">{{ .meta }}</p>
+          </div>
+          <div class="tier-row-body">
+            <p>{{ .text | markdownify }}</p>
+          </div>
+        </div>
+        {{- end }}
+        {{- end }}
+      </div>
+
+      <!-- GOVERNANCE DOCS CALLOUT -->
+      {{- with .docs }}
+      <div class="gov-docs-callout reveal">
+        <div class="gov-docs-left">
+          {{ partial "chip.html" (dict "icon" "document" "color" "core") }}
+          <div>
+            <h3>{{ .title }}</h3>
+            <p>{{ .text | markdownify }}</p>
+          </div>
+        </div>
+        <a href="{{ site.Params.links.governanceDocs }}" target="_blank" rel="noopener" class="btn btn-ghost" style="white-space:nowrap">{{ .button }} {{ partial "icon.html" "arrow-ext-16" }}</a>
+      </div>
+      {{- end }}
+
+      <div class="membership-cta reveal">
+        <a href="{{ site.Params.links.lfxEnrollment }}" target="_blank" rel="noopener" class="btn btn-primary">{{ .joinButton }} {{ partial "icon.html" "arrow-ext-16" }}</a>
+        <a href="mailto:{{ site.Params.contact.membership }}" class="btn btn-ghost">{{ .contactButton }}</a>
+      </div>
+
+      {{ partial "members-directory.html" (dict "copy" .directory) }}
+    </div>
+  </section>
+  {{- end }}
+{{ end }}
