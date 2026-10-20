@@ -14,9 +14,9 @@
           {{- with .Params.badge | default .Params.category }}
           <span class="mchip">{{ . }}</span>
           {{- end }}
-          {{- with .Params.author }}
-          <span class="byline">{{ T "by" }} <b>{{ . }}</b></span>
-          {{- end }}
+          {{- with partial "blog/author.html" . }}{{ if .name }}
+          <span class="byline">{{ T "by" }} {{ if .linkedin }}<a href="{{ .linkedin }}" target="_blank" rel="noopener"><b>{{ .name }}</b></a>{{ else }}<b>{{ .name }}</b>{{ end }}</span>
+          {{- end }}{{ end }}
           <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
           <span>· {{ .ReadingTime }} {{ T "minRead" }}</span>
         </div>
@@ -42,6 +42,7 @@
         <div class="article-body reveal">
           {{ .Content }}
         </div>
+        {{ partial "blog/author-box.html" . }}
       </div>
     </section>
 

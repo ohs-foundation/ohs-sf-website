@@ -14,7 +14,7 @@
     {{- $dest = .RelPermalink -}}
   {{- else -}}
     {{- with or (.PageInner.GetPage $path) (.PageInner.GetPage (strings.TrimSuffix ".html" $path)) -}}
-      {{- $dest = .RelPermalink -}}
+      {{- $dest = cond .IsHome ("/" | relURL) .RelPermalink -}}  {{- /* home is "/", not "/index.html" */ -}}
     {{- end -}}
   {{- end -}}
   {{- with $u.RawQuery }}{{ $dest = printf "%s?%s" $dest . }}{{ end -}}
