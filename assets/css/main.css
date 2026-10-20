@@ -189,7 +189,9 @@ section { position: relative; }
 .nav-spacer { flex: 1; }
 .nav-cta { display: flex; align-items: center; gap: 10px; }
 .nav-toggle { display: none; background: none; border: 1px solid var(--line); border-radius: 10px; width: 42px; height: 42px; cursor: pointer; align-items: center; justify-content: center; }
-.nav-toggle svg { display: block; }
+/* The toggle also has .btn, whose side padding left no room for the icon (it rendered as an empty box). */
+.nav-toggle.btn { padding: 0; color: var(--ink); }
+.nav-toggle svg { display: block; flex: none; }
 
 /* mobile nav panel */
 .mobile-nav {
@@ -203,7 +205,7 @@ section { position: relative; }
 }
 .mobile-nav.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
 .mobile-nav a { display: block; padding: 13px 6px; font-size: 1.1rem; font-weight: 600; border-bottom: 1px solid var(--line-soft); }
-.mobile-nav .btn { margin-top: 18px; width: 100%; justify-content: center; }
+.mobile-nav .btn { display: flex; margin-top: 18px; width: 100%; justify-content: center; padding: 0.82em 1.4em; border-bottom: 0; }
 
 /* ---------- Brand mark (rounded-square stack — allowed simple shapes) ---------- */
 .logo-mark { display: inline-grid; grid-template-columns: repeat(2, 1fr); gap: 2.5px; width: 30px; height: 30px; }
