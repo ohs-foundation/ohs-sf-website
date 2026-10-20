@@ -152,13 +152,7 @@ This work is not declaring digital health software engineering "solved by AI." R
 
 ## An Open Invitation to Build
 
-This experiment evaluated a well-defined mobile digital health use case across multiple model sweeps and harness configurations. While two runs per condition illustrate strong directional patterns, many open questions remain.
-
-- How do autonomous coding agents navigate complex multi-facility referral networks or nested clinical decision support trees?
-- How reliably can agents manage schema evolution, database migrations, and FHIR IG upgrades across multi-year deployments?
-- How do emerging open-weights and proprietary models compare on these domain-specific tasks?
-
-To accelerate research into these questions, we have open-sourced the harness, task prompts, library skills, and raw execution transcripts in our repository:
+This experiment evaluated a well-defined mobile digital health use case across multiple model sweeps and harness configurations. While two runs per condition illustrate strong directional patterns, many open questions remain. To accelerate research into agentic approaches for building standards-based apps, we have open-sourced the harness, task prompts, library skills, and raw execution transcripts in our repository:
 
 👉 [Explore the GitHub Repository: ohs-foundation/ohs-labs](https://github.com/ohs-foundation/ohs-labs/blob/main/ohs-agent-experiment)
 
