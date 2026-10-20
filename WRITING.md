@@ -28,6 +28,7 @@ Everything you can read on ohs.foundation is kept in plain text files: Markdown 
 | `content/blog/<post>/index.md` | One blog post, with its images beside it |
 | `data/pillars.yaml` | The three pillars and every project card (used on Home, Projects and in the footer) |
 | `data/members.yaml` | Member organisations and their tiers (Home and Foundation pages) |
+| `data/authors.yaml` | Blog authors: name, role, LinkedIn and GitHub (photo comes from GitHub) |
 | `data/events.yaml` | Conferences pinned to the Community page's event list |
 | `hugo.yaml` | Menus, footer, the "Stay in the loop" band, the 404 page, site name, shared links and emails |
 | `i18n/en.yaml` | Small interface labels such as "Latest" and "Share this post" |
@@ -321,7 +322,7 @@ draft: false
 |---|---|
 | `title` | The post title. Keep the quotes. |
 | `date` | The date shown on the post, `YYYY-MM-DD`. Posts are ordered by it, and the newest one is featured at the top of the blog page. Publishing is controlled by `draft`, not by the date. |
-| `author` | Shown as "By …". |
+| `author` | Who wrote it. Either a key from `data/authors.yaml` (e.g. `fikri-milano`), which shows a linked byline and an "About the author" box with photo and links, or plain text (e.g. "the OHS-SF team"), shown as "By …". See [Authors](#authors). |
 | `category` | A short label such as *Foundation news*, *Events* or *Releases*, shown as a tag. |
 | `summary` | The teaser on the blog page and the text in social-media previews (LinkedIn, WhatsApp, X …). |
 | `cover` | File name of the cover image in the post folder (JPG, PNG or WebP). Strongly recommended: it's the picture on the blog page and in social-media previews. Without one, the blog page shows the default illustration. |
@@ -399,6 +400,28 @@ Paste a post's URL anywhere people share links: LinkedIn, Facebook, X, WhatsApp,
 
 Networks remember a preview the first time a link is shared. If you change the image or summary afterwards, refresh it: LinkedIn's [Post Inspector](https://www.linkedin.com/post-inspector/) and Facebook's [Sharing Debugger](https://developers.facebook.com/tools/debug/) fetch the page again; X and WhatsApp update on their own after a while. Deploy Previews let these preview bots in (search engines stay out), so you can check a card before a post goes live. The blog's RSS feed is at `/feed.xml`.
 
+### Authors
+
+People who write for the blog are listed once in `data/authors.yaml`; a post then just names the key:
+
+```yaml
+fikri-milano:
+  name: Fikri Milano
+  role: "Senior Software Engineer at Ona · Maintainer of Open Health Stack (Linux Foundation)"
+  linkedin: https://www.linkedin.com/in/fikri-milano   # the byline name links here
+  github: FikriMilano                                   # adds a GitHub link and the photo
+  # photo: fikri-milano.jpg   # optional: a file in assets/authors/ instead of the GitHub picture
+```
+
+```yaml
+author: fikri-milano     # in the post's front matter
+```
+
+- **Photo:** taken automatically from the author's GitHub profile picture when the site is built, resized and served from ohs.foundation (visitors' browsers never contact GitHub). A changed GitHub picture shows up on the next build. To use a different photo, put a square image in `assets/authors/` and set `photo:`. Without either, the box shows the author's initials.
+- **If GitHub can't be reached** during a build, the site still builds: the box shows initials and the build log has a warning.
+- **Role** is one line you write by hand (LinkedIn can't be read automatically).
+- Plain text such as `author: "the OHS-SF team"` still works; it just shows "By the OHS-SF team" with no box.
+
 ### Blog page text
 
 In **`content/blog/_index.md`**:
@@ -461,6 +484,7 @@ Rename, add or reorder tiers freely. If you change an `id`, update the members t
 | I want to… | Edit |
 |---|---|
 | Publish a blog post | New folder in `content/blog/` ([section 9](#9-blog)) |
+| Add a blog author (photo, role, LinkedIn) | `data/authors.yaml`, then `author: <key>` in the post ([Authors](#authors)) |
 | Change any text on a page | That page's file in `content/` ([section 1](#1-where-content-lives)) |
 | Change the home page headline | `content/_index.md` → `hero` |
 | Change the home page "New" pill | `content/_index.md` → `announcement` |

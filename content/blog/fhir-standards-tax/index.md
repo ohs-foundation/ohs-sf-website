@@ -1,7 +1,7 @@
 ---
 title: "The Standards Tax Is Shrinking: What Happens When Building on FHIR Costs 62 Cents?"
 date: 2026-10-20
-author: "the OHS-SF team"
+author: fikri-milano
 category: "Research"
 summary: "We had AI coding agents build the same offline-first antenatal care app three ways. Building on FHIR and Open Health Stack cost just 62 cents more than a quick-and-dirty custom stack, and produced an app whose data isn't trapped on the device."
 cover: cover.jpg

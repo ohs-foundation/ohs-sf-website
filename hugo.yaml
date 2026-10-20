@@ -43,6 +43,12 @@ markup:
       attribute:
         block: true
 
+# Files fetched at build time (authors' GitHub pictures) are re-downloaded
+# after a day, so a new profile picture shows up on the next build.
+caches:
+  getresource:
+    maxAge: 24h
+
 imaging:
   resampleFilter: Lanczos
   jpeg:

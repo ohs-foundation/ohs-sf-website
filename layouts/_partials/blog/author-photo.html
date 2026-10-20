@@ -1,0 +1,36 @@
+{{- /*
+  An author's photo, resized to a square, as a dict {src, srcset}; false if none.
+  Uses `photo` (a file in assets/authors/) if set, otherwise the author's GitHub
+  profile picture, downloaded at build time and served from this site. If the
+  download fails, the build carries on (with a warning) and initials are shown.
+  Args: dict "author" <author dict from blog/author.html> "size" <px>
+*/ -}}
+{{- $a := .author -}}
+{{- $size := .size -}}
+{{- $img := false -}}
+{{- with $a.photo -}}
+  {{- $img = resources.Get (printf "authors/%s" .) -}}
+  {{- if not $img }}{{ errorf "data/authors.yaml: photo %q for %q not found in assets/authors/" . $a.name }}{{ end -}}
+{{- end -}}
+{{- if and (not $img) $a.github -}}
+  {{- $url := printf "https://github.com/%s.png?size=%d" $a.github (mul $size 2) -}}
+  {{- $r := try (resources.GetRemote $url) -}}
+  {{- if $r.Err -}}
+    {{- warnf "Couldn't fetch the GitHub picture for %s (%s); showing initials instead." $a.name $r.Err -}}
+  {{- else if $r.Value -}}
+    {{- if eq $r.Value.MediaType.MainType "image" -}}
+      {{- $img = resources.Copy (printf "images/authors/%s.%s" ($a.key | default (urlize $a.name)) $r.Value.MediaType.SubType) $r.Value -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $out := false -}}
+{{- with $img -}}
+  {{- $one := .Fill (printf "%dx%d Center webp" $size $size) -}}
+  {{- $srcset := printf "%s 1x" $one.RelPermalink -}}
+  {{- if ge .Width (mul $size 2) -}}
+    {{- $two := .Fill (printf "%dx%d Center webp" (mul $size 2) (mul $size 2)) -}}
+    {{- $srcset = printf "%s, %s 2x" $srcset $two.RelPermalink -}}
+  {{- end -}}
+  {{- $out = dict "src" $one.RelPermalink "srcset" $srcset -}}
+{{- end -}}
+{{- return $out -}}

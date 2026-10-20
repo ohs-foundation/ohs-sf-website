@@ -1,7 +1,7 @@
 ---
 title: "{{ replace .File.ContentBaseName "-" " " | title }}"
 date: {{ time.Now.Format "2006-01-02" }}
-author: "the OHS-SF team"
+author: "the OHS-SF team"   # or a key from data/authors.yaml, e.g. fikri-milano (see WRITING.md → "Authors")
 category: "Foundation news"
 summary: "One or two sentences. Shown on the blog page and as the preview text when the post is shared (LinkedIn, WhatsApp, X …)."
 cover: cover.jpg          # 2400×1260 px (1.91:1) — see WRITING.md

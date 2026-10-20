@@ -1,0 +1,26 @@
+{{- /* "About the author" box at the end of a post (only for authors listed in data/authors.yaml). */ -}}
+{{- $a := partial "blog/author.html" . -}}
+{{- if $a.key }}
+<aside class="author-box reveal" aria-label="{{ T "aboutTheAuthor" }}">
+  {{- with partial "blog/author-photo.html" (dict "author" $a "size" 72) }}
+  <img class="ab-photo" src="{{ .src }}" srcset="{{ .srcset }}" width="72" height="72" alt="" loading="lazy" />
+  {{- else }}
+  <span class="ab-photo ab-initials" aria-hidden="true">{{ upper (delimit (first 2 (findRE `\b\p{Lu}` $a.name)) "" | default (substr $a.name 0 1)) }}</span>
+  {{- end }}
+  <div class="ab-text">
+    <span class="ab-label">{{ T "aboutTheAuthor" }}</span>
+    {{- if $a.linkedin }}
+    <a class="ab-name" href="{{ $a.linkedin }}" target="_blank" rel="noopener">{{ $a.name }}</a>
+    {{- else }}
+    <span class="ab-name">{{ $a.name }}</span>
+    {{- end }}
+    {{- with $a.role }}<span class="ab-role">{{ . }}</span>{{ end }}
+    {{- if or $a.linkedin $a.github }}
+    <span class="ab-links">
+      {{- with $a.linkedin }}<a href="{{ . }}" target="_blank" rel="noopener">LinkedIn {{ partial "icon.html" "arrow-ext-14" }}</a>{{ end }}
+      {{- with $a.github }}<a href="https://github.com/{{ . }}" target="_blank" rel="noopener">GitHub {{ partial "icon.html" "arrow-ext-14" }}</a>{{ end }}
+    </span>
+    {{- end }}
+  </div>
+</aside>
+{{- end }}
