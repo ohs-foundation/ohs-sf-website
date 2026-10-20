@@ -194,6 +194,30 @@
   font-weight: 700;
 }
 
+/* {{< callout >}}: a highlighted box inside a post; the last paragraph stands out. */
+.callout {
+  margin: 40px 0;
+  padding: clamp(24px, 3.4vw, 34px) clamp(22px, 3.4vw, 38px);
+  border-radius: var(--radius-lg);
+  background: var(--teal-wash);
+  border: 1px solid color-mix(in oklch, var(--teal) 22%, transparent);
+}
+
+.callout p {
+  font-size: 1.12rem;
+  line-height: 1.6;
+  color: oklch(0.34 0.018 210);
+}
+
+.callout p:last-child:not(:first-child) {
+  margin-top: 12px;
+  font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
 .closer {
   max-width: 720px;
   margin: 44px auto 0;
@@ -202,6 +226,14 @@
 .closer p {
   font-size: 1.16rem;
   line-height: 1.6;
+  color: oklch(0.34 0.018 210);
+}
+
+/* A closer with a single paragraph: a quieter sign-off (bold italic, dark grey). */
+.closer p:only-child {
+  font-weight: 700;
+  font-style: italic;
+  font-size: 1.16rem;
   color: oklch(0.34 0.018 210);
 }
 
@@ -338,11 +370,20 @@
   color: inherit;
 }
 
+.article-body .table-wrap {
+  margin-top: 1.6em;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .article-body table {
   width: 100%;
-  margin-top: 1.6em;
   border-collapse: collapse;
   font-size: 0.98rem;
+}
+
+@media (max-width: 560px) {
+  .article-body table { min-width: 560px; font-size: 0.92rem; }
 }
 
 .article-body th,

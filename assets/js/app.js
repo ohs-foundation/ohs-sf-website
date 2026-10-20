@@ -33,11 +33,17 @@
   /* ─── Reveal on scroll ──────────────────────────────────────────────── */
   var reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && reveals.length) {
+    // An element appears once 12% of it is on screen — or, if it's much taller
+    // than the screen (a long blog post body can never be 12% visible), once
+    // it fills a quarter of the screen.
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        if (e.isIntersecting &&
+            (e.intersectionRatio >= 0.12 || e.intersectionRect.height >= window.innerHeight * 0.25)) {
+          e.target.classList.add('in'); io.unobserve(e.target);
+        }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    }, { threshold: [0, 0.01, 0.02, 0.04, 0.06, 0.08, 0.1, 0.12], rootMargin: '0px 0px -8% 0px' });
     reveals.forEach(function (el) { io.observe(el); });
   } else {
     reveals.forEach(function (el) { el.classList.add('in'); });

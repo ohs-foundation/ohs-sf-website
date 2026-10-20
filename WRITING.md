@@ -337,6 +337,7 @@ Optional extras:
 | `shortTitle` | A shorter title for the browser tab. |
 | `readMore` | The link text on the blog page card. Defaults to "Read the post". |
 | `coverCaption` | A caption under the cover image. |
+| `cardImage` | File name of a narrower picture (4:3, e.g. 1600 × 1200 px) in the post folder, shown on the blog page's featured card instead of the cover, so the blog page and the post page don't show the same picture. It also gives the card's text more room. Without it, the card uses the cover. |
 | `shareImage` | File name of a picture in the post folder to show in social-media previews instead of the cover. Use it for a post without a cover, or when the preview should differ from the cover (say, a card with the title on it). 2400 × 1260 px, like covers. |
 | `coverFocus` | Which part of the cover to keep if it isn't 1.91 : 1 and has to be trimmed on the blog page and in social-media previews: `center` (default), `top`, `bottom`, `left`, `right`, `top-left`, `top-right`, `bottom-left` or `bottom-right`. |
 
@@ -361,7 +362,13 @@ Normal paragraphs, **bold**, *italic*, [a link](https://example.org).
 > A sentence worth pulling out. It renders as a large pull quote.
 >
 > — Who said it
+
+| Metric     | Before | After    |
+|------------|--------|----------|
+| Total cost | $0.84  | **$1.46** |
 ```
+
+Tables: on phones, a wide table scrolls sideways inside its own box, so the page never gets wider than the screen. A highlighted box goes in `{{< callout >}} … {{< /callout >}}` (its last paragraph stands out), and a closing call-out at the end of a post (the last paragraph set large and bold) in `{{< closer >}} … {{< /closer >}}`.
 
 Video:
 

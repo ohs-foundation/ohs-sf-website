@@ -1,0 +1,31 @@
+{{- /*
+  The optional `cardImage` of a post: a narrower picture (4:3, e.g. 1600×1200)
+  shown on the blog page's featured card instead of the wide cover, so the card
+  doesn't repeat the post page's cover. Resized to the given 4:3 box (cropped
+  from the centre if its shape differs); never upscales.
+  Args: dict "page" <post> "width" <px> "height" <px>
+  Returns dict {src, srcset, width, height, alt}, or false when the post has none.
+  Fails the build with a plain-language message if the file is missing.
+*/ -}}
+{{- $p := .page -}}
+{{- $out := false -}}
+{{- with $p.Params.cardImage -}}
+  {{- $path := (urls.Parse .).Path -}}
+  {{- $r := $p.Resources.Get $path -}}
+  {{- if not $r -}}
+    {{- errorf "%s: card image %q not found next to the post's index.md (check the spelling; file names are case-sensitive)" $p.File.Path $path -}}
+  {{- else if not (reflect.IsImageResourceProcessable $r) -}}
+    {{- errorf "%s: card image %q must be a JPG, PNG, WebP or GIF file" $p.File.Path $path -}}
+  {{- else -}}
+    {{- $w := $.width }}{{ $h := $.height -}}
+    {{- if lt $r.Width $w }}{{ $h = div (mul $h $r.Width) $w }}{{ $w = $r.Width }}{{ end -}}
+    {{- $one := $r.Fill (printf "%dx%d Center webp" $w $h) -}}
+    {{- $srcset := printf "%s %dw" $one.RelPermalink $one.Width -}}
+    {{- if ge $r.Width (mul $w 2) -}}
+      {{- $two := $r.Fill (printf "%dx%d Center webp" (mul $w 2) (mul $h 2)) -}}
+      {{- $srcset = printf "%s, %s %dw" $srcset $two.RelPermalink $two.Width -}}
+    {{- end -}}
+    {{- $out = dict "src" $one.RelPermalink "srcset" $srcset "width" $one.Width "height" $one.Height "alt" ($p.Params.cardImageAlt | default $p.Params.coverAlt | default "") -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}
