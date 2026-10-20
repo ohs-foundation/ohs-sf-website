@@ -5,7 +5,8 @@
   {{- with partial "blog/author-photo.html" (dict "author" $a "size" 72) }}
   <img class="ab-photo" src="{{ .src }}" srcset="{{ .srcset }}" width="72" height="72" alt="" loading="lazy" />
   {{- else }}
-  <span class="ab-photo ab-initials" aria-hidden="true">{{ upper (delimit (first 2 (findRE `\b\p{Lu}` $a.name)) "" | default (substr $a.name 0 1)) }}</span>
+  {{- /* No photo: a neutral placeholder silhouette. */}}
+  <svg class="ab-photo ab-placeholder" viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="28" r="13"/><path d="M12 72c0-15 10.7-24 24-24s24 9 24 24z"/></svg>
   {{- end }}
   <div class="ab-text">
     <span class="ab-label">{{ T "aboutTheAuthor" }}</span>

@@ -216,15 +216,10 @@
   background: var(--bg-2);
 }
 
-.ab-initials {
-  display: grid;
-  place-items: center;
-  background: var(--teal-wash);
-  color: var(--teal-deep);
-  font-weight: 700;
-  font-size: 1.4rem;
-  letter-spacing: -0.01em;
-}
+/* Placeholder when an author has no photo: light head and shoulders on blue-grey. */
+.ab-placeholder { background: oklch(0.58 0.06 235); }
+.ab-placeholder circle { fill: oklch(0.93 0.01 235); }
+.ab-placeholder path { fill: oklch(0.36 0.04 250); }
 
 .ab-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 
@@ -258,7 +253,6 @@ a.ab-name:hover { color: var(--teal); }
 @media (max-width: 560px) {
   .author-box { align-items: flex-start; gap: 14px; padding: 18px; }
   .ab-photo { width: 56px; height: 56px; }
-  .ab-initials { font-size: 1.15rem; }
 }
 
 /* {{< callout >}}: a highlighted box inside a post; the last paragraph stands out. */

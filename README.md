@@ -23,7 +23,7 @@ hugo server -e demo        # same, plus sample members and sample blog posts
 | `content/*.md` | One file per page. **All of a page's text** lives in its front matter, as YAML grouped by section (`hero`, `governance`, `membership`, …); the templates only hold layout. `content/blog/<post>/index.md` is one blog post, with its images beside it |
 | `data/pillars.yaml` | The three pillars and their projects (home cards and diagram, Projects page, footer) |
 | `data/members.yaml` | Member organisations and tiers (home page strip + Foundation page directory) |
-| `data/authors.yaml` | Blog authors (name, role, LinkedIn, GitHub); photos come from GitHub at build time, or from `assets/authors/` |
+| `data/authors.yaml` | Blog authors (name, role, LinkedIn, GitHub); photos come from GitHub at build time, or from `assets/authors/` (placeholder if neither) |
 | `data/events.yaml` | Events pinned to the Community page (recurring calls come from the Google Calendar) |
 | `hugo.yaml` | Site settings, menus (`menus.main`, `menus.footer*`), site-wide text (`params.header`, `newsletter`, `footer`, `notFound`), shared links and emails (`params.links`, `params.contact`) and the EmailOctopus form IDs |
 | `i18n/en.yaml` | Interface labels used by templates ("Latest", "Share this post", …) |

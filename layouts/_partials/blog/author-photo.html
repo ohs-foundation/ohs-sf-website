@@ -2,7 +2,7 @@
   An author's photo, resized to a square, as a dict {src, srcset}; false if none.
   Uses `photo` (a file in assets/authors/) if set, otherwise the author's GitHub
   profile picture, downloaded at build time and served from this site. If the
-  download fails, the build carries on (with a warning) and initials are shown.
+  download fails, the build carries on (with a warning) and a placeholder is shown.
   Args: dict "author" <author dict from blog/author.html> "size" <px>
 */ -}}
 {{- $a := .author -}}
@@ -16,7 +16,7 @@
   {{- $url := printf "https://github.com/%s.png?size=%d" $a.github (mul $size 2) -}}
   {{- $r := try (resources.GetRemote $url) -}}
   {{- if $r.Err -}}
-    {{- warnf "Couldn't fetch the GitHub picture for %s (%s); showing initials instead." $a.name $r.Err -}}
+    {{- warnf "Couldn't fetch the GitHub picture for %s (%s); showing a placeholder instead." $a.name $r.Err -}}
   {{- else if $r.Value -}}
     {{- if eq $r.Value.MediaType.MainType "image" -}}
       {{- $img = resources.Copy (printf "images/authors/%s.%s" ($a.key | default (urlize $a.name)) $r.Value.MediaType.SubType) $r.Value -}}
