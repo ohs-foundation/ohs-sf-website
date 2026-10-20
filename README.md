@@ -32,6 +32,7 @@ hugo server -e demo        # same, plus sample members and sample blog posts
 | `assets/js/app.js` | Small vanilla JS: mobile nav, scroll reveal, community events, share buttons |
 | `assets/images/og-default.png`, `og-blog-default.jpg` | Default images shown when a page / a blog post is shared (set in `hugo.yaml` → `params.ogImage`, `blogShareImage`) |
 | `assets/members/` | Member logos |
+| `static/favicon.svg`, `static/apple-touch-icon.png` | Browser-tab and phone home-screen icons: the logo mark. The official logo is `ohs-logo-horizontal-transparent.png` in the [`ohs-foundation/.github`](https://github.com/ohs-foundation/.github) repo; on the site, the mark is drawn in CSS (`.logo-mark`, colours `--logo-1`…`--logo-4` in `main.css`) next to the site name as live text in the same font |
 | `netlify/functions/community-events.js` | Reads the public community calendar (ICS) and returns upcoming events as JSON for the Community page |
 | `email-templates/` | Source of the EmailOctopus welcome email (not published on the site) |
 | `demo/`, `config/demo/`, `data/members_demo.yaml` | Sample content used only by `hugo server -e demo` |

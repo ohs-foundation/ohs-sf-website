@@ -46,6 +46,12 @@
   --shadow-lg: 0 10px 30px oklch(0.40 0.02 210 / 0.10), 0 30px 70px oklch(0.40 0.02 210 / 0.12);
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* Official logo colours (the four squares, top-left → bottom-right). */
+  --logo-1: #07858a;
+  --logo-2: #0c87a7;
+  --logo-3: #7666b2;
+  --logo-4: #005961;
 }
 
 * { box-sizing: border-box; }
@@ -202,10 +208,11 @@ section { position: relative; }
 /* ---------- Brand mark (rounded-square stack — allowed simple shapes) ---------- */
 .logo-mark { display: inline-grid; grid-template-columns: repeat(2, 1fr); gap: 2.5px; width: 30px; height: 30px; }
 .logo-mark i { border-radius: 4px; display: block; }
-.logo-mark i:nth-child(1) { background: var(--teal); }
-.logo-mark i:nth-child(2) { background: var(--core); }
-.logo-mark i:nth-child(3) { background: var(--ai); }
-.logo-mark i:nth-child(4) { background: var(--teal-deep); }
+/* The four squares of the official logo (ohs-foundation/.github → ohs-logo-horizontal-transparent.png). */
+.logo-mark i:nth-child(1) { background: var(--logo-1); }
+.logo-mark i:nth-child(2) { background: var(--logo-2); }
+.logo-mark i:nth-child(3) { background: var(--logo-3); }
+.logo-mark i:nth-child(4) { background: var(--logo-4); }
 
 /* ---------- Cards ---------- */
 .card {
@@ -256,7 +263,6 @@ section { position: relative; }
 .site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
 .site-footer a { color: oklch(0.82 0.012 200); transition: color 0.18s; font-size: 0.95rem; }
 .site-footer a:hover { color: #fff; }
-.footer-brand .logo-mark i:nth-child(1) { background: var(--teal-bright); }
 .footer-about { color: oklch(0.72 0.015 200); font-size: 0.95rem; max-width: 32ch; margin-top: 16px; }
 .footer-bottom { margin-top: 56px; padding-top: 26px; border-top: 1px solid oklch(0.34 0.015 210); display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; color: oklch(0.64 0.015 200); font-size: 0.85rem; }
 
