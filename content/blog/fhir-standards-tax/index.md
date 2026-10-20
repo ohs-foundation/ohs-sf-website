@@ -12,26 +12,15 @@ readMore: "Read the experiment"
 draft: false
 ---
 
-**For decades, digital health projects have skipped open data standards for an understandable reason: doing things "properly" is hard, takes too much time and money.**
+**For decades, digital health projects skipped open standards because implementing HL7 FHIR is notoriously complex — requiring specialized domain knowledge, custom validators, and resilient sync engines. In resource-constrained healthtech, building bespoke APIs was the pragmatic choice, leading to pervasive "pilotitis" where trapped data dies alongside retiring app contracts.**
 
-Health data standards like HL7 FHIR are notoriously complex. Implementing them requires specialized domain knowledge: navigating extensive specifications, mapping clinical concepts, building custom schema validators, and engineering resilient, offline-first synchronization engines. In global health and early-stage healthtech — where teams operate on shoe-string budgets and relentless delivery deadlines — building bespoke database tables and proprietary REST APIs has often been the pragmatic choice.
-
-The predictable consequence is what our sector has long called **"pilotitis"**: thousands of working digital tools deployed across health systems whose data remains trapped in local silos, dying whenever the app, device, or vendor contract is retired.
-
-Recently, [Health Samurai](https://www.health-samurai.io/) suggested that AI coding agents might break this cycle. Their hypothesis: **FHIR provides ready-made "rails" for agentic coding.** A standardized clinical data model and strict server-side validation constrain what an agent can produce, preventing the hallucinations, schema drift, and architectural decay typical of unconstrained coding sessions.
+Recently, [Health Samurai](https://www.health-samurai.io/articles/fhir-as-a-framework-for-agentic-coding) suggested that AI coding agents might break this cycle. Their hypothesis: **FHIR provides ready-made "rails" for agentic coding.** A standardized clinical data model and strict server-side validation constrain what an agent can produce, preventing the hallucinations, schema drift, and architectural decay typical of unconstrained coding sessions.
 
 Their early evidence was qualitative, drawn from rebuilding an internal Personal Health Record twice with Claude Code. We wanted to put hard empirical numbers to this idea in a real-world, frontline mobile health context. And the results are pretty interesting. Read on.
 
 ## The Experiment: Building the Same Digital Health App Three Ways
 
-We built a fully automated test harness and tasked autonomous AI coding agents with building a pretty simple offline-first Android Antenatal Care (ANC) register from scratch.
-
-The requirements mirrored common clinical use cases:
-
-- **Register Screen:** Display a list of pregnant patients sorted by estimated due date, showing name, age, and current gestational age.
-- **Patient Detail Screen:** Historical ANC visits with recorded vitals (blood pressure, weight, hemoglobin).
-- **New Visit Form:** Capture visit date, gestational age, vitals, danger signs, and clinical notes.
-- **Persistence & Synchronization:** Save records locally so the app functions seamlessly without internet connectivity, survive app restarts, and bidirectionally sync data with a central server once online.
+We built an automated test harness to evaluate autonomous AI coding agents constructing an offline-first Android Antenatal Care (ANC) register from scratch. Requirements included patient registration, visit history tracking, clinical data entry, and offline persistence with bidirectional server sync.
 
 We evaluated this build across three distinct conditions:
 
@@ -57,7 +46,7 @@ Here are the results for **Gemini 3.8 Flash** running in the Antigravity CLI (av
 
 ## Three Key Takeaways
 
-### 1. The "Standards Tax" was 62 cents and under 2 minutes
+### 1. The "Standards Tax" is under 2 minutes and 62 cents
 
 With basic markdown skills provided, generating an app that persists data to an offline-first FHIR database and syncs with a standard FHIR server cost **$1.46 and took 6.5 minutes**. Compared to the quick-and-dirty custom app ($0.84, 4.6 minutes), the premium for building on open standards was just **62 cents and 114 seconds**.
 
@@ -71,16 +60,7 @@ In the OHS runs, a local HAPI FHIR server actively validated incoming payloads a
 
 ## Does the Result Hold Across Models?
 
-Was 62 cents an isolated anomaly? We evaluated the exact same task across four Claude models using Claude Code:
-
-| Model | Cold (Custom Stack) | OHS (Libraries Only) | OHS + Skills (Libraries + Docs) |
-|---|---|---|---|
-| Claude Haiku 5.5 | $0.05, 4.3 min | $0.16, 5.2 min | $0.20, 5.8 min |
-| Claude Sonnet 5.5 | $0.24, 1.5 min | $0.78, 5.9 min | **$0.52, 3.5 min** |
-| Claude Opus 5.5 | $0.70, 4.1 min | $2.65, 7.8 min | **$1.31, 4.3 min** |
-| Claude Fable 5.1 | $1.53, 3.9 min | $7.48, 17.8 min | **$2.66, 6.1 min** |
-
-The "Standards Tax" remained negligible across the board. On Sonnet, OHS with Skills cost just 28 cents more than Cold; on Opus, 61 cents more.
+Was 62 cents an isolated anomaly? We evaluated the exact same task across four Anthropic models using Claude Code. The "Standards Tax" remained negligible across the board. On Sonnet, OHS with Skills cost just 28 cents more than Cold; on Opus, 61 cents more.
 
 ### What Changed: How Agents Used the Libraries
 
