@@ -84,7 +84,7 @@
 }
 
 .charter-card .num {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-weight: 600;
   font-size: 0.95rem;
   color: var(--teal-deep);
@@ -200,11 +200,11 @@
 }
 
 .tier-grouplabel {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.7rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--ink-soft);
   margin: 40px 0 2px;
 }
 
@@ -229,7 +229,7 @@
 .tier-row .tier-meta {
   margin-top: 6px;
   font-size: 0.84rem;
-  color: var(--ink-faint);
+  color: var(--ink-soft);
 }
 
 .tier-row-body p {

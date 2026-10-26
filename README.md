@@ -28,7 +28,8 @@ hugo server -e demo        # same, plus sample members and sample blog posts
 | `i18n/en.yaml` | Interface labels used by templates ("Latest", "Share this post", …) |
 | `layouts/` | Templates (layout only, no copy). `baseof.html` is the page shell; one template per page; `_partials/` holds the header, footer, newsletter band, `<head>` (SEO and share tags), `chip.html` (icon library), `button.html` and `url.html` (resolves `@discord`-style shared links) |
 | `layouts/_markup/`, `layouts/_shortcodes/` | How Markdown renders (headings, links, images) and the extra post components (`pillars`, `closer`, `video`) |
-| `assets/css/main.css` | Design system and shared styles; `assets/css/pages/*.css` hold page-specific styles |
+| `assets/css/main.css` | Design system and shared styles; `assets/css/pages/*.css` hold page-specific styles. Hugo minifies them and writes them into each page's `<head>` (no separate CSS files) |
+| `assets/fonts/` | The self-hosted fonts and their licences; `layouts/_partials/fonts.html` loads them (see `assets/fonts/README.md`) |
 | `assets/js/app.js` | Small vanilla JS: mobile nav, scroll reveal, community events, share buttons |
 | `assets/images/og-default.png`, `og-blog-default.jpg` | Default images shown when a page / a blog post is shared (set in `hugo.yaml` → `params.ogImage`, `blogShareImage`) |
 | `assets/members/` | Member logos |
@@ -43,8 +44,8 @@ hugo server -e demo        # same, plus sample members and sample blog posts
 - **URLs are stable.** Pages are served as `/foundation.html`, `/blog/<post>.html` and so on (`uglyURLs`) so links already in emails and social posts keep working. Keep a post's folder name once it's published, because the folder name is its URL.
 - **Content stays out of templates.** Page text goes in the page's front matter, lists shared between pages in `data/`, site-wide text and menus in `hugo.yaml`. A template change should only ever be a layout or design change.
 - **Shared links go in one place.** Contact emails, Discord, calendar and governance links live in `hugo.yaml` → `params`. Content refers to them as `@discord`, `@email:general` etc. (resolved by `layouts/_partials/url.html`), so nothing is hard-coded twice.
-- **No build tooling beyond Hugo.** There's no npm install and no bundler. Hugo minifies and fingerprints the CSS and JS itself.
-- **Design.** The fonts are Hanken Grotesk and IBM Plex Mono, and colours are defined as tokens in `main.css` `:root`. The `--teal*` variables actually hold the indigo signature colour; the names predate a palette change.
+- **No build tooling beyond Hugo.** There's no npm install and no bundler. Hugo minifies the CSS and JS and fingerprints the JS and fonts itself.
+- **Design.** The fonts are Hanken Grotesk and IBM Plex Mono (served from the site itself, not Google Fonts), and colours are defined as tokens in `main.css` `:root`. The brand guidelines (OHS-SF Brand Guidelines v1.0) say text is set in Ink or Ink soft (`--ink`, `--ink-soft`), and small text is never an accent colour on a pale background of the same hue (so pillar tags use `--ink-soft` text). `--ink-faint` is for borders, dots and icons, not text. The `--teal*` variables actually hold the indigo signature colour; the names predate a palette change.
 
 ## Deployment
 
@@ -54,7 +55,7 @@ Netlify builds every push (`netlify.toml`):
 - Each pull request gets a **Deploy Preview** URL. Previews are marked `noindex`, and their share tags point at the preview itself.
 - The Hugo version is pinned in `netlify.toml`. Bump it on purpose and check the build when you do.
 
-Short links (such as `/get-involved`) and caching headers are also set in `netlify.toml`.
+Short links (such as `/get-involved`), caching headers and security headers are also set in `netlify.toml`.
 
 ## Tests
 

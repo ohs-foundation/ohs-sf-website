@@ -25,7 +25,7 @@
         <div class="cj-option reveal d{{ add $i 1 }}">
           {{ partial "chip.html" (dict "icon" .icon "color" .color) }}
           <div>
-            <h4>{{ .title }}</h4>
+            <h3>{{ .title }}</h3>
             <p>{{ .text | markdownify }}</p>
             {{- with .link }}
             <a href="{{ partial "url.html" .url }}" class="textlink">{{ .label }} {{ partial "icon.html" "arrow-right-15" }}</a>

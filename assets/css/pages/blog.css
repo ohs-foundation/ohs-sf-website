@@ -69,10 +69,10 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 8px 16px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.76rem;
   letter-spacing: 0.03em;
-  color: var(--ink-faint);
+  color: var(--ink-soft);
 }
 
 .featured-foot {
@@ -115,7 +115,7 @@
   border: 1px dashed oklch(1 0 0 / 0.28);
   border-radius: 12px;
   padding: 12px 14px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.62rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -179,7 +179,7 @@
   border-radius: 12px;
   padding: 12px 14px;
   text-align: center;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.66rem;
   letter-spacing: 0.06em;
   color: #fff;
@@ -191,8 +191,8 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: var(--ink-faint);
-  font-family: 'IBM Plex Mono', monospace;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -249,10 +249,10 @@
 
 .post-row .pr-meta {
   margin-top: 6px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.74rem;
   letter-spacing: 0.03em;
-  color: var(--ink-faint);
+  color: var(--ink-soft);
 }
 
 .post-row .arrow {
