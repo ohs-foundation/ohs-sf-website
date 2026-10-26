@@ -1,0 +1,15 @@
+{{- /*
+  The author of a post as a dict {key, name, role, linkedin, github, photo}.
+  `author:` in the post is either a key from data/authors.yaml or plain text,
+  which becomes just the name. Returns an empty dict when there's no author.
+*/ -}}
+{{- $out := dict -}}
+{{- with .Params.author -}}
+  {{- $key := . -}}
+  {{- with index (hugo.Data.authors | default dict) $key -}}
+    {{- $out = merge . (dict "key" $key) -}}
+  {{- else -}}
+    {{- $out = dict "name" $key -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

@@ -1,0 +1,17 @@
+# Blog authors. A post's `author:` can be a key from this file (e.g.
+# `author: fikri-milano`) or plain text (e.g. "the OHS-SF team").
+#
+#   name:     shown as "By …" and in the "About the author" box
+#   role:     optional, one line under the name
+#   linkedin: optional, full profile URL; the name links here
+#   github:   optional, GitHub username; adds a GitHub link and, unless
+#             `photo` is set, the photo comes from the GitHub profile picture
+#   photo:    optional, a file in assets/authors/ (overrides the GitHub picture)
+#
+# See WRITING.md → "Authors".
+
+fikri-milano:
+  name: Fikri Milano
+  role: "Senior Software Engineer at Ona · Maintainer of Open Health Stack (Linux Foundation)"
+  linkedin: https://www.linkedin.com/in/fikri-milano
+  github: FikriMilano

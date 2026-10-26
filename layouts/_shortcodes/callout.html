@@ -1,0 +1,5 @@
+{{- /* A highlighted box inside a post. The last paragraph is set larger and bold.
+       Usage: {{< callout >}} Text… {{< /callout >}} */ -}}
+<aside class="callout reveal">
+{{ .Inner | .Page.RenderString (dict "display" "block") }}
+</aside>

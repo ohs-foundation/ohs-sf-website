@@ -329,6 +329,24 @@
   padding-top: 16px;
 }
 
+/* Featured post with a `cardImage` (a narrower 4:3 picture): the text gets
+   the wider column, so long titles fit, and the picture sits beside it. */
+.featured.with-card {
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+}
+
+.featured.with-card .featured-art.has-cover {
+  aspect-ratio: 4 / 3;
+}
+
+.featured.with-card .featured-body h2 {
+  -webkit-line-clamp: 4;
+}
+
+.featured.with-card .featured-body .excerpt {
+  -webkit-line-clamp: 3;
+}
+
 /* Narrow screens: image on top, full width and flush with the card's top,
    left and right edges, at its own shape; text below. */
 @media (max-width: 1080px) {

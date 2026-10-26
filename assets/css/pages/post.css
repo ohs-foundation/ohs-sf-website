@@ -194,6 +194,91 @@
   font-weight: 700;
 }
 
+/* "About the author" box at the end of a post (authors from data/authors.yaml). */
+.author-box {
+  max-width: 720px;
+  margin: 56px auto 0;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.ab-photo {
+  flex: none;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--bg-2);
+}
+
+/* Placeholder when an author has no photo: light head and shoulders on blue-grey. */
+.ab-placeholder { background: oklch(0.58 0.06 235); }
+.ab-placeholder circle { fill: oklch(0.93 0.01 235); }
+.ab-placeholder path { fill: oklch(0.36 0.04 250); }
+
+.ab-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+
+.ab-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.ab-name { font-size: 1.15rem; font-weight: 700; color: var(--ink); }
+a.ab-name:hover { color: var(--teal); }
+.ab-role { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.45; }
+
+.ab-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 4px; }
+.ab-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--teal-deep);
+}
+.ab-links a:hover { color: var(--teal); }
+.ab-links svg { color: var(--ink-faint); }
+
+.article-meta .byline a { color: inherit; border-bottom: 1px solid var(--line); }
+.article-meta .byline a:hover { border-color: currentColor; }
+
+@media (max-width: 560px) {
+  .author-box { align-items: flex-start; gap: 14px; padding: 18px; }
+  .ab-photo { width: 56px; height: 56px; }
+}
+
+/* {{< callout >}}: a highlighted box inside a post; the last paragraph stands out. */
+.callout {
+  margin: 40px 0;
+  padding: clamp(24px, 3.4vw, 34px) clamp(22px, 3.4vw, 38px);
+  border-radius: var(--radius-lg);
+  background: var(--teal-wash);
+  border: 1px solid color-mix(in oklch, var(--teal) 22%, transparent);
+}
+
+.callout p {
+  font-size: 1.12rem;
+  line-height: 1.6;
+  color: oklch(0.34 0.018 210);
+}
+
+.callout p:last-child:not(:first-child) {
+  margin-top: 12px;
+  font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
 .closer {
   max-width: 720px;
   margin: 44px auto 0;
@@ -202,6 +287,14 @@
 .closer p {
   font-size: 1.16rem;
   line-height: 1.6;
+  color: oklch(0.34 0.018 210);
+}
+
+/* A closer with a single paragraph: a quieter sign-off (bold italic, dark grey). */
+.closer p:only-child {
+  font-weight: 700;
+  font-style: italic;
+  font-size: 1.16rem;
   color: oklch(0.34 0.018 210);
 }
 
@@ -338,11 +431,20 @@
   color: inherit;
 }
 
+.article-body .table-wrap {
+  margin-top: 1.6em;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .article-body table {
   width: 100%;
-  margin-top: 1.6em;
   border-collapse: collapse;
   font-size: 0.98rem;
+}
+
+@media (max-width: 560px) {
+  .article-body table { min-width: 560px; font-size: 0.92rem; }
 }
 
 .article-body th,

@@ -4,6 +4,7 @@
 latest: Latest                       # tag on the featured (newest) blog post
 readThePost: Read the post           # default link text on blog cards (posts can set readMore)
 by: By                               # "By <author>"
+aboutTheAuthor: About the author     # heading of the author box at the end of a post
 minRead: min read                    # "· 3 min read"
 shareThisPost: Share this post
 copyLink: Copy link
