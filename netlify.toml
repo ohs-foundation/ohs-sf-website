@@ -35,13 +35,36 @@
   status = 301
 
 # ── Caching ───────────────────────────────────────────────────────────────
-# CSS/JS file names include a content hash, so they can be cached forever.
-[[headers]]
-  for = "/css/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
+# JS and font file names include a content hash, so they can be cached forever.
+# (The CSS is written into each page, so it has no files of its own.)
 [[headers]]
   for = "/js/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# ── Security headers ──────────────────────────────────────────────────────
+# Safe defaults that don't change how the site works:
+# - X-Content-Type-Options: browsers trust the file types Netlify sends
+# - X-Frame-Options: other sites can't show these pages inside a frame
+#   (protects against "clickjacking")
+# - Referrer-Policy: other sites see only "ohs.foundation", not the full page
+#   address, when someone follows a link (the browser default, made explicit)
+# - Cross-Origin-Opener-Policy: another site that opens one of these pages in
+#   a new window can't reach into it
+# - Permissions-Policy: the site never asks for camera, microphone, location
+#   and so on, so turn them off
+# A Content-Security-Policy is a separate follow-up (the EmailOctopus forms
+# load scripts from other sites, so it needs testing in report-only mode first).
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Cross-Origin-Opener-Policy = "same-origin-allow-popups"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()"

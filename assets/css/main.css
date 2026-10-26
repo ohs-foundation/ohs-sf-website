@@ -13,7 +13,7 @@
   --surface:   #ffffff;
   --ink:       oklch(0.245 0.018 210);
   --ink-soft:  oklch(0.46 0.018 210);
-  --ink-faint: oklch(0.60 0.015 210);
+  --ink-faint: oklch(0.60 0.015 210);   /* borders, dots, icons, placeholders — not text (brand: text is Ink or Ink soft) */
   --line:      oklch(0.905 0.008 200);
   --line-soft: oklch(0.945 0.006 200);
 
@@ -47,6 +47,11 @@
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
+  /* Fonts (self-hosted, see layouts/_partials/fonts.html). The "Fallback" faces
+     are resized local fonts shown until the real ones load. */
+  --font-sans: 'Hanken Grotesk', 'Hanken Grotesk Fallback', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'IBM Plex Mono Fallback', ui-monospace, monospace;
+
   /* Official logo colours (the four squares, top-left → bottom-right). */
   --logo-1: #07858a;
   --logo-2: #0c87a7;
@@ -60,7 +65,7 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
-  font-family: 'Hanken Grotesk', system-ui, sans-serif;
+  font-family: var(--font-sans);
   color: var(--ink);
   background: var(--bg);
   font-size: 17px;
@@ -72,6 +77,10 @@ body {
 
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
+
+/* "Skip to content": off-screen until a keyboard user tabs to it */
+.skip-link { position: absolute; left: 12px; top: -100px; z-index: 1000; padding: 10px 16px; border-radius: 10px; background: var(--ink); color: #fff; font-weight: 600; }
+.skip-link:focus { top: 12px; }
 
 /* ---------- Typography ---------- */
 h1, h2, h3, h4 {
@@ -97,7 +106,7 @@ p { margin: 0; }
 
 /* Eyebrow / mono label */
 .eyebrow {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.74rem;
   font-weight: 500;
   letter-spacing: 0.16em;
@@ -177,7 +186,7 @@ section { position: relative; }
 .brand { display: flex; align-items: center; gap: 11px; font-weight: 700; letter-spacing: -0.02em; flex: none; }
 .brand .brandname { font-size: 0.96rem; line-height: 1.12; white-space: nowrap; }
 .brand .brandname b { display: block; font-weight: 700; }
-.brand .brandname span { display: block; font-size: 0.69rem; font-weight: 500; color: var(--ink-faint); letter-spacing: 0.04em; }
+.brand .brandname span { display: block; font-size: 0.69rem; font-weight: 500; color: var(--ink-soft); letter-spacing: 0.04em; }
 .nav-links { display: flex; align-items: center; gap: 4px; margin-left: 8px; }
 .nav-links a {
   font-weight: 500; font-size: 0.96rem; color: var(--ink-soft);
@@ -201,9 +210,10 @@ section { position: relative; }
   padding: 14px var(--gut) 26px;
   box-shadow: var(--shadow-md);
   transform: translateY(-12px); opacity: 0; pointer-events: none;
-  transition: transform 0.3s var(--ease), opacity 0.3s;
+  visibility: hidden; /* keeps the closed menu's links out of the Tab order and away from screen readers */
+  transition: transform 0.3s var(--ease), opacity 0.3s, visibility 0s linear 0.3s;
 }
-.mobile-nav.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.mobile-nav.open { transform: translateY(0); opacity: 1; pointer-events: auto; visibility: visible; transition-delay: 0s; }
 .mobile-nav a { display: block; padding: 13px 6px; font-size: 1.1rem; font-weight: 600; border-bottom: 1px solid var(--line-soft); }
 .mobile-nav .btn { display: flex; margin-top: 18px; width: 100%; justify-content: center; padding: 0.82em 1.4em; border-bottom: 0; }
 
@@ -225,15 +235,15 @@ section { position: relative; }
 .card.hover:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: transparent; }
 
 .tag {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
   padding: 5px 10px; border-radius: 7px;
   background: var(--bg-2); color: var(--ink-soft);
   display: inline-flex; align-items: center; gap: 6px;
 }
-.tag.core { background: var(--core-wash);    color: var(--core); }
-.tag.ai { background: var(--ai-wash);      color: var(--ai); }
-.tag.toolkit { background: var(--toolkit-wash); color: var(--toolkit); }
+.tag.core { background: var(--core-wash);    color: var(--ink-soft); }
+.tag.ai { background: var(--ai-wash);      color: var(--ink-soft); }
+.tag.toolkit { background: var(--toolkit-wash); color: var(--ink-soft); }
 .tag.teal { background: var(--teal-wash);    color: var(--teal-deep); }
 
 .icon-chip {
@@ -261,7 +271,7 @@ section { position: relative; }
 /* ---------- Footer ---------- */
 .site-footer { background: var(--ink); color: oklch(0.86 0.01 200); padding-block: 72px 40px; }
 .footer-grid { display: grid; grid-template-columns: 1.6fr repeat(3, 1fr); gap: 40px; }
-.site-footer h4 { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.66 0.02 200); font-weight: 500; margin-bottom: 16px; }
+.site-footer h2 { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.66 0.02 200); font-weight: 500; margin-bottom: 16px; }
 .site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
 .site-footer a { color: oklch(0.82 0.012 200); transition: color 0.18s; font-size: 0.95rem; }
 .site-footer a:hover { color: #fff; }
@@ -313,7 +323,7 @@ section { position: relative; }
 /* Field labels, if the form is configured to show them */
 .newsletter-form .emailoctopus-form-row label {
   display: block; text-align: left; margin-bottom: 6px;
-  font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.04em;
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.04em;
   text-transform: uppercase; color: oklch(0.78 0.015 200);
 }
 .newsletter-form input[type="submit"] {
@@ -378,11 +388,11 @@ section { position: relative; }
 .newsletter.standalone .newsletter-form .form-control { background: rgba(255, 255, 255, 0.6); border-color: color-mix(in oklch, var(--teal-deep) 20%, var(--line)); color: var(--ink); }
 .newsletter.standalone .newsletter-form .form-control::placeholder { color: var(--ink-faint); }
 .newsletter.standalone .newsletter-form .form-control:focus { border-color: var(--teal-deep); background: rgba(255, 255, 255, 0.85); }
-.newsletter.standalone .newsletter-form .emailoctopus-form-row label { color: var(--ink-faint); }
+.newsletter.standalone .newsletter-form .emailoctopus-form-row label { color: var(--ink-soft); }
 .newsletter.standalone .newsletter-form input[type="submit"] { background: var(--teal-deep); }
 .newsletter.standalone .newsletter-form input[type="submit"]:hover { background: oklch(0.37 0.078 205); }
 .newsletter.standalone .newsletter-form .emailoctopus-form-row-consent label,
-.newsletter.standalone .newsletter-form .emailoctopus-form-row-consent { color: var(--ink-faint) !important; }
+.newsletter.standalone .newsletter-form .emailoctopus-form-row-consent { color: var(--ink-soft) !important; }
 .newsletter.standalone .newsletter-form .emailoctopus-success-message,
 .newsletter.standalone .newsletter-form .emailoctopus-error-message {
   color: var(--ink) !important; background: var(--surface); box-shadow: var(--shadow-sm);
