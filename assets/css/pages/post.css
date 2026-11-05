@@ -207,6 +207,10 @@
   background: var(--surface);
 }
 
+.author-box + .author-box {
+  margin-top: 16px;
+}
+
 .ab-photo {
   flex: none;
   width: 72px;
@@ -277,6 +281,30 @@ a.ab-name:hover { color: var(--teal); }
   line-height: 1.35;
   letter-spacing: -0.015em;
   color: var(--ink);
+}
+
+.callout ul {
+  margin: 14px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  list-style: none;
+}
+
+.callout ul li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: oklch(0.34 0.018 210);
+}
+
+.callout ul li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--teal-deep);
+  font-weight: 600;
 }
 
 .closer {

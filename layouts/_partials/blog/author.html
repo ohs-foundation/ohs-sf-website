@@ -1,15 +1,38 @@
 {{- /*
-  The author of a post as a dict {key, name, role, linkedin, github, photo}.
-  `author:` in the post is either a key from data/authors.yaml or plain text,
-  which becomes just the name. Returns an empty dict when there's no author.
+  The author(s) of a post as a dict {key, name, role, linkedin, github, photo, list}.
+  `author:` in the post is either a key from data/authors.yaml, a list of keys,
+  or plain text. Returns an empty dict when there's no author.
 */ -}}
-{{- $out := dict -}}
-{{- with .Params.author -}}
+{{- $raw := .Params.author | default .Params.authors -}}
+{{- $items := slice -}}
+{{- if reflect.IsSlice $raw -}}
+  {{- $items = $raw -}}
+{{- else if $raw -}}
+  {{- $items = slice $raw -}}
+{{- end -}}
+
+{{- $authorList := slice -}}
+{{- $names := slice -}}
+{{- range $items -}}
   {{- $key := . -}}
   {{- with index (hugo.Data.authors | default dict) $key -}}
-    {{- $out = merge . (dict "key" $key) -}}
+    {{- $a := merge . (dict "key" $key) -}}
+    {{- $authorList = $authorList | append $a -}}
+    {{- $names = $names | append .name -}}
   {{- else -}}
-    {{- $out = dict "name" $key -}}
+    {{- $a := dict "name" $key -}}
+    {{- $authorList = $authorList | append $a -}}
+    {{- $names = $names | append $key -}}
   {{- end -}}
+{{- end -}}
+
+{{- $out := dict -}}
+{{- if gt (len $authorList) 0 -}}
+  {{- $first := index $authorList 0 -}}
+  {{- $nameJoined := delimit $names ", " -}}
+  {{- if eq (len $names) 2 -}}
+    {{- $nameJoined = delimit $names " and " -}}
+  {{- end -}}
+  {{- $out = merge $first (dict "name" $nameJoined "list" $authorList) -}}
 {{- end -}}
 {{- return $out -}}

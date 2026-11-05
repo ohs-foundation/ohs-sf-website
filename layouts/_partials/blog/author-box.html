@@ -1,5 +1,6 @@
 {{- /* "About the author" box at the end of a post (only for authors listed in data/authors.yaml). */ -}}
-{{- $a := partial "blog/author.html" . -}}
+{{- $auth := partial "blog/author.html" . -}}
+{{- range $a := ($auth.list | default (slice $auth)) -}}
 {{- if $a.key }}
 <aside class="author-box reveal" aria-label="{{ T "aboutTheAuthor" }}">
   {{- with partial "blog/author-photo.html" (dict "author" $a "size" 72) }}
@@ -12,6 +13,8 @@
     <span class="ab-label">{{ T "aboutTheAuthor" }}</span>
     {{- if $a.linkedin }}
     <a class="ab-name" href="{{ $a.linkedin }}" target="_blank" rel="noopener">{{ $a.name }}</a>
+    {{- else if $a.github }}
+    <a class="ab-name" href="https://github.com/{{ $a.github }}" target="_blank" rel="noopener">{{ $a.name }}</a>
     {{- else }}
     <span class="ab-name">{{ $a.name }}</span>
     {{- end }}
@@ -24,4 +27,5 @@
     {{- end }}
   </div>
 </aside>
+{{- end }}
 {{- end }}

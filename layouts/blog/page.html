@@ -15,7 +15,14 @@
           <span class="mchip">{{ . }}</span>
           {{- end }}
           {{- with partial "blog/author.html" . }}{{ if .name }}
-          <span class="byline">{{ T "by" }} {{ if .linkedin }}<a href="{{ .linkedin }}" target="_blank" rel="noopener"><b>{{ .name }}</b></a>{{ else }}<b>{{ .name }}</b>{{ end }}</span>
+          <span class="byline">{{ T "by" }} {{ if gt (len .list) 1 -}}
+            {{- range $i, $a := .list -}}
+              {{- if gt $i 0 }} and {{ end -}}
+              {{- if $a.linkedin }}<a href="{{ $a.linkedin }}" target="_blank" rel="noopener"><b>{{ $a.name }}</b></a>{{ else if $a.github }}<a href="https://github.com/{{ $a.github }}" target="_blank" rel="noopener"><b>{{ $a.name }}</b></a>{{ else }}<b>{{ $a.name }}</b>{{ end -}}
+            {{- end -}}
+          {{- else -}}
+            {{- if .linkedin }}<a href="{{ .linkedin }}" target="_blank" rel="noopener"><b>{{ .name }}</b></a>{{ else if .github }}<a href="https://github.com/{{ .github }}" target="_blank" rel="noopener"><b>{{ .name }}</b></a>{{ else }}<b>{{ .name }}</b>{{ end -}}
+          {{- end }}</span>
           {{- end }}{{ end }}
           <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
           <span>· {{ .ReadingTime }} {{ T "minRead" }}</span>

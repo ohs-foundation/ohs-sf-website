@@ -1,141 +1,93 @@
 ---
-title: "The Standards Tax Is Shrinking: What Happens When Building on FHIR Costs 62 Cents?"
+title: "The “FHIR Tax” Is Shrinking"
 date: 2026-10-20
-author: fikri-milano
+author:
+  - fikri-milano
+  - jing-tang
 category: "Research"
-summary: "We had AI coding agents build the same offline-first antenatal care app three ways. Building on FHIR and Open Health Stack cost just 62 cents more than a quick-and-dirty custom stack, and produced an app whose data isn't trapped on the device."
+summary: "We had AI coding agents build the same offline-first antenatal care app four ways. Combining AI coding agents with Open Health Stack libraries and Agent Skills significantly reduces the “FHIR tax” — building a fully working offline-first FHIR app for under $1."
 cover: cover.jpg
-coverAlt: "62 cents: the extra AI cost of building an offline-first app on FHIR and Open Health Stack. A bar chart compares the cost to build the same app: custom stack $0.84, Open Health Stack with skills $1.46, Open Health Stack libraries only $3.48."
+coverAlt: "50 cents: the extra AI cost of building an offline-first app on FHIR and Open Health Stack with skills. A bar chart compares the average cost across frontier models to build the same app: custom stack $0.79, Open Health Stack with skills $1.29 (+50¢), Open Health Stack libraries only $3.69."
 cardImage: card.jpg       # narrower 4:3 picture for the blog page's featured card
-shortTitle: "The standards tax is shrinking"
+shortTitle: "The “FHIR Tax” is shrinking"
 readMore: "Read the experiment"
 draft: false
 ---
 
-**For decades, digital health projects skipped open standards because implementing HL7 FHIR is notoriously complex — requiring specialized domain knowledge, custom validators, and resilient sync engines. In resource-constrained healthtech, building bespoke APIs was the pragmatic choice, leading to pervasive "pilotitis" where trapped data dies alongside retiring app contracts.**
+For years, digital health projects skipped open standards like [HL7 FHIR](https://fhir.org/) because implementation was complex and time-consuming. Instead, teams built custom data models, resulting in fragmented, siloed data and ultimately hampering interoperability efforts. When we launched Open Health Stack (OHS) in 2023, our goal was to lower the barriers to working with FHIR, and to make it the obvious choice for digital health developers. Today, we show that combining AI coding agents with the OHS libraries and Agent Skills has significantly reduced the “FHIR tax” for developers.
 
-Recently, [Health Samurai](https://www.health-samurai.io/articles/fhir-as-a-framework-for-agentic-coding) suggested that AI coding agents might break this cycle. Their hypothesis: **FHIR provides ready-made "rails" for agentic coding.** A standardized clinical data model and strict server-side validation constrain what an agent can produce, preventing the hallucinations, schema drift, and architectural decay typical of unconstrained coding sessions.
+## The Experiment: Building the Same Digital Health App Four Ways
 
-Their early evidence was qualitative, drawn from rebuilding an internal Personal Health Record twice with Claude Code. We wanted to put hard empirical numbers to this idea in a real-world, frontline mobile health context. And the results are pretty interesting. Read on.
+Recently, [Health Samurai](https://www.health-samurai.io/articles/fhir-as-a-framework-for-agentic-coding) showed qualitatively that FHIR could act as the ready-made “rails” for AI coding agents. Inspired by this work, and to demonstrate it more empirically, we built an [automated test harness](https://github.com/ohs-foundation/ohs-labs/tree/main/ohs-agent-experiment) to evaluate AI coding agents' ability to build an offline-first Android Antenatal Care (ANC) register from a prompt. A successfully built app (e.g., [here](https://raw.githubusercontent.com/ohs-foundation/ohs-labs/main/ohs-agent-experiment/runs/s1-ohs-skills-gemini-3.8-flash-medium-15/launch.png)) had to list patients, show their visit history, record new visits, retain data after a restart, and demonstrate 2-way sync with a FHIR server.
 
-## The Experiment: Building the Same Digital Health App Three Ways
+**We compared four ways of building it:**
 
-We built an automated test harness to evaluate autonomous AI coding agents constructing an offline-first Android Antenatal Care (ANC) register from scratch. Requirements included patient registration, visit history tracking, clinical data entry, and offline persistence with bidirectional server sync.
+1. **No FHIR:** The agent received a [blank Android project](https://github.com/ohs-foundation/ohs-labs/tree/main/ohs-agent-experiment/harness/template-src/cold) and was free to design the data model and store data any way it saw fit. This was used as the baseline for the costs of not using FHIR (though there are limitations here, as no back-end was developed).
+2. **FHIR only:** The agent received a [blank Android project](https://github.com/ohs-foundation/ohs-labs/tree/main/ohs-agent-experiment/harness/template-src/fhir) and the same local HAPI FHIR server, but no OHS libraries. It was free to use any library to work with FHIR.
+3. **FHIR + OHS Libraries:** The [project](https://github.com/ohs-foundation/ohs-labs/tree/main/ohs-agent-experiment/harness/template-src/ohs) came with three [Open Health Stack](https://ohs.foundation) Kotlin Multiplatform libraries: [Kotlin FHIR Models](https://github.com/ohs-foundation/kotlin-fhir), [Kotlin FHIR Engine](https://github.com/ohs-foundation/kotlin-fhir-engine), and [Kotlin FHIR Data Capture](https://github.com/ohs-foundation/kotlin-fhir-data-capture) (FHIR Models, FHIR Engine, and Data Capture, respectively). It also came with a local HAPI FHIR server and no extra documentation for the agent.
+4. **FHIR + OHS Libraries + Skills:** The same OHS setup plus three short [Agent Skills (SKILL.md)](https://github.com/ohs-foundation/ohs-labs/tree/main/ohs-agent-experiment/skills). A skill is a Markdown file with additional instructions for using the libraries that the agent reads while it works.
 
-We evaluated this build across three distinct conditions:
+We ran each condition twice on six models (in order of our tests). Anthropic’s Claude Haiku 5.5, Sonnet 5.5, Opus 5.5, and Fable 5.1 ran in Claude Code, and Gemini 3.8 Flash and Gemini 4 Argon ran in the Antigravity CLI, all at medium reasoning effort. Every run was headless, with no human input. Costs are at API prices at the time of the runs.
 
-1. **Condition 1: Cold (Unconstrained):** The agent received a blank Android project and was free to design the data model and storage mechanism any way it saw fit.
-2. **Condition 2: Open Health Stack (OHS):** The project came pre-configured with [Open Health Stack](/projects.html) Kotlin Multiplatform (KMP) libraries (Kotlin FHIR Models, Kotlin FHIR Engine, and Kotlin FHIR Data Capture) alongside a local HAPI FHIR server, but with *no* extra agent documentation.
-3. **Condition 3: OHS + Skills:** The exact same OHS setup, accompanied by three concise markdown reference documents ("skills") detailing how the libraries work, their primary API entry points, and common integration traps.
+**👉 [Explore the GitHub Repository: ohs-foundation/labs-ohs-agent](https://github.com/ohs-foundation/labs-ohs-agent)**
 
-The harness was tested across multiple frontier models, including **Gemini 3.8 Flash** driving the Antigravity CLI and Anthropic's Claude suite (**Haiku 5.5, Sonnet 5.5, Opus 5.5, Fable 5.1**) driving Claude Code. All runs used medium reasoning effort and operated completely headlessly: the agent received the prompt once, terminal commands were executed automatically, and no human touched the keyboard until the build completed.
+We tested every app on an Android emulator and scored it against a set of criteria (see box), with each criterion worth 1 point, for an objective score out of 10.
 
-## What the Benchmark Showed
+{{< callout >}}
+**10-point evaluation criteria (1 point each):**
+- Lists the patients
+- Shows a patient's past visits
+- Uses the clinic's visit form
+- Saves a new visit
+- Keeps the visit after a restart
+- Sends data the server accepts as valid FHIR
+- Saves a visit with no network
+- Uploads it by itself once the network is back
+- Still opens offline
+- Still uploads it after the app is closed
+{{< /callout >}}
 
-Here are the results for **Gemini 3.8 Flash** running in the Antigravity CLI (averaged across two runs per condition):
+## A Fully Working FHIR App for under $1
 
-| Metric | Cold (Custom Stack) | OHS (Libraries Only) | OHS + Skills (Libraries + Docs) |
-|---|---|---|---|
-| Working App | 2 of 2 | 2 of 2 | **2 of 2** |
-| Total API Cost | $0.84 | $3.48 | **$1.46** |
-| Time to Finish | 4.6 min | 16.4 min | **6.5 min** |
-| Agent Tool Actions | 72 | 221 | **94** |
-| Lines of Kotlin | ~2,130 | ~1,740 | **~1,600** |
-| Server Rejections Self-Corrected | N/A (no server) | 3 | **4** |
-| Underlying Data Architecture | Flat JSON file on device | Mixed custom & FHIR | **SQLite FHIR DB & background sync** |
+With skills, every OHS app was fully working and cost an average of $0.50 (50 cents) more to build than the zero-shot custom app (which didn’t work as a fully functioning app anyway). ✅ indicates a fully working app that passes all 10 checks. All the models below are running on medium level reasoning effort. 
+
+| Model | No FHIR | FHIR without OHS | OHS only | OHS + Skills |
+| :--- | :--- | :--- | :--- | :--- |
+| **Claude Sonnet 5.5** | $0.24, 1.5 min, 4/10 | $0.72, 6.0 min, 6/10 | $0.78, 5.9 min, 6/10 | ✅ $0.54, 3.2 min, 10/10 |
+| **Gemini 4 Argon** | $0.63, 8.7 min, 4/10 | $0.44, 6.3 min, 6/10 | $4.05, 23.3 min, 8/10 | ✅ $0.80, 8.9 min^, 10/10 |
+| **Claude Opus 5.5** | $0.70, 4.1 min, 4/10 | $1.08, 4.7 min, 6/10 | $2.65, 7.8 min, 8/10 | ✅ $1.17, 4.7 min, 10/10 |
+| **Gemini 3.8 Flash** | $0.84, 4.6 min, 4/10 | $1.08, 15.6 min, 5/10 | $3.48, 16.4 min, 8/10 | ✅ $1.22, 13.5 min^, 10/10 |
+| **Claude Fable 5.1** | $1.53, 3.9 min, 4/10 | $2.56, 9.6 min, 6/10 | $7.48, 17.8 min, 8/10 | ✅ $2.73, 5.2 min, 10/10 |
+
+Cost and time per build were the average of two runs and based on current token pricing. [Full results here](https://github.com/ohs-foundation/ohs-labs/blob/main/ohs-agent-experiment/results/app-scores.md).
+
+*^Gemini 3.8 Flash's builds with skills took longer mainly because of waiting for responses from the Gemini API. Its token use and tool actions were about the same as in earlier builds that finished in around 6.5 minutes. Claude Haiku 5.5 is not shown because it never built a FHIR app that works offline, even with skills.*
 
 ## Three Key Takeaways
 
-### 1. The "Standards Tax" is under 2 minutes and 62 cents
+### 1. The “FHIR Tax” is negligible
+Across the models that scored 10/10 building with skills cost on average 50 cents ($0.17 to $1.20) more than a custom (non-functional) app. For that additional cost, we were able to develop a working offline-capable FHIR-based app that stores visits on the device, syncs them with a FHIR server, and renders the clinic's standard visit form (defined in FHIR Questionnaires).
 
-With basic markdown skills provided, generating an app that persists data to an offline-first FHIR database and syncs with a standard FHIR server cost **$1.46 and took 6.5 minutes**. Compared to the quick-and-dirty custom app ($0.84, 4.6 minutes), the premium for building on open standards was just **62 cents and 114 seconds**.
+### 2. FHIR server validation provides an automated feedback loop
+In the OHS runs, a local HAPI FHIR server checks every incoming resource against the standard FHIR profiles. When an agent sent something invalid, the server rejected it with an OperationOutcome error explaining why, and the agent could read that error and fix its code without anyone stepping in. This shows the value of a toolchain that validates the agent's work and explains what is wrong in a form the agent can act on.
 
-### 2. The custom app was an architectural dead end
+### 3. Libraries and skills work best together
+Agent Skills made the biggest difference. Without them, the AI agents spent about 11 actions per build digging through the libraries' compiled code to work out how to use them. With these plain-language custom skills.md files, that fell to about 2, and the total work per build was roughly halved. Because they're based on the open [Agent Skills specification](https://agentskills.io/home), the same skills can be used across models and harnesses.
 
-The unconstrained "Cold" runs produced working user interfaces quickly, but they accomplished it by cutting every corner that matters in production healthcare. The agent simply overwrote a single flat JSON file on the device on every save. No other clinic system could ingest it, the data could never feed national reporting indicators, and if the device broke, the patient's longitudinal history vanished with it.
+## What are the implications of this?
+The cost of implementing standards has long been a hurdle to adoption of FHIR. When budgets are tight, and projects are measured by time to delivery, many see the learning curve as too steep. This pragmatic approach, whilst understandable, tends to kick conversations about interoperability down the road. In this experiment, we have shown that the combination of OHS tooling + skills + AI coding agents changes the math. **For digital health projects, it no longer makes sense not to choose the standards-based approach.**
 
-### 3. Server validation became an automated feedback loop
+Looking ahead, what matters more for developers and product owners is a deeper understanding of the FHIR standard, specifically the *“why”*, not just the *“how”*. For example, using FHIR profiles appropriately to cater for context specific use cases, defining extensions for custom data needs without breaking compatibility, grounding data in terminologies for true semantic interoperability, and deploying implementation guides for complex workflows and clinical quality metrics. These are high-value, durable skills that are key for organizations and countries alike that want to build and implement truly interoperable systems.
 
-In the OHS runs, a local HAPI FHIR server actively validated incoming payloads against standard clinical resource profiles. When the agent generated an invalid structure or omitted a required code binding, the server rejected it with a structured `OperationOutcome` error. Rather than failing silently, the agent inspected the validation failure, fixed its Kotlin resource builders, and re-submitted until accepted — without any human intervention.
+What's more, when the cost of building FHIR-compliant apps is lowered, the bottleneck shifts from the initial build to rigorous testing and quality control. Teams must be extra vigilant in verifying data mappings, stress-testing edge cases, and ensuring clinical safety. With fast, safe, high-quality apps more readily available, the truly creative solutions will begin to shine.
 
-## Does the Result Hold Across Models?
+## Closing thoughts
+When we set out to build Open Health Stack, we wanted to reduce the complexity of building with FHIR. Whilst it would be nice to claim *“mission accomplished”*, we are not quite there yet. For us, this work provides an empirical signal that combining open data standards (HL7 FHIR) and open technologies (OHS Libraries and Agent Skills) with AI models and coding harnesses significantly shrinks the economic and time barriers to building FHIR-based digital health solutions.
 
-Was 62 cents an isolated anomaly? We evaluated the exact same task across four Anthropic models using Claude Code. The "Standards Tax" remained negligible across the board. On Sonnet, OHS with Skills cost just 28 cents more than Cold; on Opus, 61 cents more.
-
-### What Changed: How Agents Used the Libraries
-
-- **Opus and Fable used the libraries regardless of skills:** They leveraged FHIR Engine and Structured Data Capture (SDC) across every OHS run. Providing skills cut API consumption dramatically — from $2.65 to $1.31 on Opus, and from $7.48 to $2.66 on Fable.
-- **Sonnet required skills to use FHIR Engine properly:** Without skills, it skipped local offline persistence and streamed data directly to the server. With skills provided, it properly wired FHIR Engine and offline sync, while build cost fell from $0.78 to $0.52.
-- **Haiku never wired FHIR Engine:** Even with skills, Haiku sent data straight to HTTP endpoints, ignoring local offline caching. Its low price came at the cost of production readiness.
-
-### Real-World Testing on the Emulator
-
-To verify whether low cost translated to clinical utility, we tested all 24 generated apps in an Android emulator just as a nurse would: opening patients, recording visits, verifying persistence across app restarts, and checking server ingestion.
-
-- **18 of the 24 apps passed full end-to-end verification.**
-- **All six failures stemmed from the same shortcut:** bypassing local offline persistence in favor of direct HTTP calls to the server. Sonnet took this shortcut only when deprived of skills; Haiku took it every single time.
-
-**Key Rule:** Skills keep the Standards Tax small for capable frontier models.
-
-Smaller models take shortcuts, and skills alone cannot compensate for model reasoning limits.
-
-## AI Alone Is Not Enough: The Case for Open Health Infrastructure
-
-It is tempting to believe that AI coding agents mean developers can simply prompt complex digital health solutions into existence out of thin air. But frontline healthcare demands rigorous systems engineering:
-
-- **True offline-first operation:** Health workers in rural or remote settings cannot afford app freezes when network connectivity drops.
-- **Resilient background sync:** Merging clinical updates across intermittent networks without duplicating records or corrupting longitudinal histories.
-- **Dynamic clinical data entry:** Rendering validated clinical questionnaires without hardcoding hundreds of bespoke form fields into UI screens.
-
-AI agents cannot reliably invent that level of distributed systems plumbing during a single coding session. When the agent had libraries without architectural maps (Condition 2), it burned time and tokens inspecting raw JAR signatures and writing redundant HTTP boilerplate.
-
-{{< callout >}}
-The breakthrough is not "AI alone." It is the powerful intersection of:
-
-Open Standards (FHIR) + Open Infrastructure (OHS) + AI Coding Agents (with Skills)
-{{< /callout >}}
-
-Open Health Stack libraries (FHIR Engine, Structured Data Capture, Kotlin FHIR Models) solve the deep, invisible plumbing problems once (and now across platforms). The AI agent, steered by lightweight skills, becomes the rapid assembler that connects those battle-tested components directly to the clinic's workflow.
-
-## What Developers Should Actually Master
-
-For years, digital health engineering teams treated FHIR compliance as an intimidating chore best outsourced to specialized consultancies. That made sense when implementing FHIR meant handwriting thousands of lines of serialization boilerplate, custom Room schemas, and sync workers.
-
-When AI agents absorb that undifferentiated heavy lifting, the role of the health software engineer fundamentally shifts:
-
-1. **You don't need a decade of FHIR specialization to build compliant software.** Small product teams no longer need to be paralyzed by the volume of glue code needed to stand up a standard-compliant app.
-2. **Domain principles matter far more than framework syntax.** What engineers need to master are the core clinical concepts: how Encounters, Observations, and Conditions relate and link to create longitudinal patient histories; how Questionnaires standardize data capture; how terminologies and value sets prevent data degradation and promote interoperability.
-
-Learning FHIR and Open Health Stack patterns is a high-leverage, durable investment. You provide clinical intent and architectural choices; the agent writes the glue.
-
-## When the Plumbing Is Solved, What Matters Next?
-
-When standing up a compliant, offline-first clinical application drops from months to minutes, engineering and clinical energy can finally refocus where it matters:
-
-- **Frontline Clinical UX:** Spending time in clinics observing community health workers and nurses, eliminating tap fatigue, streamlining flows, and accommodating interruptions during patient visits.
-- **Clinical Decision Support:** Focusing on genuine clinical bottlenecks, adherence to local protocols, and user adoption instead of debugging database locks.
-- **Leveraging Interoperable Data:** Because data lands in standard FHIR stores from day one, it is immediately usable for longitudinal patient tracking, cohort analytics, and national health reporting.
-
-## Limitations & Reality Check: An Early Experiment, Not a Solved Problem
-
-It is vital to be clear about what this experiment is — and what it is not.
-
-**This is an exploratory early result, not a solved engineering problem.**
-
-Generating an initial Android register from a clean slate in an emulator is vastly simpler than operating a live clinical deployment. Real-world frontline health software presents challenges that our small harness did not test:
-
-- **Longitudinal Schema Evolution:** How do coding agents navigate data migrations, schema evolution, and FHIR Implementation Guide (IG) upgrades over five-year deployment lifecycles?
-- **Complex Clinical Logic:** How reliably do agents handle nested clinical decision support trees, complex triage protocols, and multi-facility referral chains?
-- **Model Vulnerability & Shortcuts:** As our benchmark demonstrated, smaller models still take risky architectural shortcuts (like skipping offline caching entirely), and capable models require explicit architectural guardrails ("skills") to avoid catastrophic architectural failure.
-
-This work is not declaring digital health software engineering "solved by AI." Rather, it provides an empirical directional signal: when given the right open infrastructure and clinical rails, the economic and time barriers to adopting open standards shrink by an order of magnitude.
-
-## An Open Invitation to Build
-
-This experiment evaluated a well-defined mobile digital health use case across multiple model sweeps and harness configurations. While two runs per condition illustrate strong directional patterns, many open questions remain. To accelerate research into agentic approaches for building standards-based apps, we have open-sourced the harness, task prompts, library skills, and raw execution transcripts in our repository:
-
-👉 [Explore the GitHub Repository: ohs-foundation/ohs-labs](https://github.com/ohs-foundation/ohs-labs/blob/main/ohs-agent-experiment)
+## Get Involved
 
 {{< closer >}}
-Whether you are deploying solutions on Open Health Stack, implementing FHIR, or experimenting with AI coding agents, we invite you to inspect the harness, run sweeps against your own workflows, and join the conversation.
+This experiment, along with the OHS Libraries, Reference Toolkit, and AI Commons projects, is open-sourced, and we invite anyone interested to try it out and get involved with the community!
+
+**👉 [Learn more about OHS Software Foundation and get involved](/community.html)**
 {{< /closer >}}

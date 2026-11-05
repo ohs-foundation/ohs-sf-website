@@ -414,9 +414,10 @@ fikri-milano:
 ```
 
 ```yaml
-author: fikri-milano     # in the post's front matter
+author: fikri-milano     # in the post's front matter, or a list: [fikri-milano, jing-tang]
 ```
 
+- **Multiple authors:** can be passed as a YAML list (`author: [fikri-milano, jing-tang]`), creating byline links and author boxes for each.
 - **Photo:** taken automatically from the author's GitHub profile picture when the site is built, resized and served from ohs.foundation (visitors' browsers never contact GitHub). A changed GitHub picture shows up on the next build. To use a different photo, put a square image in `assets/authors/` and set `photo:`. Without either, the box shows a placeholder silhouette.
 - **If GitHub can't be reached** during a build, the site still builds: the box shows the placeholder and the build log has a warning.
 - **Role** is one line you write by hand (LinkedIn can't be read automatically).
