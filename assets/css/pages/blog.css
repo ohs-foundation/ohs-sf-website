@@ -83,7 +83,7 @@
 /* Visual panel — the "temple" mark, no real imagery needed */
 .featured-art {
   position: relative;
-  background: var(--ink);
+  background:var(--band);
   overflow: hidden;
   display: grid;
   place-items: center;
@@ -143,15 +143,15 @@
 }
 
 .fa-col.c1 {
-  background: color-mix(in oklch, var(--core) 30%, var(--ink));
+  background: color-mix(in oklch, var(--core) 30%, var(--band));
 }
 
 .fa-col.c2 {
-  background: color-mix(in oklch, var(--toolkit) 30%, var(--ink));
+  background: color-mix(in oklch, var(--toolkit) 30%, var(--band));
 }
 
 .fa-col.c3 {
-  background: color-mix(in oklch, var(--ai) 30%, var(--ink));
+  background: color-mix(in oklch, var(--ai) 30%, var(--band));
 }
 
 .fa-col i {
@@ -258,7 +258,7 @@
 .post-row .arrow {
   flex: none;
   margin-left: auto;
-  color: var(--teal-deep);
+  color: var(--accent);
 }
 
 .post-row:hover .arrow {
@@ -378,7 +378,7 @@
 }
 
 .post-row .pr-thumb-art {
-  background: var(--ink);
+  background:var(--band);
 }
 
 .post-row .pr-thumb-art .logo-mark {

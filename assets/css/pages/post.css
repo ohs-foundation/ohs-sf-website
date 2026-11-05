@@ -15,7 +15,7 @@
 }
 
 .breadcrumb a {
-  color: var(--teal-deep);
+  color: var(--accent);
 }
 
 .breadcrumb a:hover {
@@ -59,7 +59,7 @@
   align-items: center;
   gap: 8px;
   background: var(--teal-wash);
-  color: var(--teal-deep);
+  color: var(--accent);
   padding: 6px 12px;
   border-radius: 999px;
   text-transform: uppercase;
@@ -79,14 +79,14 @@
 }
 
 .article-body a {
-  color: var(--teal-deep);
+  color: var(--accent);
   font-weight: 600;
-  border-bottom: 1.5px solid color-mix(in oklch, var(--teal-deep) 35%, transparent);
+  border-bottom: 1.5px solid color-mix(in oklch, var(--accent) 35%, transparent);
   transition: border-color 0.2s, color 0.2s;
 }
 
 .article-body a:hover {
-  border-color: var(--teal-deep);
+  border-color: var(--accent);
   color: var(--teal);
 }
 
@@ -94,7 +94,7 @@
   margin-top: 1.35em;
   font-size: 1.14rem;
   line-height: 1.72;
-  color: oklch(0.34 0.018 210);
+  color: var(--ink-body);
   text-wrap: pretty;
 }
 
@@ -122,7 +122,7 @@
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--teal-deep);
+  color: var(--accent);
   margin-bottom: 12px;
 }
 
@@ -186,7 +186,7 @@
   padding: 4px 0 4px 20px;
   font-size: 1.08rem;
   line-height: 1.62;
-  color: oklch(0.34 0.018 210);
+  color: var(--ink-body);
 }
 
 .article-body>ul>li>strong {
@@ -246,7 +246,7 @@ a.ab-name:hover { color: var(--teal); }
   gap: 4px;
   font-size: 0.88rem;
   font-weight: 600;
-  color: var(--teal-deep);
+  color: var(--accent);
 }
 .ab-links a:hover { color: var(--teal); }
 .ab-links svg { color: var(--ink-faint); }
@@ -271,7 +271,7 @@ a.ab-name:hover { color: var(--teal); }
 .callout p {
   font-size: 1.12rem;
   line-height: 1.6;
-  color: oklch(0.34 0.018 210);
+  color: var(--ink-body);
 }
 
 .callout p:last-child:not(:first-child) {
@@ -296,14 +296,14 @@ a.ab-name:hover { color: var(--teal); }
   padding-left: 20px;
   font-size: 1.05rem;
   line-height: 1.5;
-  color: oklch(0.34 0.018 210);
+  color: var(--ink-body);
 }
 
 .callout ul li::before {
   content: "—";
   position: absolute;
   left: 0;
-  color: var(--teal-deep);
+  color: var(--accent);
   font-weight: 600;
 }
 
@@ -315,7 +315,7 @@ a.ab-name:hover { color: var(--teal); }
 .closer p {
   font-size: 1.16rem;
   line-height: 1.6;
-  color: oklch(0.34 0.018 210);
+  color: var(--ink-body);
 }
 
 /* A closer with a single paragraph: a quieter sign-off (bold italic, dark grey). */
@@ -323,7 +323,7 @@ a.ab-name:hover { color: var(--teal); }
   font-weight: 700;
   font-style: italic;
   font-size: 1.16rem;
-  color: oklch(0.34 0.018 210);
+  color: var(--ink-body);
 }
 
 .closer p+p {
@@ -385,11 +385,11 @@ a.ab-name:hover { color: var(--teal); }
   gap: 10px;
   font-size: 1.08rem;
   line-height: 1.62;
-  color: oklch(0.34 0.018 210);
+  color: var(--ink-body);
 }
 
 .article-body>ol>li::marker {
-  color: var(--teal-deep);
+  color: var(--accent);
   font-weight: 700;
 }
 
@@ -444,7 +444,7 @@ a.ab-name:hover { color: var(--teal); }
 .article-body pre {
   margin: 1.6em 0 0;
   padding: 18px 20px;
-  background: var(--ink);
+  background:var(--band);
   color: oklch(0.92 0.01 200);
   border-radius: var(--radius);
   overflow-x: auto;
@@ -595,7 +595,7 @@ a.ab-name:hover { color: var(--teal); }
 }
 
 .share-btn:hover {
-  border-color: var(--teal-deep);
-  color: var(--teal-deep);
+  border-color: var(--accent);
+  color: var(--accent);
   transform: translateY(-1px);
 }

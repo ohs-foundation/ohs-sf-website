@@ -3,7 +3,7 @@
 .welcome-hero .badge {
   display: inline-flex; align-items: center; gap: 8px;
   font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--teal-deep); background: var(--teal-wash);
+  text-transform: uppercase; color: var(--accent); background: var(--teal-wash);
   padding: 7px 14px; border-radius: 999px;
 }
 .welcome-hero h1 {
@@ -22,18 +22,18 @@
 .welcome-card ol, .welcome-card ul { margin: 18px 0 0; padding-left: 0; list-style: none; display: grid; gap: 12px; }
 .welcome-card ol { counter-reset: step; }
 .welcome-card ol li {
-  position: relative; padding-left: 40px; color: oklch(0.34 0.018 210); line-height: 1.6;
+  position: relative; padding-left: 40px; color: var(--ink-body); line-height: 1.6;
 }
 .welcome-card ol li::before {
   counter-increment: step; content: counter(step);
   position: absolute; left: 0; top: -1px;
   width: 26px; height: 26px; border-radius: 50%;
-  background: var(--teal-wash); color: var(--teal-deep);
+  background: var(--teal-wash); color: var(--accent);
   font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600;
   display: grid; place-items: center;
 }
 .welcome-card ul li {
-  position: relative; padding-left: 24px; color: oklch(0.34 0.018 210); line-height: 1.6;
+  position: relative; padding-left: 24px; color: var(--ink-body); line-height: 1.6;
 }
 .welcome-card ul li::before {
   content: ""; position: absolute; left: 4px; top: 9px;
@@ -49,4 +49,4 @@
   max-width: 720px; margin: 28px auto 0; text-align: center;
   color: var(--ink-soft); font-size: 0.95rem; line-height: 1.6; font-style: italic;
 }
-.welcome-note a { color: var(--teal-deep); font-weight: 600; }
+.welcome-note a { color: var(--accent); font-weight: 600; }
