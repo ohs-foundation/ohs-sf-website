@@ -1,0 +1,61 @@
+/* ============================================================================
+   Dark mode. Built on the brand's dark colour, Ink #162325 (OHS-SF Brand
+   Guidelines v1.0), with the reversed logo.
+
+   Every rule starts with [data-theme="dark"]. layouts/_partials/head.html adds
+   this file twice: once as written (the visitor picked dark with the sun/moon
+   button) and once inside @media (prefers-color-scheme: dark) with the prefix
+   swapped for :root:not([data-theme="light"]) (the device is in dark mode and
+   the visitor hasn't picked light). So write each rule once, here.
+
+   Most of the work is done by swapping the colour tokens; the few
+   component rules below are for things tokens can't express.
+   ============================================================================ */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg:        oklch(0.245 0.018 210);   /* Ink #162325 */
+  --bg-2:      oklch(0.275 0.018 210);
+  --surface:   oklch(0.295 0.018 210);
+  --ink:       oklch(0.965 0.005 200);
+  --ink-soft:  oklch(0.83 0.012 200);
+  --ink-body:  oklch(0.89 0.01 200);
+  --ink-faint: oklch(0.60 0.015 205);
+  --line:      oklch(0.385 0.016 210);
+  --line-soft: oklch(0.335 0.016 210);
+
+  --band:      oklch(0.195 0.014 210);   /* darker than the page so bands still read as bands */
+  --band-2:    oklch(0.215 0.015 210);
+  --header-bg: oklch(0.245 0.018 210 / 0.85);
+  --field-bg:  oklch(0.27 0.018 210);
+  --field-bg-focus: oklch(0.30 0.018 210);
+
+  /* Indigo: Indigo bright (the brand's "mark 1 on dark") for text, links and
+     icons; the signature Indigo for filled buttons, which keeps white text
+     readable. */
+  --accent:    oklch(0.76 0.11 288);
+  --teal:      oklch(0.72 0.12 288);
+  --teal-deep: oklch(0.55 0.13 290);
+  --btn-hover: oklch(0.50 0.12 290);
+  --teal-wash: oklch(0.33 0.05 290);
+
+  --core-wash:    oklch(0.32 0.04 222);
+  --ai-wash:      oklch(0.32 0.045 292);
+  --toolkit-wash: oklch(0.32 0.035 195);
+
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.25), 0 2px 6px oklch(0 0 0 / 0.2);
+  --shadow-md: 0 4px 14px oklch(0 0 0 / 0.3), 0 12px 34px oklch(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 30px oklch(0 0 0 / 0.35), 0 30px 70px oklch(0 0 0 / 0.35);
+
+  /* The reversed logo everywhere (brand guidelines, "Colour versions"). */
+  --logo-1: #8f82e2;
+  --logo-name: #ffffff;
+  --logo-tagline: #859697;
+}
+
+/* Member logos are supplied for light backgrounds: keep them on a light tile. */
+[data-theme="dark"] .member-logo { background: #ffffff; border-radius: 10px; padding: 8px 12px; }
+[data-theme="dark"] .member-logo img { max-height: 36px; }
+[data-theme="dark"] .is-featured .member-logo img { max-height: 52px; }
+[data-theme="dark"] .theme-toggle .i-sun { display: block; }
+[data-theme="dark"] .theme-toggle .i-moon { display: none; }

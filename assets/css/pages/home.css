@@ -22,7 +22,7 @@
 }
 
 .hero h1 .grad {
-  color: var(--teal-deep);
+  color: var(--accent);
 }
 
 .hero .lead {
@@ -63,7 +63,7 @@
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--teal-deep);
+  color: var(--accent);
   background: var(--teal-wash);
   padding: 5px 11px;
   border-radius: 999px;
@@ -75,7 +75,7 @@
 }
 
 .hero-announce .arrow {
-  color: var(--teal-deep);
+  color: var(--accent);
   transition: transform 0.2s var(--ease);
 }
 
@@ -360,7 +360,7 @@
 }
 
 .dz-t-base {
-  background: oklch(0.27 0.018 210);
+  background:var(--band-2);
   color: #fff;
   border-radius: 16px;
   padding: 18px 22px;
