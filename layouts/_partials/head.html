@@ -84,6 +84,13 @@
   {{- with resources.Get "js/app.js" | minify | fingerprint }}
   <script defer src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}"></script>
   {{- end }}
+  {{- with site.Params.lens }}
+  {{- if .enable }}
+  {{- with resources.Get "js/ohs-lens.js" | minify | fingerprint }}
+  <script defer src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" data-repo="{{ site.Params.lens.repo | default "ohs-foundation/ohs-sf-website" }}" data-position="{{ site.Params.lens.position | default "bottom-right" }}"></script>
+  {{- end }}
+  {{- end }}
+  {{- end }}
   {{- partial "fonts.html" . }}
   {{- /* The CSS is written into the page itself rather than linked as separate
        files: about 7 KB compressed, and on a slow mobile connection it lets the

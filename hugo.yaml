@@ -123,6 +123,12 @@ params:
   header:
     button: { label: Become a member, url: /foundation.html#membership }
 
+  # In-page DOM feedback and issue tracker for agents (AgentLens / OHS Lens)
+  lens:
+    enable: true
+    repo: ohs-foundation/ohs-sf-website
+    position: bottom-right
+
   # "Stay in the loop" band above the footer on most pages.
   newsletter:
     label: Stay in the loop
