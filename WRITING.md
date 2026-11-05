@@ -146,7 +146,7 @@ All in **`hugo.yaml`**:
 
 | To change… | Where in `hugo.yaml` |
 |---|---|
-| **Top menu** (Foundation, Projects, Community, Blog) | `menus:` → `main:`. Items appear in `weight` order. `identifier` must match the page's name (e.g. `community`) so the menu highlights the page you're on. |
+| **Top menu** (Foundation, Projects, Docs, Community, Blog) | `menus:` → `main:`. Items appear in `weight` order. `identifier` must match the page's name (e.g. `community`) so the menu highlights the page you're on. |
 | **Become a member** button in the header | `params:` → `header:` → `button:` |
 | **"Stay in the loop" band** above the footer | `params:` → `newsletter:` |
 | **Footer** text | `params:` → `footer:` (`about`, `copyright`, `hostedBy`, `poweredBy`) |

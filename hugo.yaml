@@ -66,6 +66,7 @@ menus:
   main:
     - { identifier: foundation, name: Foundation, url: /foundation.html, weight: 10 }
     - { identifier: projects,   name: Projects,   url: /projects.html,   weight: 20 }
+    - { identifier: docs,       name: Docs,       url: https://docs.ohs.foundation, weight: 25 }
     - { identifier: community,  name: Community,  url: /community.html,  weight: 30 }
     - { identifier: blog,       name: Blog,       url: /blog.html,       weight: 40 }
 
@@ -151,6 +152,7 @@ params:
 
   # Shared links — use them in content as @discord, @calendar, @github …
   links:
+    docs: https://docs.ohs.foundation
     github: https://github.com/ohs-foundation
     discord: https://discord.gg/sfgUU7AHZT
     calendar: https://calendar.google.com/calendar/u/0?cid=Y184ZmEyNmMzMGEzMTI3YzQ2YmViMWVjOTlmYmFlM2ZlY2Q4OTVkYzQzNmU2YTk5OGQzMDY4Zjc1ODU1ZTUyMThiQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20

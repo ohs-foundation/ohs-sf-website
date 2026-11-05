@@ -10,7 +10,9 @@
       </a>
       <div class="nav-links">
         {{- range site.Menus.main }}
-        <a href="{{ partial "url.html" .URL }}"{{ if eq .Identifier $section }} class="active" aria-current="page"{{ end }}>{{ .Name }}</a>
+        {{- $url := partial "url.html" .URL -}}
+        {{- $isExt := or (strings.HasPrefix $url "http://") (strings.HasPrefix $url "https://") -}}
+        <a href="{{ $url }}"{{ if eq .Identifier $section }} class="active" aria-current="page"{{ end }}{{ if $isExt }} target="_blank" rel="noopener"{{ end }}>{{ .Name }}</a>
         {{- end }}
       </div>
       <div class="nav-spacer"></div>
@@ -29,7 +31,9 @@
   </header>
   <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
     {{- range site.Menus.main }}
-    <a href="{{ partial "url.html" .URL }}">{{ .Name }}</a>
+    {{- $url := partial "url.html" .URL -}}
+    {{- $isExt := or (strings.HasPrefix $url "http://") (strings.HasPrefix $url "https://") -}}
+    <a href="{{ $url }}"{{ if $isExt }} target="_blank" rel="noopener"{{ end }}>{{ .Name }}</a>
     {{- end }}
     {{- with $btn }}
     <a href="{{ partial "url.html" .url }}" class="btn btn-primary">{{ .label }}</a>
