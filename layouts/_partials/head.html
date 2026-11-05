@@ -70,6 +70,11 @@
   {{- else if gt (len $persons) 1 }}{{ $ld = merge $ld (dict "author" $persons) }}{{ end }}
   <script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
   {{- end }}
+  {{- if .IsHome }}
+  {{- /* Who runs the site, for search engines: name, logo and official profiles. */}}
+  {{- $org := dict "@context" "https://schema.org" "@type" "Organization" "name" site.Title "url" $url "logo" (absURL "apple-touch-icon.png") "sameAs" (slice site.Params.links.linkedin site.Params.links.github) }}
+  <script type="application/ld+json">{{ $org | jsonify | safeJS }}</script>
+  {{- end }}
   {{- with site.Home.OutputFormats.Get "rss" }}
   <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }} — Blog" />
   {{- end }}

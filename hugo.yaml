@@ -83,6 +83,7 @@ menus:
     - { name: Events,            url: /community.html#events,      weight: 30 }
     - { name: Channels,          url: /community.html#join,        weight: 40 }
     - { name: Contact,           url: "@email:general",            weight: 50 }
+    - { name: LinkedIn,          url: "@linkedin",                 weight: 60 }
 
 # ─── Site-wide text and settings ────────────────────────────────────────────
 params:
@@ -96,8 +97,9 @@ params:
   ogImage: images/og-default.png
   blogShareImage: images/og-blog-default.jpg
 
-  # Social accounts. x: the foundation's X/Twitter handle (e.g. ohsfoundation),
-  # credited on X link cards. Leave empty if there isn't one.
+  # Social accounts. x: the foundation's X/Twitter handle, credited on X link
+  # cards. The foundation has no X account, so it stays empty. (LinkedIn is
+  # under links: below.)
   social:
     x: ""
 
@@ -161,6 +163,7 @@ params:
   links:
     docs: https://docs.ohs.foundation
     github: https://github.com/ohs-foundation
+    linkedin: https://www.linkedin.com/company/ohs-sf/
     discord: https://discord.gg/sfgUU7AHZT
     calendar: https://calendar.google.com/calendar/u/0?cid=Y184ZmEyNmMzMGEzMTI3YzQ2YmViMWVjOTlmYmFlM2ZlY2Q4OTVkYzQzNmU2YTk5OGQzMDY4Zjc1ODU1ZTUyMThiQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20
     governanceDocs: https://cdn.platform.linuxfoundation.org/agreements/open-health-stack-foundation.pdf

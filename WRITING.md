@@ -152,10 +152,10 @@ All in **`hugo.yaml`**:
 | **Footer** text | `params:` → `footer:` (`about`, `copyright`, `hostedBy`, `poweredBy`) |
 | **Footer** columns and links | Column headings: `params:` → `footer:` → `columns:`. Links: `menus:` → `footerFoundation`, `footerProjects`, `footerCommunity`. The Projects column lists the pillars from `data/pillars.yaml` first. |
 | **"Page not found"** page | `params:` → `notFound:` |
-| **Shared links** (Discord, calendar, GitHub, governance docs, LFX enrolment…) | `params:` → `links:` |
+| **Shared links** (Discord, calendar, GitHub, LinkedIn, governance docs, LFX enrolment…) | `params:` → `links:` |
 | **Contact emails** | `params:` → `contact:` |
 | **Newsletter and working-group sign-up forms** | `params:` → `emailOctopus:`. These are the EmailOctopus form IDs; the form fields, consent text and thank-you messages are edited in EmailOctopus. |
-| **Site name** next to the logo in the header and footer | `params:` → `brand:` |
+| **Site name** read out by screen readers for the logo in the header and footer (the logo itself is a picture, see below) | `params:` → `brand:` |
 | **Site description** (used when a page has none of its own) | `params:` → `description:` |
 
 Elsewhere:
@@ -164,7 +164,8 @@ Elsewhere:
 |---|---|
 | A page's **browser-tab title** and **search/share description** | `title:` and `description:` at the top of its file in `content/`. The home page tab title is `pageTitle:` in `content/_index.md`. |
 | **Default share image** (what LinkedIn, WhatsApp, X and others show for pages other than the blog; the blog has its own, see [Sharing on social media](#sharing-on-social-media)) | Replace `assets/images/og-default.png`, keeping the name; 1200 × 630 px. |
-| **Site icon** in the browser tab | `static/favicon.svg` (and `static/apple-touch-icon.png`, 180 × 180, for phones) |
+| **Logo** in the header and footer | `assets/brand/`: the official files from the brand guidelines. Replace them only with new official files (keeping the names); don't edit them by hand. |
+| **Site icon** in the browser tab | `static/favicon.svg` (and `static/apple-touch-icon.png`, 180 × 180, for phones). Both are the official mark. |
 | **Short links** such as `ohs.foundation/get-involved` | `netlify.toml` → the `[[redirects]]` blocks. Copy one to add another. |
 | **Small interface labels** ("Latest", "Read the post", "Share this post", "min read", "Loading upcoming events…") | `i18n/en.yaml` |
 

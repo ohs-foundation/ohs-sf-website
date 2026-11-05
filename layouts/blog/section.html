@@ -69,7 +69,7 @@
             {{- with partial "blog/cover.html" (dict "page" . "width" 400 "height" 210) }}
             <img src="{{ .src }}" srcset="{{ .srcset }}" sizes="200px" width="{{ .width }}" height="{{ .height }}" alt="" loading="lazy" />
             {{- else }}
-            <span class="logo-mark"><i></i><i></i><i></i><i></i></span>
+            <svg class="logo-mark logo-reversed" width="40" height="40"><use href="#ohs-mark"/></svg>
             {{- end }}
           </div>
           <div class="pr-main">

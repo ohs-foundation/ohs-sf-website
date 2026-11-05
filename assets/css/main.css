@@ -52,11 +52,15 @@
   --font-sans: 'Hanken Grotesk', 'Hanken Grotesk Fallback', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', 'IBM Plex Mono Fallback', ui-monospace, monospace;
 
-  /* Official logo colours (the four squares, top-left → bottom-right). */
-  --logo-1: #07858a;
+  /* Official logo colours (OHS-SF Brand Guidelines v1.0): the four squares
+     top-left → bottom-right, then the two lines of the name. Full-colour
+     version here; .logo-reversed below switches to the reversed version. */
+  --logo-1: #7262b7;
   --logo-2: #0c87a7;
   --logo-3: #7666b2;
-  --logo-4: #005961;
+  --logo-4: #4f3f83;
+  --logo-name: #162325;
+  --logo-tagline: #768385;
 }
 
 * { box-sizing: border-box; }
@@ -183,10 +187,9 @@ section { position: relative; }
   height: 72px;
   max-width: 1360px; margin: 0 auto; padding-inline: var(--gut);
 }
-.brand { display: flex; align-items: center; gap: 11px; font-weight: 700; letter-spacing: -0.02em; flex: none; }
-.brand .brandname { font-size: 0.96rem; line-height: 1.12; white-space: nowrap; }
-.brand .brandname b { display: block; font-weight: 700; }
-.brand .brandname span { display: block; font-size: 0.69rem; font-weight: 500; color: var(--ink-soft); letter-spacing: 0.04em; }
+.brand { display: flex; align-items: center; flex: none; }
+/* The official horizontal lockup (layouts/_partials/logo-sprite.html), 581×120. */
+.brand-lockup { display: block; height: 36px; width: calc(36px * 581 / 120); }
 .nav-links { display: flex; align-items: center; gap: 4px; margin-left: 8px; }
 .nav-links a {
   font-weight: 500; font-size: 0.96rem; color: var(--ink-soft);
@@ -217,14 +220,11 @@ section { position: relative; }
 .mobile-nav a { display: block; padding: 13px 6px; font-size: 1.1rem; font-weight: 600; border-bottom: 1px solid var(--line-soft); }
 .mobile-nav .btn { display: flex; margin-top: 18px; width: 100%; justify-content: center; padding: 0.82em 1.4em; border-bottom: 0; }
 
-/* ---------- Brand mark (rounded-square stack — allowed simple shapes) ---------- */
-.logo-mark { display: inline-grid; grid-template-columns: repeat(2, 1fr); gap: 2.5px; width: 30px; height: 30px; }
-.logo-mark i { border-radius: 4px; display: block; }
-/* The four squares of the official logo (ohs-foundation/.github → ohs-logo-horizontal-transparent.png). */
-.logo-mark i:nth-child(1) { background: var(--logo-1); }
-.logo-mark i:nth-child(2) { background: var(--logo-2); }
-.logo-mark i:nth-child(3) { background: var(--logo-3); }
-.logo-mark i:nth-child(4) { background: var(--logo-4); }
+/* ---------- Logo ---------- */
+/* The mark on its own (<svg class="logo-mark"><use href="#ohs-mark"/></svg>). */
+.logo-mark { display: block; flex: none; }
+/* Reversed version, for Ink and indigo backgrounds (brand guidelines, "Colour versions"). */
+.logo-reversed { --logo-1: #8f82e2; --logo-name: #ffffff; --logo-tagline: #859697; }
 
 /* ---------- Cards ---------- */
 .card {
