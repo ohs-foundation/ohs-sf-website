@@ -5,7 +5,8 @@ author:
   - fikri-milano
   - jing-tang
 category: "OHS Labs"
-summary: "We had AI coding agents build the same offline-first antenatal care app four ways. Combining AI coding agents with Open Health Stack libraries and Agent Skills significantly reduces the “FHIR tax” — building a fully working offline-first FHIR app for under $1."
+summary: >-
+  We had AI coding agents build the same offline-first antenatal care app four ways. Combining AI coding agents with Open Health Stack libraries and Agent Skills significantly reduces the (so called) “FHIR tax” on developers suggesting a standards based approach should be the "new norm".
 cover: cover.jpg
 coverAlt: "The “FHIR Tax” Is Shrinking: A visual trend chart shows the cost and complexity of implementing FHIR plunging down toward the custom stack baseline when AI coding agents use Open Health Stack libraries and Agent Skills."
 cardImage: card.jpg       # narrower 4:3 picture for the blog page's featured card
