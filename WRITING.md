@@ -177,7 +177,7 @@ Elsewhere:
 
 | Block | What it is |
 |---|---|
-| `announcement` | The "New" pill above the headline (`tag`, `text`, `url`). Delete the block to hide it. |
+| `announcement` | The "New" pill above the headline. It points to the newest blog post automatically (see `announce` in [Write a post](#write-a-post)). To announce something else instead, set both `text` and `url`; remove them to go back to the newest post. `tag` is the label ("New"). Delete the block to hide the pill. |
 | `hero` | `label`; `heading` plus `headingAccent` (the coloured end of the headline); `lead`; `buttons`; `badge` ("Hosted by the Linux Foundation") |
 | `diagram` | Labels of the diagram beside the headline, the colours of its small app tiles, and the standards chips at its base. The pillar names and short descriptions in it come from `data/pillars.yaml`. |
 | `pillars` | Heading and intro of the "Three pillars" section, and its button label. The three cards themselves come from `data/pillars.yaml` (the `home:` block of each pillar). |
@@ -336,7 +336,8 @@ Optional extras:
 |---|---|
 | `subtitle` | A longer line under the title on the post page. Defaults to `summary`. |
 | `badge` | The chip next to the author on the post page. Defaults to `category`. |
-| `shortTitle` | A shorter title for the browser tab. |
+| `shortTitle` | A shorter title for the browser tab. Also used for the home page "New" pill while this is the newest post. |
+| `announce` | A different line for the home page "New" pill while this is the newest post (e.g. "New research: the FHIR tax is shrinking"). Defaults to `shortTitle`, then the title. |
 | `readMore` | The link text on the blog page card. Defaults to "Read the post". |
 | `coverCaption` | A caption under the cover image. |
 | `cardImage` | File name of a narrower picture (4:3, e.g. 1600 × 1200 px) in the post folder, shown on the blog page's featured card instead of the cover, so the blog page and the post page don't show the same picture. It also gives the card's text more room. Without it, the card uses the cover. |
@@ -436,7 +437,7 @@ In **`content/blog/_index.md`**:
 | `moreLabel` | The "More posts" divider above earlier posts |
 | `postCta` | The purple band at the end of every post |
 
-To point the home page "New" pill at a post, edit `content/_index.md` → `announcement`.
+The home page "New" pill points to the newest post automatically. To point it somewhere else, set `text` and `url` under `announcement` in `content/_index.md`.
 
 ---
 
@@ -491,7 +492,7 @@ Rename, add or reorder tiers freely. If you change an `id`, update the members t
 | Add a blog author (photo, role, LinkedIn) | `data/authors.yaml`, then `author: <key>` in the post ([Authors](#authors)) |
 | Change any text on a page | That page's file in `content/` ([section 1](#1-where-content-lives)) |
 | Change the home page headline | `content/_index.md` → `hero` |
-| Change the home page "New" pill | `content/_index.md` → `announcement` |
+| Change the home page "New" pill | Nothing to do for a new post: it updates itself. To announce something else: `content/_index.md` → `announcement` (`text` and `url`) |
 | Change membership prices or benefits | `content/foundation.md` → `membership` → `groups` |
 | Add or remove a member | `data/members.yaml` + logo in `assets/members/` |
 | Rename member tiers | `data/members.yaml` → `tiers` |

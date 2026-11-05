@@ -4,15 +4,25 @@
   <section class="hero">
     <div class="wrap-wide hero-grid">
       <div class="reveal in">
+        {{- /* The "New" pill. By default it shows the newest blog post (the same one the
+               blog page features); text and url in content/_index.md override it. */}}
         {{- with $p.announcement }}
-        <a class="hero-announce" href="{{ partial "url.html" .url }}">
-          <span class="ha-tag">{{ .tag }}</span>
-          <span class="ha-text">{{ .text }}</span>
+        {{- $ann := dict "tag" (.tag | default "New") "text" .text "url" .url }}
+        {{- if not (and .text .url) }}
+          {{- range first 1 (where site.RegularPages "Section" "blog").ByDate.Reverse }}
+            {{- $ann = merge $ann (dict "text" (.Params.announce | default .Params.shortTitle | default .Title) "url" .RelPermalink) }}
+          {{- end }}
+        {{- end }}
+        {{- with $ann.url }}
+        <a class="hero-announce" href="{{ partial "url.html" . }}">
+          <span class="ha-tag">{{ $ann.tag }}</span>
+          <span class="ha-text">{{ $ann.text }}</span>
           <svg class="arrow" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14M13 6l6 6-6 6" />
           </svg>
         </a>
+        {{- end }}
         {{- end }}
         {{- with $p.hero }}
         <span class="eyebrow">{{ .label }}</span>
