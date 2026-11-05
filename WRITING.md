@@ -322,7 +322,7 @@ draft: false
 |---|---|
 | `title` | The post title. Keep the quotes. |
 | `date` | The date shown on the post, `YYYY-MM-DD`. Posts are ordered by it, and the newest one is featured at the top of the blog page. Publishing is controlled by `draft`, not by the date. |
-| `author` | Who wrote it. Either a key from `data/authors.yaml` (e.g. `fikri-milano`), which shows a linked byline and an "About the author" box with photo and links, or plain text (e.g. "the OHS-SF team"), shown as "By …". See [Authors](#authors). |
+| `author` | Who wrote it. Either a key from `data/authors.yaml` (e.g. `fikri-milano`), which shows a linked byline and an "About the author" box with photo and links (the box is currently turned off site-wide: `params.blog.authorBox` in `hugo.yaml`), or plain text (e.g. "the OHS-SF team"), shown as "By …". See [Authors](#authors). |
 | `category` | A short label such as *Foundation news*, *Events* or *Releases*, shown as a tag. |
 | `summary` | The teaser on the blog page and the text in social-media previews (LinkedIn, WhatsApp, X …). |
 | `cover` | File name of the cover image in the post folder (JPG, PNG or WebP). Strongly recommended: it's the picture on the blog page and in social-media previews. Without one, the blog page shows the default illustration. |
@@ -403,6 +403,8 @@ Networks remember a preview the first time a link is shared. If you change the i
 ### Authors
 
 People who write for the blog are listed once in `data/authors.yaml`; a post then just names the key:
+
+> **Note:** the "About the author" boxes at the end of posts are turned off for now (`params.blog.authorBox: false` in `hugo.yaml`). Bylines still link to the authors. Set it to `true` to bring the boxes back.
 
 ```yaml
 fikri-milano:

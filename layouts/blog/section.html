@@ -17,7 +17,7 @@
       {{- $cover := partial "blog/cover.html" (dict "page" . "width" 1200 "height" 630) }}
       {{- $card := partial "blog/card-image.html" (dict "page" . "width" 720 "height" 540) }}
       <!-- ===== FEATURED (LATEST) POST ===== -->
-      <a class="featured reveal d1{{ if or $cover $card }} with-cover{{ end }}{{ if $card }} with-card{{ end }}" href="{{ .RelPermalink }}" aria-label="Read: {{ .Params.shortTitle | default .Title }}">
+      <a class="featured reveal d1{{ if or $cover $card }} with-cover{{ end }}{{ if $card }} with-card{{ end }}" href="{{ .RelPermalink }}">
         <div class="featured-body">
           <div class="featured-tags">
             <span class="tag teal">{{ T "latest" }}</span>

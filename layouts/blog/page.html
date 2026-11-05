@@ -49,7 +49,9 @@
         <div class="article-body reveal">
           {{ .Content }}
         </div>
+        {{- if site.Params.blog.authorBox }}
         {{ partial "blog/author-box.html" . }}
+        {{- end }}
       </div>
     </section>
 

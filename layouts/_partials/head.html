@@ -74,11 +74,10 @@
   <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }} — Blog" />
   {{- end }}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
-  {{- with resources.Get "css/main.css" | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" />
+  {{- /* The site script: "defer" lets it download straight away while the page
+       is drawn, and run once the page has been read. */}}
+  {{- with resources.Get "js/app.js" | minify | fingerprint }}
+  <script defer src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}"></script>
   {{- end }}
   {{- partial "fonts.html" . }}
   {{- /* The CSS is written into the page itself rather than linked as separate

@@ -2,7 +2,7 @@
 {{- $auth := partial "blog/author.html" . -}}
 {{- range $a := ($auth.list | default (slice $auth)) -}}
 {{- if $a.key }}
-<aside class="author-box reveal" aria-label="{{ T "aboutTheAuthor" }}">
+<aside class="author-box reveal" aria-label="{{ T "aboutTheAuthor" }}: {{ $a.name }}">
   {{- with partial "blog/author-photo.html" (dict "author" $a "size" 72) }}
   <img class="ab-photo" src="{{ .src }}" srcset="{{ .srcset }}" width="72" height="72" alt="" loading="lazy" />
   {{- else }}
