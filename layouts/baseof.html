@@ -6,19 +6,18 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#main">{{ T "skipToContent" }}</a>
   {{- partial "header.html" . }}
 
+  <main id="main">
   {{ block "main" . }}{{ end }}
 
   {{- if not (.Params.hideNewsletter) }}
   {{ partial "newsletter-band.html" . }}
   {{- end }}
+  </main>
 
   {{ partial "footer.html" . }}
-
-  {{ with resources.Get "js/app.js" | minify | fingerprint -}}
-  <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}"></script>
-  {{- end }}
 </body>
 
 </html>

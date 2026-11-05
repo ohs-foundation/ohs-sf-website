@@ -77,7 +77,7 @@
 }
 
 .event-row .when {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.78rem;
   color: var(--teal-deep);
   width: 96px;
@@ -184,7 +184,7 @@ details.event-row[open] .event-toggle-cue svg {
 .event-dialin {
   margin-top: 12px;
   font-size: 0.82rem;
-  color: var(--ink-faint);
+  color: var(--ink-soft);
   line-height: 1.5;
 }
 
@@ -255,7 +255,7 @@ details.event-row[open] .event-toggle-cue svg {
   flex: none;
 }
 
-.cj-option h4 {
+.cj-option h3 {
   font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -348,6 +348,8 @@ details.event-row[open] .event-toggle-cue svg {
 /* Links inside pinned-event notes (rendered from data/events.yaml) */
 .event-row .where a {
   color: var(--teal-deep);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 /* Links written in Markdown inside page text (content/community.md) */

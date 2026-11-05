@@ -22,12 +22,20 @@
   var mnav   = document.querySelector('.mobile-nav');
   if (toggle && mnav) {
     toggle.addEventListener('click', function () {
-      var open = mnav.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      setMenu(!mnav.classList.contains('open'));
     });
     mnav.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () { mnav.classList.remove('open'); });
+      a.addEventListener('click', function () { setMenu(false); });
     });
+    // Escape closes the menu and puts the keyboard focus back on the button.
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mnav.classList.contains('open')) { setMenu(false); toggle.focus(); }
+    });
+  }
+  function setMenu(open) {
+    mnav.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   }
 
   /* ─── Reveal on scroll ──────────────────────────────────────────────── */

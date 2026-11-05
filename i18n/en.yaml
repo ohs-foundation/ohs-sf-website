@@ -1,6 +1,7 @@
 # Small interface labels used by the templates (not page content — that lives
 # in content/*.md). Hugo's standard place for such strings.
 
+skipToContent: Skip to content       # keyboard link at the very top of every page
 latest: Latest                       # tag on the featured (newest) blog post
 readThePost: Read the post           # default link text on blog cards (posts can set readMore)
 by: By                               # "By <author>"

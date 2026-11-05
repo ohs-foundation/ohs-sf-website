@@ -59,7 +59,7 @@
 }
 
 .hero-announce .ha-tag {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -111,7 +111,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  color: var(--ink-faint);
+  color: var(--ink-soft);
   font-size: 0.86rem;
 }
 
@@ -119,7 +119,7 @@
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.04em;
   padding: 7px 12px;
@@ -151,7 +151,7 @@
 }
 
 .dz-ll {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.6rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -188,11 +188,11 @@
 }
 
 .dz-t-by {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.62rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--ink-soft);
   white-space: nowrap;
 }
 
@@ -223,20 +223,20 @@
   padding: 0 12px;
   background: transparent !important;
   border: 1px dashed var(--line) !important;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.64rem;
   text-align: center;
-  color: var(--ink-faint);
+  color: var(--ink-soft);
   letter-spacing: 0.04em;
 }
 
 .dz-t-rest {
   text-align: center;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.62rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--ink-soft);
   padding: 11px 0;
   position: relative;
 }
@@ -272,7 +272,7 @@
 }
 
 .dz-t-col-num {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.62rem;
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -320,7 +320,7 @@
 }
 
 .dz-temple .dz-core .dz-t-col-num {
-  color: var(--core);
+  color: var(--ink-soft); /* brand rule: no small accent text on a same-hue wash */
 }
 
 .dz-temple .dz-core .dz-t-blocks i {
@@ -336,7 +336,7 @@
 }
 
 .dz-temple .dz-toolkit .dz-t-col-num {
-  color: var(--toolkit);
+  color: var(--ink-soft); /* brand rule: no small accent text on a same-hue wash */
 }
 
 .dz-temple .dz-toolkit .dz-t-blocks i {
@@ -352,7 +352,7 @@
 }
 
 .dz-temple .dz-ai .dz-t-col-num {
-  color: var(--ai);
+  color: var(--ink-soft); /* brand rule: no small accent text on a same-hue wash */
 }
 
 .dz-temple .dz-ai .dz-t-blocks i {
@@ -391,7 +391,7 @@
 }
 
 .dz-t-chips span {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.74rem;
   letter-spacing: 0.02em;
   background: oklch(1 0 0 / 0.1);
