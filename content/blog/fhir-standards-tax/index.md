@@ -25,7 +25,7 @@ Recently, [Health Samurai](https://www.health-samurai.io/articles/fhir-as-a-fram
 
 1. **No FHIR:** The agent received a [blank Android project](https://github.com/ohs-foundation/ohs-labs/tree/main/ohs-agent-experiment/harness/template-src/cold) and was free to design the data model and store data any way it saw fit. This was used as the baseline for the costs of not using FHIR (though there are limitations here, as no back-end was developed).
 2. **FHIR only:** The agent received a [blank Android project](https://github.com/ohs-foundation/ohs-labs/tree/main/ohs-agent-experiment/harness/template-src/fhir) and the same local HAPI FHIR server, but no OHS libraries. It was free to use any library to work with FHIR.
-3. **FHIR + OHS Libraries:** The [project](https://github.com/ohs-foundation/ohs-labs/tree/main/ohs-agent-experiment/harness/template-src/ohs) came with three [Open Health Stack](https://ohs.foundation) Kotlin Multiplatform libraries: [Kotlin FHIR Models](https://github.com/ohs-foundation/kotlin-fhir), [Kotlin FHIR Engine](https://github.com/ohs-foundation/kotlin-fhir-engine), and [Kotlin FHIR Data Capture](https://github.com/ohs-foundation/kotlin-fhir-data-capture) (FHIR Models, FHIR Engine, and Data Capture, respectively). It also came with a local HAPI FHIR server and no extra documentation for the agent.
+3. **FHIR + OHS Libraries:** The [project](https://github.com/ohs-foundation/ohs-labs/tree/main/ohs-agent-experiment/harness/template-src/ohs) came with three [Open Health Stack](https://docs.ohs.foundation) Kotlin Multiplatform libraries: [Kotlin FHIR Models](https://github.com/ohs-foundation/kotlin-fhir), [Kotlin FHIR Engine](https://github.com/ohs-foundation/kotlin-fhir-engine), and [Kotlin FHIR Data Capture](https://github.com/ohs-foundation/kotlin-fhir-data-capture) (FHIR Models, FHIR Engine, and Data Capture, respectively). It also came with a local HAPI FHIR server and no extra documentation for the agent.
 4. **FHIR + OHS Libraries + Skills:** The same OHS setup plus three short [Agent Skills (SKILL.md)](https://github.com/ohs-foundation/ohs-labs/tree/main/ohs-agent-experiment/skills). A skill is a Markdown file with additional instructions for using the libraries that the agent reads while it works.
 
 We ran each condition twice on six models (in order of our tests). Anthropic’s Claude Haiku 5.5, Sonnet 5.5, Opus 5.5, and Fable 5.1 ran in Claude Code, and Gemini 3.8 Flash and Gemini 4 Argon ran in the Antigravity CLI, all at medium reasoning effort. Every run was headless, with no human input. Costs are at API prices at the time of the runs.
@@ -48,7 +48,7 @@ We tested every app on an Android emulator and scored it against a set of criter
 - Still uploads it after the app is closed
 {{< /callout >}}
 
-## A Fully Working FHIR App for under $1
+## A Fully Working FHIR App for under $1 in extra tokens
 
 With skills, every OHS app was fully working and cost an average of $0.50 (50 cents) more to build than the zero-shot custom app (which didn’t work as a fully functioning app anyway). ✅ indicates a fully working app that passes all 10 checks. All the models below are running on medium level reasoning effort. 
 
