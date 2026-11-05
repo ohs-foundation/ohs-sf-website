@@ -83,12 +83,12 @@ Looking ahead, what matters more for developers and product owners is a deeper u
 What's more, when the cost of building FHIR-compliant apps is lowered, the bottleneck shifts from the initial build to rigorous testing and quality control. Teams must be extra vigilant in verifying data mappings, stress-testing edge cases, and ensuring clinical safety. With fast, safe, high-quality apps more readily available, the creative solutions that solve real problems for users will stand out.
 
 ## Closing thoughts
-When we set out to build Open Health Stack, we wanted to reduce the complexity of building with FHIR. Whilst it would be nice to claim *“mission accomplished”*, we are not quite there yet. For us, this work provides an empirical signal that combining open data standards[(HL7 FHIR)](https://fhir.org/) and open technologies [OHS Libraries](https://docs.ohs.foundation/learn/) and Agent Skills) with AI models and coding harnesses significantly shrinks the economic and time barriers to building FHIR-based digital health solutions.
+When we set out to build Open Health Stack, we wanted to reduce the complexity of building with FHIR. Whilst it would be nice to claim *“mission accomplished”*, we are not quite there yet. For us, this work provides an empirical signal that combining open data standards [(HL7 FHIR)](https://fhir.org/) and open technologies ([OHS Libraries](https://docs.ohs.foundation/learn/) and Agent Skills) with AI models and coding harnesses significantly shrinks the economic and time barriers to building FHIR-based digital health solutions.
 
 ## Get Involved
 
 {{< closer >}}
-This experiment, along with the OHS Libraries, Reference Toolkit, and AI Commons projects, is open-sourced and available on [GitHub](https://github.com/ohs-foundation). We invite anyone interested to [try it out](https://github.com/ohs-foundation/labs-ohs-agent)!
+This experiment, along with the OHS Libraries, Reference Toolkit, and AI Commons projects, is open-sourced and available on [GitHub](https://github.com/ohs-foundation). We invite anyone interested to [try it out](https://github.com/ohs-foundation/labs-ohs-agent)! 
 
 **👉 [Learn more about OHS Software Foundation and get involved](/community.html)**
 {{< /closer >}}
