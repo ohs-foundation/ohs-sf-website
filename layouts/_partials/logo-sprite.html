@@ -1,0 +1,30 @@
+{{- /*
+  The official logo, drawn once per page and reused with <use href="#…">
+  in the header, footer and anywhere else the mark appears.
+
+  Built at build time from the official files in assets/brand/ (from the
+  OHS-SF Brand Guidelines v1.0 logo export), so the shapes are exactly the
+  supplied artwork. Only the colours are swapped for CSS variables, so one
+  copy serves both versions the guidelines define:
+    full colour (light backgrounds) and reversed (Ink / indigo backgrounds).
+  The colours themselves are set in assets/css/main.css (--logo-*).
+*/ -}}
+{{- $lockup := resources.Get "brand/ohs-logo-horizontal.svg" -}}
+{{- $mark := resources.Get "brand/ohs-mark.svg" -}}
+{{- if or (not $lockup) (not $mark) }}{{ errorf "logo-sprite.html: assets/brand/ohs-logo-horizontal.svg or ohs-mark.svg is missing" }}{{ end -}}
+{{- $defaults := slice "#7262b7" "#0c87a7" "#7666b2" "#4f3f83" -}}
+{{- define "_ohs-squares" -}}
+  {{- range $i, $r := findRE `<rect [^>]*>` .src -}}
+    {{- $fill := printf `style="fill:var(--logo-%d,%s)"` (add $i 1) (index $.defaults $i) -}}
+    {{- replaceRE `\s*fill="[^"]*"` "" $r | replaceRE `<rect ` (printf "<rect %s " $fill) | replaceRE `\s*/?>$` "/>" | safeHTML -}}
+  {{- end -}}
+{{- end -}}
+{{- $paths := findRESubmatch `<path fill="[^"]*" d="([^"]*)"` $lockup.Content -}}
+{{- if ne (len $paths) 2 }}{{ errorf "logo-sprite.html: expected the two wordmark paths in ohs-logo-horizontal.svg" }}{{ end -}}
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="ohs-mark" viewBox="0 0 32 32">{{ template "_ohs-squares" (dict "src" $mark.Content "defaults" $defaults) }}</symbol>
+  <symbol id="ohs-lockup" viewBox="42 42 581 120">{{ template "_ohs-squares" (dict "src" $lockup.Content "defaults" $defaults) -}}
+    <path style="fill:var(--logo-name,#162325)" d="{{ index (index $paths 0) 1 }}"/>
+    <path style="fill:var(--logo-tagline,#768385)" d="{{ index (index $paths 1) 1 }}"/>
+  </symbol>
+</svg>

@@ -5,9 +5,8 @@
     <div class="wrap-wide">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a class="brand" href="/" style="color:#fff">
-            <span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-            <span class="brandname"><b>{{ site.Params.brand.name }}</b><span style="color:oklch(0.66 0.02 200)">{{ site.Params.brand.tagline }}</span></span>
+          <a class="brand logo-reversed" href="/">
+            <svg class="brand-lockup" viewBox="0 0 581 120" role="img" aria-label="{{ site.Params.brand.name }} {{ site.Params.brand.tagline }}"><use href="#ohs-lockup"/></svg>
           </a>
           <p class="footer-about">{{ $f.about | markdownify }}</p>
         </div>
