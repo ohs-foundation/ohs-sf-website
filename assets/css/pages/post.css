@@ -228,11 +228,11 @@
 .ab-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 
 .ab-label {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.7rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--ink-soft);
 }
 
 .ab-name { font-size: 1.15rem; font-weight: 700; color: var(--ink); }
@@ -463,6 +463,11 @@ a.ab-name:hover { color: var(--teal); }
   margin-top: 1.6em;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+}
+.article-body .table-wrap:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 
 .article-body table {

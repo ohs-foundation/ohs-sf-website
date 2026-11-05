@@ -38,6 +38,22 @@
     toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   }
 
+  /* ─── Wide tables ───────────────────────────────────────────────────── */
+  // A table too wide for the screen scrolls sideways inside its wrapper; make
+  // that wrapper reachable with the keyboard so it can be scrolled with arrows.
+  var tableWraps = document.querySelectorAll('.table-wrap');
+  function markScrollableTables() {
+    tableWraps.forEach(function (w) {
+      if (w.scrollWidth > w.clientWidth + 1) {
+        w.setAttribute('tabindex', '0'); w.setAttribute('role', 'region');
+        w.setAttribute('aria-label', 'Table (scrolls sideways)');
+      } else {
+        w.removeAttribute('tabindex'); w.removeAttribute('role'); w.removeAttribute('aria-label');
+      }
+    });
+  }
+  if (tableWraps.length) { markScrollableTables(); window.addEventListener('resize', markScrollableTables); }
+
   /* ─── Reveal on scroll ──────────────────────────────────────────────── */
   var reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && reveals.length) {

@@ -111,6 +111,13 @@ params:
     name: Open Health Stack
     tagline: Software Foundation
 
+  # Blog options.
+  # authorBox: the "About the author" box(es) at the end of each post. Turned
+  # off for now; set to true to show them again. The byline under the title
+  # ("By …") is always shown.
+  blog:
+    authorBox: false
+
   # Header: the button at the right of the top menu.
   header:
     button: { label: Become a member, url: /foundation.html#membership }
