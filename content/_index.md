@@ -9,10 +9,11 @@ pageStyle: home
 # Pillar names, statuses and card text come from data/pillars.yaml.
 
 # The pill above the headline. Delete this block to hide it.
+# By default it points to the newest blog post, using the post's `announce`
+# line, else its `shortTitle`, else its title. To announce something else
+# instead (an event, a release), add both `text` and `url` here.
 announcement:
   tag: New
-  text: Read the intention to launch announcement
-  url: /blog/blog-launch-announcement.html
 
 hero:
   label: An independent software foundation
