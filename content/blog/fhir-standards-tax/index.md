@@ -7,7 +7,7 @@ author:
 category: "Research"
 summary: "We had AI coding agents build the same offline-first antenatal care app four ways. Combining AI coding agents with Open Health Stack libraries and Agent Skills significantly reduces the “FHIR tax” — building a fully working offline-first FHIR app for under $1."
 cover: cover.jpg
-coverAlt: "50 cents: the extra AI cost of building an offline-first app on FHIR and Open Health Stack with skills. A bar chart compares the average cost across frontier models to build the same app: custom stack $0.79, Open Health Stack with skills $1.29 (+50¢), Open Health Stack libraries only $3.69."
+coverAlt: "The “FHIR Tax” Is Shrinking: A visual trend chart shows the cost and complexity of implementing FHIR plunging down toward the custom stack baseline when AI coding agents use Open Health Stack libraries and Agent Skills."
 cardImage: card.jpg       # narrower 4:3 picture for the blog page's featured card
 shortTitle: "The “FHIR Tax” is shrinking"
 readMore: "Read the experiment"
