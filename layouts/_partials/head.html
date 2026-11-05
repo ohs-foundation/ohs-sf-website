@@ -87,7 +87,7 @@
   {{- with site.Params.lens }}
   {{- if .enable }}
   {{- with resources.Get "js/ohs-lens.js" | minify | fingerprint }}
-  <script defer src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" data-repo="{{ site.Params.lens.repo | default "ohs-foundation/ohs-sf-website" }}" data-position="{{ site.Params.lens.position | default "bottom-right" }}"></script>
+  <script defer src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" data-repo="{{ site.Params.lens.repo | default "ohs-foundation/ohs-sf-website" }}" data-position="{{ site.Params.lens.position | default "bottom-right" }}" data-url-switch="{{ if isset site.Params.lens "urlSwitch" }}{{ site.Params.lens.urlSwitch }}{{ else }}true{{ end }}"></script>
   {{- end }}
   {{- end }}
   {{- end }}

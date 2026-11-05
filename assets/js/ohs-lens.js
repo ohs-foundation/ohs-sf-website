@@ -54,6 +54,8 @@
     storageAuthKey: 'agentlens_auth_v1',
     storagePinsKey: 'agentlens_pins_v1',
     storageConfigKey: 'agentlens_custom_repo_v1',
+    storageActiveKey: 'agentlens_active_v1',
+    urlSwitch: true, // requires ?lens or ?comments in URL to activate widget
     hotkeyComment: 'c',
     hotkeyConnect: 'f' // Cmd/Ctrl + Shift + F
   };
@@ -64,6 +66,44 @@
   let isInspectMode = false;
   let hoveredElement = null;
   let activePin = null;
+  let globalKeydownHandler = null;
+
+  function checkUrlSwitchActivation(storageActiveKey) {
+    if (typeof window === 'undefined') return false;
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const hash = (window.location.hash || '').toLowerCase();
+
+      // Deactivation query: ?lens=0, ?lens=false, ?lens=off, ?lens=hide, ?comments=false, etc.
+      const lensVal = (urlParams.get('lens') || '').toLowerCase();
+      const commentsVal = (urlParams.get('comments') || '').toLowerCase();
+      const agentLensVal = (urlParams.get('agentlens') || '').toLowerCase();
+      const feedbackVal = (urlParams.get('feedback') || '').toLowerCase();
+
+      const anyOff = [lensVal, commentsVal, agentLensVal, feedbackVal].some(
+        v => v === '0' || v === 'false' || v === 'off' || v === 'hide' || v === 'disable'
+      );
+      if (anyOff) {
+        localStorage.removeItem(storageActiveKey);
+        sessionStorage.removeItem(storageActiveKey);
+        return false;
+      }
+
+      // Activation query: ?lens, ?lens=1, ?lens=true, ?comments, #lens, etc.
+      const hasLensParam = urlParams.has('lens') || urlParams.has('comments') || urlParams.has('agentlens') || urlParams.has('feedback');
+      const hasLensHash = ['#lens', '#agentlens', '#comments', '#feedback'].includes(hash);
+
+      if (hasLensParam || hasLensHash) {
+        localStorage.setItem(storageActiveKey, 'true');
+        return true;
+      }
+
+      // Check stored preference from earlier activation
+      return localStorage.getItem(storageActiveKey) === 'true';
+    } catch (e) {
+      return false;
+    }
+  }
 
   function parseScriptTagConfig() {
     const currentScript = document.currentScript || document.querySelector('script[data-repo]');
@@ -86,6 +126,9 @@
     }
     if (currentScript.dataset.theme) {
       cfg.theme = currentScript.dataset.theme.trim();
+    }
+    if (currentScript.dataset.urlSwitch !== undefined) {
+      cfg.urlSwitch = currentScript.dataset.urlSwitch !== 'false';
     }
     return cfg;
   }
@@ -524,6 +567,9 @@
           ${ICONS.key}
           <span id="al-dock-auth-label">Connect</span>
         </button>
+        <button id="al-dock-hide-btn" class="al-dock-btn" title="Hide Lens widget (Visit ?lens to show again)" style="padding:5px 8px; color:#94a3b8; margin-left:2px;">
+          ${ICONS.close}
+        </button>
       </div>
 
       <!-- Dedicated Authentication Modal -->
@@ -751,6 +797,14 @@
     authCloseBtn.addEventListener('click', () => { authModal.style.display = 'none'; });
     authCancelBtn.addEventListener('click', () => { authModal.style.display = 'none'; });
 
+    const dockHideBtn = document.getElementById('al-dock-hide-btn');
+    if (dockHideBtn) {
+      dockHideBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        deactivateLens();
+      });
+    }
+
     // Disconnect Token
     authClearBtn.addEventListener('click', () => {
       if (confirm('Disconnect GitHub token?')) {
@@ -797,7 +851,10 @@
     });
 
     // Hotkeys
-    window.addEventListener('keydown', (e) => {
+    if (globalKeydownHandler) {
+      window.removeEventListener('keydown', globalKeydownHandler);
+    }
+    globalKeydownHandler = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key.toLowerCase() === CONFIG.hotkeyConnect) {
         e.preventDefault();
         openAuthModal();
@@ -809,7 +866,8 @@
         if (inlinePopover.style.display === 'flex') inlinePopover.style.display = 'none';
         if (authModal.style.display === 'flex') authModal.style.display = 'none';
       }
-    });
+    };
+    window.addEventListener('keydown', globalKeydownHandler);
 
     // Pins Persistence
     function getPins() {
@@ -1201,9 +1259,25 @@
     syncPinsWithGitHub();
   }
 
+  function deactivateLens() {
+    try {
+      localStorage.removeItem(CONFIG.storageActiveKey);
+      sessionStorage.removeItem(CONFIG.storageActiveKey);
+    } catch (e) {}
+    if (globalKeydownHandler) {
+      window.removeEventListener('keydown', globalKeydownHandler);
+      globalKeydownHandler = null;
+    }
+    const root = document.getElementById('al-root');
+    if (root) root.remove();
+    const styles = document.getElementById('al-styles');
+    if (styles) styles.remove();
+    document.querySelectorAll('.al-pin').forEach(p => p.remove());
+    isInitialized = false;
+  }
+
   function init(customConfig) {
     if (isInitialized) return;
-    isInitialized = true;
 
     // Merge configurations in order: DEFAULT -> script dataset -> global window.AgentLensConfig -> passed options
     const scriptConfig = parseScriptTagConfig();
@@ -1215,6 +1289,13 @@
       ...globalConfig,
       ...(customConfig || {})
     };
+
+    // If urlSwitch is enabled, verify activation via URL parameter or stored active state
+    if (CONFIG.urlSwitch && !checkUrlSwitchActivation(CONFIG.storageActiveKey)) {
+      return;
+    }
+
+    isInitialized = true;
 
     if (CONFIG.repo && (!CONFIG.repoOwner || !CONFIG.repoName)) {
       const parts = CONFIG.repo.split('/');
@@ -1240,6 +1321,15 @@
 
   return {
     init: init,
+    enable: () => {
+      try {
+        localStorage.setItem(CONFIG.storageActiveKey, 'true');
+      } catch (e) {}
+      init();
+    },
+    disable: () => {
+      deactivateLens();
+    },
     openAuth: () => {
       const modal = document.getElementById('al-auth-modal');
       if (modal) modal.style.display = 'flex';

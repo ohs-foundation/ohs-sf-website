@@ -126,6 +126,7 @@ params:
   # In-page DOM feedback and issue tracker for agents (AgentLens / OHS Lens)
   lens:
     enable: true
+    urlSwitch: true # requires ?lens or ?comments in URL to show widget
     repo: ohs-foundation/ohs-sf-website
     position: bottom-right
 

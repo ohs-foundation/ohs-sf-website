@@ -32,7 +32,7 @@ hugo server -e demo        # same, plus sample members and sample blog posts
 | `assets/css/main.css` | Design system and shared styles; `assets/css/pages/*.css` hold page-specific styles. Hugo minifies them and writes them into each page's `<head>` (no separate CSS files) |
 | `assets/fonts/` | The self-hosted fonts and their licences; `layouts/_partials/fonts.html` loads them (see `assets/fonts/README.md`) |
 | `assets/js/app.js` | Small vanilla JS: mobile nav, scroll reveal, community events, share buttons |
-| `assets/js/ohs-lens.js` | In-page visual feedback widget (AgentLens): click any element (<kbd>C</kbd>) to pin directives or file GitHub issues directly for AI coding agents |
+| `assets/js/ohs-lens.js` | In-page visual feedback widget (AgentLens): activated via URL switcher (`?lens` or `?comments`); click any element (<kbd>C</kbd>) to pin directives or file GitHub issues for AI coding agents |
 | `scripts/fetch_issues.py` | CLI tool to fetch open AgentLens issues and format exact DOM directives for AI coding agents |
 | `assets/images/og-default.png`, `og-blog-default.jpg` | Default images shown when a page / a blog post is shared (set in `hugo.yaml` → `params.ogImage`, `blogShareImage`) |
 | `assets/members/` | Member logos |
