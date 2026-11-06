@@ -1,6 +1,6 @@
 ---
 title: "The “FHIR Tax” Is Shrinking"
-date: 2026-10-20
+date: 2026-11-05
 author:
   - fikri-milano
   - jing-tang
