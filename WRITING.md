@@ -391,6 +391,7 @@ Make covers **2400 × 1260 px**: any image at the 1.91 : 1 shape works, but it s
 
 - **On the post page** the cover is always shown whole, whatever its shape.
 - **On the blog page and in social-media previews** a cover of a different shape is trimmed to fit, evenly from the centre by default. Use `coverFocus` to keep a different part.
+- **Dark mode:** visitors whose device is set to dark (or who pick it with the sun/moon button) see pictures on a dark page. Give images a solid background rather than a transparent one, so dark text or lines in them stay visible.
 
 ### Sharing on social media
 

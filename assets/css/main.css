@@ -7,6 +7,7 @@
    ============================================================ */
 
 :root {
+  color-scheme: light;
   /* Neutrals — cool, faintly green-tinted ink on a warm near-white */
   --bg:        oklch(0.985 0.004 165);
   --bg-2:      oklch(0.965 0.006 175);
@@ -16,12 +17,20 @@
   --ink-faint: oklch(0.60 0.015 210);   /* borders, dots, icons, placeholders — not text (brand: text is Ink or Ink soft) */
   --line:      oklch(0.905 0.008 200);
   --line-soft: oklch(0.945 0.006 200);
+  --ink-body:  oklch(0.34 0.018 210);   /* running text in posts and lists */
+  --band:      oklch(0.245 0.018 210);  /* dark bands: footer, newsletter, north star, code */
+  --band-2:    oklch(0.27 0.018 210);   /* dark slab inside a light card (hero diagram base) */
+  --header-bg: oklch(0.985 0.004 165 / 0.82);
+  --field-bg:  rgba(255, 255, 255, 0.6);
+  --field-bg-focus: rgba(255, 255, 255, 0.85);
 
   /* Signature indigo */
   --teal:      oklch(0.55 0.13 290);
   --teal-deep: oklch(0.42 0.11 292);
   --teal-bright: oklch(0.66 0.14 288);
   --teal-wash: oklch(0.957 0.022 290);
+  --accent:    oklch(0.42 0.11 292);    /* indigo for text and icons: links, eyebrows, arrows */
+  --btn-hover: oklch(0.37 0.078 205);
 
   /* Pillar accents — shared chroma/lightness, varied hue */
   --core:      oklch(0.58 0.105 222);   /* teal-blue   */
@@ -83,7 +92,7 @@ img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 
 /* "Skip to content": off-screen until a keyboard user tabs to it */
-.skip-link { position: absolute; left: 12px; top: -100px; z-index: 1000; padding: 10px 16px; border-radius: 10px; background: var(--ink); color: #fff; font-weight: 600; }
+.skip-link { position: absolute; left: 12px; top: -100px; z-index: 1000; padding: 10px 16px; border-radius: 10px; background:var(--band); color: #fff; font-weight: 600; }
 .skip-link:focus { top: 12px; }
 
 /* ---------- Typography ---------- */
@@ -115,7 +124,7 @@ p { margin: 0; }
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--teal-deep);
+  color: var(--accent);
   display: inline-flex;
   align-items: center;
   gap: 0.6em;
@@ -150,7 +159,7 @@ section { position: relative; }
   background: var(--teal-deep); color: #fff;
   box-shadow: var(--shadow-sm);
 }
-.btn-primary:hover { background: oklch(0.37 0.078 205); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn-primary:hover { background: var(--btn-hover); transform: translateY(-2px); box-shadow: var(--shadow-md); }
 .btn-ghost {
   background: transparent; color: var(--ink); border-color: var(--line);
 }
@@ -164,7 +173,7 @@ section { position: relative; }
 
 .textlink {
   display: inline-flex; align-items: center; gap: 0.4em;
-  font-weight: 600; color: var(--teal-deep);
+  font-weight: 600; color: var(--accent);
   border-bottom: 1.5px solid transparent;
   transition: gap 0.2s, border-color 0.2s;
 }
@@ -175,7 +184,7 @@ section { position: relative; }
 /* ---------- Header / Nav ---------- */
 .site-header {
   position: sticky; top: 0; z-index: 100;
-  background: oklch(0.985 0.004 165 / 0.82);
+  background: var(--header-bg);
   backdrop-filter: saturate(1.4) blur(14px);
   -webkit-backdrop-filter: saturate(1.4) blur(14px);
   border-bottom: 1px solid transparent;
@@ -204,6 +213,12 @@ section { position: relative; }
 /* The toggle also has .btn, whose side padding left no room for the icon (it rendered as an empty box). */
 .nav-toggle.btn { padding: 0; color: var(--ink); }
 .nav-toggle svg { display: block; flex: none; }
+/* Light/dark switch (moon in light mode, sun in dark mode; see dark.css) */
+.theme-toggle { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; padding: 0; border: 1px solid var(--line); border-radius: 10px; background: none; color: var(--ink); cursor: pointer; transition: border-color 0.18s, background 0.18s; }
+.theme-toggle[hidden] { display: none; }
+.theme-toggle:hover { border-color: var(--ink-faint); background: var(--bg-2); }
+.theme-toggle svg { display: block; flex: none; }
+.theme-toggle .i-sun { display: none; }
 
 /* mobile nav panel */
 .mobile-nav {
@@ -244,12 +259,12 @@ section { position: relative; }
 .tag.core { background: var(--core-wash);    color: var(--ink-soft); }
 .tag.ai { background: var(--ai-wash);      color: var(--ink-soft); }
 .tag.toolkit { background: var(--toolkit-wash); color: var(--ink-soft); }
-.tag.teal { background: var(--teal-wash);    color: var(--teal-deep); }
+.tag.teal { background: var(--teal-wash);    color: var(--accent); }
 
 .icon-chip {
   width: 52px; height: 52px; border-radius: 13px;
   display: grid; place-items: center; flex: none;
-  background: var(--teal-wash); color: var(--teal-deep);
+  background: var(--teal-wash); color: var(--accent);
 }
 .icon-chip.core { background: var(--core-wash);    color: var(--core); }
 .icon-chip.ai { background: var(--ai-wash);      color: var(--ai); }
@@ -269,7 +284,7 @@ section { position: relative; }
 }
 
 /* ---------- Footer ---------- */
-.site-footer { background: var(--ink); color: oklch(0.86 0.01 200); padding-block: 72px 40px; }
+.site-footer { background:var(--band); color: oklch(0.86 0.01 200); padding-block: 72px 40px; }
 .footer-grid { display: grid; grid-template-columns: 1.6fr repeat(3, 1fr); gap: 40px; }
 .site-footer h2 { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.66 0.02 200); font-weight: 500; margin-bottom: 16px; }
 .site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
@@ -279,7 +294,7 @@ section { position: relative; }
 .footer-bottom { margin-top: 56px; padding-top: 26px; border-top: 1px solid oklch(0.34 0.015 210); display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; color: oklch(0.64 0.015 200); font-size: 0.85rem; }
 
 /* ---------- Newsletter signup (dark band, flows into the footer) ---------- */
-.newsletter { background: var(--ink); padding-block: clamp(56px, 8vw, 96px) clamp(8px, 1.5vw, 18px); }
+.newsletter { background:var(--band); padding-block: clamp(56px, 8vw, 96px) clamp(8px, 1.5vw, 18px); }
 /* Standalone variant — a self-contained mid-page section (balanced padding) */
 .newsletter.standalone { padding-block: clamp(56px, 8vw, 104px); }
 .newsletter-inner { max-width: 600px; margin: 0 auto; text-align: center; }
@@ -380,17 +395,17 @@ section { position: relative; }
 
 /* Standalone (community) subscribe — light treatment */
 .newsletter.standalone { background: var(--teal-wash); }
-.newsletter.standalone .eyebrow { color: var(--teal-deep); }
+.newsletter.standalone .eyebrow { color: var(--accent); }
 .newsletter.standalone .newsletter-copy h2 { color: var(--ink); }
 .newsletter.standalone .newsletter-copy p { color: var(--ink-soft); }
-.newsletter.standalone .newsletter-note { color: var(--ink); background: var(--surface); border-color: color-mix(in oklch, var(--teal-deep) 28%, var(--line)); box-shadow: var(--shadow-sm); }
-.newsletter.standalone .newsletter-note svg { color: var(--teal-deep); }
-.newsletter.standalone .newsletter-form .form-control { background: rgba(255, 255, 255, 0.6); border-color: color-mix(in oklch, var(--teal-deep) 20%, var(--line)); color: var(--ink); }
+.newsletter.standalone .newsletter-note { color: var(--ink); background: var(--surface); border-color: color-mix(in oklch, var(--accent) 28%, var(--line)); box-shadow: var(--shadow-sm); }
+.newsletter.standalone .newsletter-note svg { color: var(--accent); }
+.newsletter.standalone .newsletter-form .form-control { background: var(--field-bg); border-color: color-mix(in oklch, var(--accent) 20%, var(--line)); color: var(--ink); }
 .newsletter.standalone .newsletter-form .form-control::placeholder { color: var(--ink-faint); }
-.newsletter.standalone .newsletter-form .form-control:focus { border-color: var(--teal-deep); background: rgba(255, 255, 255, 0.85); }
+.newsletter.standalone .newsletter-form .form-control:focus { border-color: var(--accent); background: var(--field-bg-focus); }
 .newsletter.standalone .newsletter-form .emailoctopus-form-row label { color: var(--ink-soft); }
 .newsletter.standalone .newsletter-form input[type="submit"] { background: var(--teal-deep); }
-.newsletter.standalone .newsletter-form input[type="submit"]:hover { background: oklch(0.37 0.078 205); }
+.newsletter.standalone .newsletter-form input[type="submit"]:hover { background: var(--btn-hover); }
 .newsletter.standalone .newsletter-form .emailoctopus-form-row-consent label,
 .newsletter.standalone .newsletter-form .emailoctopus-form-row-consent { color: var(--ink-soft) !important; }
 .newsletter.standalone .newsletter-form .emailoctopus-success-message,
@@ -400,7 +415,7 @@ section { position: relative; }
 }
 .newsletter.standalone .newsletter-form .emailoctopus-error-message { border-color: oklch(0.84 0.06 18); }
 .newsletter.standalone .newsletter-form .emailoctopus-form-row-consent input { accent-color: var(--teal-deep); }
-.newsletter.standalone .newsletter-form a { color: var(--teal-deep); }
+.newsletter.standalone .newsletter-form a { color: var(--accent); }
 
 /* ---------- Generic helpers ---------- */
 .center { text-align: center; }
@@ -445,7 +460,7 @@ a.member-card:hover { border-color: var(--teal); transform: translateY(-2px); bo
 .is-featured .member-logo img { max-height: 68px; max-width: min(210px, 100%); }
 .member-initials {
   display: grid; place-items: center; width: 52px; height: 52px; border-radius: 13px;
-  background: var(--teal-wash); color: var(--teal-deep);
+  background: var(--teal-wash); color: var(--accent);
   font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em;
 }
 .member-name { font-weight: 600; font-size: 0.92rem; line-height: 1.3; color: var(--ink-soft); }

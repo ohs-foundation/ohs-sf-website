@@ -18,7 +18,7 @@
 
 /* North star band */
 .northstar {
-  background: var(--ink);
+  background:var(--band);
   color: #fff;
   border-radius: var(--radius-lg);
   padding: clamp(32px, 5vw, 60px);
@@ -87,7 +87,7 @@
   font-family: var(--font-mono);
   font-weight: 600;
   font-size: 0.95rem;
-  color: var(--teal-deep);
+  color: var(--accent);
   flex: none;
   width: 34px;
 }

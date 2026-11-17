@@ -79,7 +79,7 @@
 .event-row .when {
   font-family: var(--font-mono);
   font-size: 0.78rem;
-  color: var(--teal-deep);
+  color: var(--accent);
   width: 96px;
   flex: none;
 }
@@ -143,7 +143,7 @@ details.event-row summary::marker {
   gap: 5px;
   font-size: 0.78rem;
   font-weight: 600;
-  color: var(--teal-deep);
+  color: var(--accent);
   background: var(--bg-2);
   padding: 4px 10px;
   border-radius: 999px;
@@ -152,7 +152,7 @@ details.event-row summary::marker {
 
 details.event-row summary:hover .event-toggle-cue {
   background: var(--teal-wash);
-  color: var(--teal-deep);
+  color: var(--accent);
 }
 
 .event-toggle-cue svg {
@@ -189,7 +189,7 @@ details.event-row[open] .event-toggle-cue svg {
 }
 
 .event-dialin a {
-  color: var(--teal-deep);
+  color: var(--accent);
   text-decoration: underline;
 }
 
@@ -347,7 +347,7 @@ details.event-row[open] .event-toggle-cue svg {
 
 /* Links inside pinned-event notes (rendered from data/events.yaml) */
 .event-row .where a {
-  color: var(--teal-deep);
+  color: var(--accent);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -355,7 +355,7 @@ details.event-row[open] .event-toggle-cue svg {
 /* Links written in Markdown inside page text (content/community.md) */
 .inv p a {
   font-weight: 600;
-  color: var(--teal-deep);
+  color: var(--accent);
   border-bottom: 1.5px solid transparent;
   transition: gap 0.2s, border-color 0.2s;
 }
@@ -365,7 +365,7 @@ details.event-row[open] .event-toggle-cue svg {
 }
 
 .events-calendar p a {
-  color: var(--teal-deep);
+  color: var(--accent);
   font-weight: 600;
   text-decoration: underline;
 }
