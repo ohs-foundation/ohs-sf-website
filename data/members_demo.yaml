@@ -7,10 +7,12 @@ tiers:
   - id: premier
     name: Premier
     showOnHome: true
-  - id: gold
-    name: Gold
+  - id: general
+    name: General
   - id: associate
     name: Associate
+  - id: implementer
+    name: Implementer
 
 members:
   - name: Contoso Health
@@ -22,15 +24,15 @@ members:
     url: https://example.com/northwind
     logo: demo/northwind-digital.svg
   - name: Fabrikam Labs
-    tier: gold
+    tier: general
     url: https://example.com/fabrikam
     logo: demo/fabrikam-labs.svg
   - name: Tailspin Data
-    tier: gold
+    tier: general
     url: https://example.com/tailspin
     logo: demo/tailspin-data.svg
   - name: Adventure Works
-    tier: gold
+    tier: general
     url: https://example.com/adventure-works
     logo: demo/adventure-works.svg
   - name: Example University

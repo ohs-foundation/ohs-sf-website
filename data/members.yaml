@@ -26,9 +26,11 @@ tiers:
   - id: premier
     name: Premier
     showOnHome: true
-  - id: gold
-    name: Gold
+  - id: general
+    name: General
   - id: associate
     name: Associate
+  - id: implementer
+    name: Implementer
 
 members: []

@@ -474,8 +474,8 @@ tiers:
   - id: premier          # what members' `tier:` refers to (lowercase, no spaces)
     name: Premier        # the label shown on the site
     showOnHome: true     # include this tier in the home page strip
-  - id: gold
-    name: Gold
+  - id: general
+    name: General
 ```
 
 Rename, add or reorder tiers freely. If you change an `id`, update the members that use it. The headings of the members sections are in the page files: `content/_index.md` → `members` and `content/foundation.md` → `membership` → `directory`.

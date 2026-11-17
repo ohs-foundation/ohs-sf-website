@@ -99,8 +99,8 @@ membership:
   label: Membership
   heading: Take a seat at the table.
   lead: >-
-    Help shape the charter, budget and direction — and build an enduring association with a
-    first-of-its-kind initiative.
+    Help shape the charter, budget, and direction while sustaining shared open-source infrastructure
+    for global digital health. Contributing code is always free.
   # The membership options as described on this page (prices and benefits).
   # Member logos are grouped by the tiers in data/members.yaml — keep the two in step.
   groups:
@@ -109,33 +109,38 @@ membership:
         - name: Premier
           meta: $100k / year · 3-year commitment
           text: >-
-            For organizations shaping the foundation. Includes a dedicated Governing Board seat, a
-            hand in the charter, budget and direction, and founding-member brand association.
-            Up-front grants may be accepted in lieu of fees.
-        - name: Gold
-          meta: Sliding scale, by organization size · incl. $5k/yr Linux Foundation membership
+            For anchor funders and strategic technology partners. Includes an appointed Governing
+            Board seat, a voting Technical Advisory Council (TAC) seat, Working Group and committee
+            leadership, founding-member recognition, and upfront grant compatibility.
+        - name: General
+          meta: Sliding scale by organization size · starting at $5k–$10k / year
           text: >-
-            The fee scales with organization size — indicatively $10k/year up to 100 employees.
-            Gold members nominate a board representative (one per five members, up to three
-            total) and take part in working groups and the technical, outreach and other committees.
+            For digital health builders, implementers, and NGOs. Fees scale by headcount, starting at
+            $5k/year for existing LF members and eligible $0 LF Associate non-profits ($10k/year
+            combined with LF Silver under 100 staff). Includes elected shared Governing Board seats
+            (one per five members, up to two) and Working Group leadership.
         - name: Associate
           meta: No fee · non-profit, academic & government entities
           text: >-
-            Reserved for approved non-profit, academic and government entities. Associate members
-            may stand for election to the Governing Board (one seat available) and participate fully
-            in working groups and committees.
+            Reserved at no cost for approved non-profits, academic and research institutions,
+            multilaterals, and government entities (including Ministries of Health). Includes open
+            Working Groups, community calls, Discord channels, and advisory input via the External
+            Advisory Council or up to two Board-invited seats.
     - label: Additional pathways · OHS-SF
       tiers:
-        - name: Inclusive
-          meta: No fee · LMIC for-profits under 100 employees
+        - name: Implementer
+          meta: No fee · Board-approved pre-revenue builders
           text: >-
-            The standard $10k/year Gold fee is waived to maximize accessibility for entrepreneurs
-            in lower- and middle-income countries, with full participation in working groups.
-        - name: Sponsorships or grants
-          meta: Custom · funders & multilaterals
+            A recognition pathway for small, pre-revenue teams actively building on OHS, subject to
+            Governing Board approval. Provides community recognition and open Working Group access
+            while teams build toward commercial scale and graduate to General membership.
+        - name: Sponsorships & grants
+          meta: Custom · strategic funders & multilaterals
           text: >-
-            We are open to mission aligned grants or financial sponsorships for specific projects or
-            activities that support the foundations work.
+            Mission-aligned multi-year grants and directed project sponsorships are welcome.
+            Qualifying strategic grants carry Governing Board representation under the Foundation
+            Charter, while directed sponsorships fund targeted technical, evaluation, or
+            capacity-building initiatives.
   docs:
     title: Foundation Governance & Charter
     text: >-
