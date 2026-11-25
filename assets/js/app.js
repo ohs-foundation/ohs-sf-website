@@ -17,6 +17,36 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  /* ─── Light / dark switch ───────────────────────────────────────────── */
+  // The page follows the device's setting unless the visitor picks the other
+  // theme with the button; that choice is remembered (localStorage "ohs-theme")
+  // and applied before the page is drawn by the small script in <head>.
+  // Picking the theme the device already uses forgets the choice again, so
+  // the page goes back to following the device.
+  var themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) {
+    var root = document.documentElement;
+    var deviceDark = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : { matches: false };
+    var currentTheme = function () {
+      return root.getAttribute('data-theme') || (deviceDark.matches ? 'dark' : 'light');
+    };
+    var labelThemeBtn = function () {
+      themeBtn.setAttribute('aria-label', currentTheme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    };
+    themeBtn.addEventListener('click', function () {
+      var next = currentTheme() === 'dark' ? 'light' : 'dark';
+      var deviceTheme = deviceDark.matches ? 'dark' : 'light';
+      try {
+        if (next === deviceTheme) { root.removeAttribute('data-theme'); localStorage.removeItem('ohs-theme'); }
+        else { root.setAttribute('data-theme', next); localStorage.setItem('ohs-theme', next); }
+      } catch (e) { root.setAttribute('data-theme', next); }
+      labelThemeBtn();
+    });
+    if (deviceDark.addEventListener) deviceDark.addEventListener('change', labelThemeBtn);
+    labelThemeBtn();
+    themeBtn.hidden = false;
+  }
+
   /* ─── Mobile nav ────────────────────────────────────────────────────── */
   var toggle = document.querySelector('.nav-toggle');
   var mnav   = document.querySelector('.mobile-nav');

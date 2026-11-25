@@ -6,6 +6,9 @@
 {{- $ogImage := partial "og-image.html" . -}}
 {{- $url := cond .IsHome site.Home.Permalink .Permalink | replaceRE `/index\.html$` "/" -}}
   <meta charset="UTF-8" />
+  {{- /* Apply a light/dark choice saved by the sun/moon button before anything is
+       drawn, so the page doesn't flash the other theme. */}}
+  <script>try{var t=localStorage.getItem("ohs-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{{ $title }}</title>
   <meta name="description" content="{{ $desc }}" />
@@ -18,6 +21,7 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <meta name="theme-color" content="#4b3a8c" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#162325" />
 
   <!-- Social sharing: Open Graph (LinkedIn, Facebook, WhatsApp, Slack, Teams,
        Discord, Telegram, iMessage, Mastodon …) plus X/Twitter card tags. -->
@@ -92,4 +96,9 @@
   {{- with .Params.pageStyle | default (cond (eq .Kind "404") "404" "") }}
     {{- with resources.Get (printf "css/pages/%s.css" .) }}{{ $css = $css | append . }}{{ end }}
   {{- end }}
-  <style>{{ range $css }}{{ (. | minify).Content | safeCSS }}{{ end }}</style>
+  {{- /* Dark mode (assets/css/dark.css): once for a visitor who picked dark with the
+       sun/moon button, and once for devices set to dark, unless the visitor picked light. */}}
+  {{- $dark := (resources.Get "css/dark.css" | minify).Content }}
+  {{- $auto := replaceRE `\[data-theme="?dark"?\]` `:root:not([data-theme="light"])` $dark }}
+  {{- if eq $auto $dark }}{{ errorf "head.html: dark.css rules must start with [data-theme=\"dark\"]" }}{{ end }}
+  <style>{{ range $css }}{{ (. | minify).Content | safeCSS }}{{ end }}{{ $dark | safeCSS }}@media (prefers-color-scheme: dark){ {{- $auto | safeCSS -}} }</style>
