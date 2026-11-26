@@ -4,43 +4,43 @@
 
 
 tiers:
-  - id: premier
-    name: Premier
+  - id: premier_strategic
+    name: Premier members & strategic partners
     showOnHome: true
-  - id: general
-    name: General
-  - id: associate
-    name: Associate
-  - id: implementer
-    name: Implementer
+  - id: general_associate
+    name: General & associate members
+  - id: supporters
+    name: Supporting organisations
+  - id: advisory_support
+    name: With advisory support from
 
 members:
   - name: Contoso Health
-    tier: premier
+    tier: premier_strategic
     url: https://example.com/contoso
     logo: demo/contoso-health.svg
   - name: Northwind Digital
-    tier: premier
+    tier: premier_strategic
     url: https://example.com/northwind
     logo: demo/northwind-digital.svg
   - name: Fabrikam Labs
-    tier: general
+    tier: general_associate
     url: https://example.com/fabrikam
     logo: demo/fabrikam-labs.svg
   - name: Tailspin Data
-    tier: general
+    tier: general_associate
     url: https://example.com/tailspin
     logo: demo/tailspin-data.svg
   - name: Adventure Works
-    tier: general
+    tier: general_associate
     url: https://example.com/adventure-works
     logo: demo/adventure-works.svg
   - name: Example University
-    tier: associate
+    tier: general_associate
     url: https://example.com/university
     logo: demo/example-university.svg
   - name: Sample Health Alliance
-    tier: associate
+    tier: general_associate
     url: https://example.com/alliance
   - name: Ministry of Example
-    tier: associate
+    tier: general_associate

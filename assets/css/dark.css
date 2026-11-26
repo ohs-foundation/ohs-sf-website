@@ -53,9 +53,8 @@
   --logo-tagline: #859697;
 }
 
-/* Member logos are supplied for light backgrounds: keep them on a light tile. */
-[data-theme="dark"] .member-logo { background: #ffffff; border-radius: 10px; padding: 8px 12px; }
-[data-theme="dark"] .member-logo img { max-height: 36px; }
-[data-theme="dark"] .is-featured .member-logo img { max-height: 52px; }
+/* Member logos: show the dark-background version (logoDark in data/members.yaml). */
+[data-theme="dark"] .member-logo .logo-light { display: none; }
+[data-theme="dark"] .member-logo .logo-dark { display: block; }
 [data-theme="dark"] .theme-toggle .i-sun { display: block; }
 [data-theme="dark"] .theme-toggle .i-moon { display: none; }

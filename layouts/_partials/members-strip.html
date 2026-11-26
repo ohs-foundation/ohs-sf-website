@@ -12,11 +12,11 @@
       </div>
       <div class="member-grid is-featured reveal d1">
         {{- range $groups }}{{ range .members }}
-        {{ partial "members/card.html" . }}
+        {{ partial "members/card.html" (merge . (dict "featured" true)) }}
         {{- end }}{{ end }}
       </div>
       <div class="members-more reveal d2">
-        <a href="/foundation.html#members" class="textlink">{{ $copy.link | default "Meet all our members" }} {{ partial "icon.html" "arrow-right-16" }}</a>
+        <a href="/members.html" class="textlink">{{ $copy.link | default "Meet all our members" }} {{ partial "icon.html" "arrow-right-16" }}</a>
       </div>
     </div>
   </section>

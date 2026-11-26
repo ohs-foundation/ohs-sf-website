@@ -29,6 +29,6 @@ postCta:
     projects, join the community, and help build the future of global digital health.
   buttons:
     - { label: Explore the repositories, url: "@github", style: light, newTab: true }
-    - { label: Become a founding member, url: /foundation.html#membership, style: on-dark }
+    - { label: Become a founding member, url: /members.html#membership, style: on-dark }
     - { label: Join the community, url: /community.html, style: on-dark }
 ---

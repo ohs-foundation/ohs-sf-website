@@ -1,4 +1,5 @@
-{{- /* One member: logo (or initials) + name, linking to their site. Arg: member map. */ -}}
+{{- /* One member: its logo (or initials), linking to their site.
+       Arg: member map (add "featured": true for the larger premier cards). */ -}}
 {{- $inner := partial "members/card-inner.html" . -}}
 {{- with .url }}
 <a class="member-card" href="{{ . }}" target="_blank" rel="noopener">{{ $inner }}</a>

@@ -82,9 +82,9 @@ why:
 # Logo strip of members whose tier has showOnHome: true (data/members.yaml).
 # Hidden while there are no such members.
 members:
-  label: Premier members
-  heading: Backed by our premier members.
-  link: Meet all our members
+  label: Premier members & strategic partners
+  heading: Backed by our premier members and strategic partners.
+  link: Meet all members & supporters
 
 cta:
   label: The ask
@@ -93,6 +93,6 @@ cta:
     We're recruiting founding members ahead of our official launch. Take a seat at the table shaping
     the charter, budget and direction.
   buttons:
-    - { label: Become a founding member, url: /foundation.html#membership, style: light }
+    - { label: Become a founding member, url: /members.html#membership, style: light }
     - { label: Join the community, url: /community.html, style: on-dark }
 ---

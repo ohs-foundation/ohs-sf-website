@@ -58,13 +58,14 @@ imaging:
 
 # ─── Menus ──────────────────────────────────────────────────────────────────
 # Items appear in `weight` order (lowest first). `url` can be a page
-# (/projects.html), an anchor (/foundation.html#membership), a full URL, or a
+# (/projects.html), an anchor (/members.html#membership), a full URL, or a
 # shared link/email such as @discord or @email:general (see params below).
 menus:
   # Top navigation (desktop and mobile). `identifier` lets the menu highlight
   # the page you're on.
   main:
     - { identifier: foundation, name: Foundation, url: /foundation.html, weight: 10 }
+    - { identifier: members,    name: Members,    url: /members.html,    weight: 15 }
     - { identifier: projects,   name: Projects,   url: /projects.html,   weight: 20 }
     - { identifier: docs,       name: Docs,       url: https://docs.ohs.foundation, weight: 25 }
     - { identifier: community,  name: Community,  url: /community.html,  weight: 30 }
@@ -74,7 +75,8 @@ menus:
   footerFoundation:
     - { name: Mission & charter, url: /foundation.html#mission,    weight: 10 }
     - { name: Governance,        url: /foundation.html#governance, weight: 20 }
-    - { name: Membership,        url: /foundation.html#membership, weight: 30 }
+    - { name: Members,           url: /members.html,               weight: 30 }
+    - { name: Become a member,   url: /members.html#membership,    weight: 40 }
   footerProjects:              # shown after the pillar links (from data/pillars.yaml)
     - { name: Get involved,      url: /projects.html#get-involved, weight: 10 }
   footerCommunity:
@@ -121,7 +123,7 @@ params:
 
   # Header: the button at the right of the top menu.
   header:
-    button: { label: Become a member, url: /foundation.html#membership }
+    button: { label: Become a member, url: /members.html#membership }
 
   # "Stay in the loop" band above the footer on most pages.
   newsletter:
