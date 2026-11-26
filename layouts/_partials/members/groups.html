@@ -3,11 +3,14 @@
   site.Params.membersData) and returns a list of tier groups:
     [ { tier: <tier map>, members: [<member>, …] }, … ]
   Only tiers that have at least one member are returned.
+  On the live site (production), members marked `pending: true` are left out;
+  Netlify previews and `hugo server` show them, so they can be reviewed.
   Arg: "home" → only tiers with showOnHome: true; anything else → all tiers.
 */ -}}
 {{- $scope := . -}}
 {{- $data := index hugo.Data (site.Params.membersData | default "members") | default dict -}}
 {{- $members := $data.members | default slice -}}
+{{- if hugo.IsProduction }}{{ $members = where $members "pending" "ne" true }}{{ end -}}
 {{- $groups := slice -}}
 {{- $tierIDs := slice -}}
 {{- range $t := $data.tiers }}

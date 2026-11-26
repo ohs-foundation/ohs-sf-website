@@ -75,7 +75,7 @@ involved:
       text: >-
         Become a founding member or strategic grantor and help secure a neutral, sustainable home
         for global digital health.
-      link: { label: Explore membership, url: /foundation.html#membership }
+      link: { label: Explore membership, url: /members.html#membership }
 
 # Sign-up form for working-group updates (the form itself is managed in EmailOctopus).
 workingGroups:
@@ -110,7 +110,7 @@ cta:
     solutions at scale.
   buttons:
     - { label: Start contributing, url: "https://github.com/ohs-foundation/android-fhir", style: light }
-    - { label: Become a member, url: /foundation.html#membership, style: on-dark }
+    - { label: Become a member, url: /members.html#membership, style: on-dark }
 
 # Newsletter sign-up form (managed in EmailOctopus).
 subscribe:

@@ -1,0 +1,44 @@
+{{- /*
+  One logo <img>, sized to look balanced next to the others.
+  Args (dict): img (the logo resource), member (its entry in data/members.yaml),
+  featured (bool: the larger premier cards), class (optional CSS class).
+
+  Logos come in every shape, from long thin wordmarks to square crests. Giving
+  them all the same box makes wide ones tiny and square ones huge, so each logo
+  gets roughly the same visual area instead, worked out from its own proportions
+  and capped to the card. A member can fine-tune it with logoScale (e.g. 1.2) or
+  set an exact logoWidth (for brand minimums).
+*/ -}}
+{{- $img := .img }}{{ $m := .member }}{{ $featured := .featured }}
+{{- /* The logo's own proportions: from the image, or from an SVG's viewBox. */}}
+{{- $w := 0.0 }}{{ $h := 0.0 }}
+{{- if reflect.IsImageResourceProcessable $img }}
+  {{- $w = float $img.Width }}{{ $h = float $img.Height }}
+{{- else }}
+  {{- with findRESubmatch `viewBox="\s*[-\d.]+[\s,]+[-\d.]+[\s,]+([\d.]+)[\s,]+([\d.]+)` $img.Content 1 }}
+    {{- $w = float (index (index . 0) 1) }}{{ $h = float (index (index . 0) 2) }}
+  {{- end }}
+{{- end }}
+{{- if or (le $w 0.0) (le $h 0.0) }}{{ errorf "members: can't tell the size of logo %q (an SVG needs a viewBox)" $img.Name }}{{ end }}
+{{- $ratio := div $w $h }}
+{{- /* Target area in px², and caps, for normal and featured cards. */}}
+{{- $area := cond $featured 9400.0 6000.0 }}
+{{- $maxW := cond $featured 210.0 150.0 }}
+{{- $maxH := cond $featured 84.0 64.0 }}
+{{- $area = mul $area (float ($m.logoScale | default 1)) }}
+{{- $dw := math.Sqrt (mul $area $ratio) }}
+{{- if gt $dw $maxW }}{{ $dw = $maxW }}{{ end }}
+{{- if gt (div $dw $ratio) $maxH }}{{ $dw = mul $maxH $ratio }}{{ end }}
+{{- with $m.logoWidth }}{{ $dw = float . }}{{ end }}
+{{- $dw = math.Round $dw }}
+{{- $dh := math.Round (div $dw $ratio) }}
+{{- $src := "" }}
+{{- if reflect.IsImageResourceProcessable $img }}
+  {{- /* Twice the display size for sharp screens, never larger than the original. */}}
+  {{- $px := int (math.Min (mul $dh 2) $h) }}
+  {{- $src = ($img.Resize (printf "x%d webp" $px)).RelPermalink }}
+{{- else }}
+  {{- $src = ($img | fingerprint).RelPermalink }}
+{{- end }}
+<img{{ with .class }} class="{{ . }}"{{ end }} src="{{ $src }}" width="{{ $dw }}" height="{{ $dh }}" style="width:{{ $dw }}px" alt="{{ $m.name }}" loading="lazy" />
+{{- /**/ -}}

@@ -108,52 +108,24 @@
   </section>
   {{- end }}
 
-  <!-- MEMBERSHIP -->
+  <!-- MEMBERSHIP: the options and the member list are on the Members page.
+       id="membership" keeps old /foundation.html#membership links landing here
+       (app.js forwards them to /members.html#membership). -->
   {{- with $p.membership }}
-  <section id="membership" class="membership section-pad">
+  <section id="membership" class="membership-pointer section-pad">
     <div class="wrap">
       <div class="section-head center reveal">
         <span class="eyebrow bare" style="justify-content:center">{{ .label }}</span>
         <h2 class="section-title" style="margin-top:16px">{{ .heading }}</h2>
-        <p class="lead">{{ .lead | markdownify }}</p>
-      </div>
-      <div class="tier-list">
-        {{- range .groups }}
-        <p class="tier-grouplabel reveal">{{ .label }}</p>
-        {{- range .tiers }}
-        <div class="tier-row reveal">
-          <div>
-            <h3>{{ .name }}</h3>
-            <p class="tier-meta">{{ .meta }}</p>
-          </div>
-          <div class="tier-row-body">
-            <p>{{ .text | markdownify }}</p>
-          </div>
-        </div>
-        {{- end }}
+        {{- with .lead }}
+        <p class="lead">{{ . | markdownify }}</p>
         {{- end }}
       </div>
-
-      <!-- GOVERNANCE DOCS CALLOUT -->
-      {{- with .docs }}
-      <div class="gov-docs-callout reveal">
-        <div class="gov-docs-left">
-          {{ partial "chip.html" (dict "icon" "document" "color" "core") }}
-          <div>
-            <h3>{{ .title }}</h3>
-            <p>{{ .text | markdownify }}</p>
-          </div>
-        </div>
-        <a href="{{ site.Params.links.governanceDocs }}" target="_blank" rel="noopener" class="btn btn-ghost" style="white-space:nowrap">{{ .button }} {{ partial "icon.html" "arrow-ext-16" }}</a>
-      </div>
-      {{- end }}
-
       <div class="membership-cta reveal">
-        <a href="{{ site.Params.links.lfxEnrollment }}" target="_blank" rel="noopener" class="btn btn-primary">{{ .joinButton }} {{ partial "icon.html" "arrow-ext-16" }}</a>
-        <a href="mailto:{{ site.Params.contact.membership }}" class="btn btn-ghost">{{ .contactButton }}</a>
+        {{- range .buttons }}
+        {{ partial "button.html" . }}
+        {{- end }}
       </div>
-
-      {{ partial "members-directory.html" (dict "copy" .directory) }}
     </div>
   </section>
   {{- end }}

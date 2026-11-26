@@ -22,7 +22,7 @@ hugo server -e demo        # same, plus sample members and sample blog posts
 |---|---|
 | `content/*.md` | One file per page. **All of a page's text** lives in its front matter, as YAML grouped by section (`hero`, `governance`, `membership`, …); the templates only hold layout. `content/blog/<post>/index.md` is one blog post, with its images beside it |
 | `data/pillars.yaml` | The three pillars and their projects (home cards and diagram, Projects page, footer) |
-| `data/members.yaml` | Member organisations and tiers (home page strip + Foundation page directory) |
+| `data/members.yaml` | Member and supporting organisations and tiers (Members page + home page strip). `pending: true` entries render only outside production (`hugo.IsProduction`), i.e. on Deploy Previews and `hugo server`. `logoDark` files (in `assets/members/dark/`) are swapped in by CSS in dark mode |
 | `data/authors.yaml` | Blog authors (name, role, LinkedIn, GitHub); photos come from GitHub at build time, or from `assets/authors/` (placeholder if neither) |
 | `data/events.yaml` | Events pinned to the Community page (recurring calls come from the Google Calendar) |
 | `hugo.yaml` | Site settings, menus (`menus.main`, `menus.footer*`), site-wide text (`params.header`, `newsletter`, `footer`, `notFound`), shared links and emails (`params.links`, `params.contact`) and the EmailOctopus form IDs |
@@ -32,15 +32,15 @@ hugo server -e demo        # same, plus sample members and sample blog posts
 | `assets/css/dark.css` | Dark mode: the dark values of the colour tokens plus a few component rules, all starting with `[data-theme="dark"]`. `head.html` adds it twice: for visitors who picked dark with the sun/moon button, and for devices set to dark (unless the visitor picked light) |
 | `assets/css/main.css` | Design system and shared styles; `assets/css/pages/*.css` hold page-specific styles. Hugo minifies them and writes them into each page's `<head>` (no separate CSS files) |
 | `assets/fonts/` | The self-hosted fonts and their licences; `layouts/_partials/fonts.html` loads them (see `assets/fonts/README.md`) |
-| `assets/js/app.js` | Small vanilla JS: mobile nav, scroll reveal, community events, share buttons |
+| `assets/js/app.js` | Small vanilla JS: mobile nav, scroll reveal, community events, share buttons, forwarding old `/foundation.html#membership` links to the Members page |
 | `assets/images/og-default.png`, `og-blog-default.jpg` | Default images shown when a page / a blog post is shared (set in `hugo.yaml` → `params.ogImage`, `blogShareImage`) |
-| `assets/members/` | Member logos |
+| `assets/members/` | Member and supporter logos (dark-mode versions in `dark/`). `layouts/_partials/members/logo-img.html` sizes each by its aspect ratio (equal visual area, capped to the card), with `logoScale` / `logoWidth` overrides |
 | `assets/brand/` | The official logo files (horizontal lockup and mark, full-colour and reversed) from the OHS-SF Brand Guidelines v1.0, with only the embedded metadata removed. `layouts/_partials/logo-sprite.html` turns them into the logo used in the header, footer and elsewhere; colours are the `--logo-*` variables in `main.css`, and `.logo-reversed` switches to the reversed version for dark backgrounds |
 | `static/favicon.svg`, `static/apple-touch-icon.png` | Browser-tab and phone home-screen icons: the official mark (the favicon switches to the reversed colours when the browser is in dark mode) |
 | `netlify/functions/community-events.js` | Reads the public community calendar (ICS) and returns upcoming events as JSON for the Community page |
 | `email-templates/` | Source of the EmailOctopus welcome email (not published on the site) |
 | `demo/`, `config/demo/`, `data/members_demo.yaml` | Sample content used only by `hugo server -e demo` |
-| `tests/` | Tests for the events function (`node --test`) |
+| `tests/` | Tests for the events function, membership copy and the Members page (`node --test`; the build tests need `hugo` on the PATH) |
 
 ## Conventions
 

@@ -188,115 +188,17 @@
   background: var(--line);
 }
 
-/* Membership */
-.membership {
+/* Membership: a pointer to the Members page, where the options are listed */
+.membership-pointer {
   background: var(--bg-2);
 }
 
-.tier-list {
-  margin-top: 36px;
-  max-width: 880px;
-  margin-inline: auto;
-}
-
-.tier-grouplabel {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin: 40px 0 2px;
-}
-
-.tier-grouplabel:first-child {
-  margin-top: 0;
-}
-
-.tier-row {
-  display: grid;
-  grid-template-columns: 230px 1fr;
-  gap: 36px;
-  padding: 26px 0;
-  border-top: 1px solid var(--line);
-  align-items: baseline;
-}
-
-.tier-row h3 {
-  font-size: 1.1rem;
-  margin: 0;
-}
-
-.tier-row .tier-meta {
-  margin-top: 6px;
-  font-size: 0.84rem;
-  color: var(--ink-soft);
-}
-
-.tier-row-body p {
-  margin: 0;
-  color: var(--ink-soft);
-  font-size: 0.96rem;
-  max-width: 58ch;
-  text-wrap: pretty;
-}
-
-.gov-docs-callout {
-  margin-top: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  max-width: 880px;
-  margin-inline: auto;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  padding: 26px 32px;
-  transition: transform 0.25s var(--ease), box-shadow 0.25s, border-color 0.25s;
-}
-
-.gov-docs-callout:hover {
-  border-color: color-mix(in oklch, var(--teal) 35%, var(--line));
-  box-shadow: var(--shadow-sm);
-}
-
-.gov-docs-left {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.gov-docs-left h3 {
-  font-size: 1.15rem;
-  margin: 0;
-}
-
-.gov-docs-left p {
-  margin: 4px 0 0;
-  color: var(--ink-soft);
-  font-size: 0.94rem;
-  max-width: 52ch;
-}
-
 .membership-cta {
-  margin-top: 44px;
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 14px;
-}
-
-@media (max-width: 768px) {
-  .gov-docs-callout {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 18px;
-    padding: 22px;
-  }
-  .gov-docs-callout .btn {
-    width: 100%;
-    justify-content: center;
-  }
 }
 
 @media (max-width: 860px) {
@@ -308,10 +210,5 @@
   .gov-grid,
   .model-grid {
     grid-template-columns: 1fr;
-  }
-
-  .tier-row {
-    grid-template-columns: 1fr;
-    gap: 12px;
   }
 }

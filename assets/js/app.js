@@ -11,6 +11,14 @@
       .replace(/"/g, '&quot;');
   }
 
+  /* ─── Old membership links ──────────────────────────────────────────── */
+  // The membership options moved from the Foundation page to the Members page.
+  // Links already shared as /foundation.html#membership go straight there.
+  if (/^\/foundation(\.html)?$/.test(location.pathname) && location.hash === '#membership') {
+    location.replace('/members.html#membership');
+    return;
+  }
+
   /* ─── Sticky header ─────────────────────────────────────────────────── */
   var header = document.querySelector('.site-header');
   function onScroll() { if (header) header.classList.toggle('scrolled', window.scrollY > 8); }

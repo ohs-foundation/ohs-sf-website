@@ -55,8 +55,8 @@ function findHugoBinary() {
   return null;
 }
 
-test('foundation.md membership section preserves approved tiers, copy guardrails, and CTAs', () => {
-  const content = readRepoFile('content/foundation.md');
+test('members.md membership section preserves approved tiers, copy guardrails, and CTAs', () => {
+  const content = readRepoFile('content/members.md');
   const expectedTiers = [
     'name: Premier',
     'name: General',
@@ -65,7 +65,7 @@ test('foundation.md membership section preserves approved tiers, copy guardrails
     'name: Sponsorships & grants',
   ];
   for (const tier of expectedTiers) {
-    assert.ok(content.includes(tier), `Expected ${tier} in content/foundation.md`);
+    assert.ok(content.includes(tier), `Expected ${tier} in content/members.md`);
   }
 
   assert.ok(content.includes('joinButton: Join now'), 'Expected joinButton: Join now');
@@ -80,16 +80,19 @@ test('foundation.md membership section preserves approved tiers, copy guardrails
     'foundations work',
   ];
   for (const snippet of retiredSnippets) {
-    assert.ok(!content.includes(snippet), `Unexpected stale snippet "${snippet}" in content/foundation.md`);
+    assert.ok(!content.includes(snippet), `Unexpected stale snippet "${snippet}" in content/members.md`);
   }
 });
 
-test('data/members.yaml and data/members_demo.yaml share the updated tier IDs and valid member links', () => {
-  const expectedTierIds = ['premier', 'general', 'associate', 'implementer'];
+test('data/members.yaml and data/members_demo.yaml share the same tier IDs', () => {
+  const expectedTierIds = ['premier_strategic', 'general_associate', 'supporters', 'advisory_support'];
 
   const live = parseMembersYaml(readRepoFile('data/members.yaml'));
   assert.deepStrictEqual(live.tiers, expectedTierIds);
-  assert.strictEqual(live.members.length, 0, 'data/members.yaml must stay empty pending logo approvals');
+  assert.ok(live.members.length > 0, 'data/members.yaml should list the members and supporters');
+  for (const memberTier of live.members) {
+    assert.ok(live.tiers.includes(memberTier), `Member references unknown tier "${memberTier}"`);
+  }
 
   const demo = parseMembersYaml(readRepoFile('data/members_demo.yaml'));
   assert.deepStrictEqual(demo.tiers, expectedTierIds);
@@ -99,7 +102,7 @@ test('data/members.yaml and data/members_demo.yaml share the updated tier IDs an
   }
 });
 
-test('Hugo renders foundation.html with all membership tiers and both CTAs intact', (t) => {
+test('Hugo renders members.html with all membership tiers and both CTAs intact', (t) => {
   const hugoBin = findHugoBinary();
   if (!hugoBin) {
     t.skip('hugo binary not installed in this environment');
@@ -112,14 +115,14 @@ test('Hugo renders foundation.html with all membership tiers and both CTAs intac
       cwd: ROOT,
       stdio: 'pipe',
     });
-    const html = fs.readFileSync(path.join(outDir, 'foundation.html'), 'utf8');
+    const html = fs.readFileSync(path.join(outDir, 'members.html'), 'utf8');
 
     for (const heading of ['Premier', 'General', 'Associate', 'Implementer']) {
       assert.ok(html.includes(`<h3>${heading}</h3>`), `Expected rendered <h3>${heading}</h3>`);
     }
     assert.match(html, /<h3>Sponsorships (?:&|&amp;) grants<\/h3>/, 'Expected rendered Sponsorships & grants heading');
-    assert.ok(!html.includes('<h3>Gold</h3>'), 'Stale <h3>Gold</h3> rendered in foundation.html');
-    assert.ok(!html.includes('<h3>Inclusive</h3>'), 'Stale <h3>Inclusive</h3> rendered in foundation.html');
+    assert.ok(!html.includes('<h3>Gold</h3>'), 'Stale <h3>Gold</h3> rendered in members.html');
+    assert.ok(!html.includes('<h3>Inclusive</h3>'), 'Stale <h3>Inclusive</h3> rendered in members.html');
 
     assert.match(html, /href="?https:\/\/enrollment\.lfx\.linuxfoundation\.org\/\?project=open-health-stack-foundation"?[^>]*>Join now\b/);
     assert.match(html, /href="?mailto:membership@ohs\.foundation"?[^>]*>Get in touch<\/a>/);

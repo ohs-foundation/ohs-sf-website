@@ -1,20 +1,33 @@
+{{- /*
+  The logo (or initials) for one member card. Arg: the member map, with
+  "featured": true added in the larger premier grids. The logo's alt text is the
+  organisation's name (cards show the logo only).
+
+  With a logoDark file, the card holds both logos and the CSS shows the one that
+  suits the current theme (.logo-light / .logo-dark in main.css and dark.css).
+  Without one, the normal logo is shown in both themes.
+*/ -}}
+{{- $m := . -}}
+{{- $featured := .featured | default false -}}
 {{- $img := false -}}
+{{- $dark := false -}}
 {{- with .logo -}}
   {{- $img = resources.Get (printf "members/%s" .) -}}
-  {{- if not $img }}{{ errorf "data/members.yaml: logo %q (for %q) not found in assets/members/ (file names are case-sensitive)" . $.name }}{{ end -}}
+  {{- if not $img }}{{ errorf "data/members.yaml: logo %q (for %q) not found in assets/members/ (file names are case-sensitive)" . $m.name }}{{ end -}}
+{{- end -}}
+{{- with .logoDark -}}
+  {{- $dark = resources.Get (printf "members/%s" .) -}}
+  {{- if not $dark }}{{ errorf "data/members.yaml: logoDark %q (for %q) not found in assets/members/ (file names are case-sensitive)" . $m.name }}{{ end -}}
 {{- end -}}
 <span class="member-logo">
   {{- with $img }}
-    {{- if not (reflect.IsImageResourceProcessable .) }}
-  <img src="{{ (. | fingerprint).RelPermalink }}" alt="{{ $.name }}" loading="lazy" />
-    {{- else }}
-    {{- $r := .Resize "x136 webp" }}
-  <img src="{{ $r.RelPermalink }}" width="{{ div $r.Width 2 }}" height="{{ div $r.Height 2 }}" alt="{{ $.name }}" loading="lazy" />
+    {{- partial "members/logo-img.html" (dict "img" . "member" $m "featured" $featured "class" (cond (not $dark) "" "logo-light")) }}
+    {{- with $dark }}
+    {{- partial "members/logo-img.html" (dict "img" . "member" $m "featured" $featured "class" "logo-dark") }}
     {{- end }}
   {{- else }}
     {{- /* No logo: show up to two initials (capitalised words only, so "Ministry of Health" → "MH") */}}
-    {{- $initials := delimit (first 2 (findRE `\b\p{Lu}` .name)) "" | default (substr .name 0 1) }}
-  <span class="member-initials" aria-hidden="true">{{ upper $initials }}</span>
+    {{- $initials := delimit (first 2 (findRE `\b\p{Lu}` $m.name)) "" | default (substr $m.name 0 1) }}
+  <span class="member-initials" role="img" aria-label="{{ $m.name }}">{{ upper $initials }}</span>
   {{- end }}
 </span>
-<span class="member-name">{{ .name }}</span>

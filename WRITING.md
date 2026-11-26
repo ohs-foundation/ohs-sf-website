@@ -20,14 +20,15 @@ Everything you can read on ohs.foundation is kept in plain text files: Markdown 
 | File | What's in it |
 |---|---|
 | `content/_index.md` | Home page text |
-| `content/foundation.md` | Foundation page text, including the membership tiers |
+| `content/foundation.md` | Foundation page text |
 | `content/projects.md` | Projects page heading and "Get involved" band |
 | `content/community.md` | Community page text |
 | `content/welcome-to-community.md` | The page new newsletter subscribers land on |
 | `content/blog/_index.md` | Blog page heading, plus the purple band at the end of every post |
 | `content/blog/<post>/index.md` | One blog post, with its images beside it |
 | `data/pillars.yaml` | The three pillars and every project card (used on Home, Projects and in the footer) |
-| `data/members.yaml` | Member organisations and their tiers (Home and Foundation pages) |
+| `content/members.md` | Members page text: heading, the three logo bands, and the membership options (prices and benefits) |
+| `data/members.yaml` | Member and supporting organisations, their tiers and logos (Members page and the home page strip) |
 | `data/authors.yaml` | Blog authors: name, role, LinkedIn and GitHub (photo comes from GitHub) |
 | `data/events.yaml` | Conferences pinned to the Community page's event list |
 | `hugo.yaml` | Menus, footer, the "Stay in the loop" band, the 404 page, site name, shared links and emails |
@@ -100,7 +101,7 @@ Anywhere a URL goes (`url:` fields, menu items, links in Markdown) you can use:
 
 | Write | Goes to |
 |---|---|
-| `/projects.html`, `/foundation.html#membership` | a page on this site, or a section of it |
+| `/projects.html`, `/members.html#membership` | a page on this site, or a section of it |
 | `#events` | a section of the same page |
 | `https://…` | another website |
 | `@discord`, `@calendar`, `@github`, `@governanceDocs`, `@lfxEnrollment`, `@linuxFoundation`, `@netlify` | the shared links set in `hugo.yaml` → `params.links` |
@@ -146,7 +147,7 @@ All in **`hugo.yaml`**:
 
 | To change… | Where in `hugo.yaml` |
 |---|---|
-| **Top menu** (Foundation, Projects, Docs, Community, Blog) | `menus:` → `main:`. Items appear in `weight` order. `identifier` must match the page's name (e.g. `community`) so the menu highlights the page you're on. |
+| **Top menu** (Foundation, Members, Projects, Docs, Community, Blog) | `menus:` → `main:`. Items appear in `weight` order. `identifier` must match the page's name (e.g. `community`) so the menu highlights the page you're on. |
 | **Become a member** button in the header | `params:` → `header:` → `button:` |
 | **"Stay in the loop" band** above the footer | `params:` → `newsletter:` |
 | **Footer** text | `params:` → `footer:` (`about`, `copyright`, `hostedBy`, `poweredBy`) |
@@ -182,7 +183,7 @@ Elsewhere:
 | `diagram` | Labels of the diagram beside the headline, the colours of its small app tiles, and the standards chips at its base. The pillar names and short descriptions in it come from `data/pillars.yaml`. |
 | `pillars` | Heading and intro of the "Three pillars" section, and its button label. The three cards themselves come from `data/pillars.yaml` (the `home:` block of each pillar). |
 | `why` | "Why a foundation": heading, intro and the four cards (`icon`, `title`, `text`) |
-| `members` | Heading of the premier-members logo strip. The strip appears once `data/members.yaml` has members in a tier marked `showOnHome: true`. |
+| `members` | Label, heading and link of the logo strip of premier members and strategic partners. The strip appears once `data/members.yaml` has (approved) members in a tier marked `showOnHome: true`. |
 | `cta` | The purple "The ask" band: `label`, `heading`, `lead`, `buttons` |
 
 ---
@@ -198,19 +199,7 @@ Elsewhere:
 | `charter` | Heading and intro; `commitments` (the numbered cards, numbered automatically 01, 02, … in list order); `boundary` (the "no complete products" box) |
 | `governance` | Heading and intro; `cards`; `docsButton` (the label of the governance docs button; its link is `@governanceDocs`) |
 | `model` | "Why this model": heading and `items` |
-| `membership` | Heading and intro. `groups` holds the membership options with their prices and benefits: each group has a `label` (e.g. "Standard tiers · Linux Foundation model") and `tiers` (`name`, `meta` for the price line, `text`). `docs` is the governance docs box. `joinButton` and `contactButton` are the button labels. `directory` is the heading of the "Our members" logo section. |
-
-**Example: add a membership option.** Copy a tier under the right group and edit it:
-
-```yaml
-        - name: Supporter
-          meta: $2k / year · individuals and small teams
-          text: >-
-            For people who want to back the mission. Includes the supporter newsletter and an
-            invitation to the annual community summit.
-```
-
-The membership options described here (prices and benefits) are separate from the tiers in `data/members.yaml`, which only group the member logos. Keep the two consistent when tiers change.
+| `membership` | A short section pointing to the Members page, where the membership options now are: `label`, `heading`, `lead` and `buttons`. Old links to `/foundation.html#membership` are sent on to `/members.html#membership`. |
 
 ---
 
@@ -444,42 +433,78 @@ The home page "New" pill points to the newest post automatically. To point it so
 
 ## 10. Members
 
-Members appear in two places:
+The **Members page** (`/members.html`) shows every organisation's logo, in three bands (Foundation members, supporting organisations, advisory support), followed by the **membership options** (`#membership`). The **home page** also has a logo strip for the tiers marked `showOnHome: true` (premier members & strategic partners). Cards show the logo only, linking to the organisation's site.
 
-- a logo strip on the **home page**, for tiers marked `showOnHome: true` (currently Premier);
-- the **"Our members"** directory on the **Foundation page**, for all tiers, grouped by tier.
+The organisations and their logos are in **`data/members.yaml`**; the page's text, bands and membership options are in **`content/members.md`**.
 
-Both are hidden while there are no members. Everything is in **`data/members.yaml`**.
+### Add an organisation
 
-### Add a member
-
-1. Put the logo in `assets/members/`. SVG is best; PNG, JPG and WebP work too (transparent background, at least 140 px tall). Use a lowercase name without spaces.
-2. Add an entry under `members:`. If the file says `members: []` (an empty list), replace that line:
+1. Put the logo in `assets/members/`. SVG is best; PNG, JPG and WebP work too (transparent background, at least 140 px tall, without empty space around it). Use a lowercase name without spaces.
+2. Add an entry under `members:`:
 
 ```yaml
 members:
-  - name: Example Health          # shown under the logo; also the logo's alt text
-    tier: premier                 # a tier id from the tiers list
+  - name: Example Health          # the logo's alt text (read out by screen readers)
+    tier: supporters              # a tier id from the tiers list
     url: https://example.org      # optional: makes the card a link
     logo: example-health.svg      # optional: without it, the initials are shown
+    logoDark: dark/example-health.svg  # optional: the version for dark mode (see below)
+    pending: true                 # optional: see below
 ```
 
-- Within a tier, members appear in the order listed.
+- Within a tier, organisations appear in the order listed.
 - **Without a `url`** the card isn't clickable. **Without a `logo`** the card shows the organisation's initials.
-- To remove a member, delete its entry, and its logo file if it's no longer needed.
+- To remove an organisation, delete its entry, and its logo file if it's no longer needed.
 
-### Tiers
+### Waiting for an organisation's sign-off
+
+Add `pending: true` while an organisation hasn't yet approved how it's listed. It then appears on Netlify preview links and on `hugo server`, so it can be checked, but **never on the live site**. Once they approve, delete the `pending` line and publish.
+
+### Logo sizes
+
+Logos are sized automatically so they look balanced: a long, thin wordmark gets more width and a square crest less, each within the card. If one still looks too big or too small next to the others:
+
+- `logoScale: 1.2` (or `0.85`) makes it a little larger (or smaller);
+- `logoWidth: 100` sets an exact width in pixels. Use it when an organisation's brand rules set a minimum on-screen width (HELINA's, for example, is 100 px).
+
+Use logos exactly as the organisation supplies them: don't recolour, crop or stretch them.
+
+### Dark mode
+
+Most logos are made for light backgrounds. For dark mode, put the organisation's version for dark backgrounds (usually white, or with white text) in `assets/members/dark/` and point `logoDark` at it; the site shows it whenever the page is dark. Without a `logoDark`, the normal logo is used in both modes, so check that it's still readable.
+
+Ask the organisation for their dark-background ("reversed" or "white") logo. Where none was supplied yet, some files in `assets/members/dark/` were made from the normal logo by turning its dark colours white; `data/members.yaml` marks the official ones `# official`. Replace a made one when the official file arrives.
+
+### Membership options
+
+The prices and benefits are in `content/members.md` → `membership`: `groups` holds the options, each group with a `label` (e.g. "Standard tiers · Linux Foundation model") and `tiers` (`name`, `meta` for the price line, `text`). `docs` is the governance docs box; `joinButton` and `contactButton` are the button labels.
+
+**Example: add a membership option.** Copy a tier under the right group and edit it:
+
+```yaml
+        - name: Supporter
+          meta: $2k / year · individuals and small teams
+          text: >-
+            For people who want to back the mission. Includes the supporter newsletter and an
+            invitation to the annual community summit.
+```
+
+The membership options (prices and benefits) are separate from the tiers in `data/members.yaml`, which only group the logos. Keep the two consistent when tiers change.
+
+### Tiers and bands
 
 ```yaml
 tiers:
-  - id: premier          # what members' `tier:` refers to (lowercase, no spaces)
-    name: Premier        # the label shown on the site
-    showOnHome: true     # include this tier in the home page strip
-  - id: general
-    name: General
+  - id: premier_strategic                     # what members' `tier:` refers to
+    name: Premier members & strategic partners  # the label shown on the site
+    showOnHome: true                          # include this tier in the home page strip
+  - id: general_associate
+    name: General & associate members
 ```
 
-Rename, add or reorder tiers freely. If you change an `id`, update the members that use it. The headings of the members sections are in the page files: `content/_index.md` → `members` and `content/foundation.md` → `membership` → `directory`.
+Rename, add or reorder tiers freely. If you change an `id`, update the organisations that use it **and** the `bands` in `content/members.md`, where each band lists the tier ids it shows (`tiers`), which of them get the larger cards (`featured`), and optionally how many logos go in a row on wide screens (`columns: 6`). A band with no organisations to show is hidden.
+
+The other members headings are in `content/_index.md` → `members` (home strip) and `content/foundation.md` → `membership` (the pointer to the Members page).
 
 `hugo server -e demo` shows the sections with sample members (from `data/members_demo.yaml`).
 
@@ -494,9 +519,10 @@ Rename, add or reorder tiers freely. If you change an `id`, update the members t
 | Change any text on a page | That page's file in `content/` ([section 1](#1-where-content-lives)) |
 | Change the home page headline | `content/_index.md` → `hero` |
 | Change the home page "New" pill | Nothing to do for a new post: it updates itself. To announce something else: `content/_index.md` → `announcement` (`text` and `url`) |
-| Change membership prices or benefits | `content/foundation.md` → `membership` → `groups` |
-| Add or remove a member | `data/members.yaml` + logo in `assets/members/` |
-| Rename member tiers | `data/members.yaml` → `tiers` |
+| Change membership prices or benefits | `content/members.md` → `membership` → `groups` |
+| Add or remove a member or supporter | `data/members.yaml` + logo in `assets/members/` |
+| Publish an organisation that has signed off | `data/members.yaml`: delete its `pending: true` line |
+| Rename member tiers | `data/members.yaml` → `tiers` (and `content/members.md` → `bands` if an id changes) |
 | Add or edit a project card | `data/pillars.yaml` → `items` |
 | Rename a pillar or change its status | `data/pillars.yaml` → `name` / `status` |
 | Pin a conference to the events list | `data/events.yaml` |

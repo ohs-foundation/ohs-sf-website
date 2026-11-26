@@ -28,6 +28,12 @@
   to = "/community.html#working-groups"
   status = 302
 
+# The Members page lives at /members.html; serve it at /members too.
+[[redirects]]
+  from = "/members"
+  to = "/members.html"
+  status = 200
+
 # The blog index lives at /blog.html; send /blog/ there too.
 [[redirects]]
   from = "/blog/"
