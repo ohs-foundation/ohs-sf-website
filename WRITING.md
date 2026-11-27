@@ -452,7 +452,7 @@ members:
     pending: true                 # optional: see below
 ```
 
-- Within a tier, organisations appear in the order listed.
+- Within a tier, organisations appear in the order listed, except supporting organisations, which are always shown in alphabetical order (the tier has `sortByName: true`).
 - **Without a `url`** the card isn't clickable. **Without a `logo`** the card shows the organisation's initials.
 - To remove an organisation, delete its entry, and its logo file if it's no longer needed.
 
@@ -465,7 +465,7 @@ Add `pending: true` while an organisation hasn't yet approved how it's listed. I
 Logos are sized automatically so they look balanced: a long, thin wordmark gets more width and a square crest less, each within the card. If one still looks too big or too small next to the others:
 
 - `logoScale: 1.2` (or `0.85`) makes it a little larger (or smaller);
-- `logoWidth: 100` sets an exact width in pixels. Use it when an organisation's brand rules set a minimum on-screen width (HELINA's, for example, is 100 px).
+- `logoWidth: 100` sets an exact width in pixels. Use it only if an organisation insists on a minimum on-screen width; otherwise let the automatic sizing keep all logos alike.
 
 Use logos exactly as the organisation supplies them: don't recolour, crop or stretch them.
 

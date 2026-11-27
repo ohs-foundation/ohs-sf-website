@@ -2,7 +2,8 @@
   Reads the members data file (data/members.yaml, or the file named by
   site.Params.membersData) and returns a list of tier groups:
     [ { tier: <tier map>, members: [<member>, …] }, … ]
-  Only tiers that have at least one member are returned.
+  Only tiers that have at least one member are returned. A tier with
+  sortByName: true lists its members alphabetically.
   On the live site (production), members marked `pending: true` are left out;
   Netlify previews and `hugo server` show them, so they can be reviewed.
   Arg: "home" → only tiers with showOnHome: true; anything else → all tiers.
@@ -16,7 +17,10 @@
 {{- range $t := $data.tiers }}
   {{- $tierIDs = $tierIDs | append $t.id -}}
   {{- if or (ne $scope "home") $t.showOnHome }}
-    {{- with where $members "tier" $t.id }}{{ $groups = $groups | append (dict "tier" $t "members" .) }}{{ end -}}
+    {{- with where $members "tier" $t.id }}
+      {{- $list := . }}{{ if $t.sortByName }}{{ $list = sort $list "name" }}{{ end }}
+      {{- $groups = $groups | append (dict "tier" $t "members" $list) }}
+    {{- end -}}
   {{- end }}
 {{- end }}
 {{- if eq $scope "home" }}{{ range $members }}

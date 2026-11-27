@@ -119,6 +119,13 @@ test('live site shows approved members only; previews show everyone', (t) => {
 
   const preview = build(hugoBin, 'preview', ['members.html']);
   for (const m of members) assert.ok(shownName(preview['members.html'], m.name), `"${m.name}" missing from preview members.html`);
+
+  // Supporting organisations are shown A–Z, whatever their order in the data file.
+  const supporters = members.filter((m) => m.tier === 'supporters').map((m) => m.name);
+  const at = (name) => preview['members.html'].search(new RegExp(`alt="?${escapeRe(name)}"?[ />]`));
+  const shownOrder = [...supporters].sort((a, b) => at(a) - at(b));
+  const alphabetical = [...supporters].sort((a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' }));
+  assert.deepStrictEqual(shownOrder, alphabetical, 'Supporting organisations should be in alphabetical order');
 });
 
 test('membership links point at the Members page', () => {

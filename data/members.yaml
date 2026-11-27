@@ -6,7 +6,11 @@
 #   Foundation members (premier_strategic, general_associate), Supporting
 #   organisations (supporters) and Advisory support (advisory_support).
 #
-# MEMBERS — within a tier, organisations appear in the order listed here.
+#   sortByName: true shows that tier's organisations in alphabetical order,
+#   whatever their order below (used for the supporting organisations).
+#
+# MEMBERS — within a tier, organisations appear in the order listed here
+#   (unless the tier has sortByName: true).
 #   name:     organisation name (the logo's alt text, read out by screen readers)
 #   tier:     a tier id from the list above
 #   url:      their website (optional)
@@ -36,6 +40,7 @@ tiers:
     name: General & associate members
   - id: supporters
     name: Supporting organisations
+    sortByName: true
   - id: advisory_support
     name: With advisory support from
 
@@ -99,7 +104,6 @@ members:
     url: https://helina.africa
     logo: helina.png
     logoDark: dark/helina.png
-    logoWidth: 100      # HELINA's brand guide: at least 100 px wide on screen
   - name: IPRD Solutions
     tier: supporters
     url: https://www.iprdsolutions.com
@@ -153,7 +157,7 @@ members:
   - name: Recode Labs
     tier: supporters
     url: https://www.recodelabs.org
-    logo: recode-labs.svg
+    logo: recode-labs.svg               # supplied by Recode Labs (background removed, cropped)
     logoDark: dark/recode-labs.svg
   - name: SUMMIT Institute for Development
     tier: supporters
