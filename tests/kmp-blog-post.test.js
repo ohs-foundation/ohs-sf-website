@@ -1,4 +1,4 @@
-// Regression tests for the KMP FHIR SDK Beta blog post bundle and video shortcode.
+// Regression tests for the KMP FHIR SDK blog post bundle and video shortcode.
 // Run from the repo root with:  node --test
 const test = require('node:test');
 const assert = require('node:assert');
@@ -25,7 +25,7 @@ function findHugoBinary() {
   return null;
 }
 
-test('KMP FHIR SDK beta blog bundle contains required media and clean prose', () => {
+test('KMP FHIR SDK blog bundle contains required media and clean prose', () => {
   const bundleDir = path.join(ROOT, 'content/blog/kmp-fhir-sdk-beta');
   for (const file of ['index.md', 'cover.jpg', 'card.jpg', 'kmp-multiplatform-demo.mp4', 'kmp-multiplatform-poster.jpg']) {
     const full = path.join(bundleDir, file);
@@ -36,12 +36,14 @@ test('KMP FHIR SDK beta blog bundle contains required media and clean prose', ()
   const md = fs.readFileSync(path.join(bundleDir, 'index.md'), 'utf8');
   assert.ok(!md.includes('—'), 'Post markdown should not contain em dashes');
   for (const expected of [
+    'One Codebase, Every Platform: Bringing Cross-Platform FHIR Development to Global Digital Health',
     'kotlin-fhir',
     'kotlin-fhirpath',
     'kotlin-fhir-engine',
     'kotlin-fhir-data-capture',
     'OHS Player',
     'docs.ohs.foundation/fhir-foundations/',
+    'docs.ohs.foundation/fhir-foundations/kmp-fhir-sdk/',
     'docs.ohs.foundation/ohs-player/',
     'kmp-multiplatform-demo.mp4',
   ]) {
@@ -79,7 +81,7 @@ test('Hugo keeps kmp-fhir-sdk-beta draft off production builds and renders full 
     assert.ok(fs.existsSync(postHtmlPath), 'Expected rendered blog/kmp-fhir-sdk-beta.html with --buildDrafts');
     const postHtml = fs.readFileSync(postHtmlPath, 'utf8');
 
-    assert.ok(postHtml.includes('One Codebase, Three Platforms: The KMP FHIR SDK Enters Beta'));
+    assert.ok(postHtml.includes('One Codebase, Every Platform: Bringing Cross-Platform FHIR Development to Global Digital Health'));
     assert.match(postHtml, /<video[^>]*\bautoplay\b[^>]*\bmuted\b[^>]*\bloop\b[^>]*\bplaysinline\b/);
     assert.match(postHtml, /src="?\/blog\/kmp-fhir-sdk-beta\/kmp-multiplatform-demo\.mp4"?/);
     assert.match(postHtml, /poster="?\/blog\/kmp-fhir-sdk-beta\/kmp-multiplatform-poster\.jpg"?/);
@@ -87,11 +89,11 @@ test('Hugo keeps kmp-fhir-sdk-beta draft off production builds and renders full 
 
     const blogIndexHtml = fs.readFileSync(path.join(draftDir, 'blog.html'), 'utf8');
     assert.ok(blogIndexHtml.includes('/blog/kmp-fhir-sdk-beta.html'));
-    assert.ok(blogIndexHtml.includes('One Codebase, Three Platforms: The KMP FHIR SDK Enters Beta'));
+    assert.ok(blogIndexHtml.includes('One Codebase, Every Platform: Bringing Cross-Platform FHIR Development to Global Digital Health'));
 
     const homeHtml = fs.readFileSync(path.join(draftDir, 'index.html'), 'utf8');
     assert.ok(homeHtml.includes('/blog/kmp-fhir-sdk-beta.html'));
-    assert.ok(homeHtml.includes('New release: the KMP FHIR SDK enters Beta'));
+    assert.ok(homeHtml.includes('KMP FHIR SDK: cross-platform FHIR development for global digital health'));
   } finally {
     fs.rmSync(prodDir, { recursive: true, force: true });
     fs.rmSync(draftDir, { recursive: true, force: true });
