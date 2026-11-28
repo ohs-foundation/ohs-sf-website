@@ -32,6 +32,8 @@ test('KMP FHIR SDK blog bundle contains required media and clean prose', () => {
     assert.ok(fs.existsSync(full), `Missing expected bundle asset ${file}`);
     assert.ok(fs.statSync(full).size > 0, `Asset ${file} is empty`);
   }
+  const mp4Buf = fs.readFileSync(path.join(bundleDir, 'kmp-multiplatform-demo.mp4'));
+  assert.ok(mp4Buf.includes(Buffer.from('mp4a')), 'Expected demo MP4 to include an AAC audio track');
 
   const md = fs.readFileSync(path.join(bundleDir, 'index.md'), 'utf8');
   assert.ok(!md.includes('—'), 'Post markdown should not contain em dashes');

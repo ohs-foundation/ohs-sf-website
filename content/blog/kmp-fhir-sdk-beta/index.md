@@ -27,7 +27,7 @@ Kotlin Multiplatform lets teams avoid that choice while keeping offline support 
 
 Because every screen and local record uses standard FHIR data models, questionnaires, and sync APIs, clinical content stays reusable and data exchanges cleanly with other health systems.
 
-{{< video src="kmp-multiplatform-demo.mp4" poster="kmp-multiplatform-poster.jpg" autoplay="true" loop="true" caption="Real screen-recorded demo built with the KMP FHIR SDK: one shared Antenatal Care app running across Android, iPhone, Mac, and Web with smart FHIR Questionnaire forms, PlanDefinition care plans, offline capture, FHIR server sync, and 94% shared code." >}}
+{{< video src="kmp-multiplatform-demo.mp4" poster="kmp-multiplatform-poster.jpg" autoplay="true" loop="true" caption="Real screen-recorded demo built with the KMP FHIR SDK: one shared Antenatal Care app running across Android, iPhone, Mac, and Web with smart FHIR Questionnaire forms, PlanDefinition care plans, offline capture, FHIR server sync, 94% shared code, and an invitation to start building (unmute for soundtrack)." >}}
 
 ## Inside the stack: the FHIR Foundations libraries {kicker="Pillar 01 · FHIR Foundations"}
 
