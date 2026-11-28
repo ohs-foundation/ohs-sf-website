@@ -37,12 +37,16 @@ test('KMP FHIR SDK blog bundle contains required media and clean prose', () => {
 
   const md = fs.readFileSync(path.join(bundleDir, 'index.md'), 'utf8');
   assert.ok(!md.includes('—'), 'Post markdown should not contain em dashes');
+  assert.match(md, /^draft:\s*false$/m, 'Staged PR branch must set draft: false so Netlify Deploy Preview renders it');
   for (const expected of [
     'One Codebase, Every Platform: Bringing Cross-Platform FHIR Development to Global Digital Health',
     'kotlin-fhir',
     'kotlin-fhirpath',
     'kotlin-fhir-engine',
     'kotlin-fhir-data-capture',
+    'together with Agent Skills',
+    'foreseeable future',
+    'extendable admin portal and analytics dashboards that leverage FHIR Data Pipes',
     'OHS Player',
     'docs.ohs.foundation/fhir-foundations/',
     'docs.ohs.foundation/fhir-foundations/kmp-fhir-sdk/',
@@ -53,51 +57,56 @@ test('KMP FHIR SDK blog bundle contains required media and clean prose', () => {
   }
 });
 
-test('Hugo keeps kmp-fhir-sdk-beta draft off production builds and renders full post with --buildDrafts', (t) => {
+test('Hugo Netlify preview build renders kmp-fhir-sdk-beta with noindex and production build succeeds cleanly', (t) => {
   const hugoBin = findHugoBinary();
   if (!hugoBin) {
     t.skip('hugo binary not installed in this environment');
     return;
   }
 
+  const previewDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ohs-kmp-preview-test-'));
   const prodDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ohs-kmp-prod-test-'));
-  const draftDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ohs-kmp-draft-test-'));
   try {
-    // Production build must NOT publish the draft post yet.
+    // 1. Netlify Deploy Preview build (--environment preview -b $DEPLOY_PRIME_URL).
+    execFileSync(
+      hugoBin,
+      ['--gc', '--minify', '--environment', 'preview', '-b', 'https://deploy-preview-kmp--ohs-sf.netlify.app', '--destination', previewDir],
+      { cwd: ROOT, stdio: 'pipe' }
+    );
+
+    const previewPostPath = path.join(previewDir, 'blog/kmp-fhir-sdk-beta.html');
+    assert.ok(fs.existsSync(previewPostPath), 'Expected rendered blog/kmp-fhir-sdk-beta.html in Netlify preview build');
+    const previewHtml = fs.readFileSync(previewPostPath, 'utf8');
+
+    assert.ok(previewHtml.includes('One Codebase, Every Platform: Bringing Cross-Platform FHIR Development to Global Digital Health'));
+    assert.match(previewHtml, /<meta\s+name="?robots"?\s+content="?noindex"?/);
+    assert.match(previewHtml, /<video[^>]*\bautoplay\b[^>]*\bmuted\b[^>]*\bloop\b[^>]*\bplaysinline\b/);
+    assert.match(previewHtml, /src="?\/blog\/kmp-fhir-sdk-beta\/kmp-multiplatform-demo\.mp4"?/);
+    assert.match(previewHtml, /poster="?\/blog\/kmp-fhir-sdk-beta\/kmp-multiplatform-poster\.jpg"?/);
+    assert.ok(fs.existsSync(path.join(previewDir, 'blog/kmp-fhir-sdk-beta/kmp-multiplatform-demo.mp4')));
+
+    const blogIndexHtml = fs.readFileSync(path.join(previewDir, 'blog.html'), 'utf8');
+    assert.ok(blogIndexHtml.includes('/blog/kmp-fhir-sdk-beta.html'));
+    assert.ok(blogIndexHtml.includes('One Codebase, Every Platform: Bringing Cross-Platform FHIR Development to Global Digital Health'));
+
+    const homeHtml = fs.readFileSync(path.join(previewDir, 'index.html'), 'utf8');
+    assert.ok(homeHtml.includes('/blog/kmp-fhir-sdk-beta.html'));
+    assert.ok(homeHtml.includes('KMP FHIR SDK: cross-platform FHIR development for global digital health'));
+
+    const robotsTxt = fs.readFileSync(path.join(previewDir, 'robots.txt'), 'utf8');
+    assert.ok(robotsTxt.includes('Disallow: /'), 'Expected preview robots.txt to disallow general indexing');
+
+    // 2. Standard production build (used once merged to main) renders cleanly without noindex.
     execFileSync(hugoBin, ['--gc', '--minify', '--destination', prodDir], {
       cwd: ROOT,
       stdio: 'pipe',
     });
-    assert.ok(
-      !fs.existsSync(path.join(prodDir, 'blog/kmp-fhir-sdk-beta.html')),
-      'Draft post must remain excluded from production build until approved'
-    );
-
-    // Draft preview build (-D / --buildDrafts) must render the complete article and video animation.
-    execFileSync(hugoBin, ['--gc', '--minify', '--buildDrafts', '--destination', draftDir], {
-      cwd: ROOT,
-      stdio: 'pipe',
-    });
-
-    const postHtmlPath = path.join(draftDir, 'blog/kmp-fhir-sdk-beta.html');
-    assert.ok(fs.existsSync(postHtmlPath), 'Expected rendered blog/kmp-fhir-sdk-beta.html with --buildDrafts');
-    const postHtml = fs.readFileSync(postHtmlPath, 'utf8');
-
-    assert.ok(postHtml.includes('One Codebase, Every Platform: Bringing Cross-Platform FHIR Development to Global Digital Health'));
-    assert.match(postHtml, /<video[^>]*\bautoplay\b[^>]*\bmuted\b[^>]*\bloop\b[^>]*\bplaysinline\b/);
-    assert.match(postHtml, /src="?\/blog\/kmp-fhir-sdk-beta\/kmp-multiplatform-demo\.mp4"?/);
-    assert.match(postHtml, /poster="?\/blog\/kmp-fhir-sdk-beta\/kmp-multiplatform-poster\.jpg"?/);
-    assert.ok(fs.existsSync(path.join(draftDir, 'blog/kmp-fhir-sdk-beta/kmp-multiplatform-demo.mp4')));
-
-    const blogIndexHtml = fs.readFileSync(path.join(draftDir, 'blog.html'), 'utf8');
-    assert.ok(blogIndexHtml.includes('/blog/kmp-fhir-sdk-beta.html'));
-    assert.ok(blogIndexHtml.includes('One Codebase, Every Platform: Bringing Cross-Platform FHIR Development to Global Digital Health'));
-
-    const homeHtml = fs.readFileSync(path.join(draftDir, 'index.html'), 'utf8');
-    assert.ok(homeHtml.includes('/blog/kmp-fhir-sdk-beta.html'));
-    assert.ok(homeHtml.includes('KMP FHIR SDK: cross-platform FHIR development for global digital health'));
+    const prodPostPath = path.join(prodDir, 'blog/kmp-fhir-sdk-beta.html');
+    assert.ok(fs.existsSync(prodPostPath), 'Expected rendered blog/kmp-fhir-sdk-beta.html in production build');
+    const prodHtml = fs.readFileSync(prodPostPath, 'utf8');
+    assert.doesNotMatch(prodHtml, /<meta\s+name="?robots"?\s+content="?noindex"?/);
   } finally {
+    fs.rmSync(previewDir, { recursive: true, force: true });
     fs.rmSync(prodDir, { recursive: true, force: true });
-    fs.rmSync(draftDir, { recursive: true, force: true });
   }
 });

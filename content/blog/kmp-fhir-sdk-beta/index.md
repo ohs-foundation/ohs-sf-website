@@ -12,7 +12,7 @@ cardImage: card.jpg
 shortTitle: "One codebase, every platform"
 announce: "KMP FHIR SDK: cross-platform FHIR development for global digital health"
 readMore: "Read the post"
-draft: true
+draft: false
 ---
 
 In [*The “FHIR Tax” Is Shrinking*](/blog/fhir-standards-tax.html), we showed how Open Health Stack's Kotlin Multiplatform libraries and Agent Skills lower the cost of building standards-based healthcare apps on Android. Even once FHIR itself stops being the bottleneck, digital health teams still hit a second source of friction: rebuilding patient data models, clinical form logic, and offline sync separately across Android, iOS, desktop, and the web.
@@ -59,7 +59,7 @@ Because the libraries sit at different stages as the SDK enters its Beta phase a
 - **Web hosting and configuration:** Running offline storage in the browser requires specific hosting headers and web setup. See the [Kotlin FHIR Engine GitHub repository](https://github.com/ohs-foundation/kotlin-fhir-engine) and the [Run the engine in the browser](https://docs.ohs.foundation/fhir-foundations/kotlin-fhir-engine/web-targets/) guide for current configuration instructions.
 - **Platform-specific background sync and encryption:** Background sync while an app is closed and on-device database encryption are most mature on Android. On iOS, sync runs via native background tasks, while web apps sync whenever the browser tab is active.
 
-Teams can already build with the shared stack today, both directly and alongside AI coding agents. As we saw in [our FHIR Tax benchmark](/blog/fhir-standards-tax.html), a single strongly typed set of FHIR APIs and declarative forms lets developers and coding agents build and test a clinical workflow once and ship it across platforms together.
+Developers can already build with the shared stack today, both directly and alongside AI coding agents. As we saw in [our FHIR Tax benchmark](/blog/fhir-standards-tax.html), a single strongly typed set of FHIR APIs and declarative forms together with Agent Skills lets developers and coding agents build and test a clinical workflow once and ship it across platforms together.
 
 ## Upgrading from the Android FHIR SDK
 
@@ -67,11 +67,13 @@ Teams already running apps on the [Android FHIR SDK](https://github.com/ohs-foun
 
 On the application side, migrating an existing app involves updating Gradle coordinates and package imports from the legacy Android FHIR SDK to the `dev.ohs.fhir` Maven Central modules, and integrating each project's platform entry points. To make that transition smoother, we designed the KMP libraries to follow the existing Android FHIR SDK API patterns, ensured local database migration works automatically, and kept the Structured Data Capture UI consistent in Compose Multiplatform. At the same time, migrating is not guaranteed to be automatic for every codebase: these KMP libraries were inspired by the Android FHIR SDK, yet they are a ground-up multiplatform rewrite, so exact migration effort varies by project.
 
+We will continue to maintain and support the Android FHIR SDK for the foreseeable future, but new feature development will happen on the KMP FHIR SDK.
+
 ## From libraries to reference stack: powering OHS Player {kicker="Pillar 02 · Reference Toolkit"}
 
 The KMP FHIR SDK also powers [OHS Player](https://docs.ohs.foundation/ohs-player/), our open-source Reference Toolkit under Pillar 02 for assembling complete digital health systems.
 
-Inside OHS Player's cross-platform [Reference Client App](https://github.com/ohs-foundation/player-reference), the KMP libraries connect through [`player-client`](https://github.com/ohs-foundation/player-client) so teams can configure patient lists and clinical screens from FHIR definitions instead of hardcoding every view. The app authenticates via standard OpenID Connect (Keycloak) and communicates through FHIR Info Gateway to an unmodified HAPI FHIR server, paired with an admin portal and analytics dashboards ([explore the architecture](https://docs.ohs.foundation/ohs-player/architecture/)).
+Inside OHS Player's cross-platform [Reference Client App](https://github.com/ohs-foundation/player-reference), the KMP libraries connect through [`player-client`](https://github.com/ohs-foundation/player-client) so teams can configure patient lists and clinical screens from FHIR definitions instead of hardcoding every view. The app authenticates via standard OpenID Connect (Keycloak) and communicates through FHIR Info Gateway to an unmodified HAPI FHIR server, paired with an extendable admin portal and analytics dashboards that leverage FHIR Data Pipes ([explore the architecture](https://docs.ohs.foundation/ohs-player/architecture/)).
 
 Programs have two ways to start: add individual `dev.ohs.fhir` libraries to an existing app, or build from OHS Player as a full reference system covering mobile, web, backend, and reporting.
 
